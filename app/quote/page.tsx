@@ -8,14 +8,14 @@ export default function QuotePage() {
   const [sent, setSent] = useState(false);
 
   return (
-    <div className="border-b border-slate-200 bg-white">
+    <div className="border-b border-[#d9e4f2] bg-[linear-gradient(180deg,#fafdff_0%,#eef7ff_100%)]">
       <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 sm:py-16">
-        <p className="text-sm font-semibold uppercase tracking-wide text-[#0071CE]">Quote request</p>
-        <h1 className="mt-2 text-3xl font-bold tracking-tight text-[#0e1555] sm:text-4xl">Describe the problem</h1>
+        <p className="text-sm font-semibold uppercase tracking-[0.24em] text-[#3f63ff]">Quote request</p>
+        <h1 className="mt-2 text-3xl font-bold tracking-tight text-[#101a56] sm:text-4xl">Describe the problem</h1>
         <p className="mt-4 text-slate-600">
           For non-standard jobs — noises, warning lights, damage — send details and we will come back with next steps.
           For routine servicing, use the{" "}
-          <Link href="/book" className="font-semibold text-[#0071CE] underline-offset-2 hover:text-[#0e1555] hover:underline">
+          <Link href="/book" className="font-semibold text-[#3f63ff] underline-offset-2 hover:text-[#101a56] hover:underline">
             booking form
           </Link>
           .
@@ -44,7 +44,7 @@ export default function QuotePage() {
               <input
                 id="q-reg"
                 required
-                className="mt-1 w-full min-h-11 rounded-lg border-2 border-slate-300 px-3 py-2 text-sm shadow-sm focus:border-[#F1B500] focus:outline-none focus:ring-2 focus:ring-[#F1B500]/30"
+                className="mt-1 w-full min-h-11 rounded-xl border border-[#c9d8ee] bg-white px-3 py-2 text-sm shadow-sm focus:border-[#3f63ff] focus:outline-none focus:ring-4 focus:ring-[#3f63ff]/15"
               />
             </div>
             <div>
@@ -55,7 +55,7 @@ export default function QuotePage() {
                 id="q-desc"
                 required
                 rows={5}
-                className="mt-1 w-full min-h-11 rounded-lg border-2 border-slate-300 px-3 py-2 text-sm shadow-sm focus:border-[#F1B500] focus:outline-none focus:ring-2 focus:ring-[#F1B500]/30"
+                className="mt-1 w-full min-h-11 rounded-xl border border-[#c9d8ee] bg-white px-3 py-2 text-sm shadow-sm focus:border-[#3f63ff] focus:outline-none focus:ring-4 focus:ring-[#3f63ff]/15"
               />
             </div>
             <div className="grid gap-4 sm:grid-cols-2">
@@ -66,7 +66,7 @@ export default function QuotePage() {
                 <input
                   id="q-name"
                   required
-                  className="mt-1 w-full min-h-11 rounded-lg border-2 border-slate-300 px-3 py-2 text-sm shadow-sm focus:border-[#F1B500] focus:outline-none focus:ring-2 focus:ring-[#F1B500]/30"
+                  className="mt-1 w-full min-h-11 rounded-xl border border-[#c9d8ee] bg-white px-3 py-2 text-sm shadow-sm focus:border-[#3f63ff] focus:outline-none focus:ring-4 focus:ring-[#3f63ff]/15"
                 />
               </div>
               <div>
@@ -77,7 +77,7 @@ export default function QuotePage() {
                   id="q-phone"
                   type="tel"
                   required
-                  className="mt-1 w-full min-h-11 rounded-lg border-2 border-slate-300 px-3 py-2 text-sm shadow-sm focus:border-[#F1B500] focus:outline-none focus:ring-2 focus:ring-[#F1B500]/30"
+                  className="mt-1 w-full min-h-11 rounded-xl border border-[#c9d8ee] bg-white px-3 py-2 text-sm shadow-sm focus:border-[#3f63ff] focus:outline-none focus:ring-4 focus:ring-[#3f63ff]/15"
                 />
               </div>
             </div>
@@ -86,7 +86,7 @@ export default function QuotePage() {
             </p>
             <button
               type="submit"
-              className="min-h-12 w-full rounded-lg bg-[#F1B500] px-5 py-3 text-sm font-bold text-[#0e1555] shadow-md hover:bg-[#d4a000] sm:w-auto"
+              className="min-h-12 w-full rounded-xl bg-[#101a56] px-5 py-3 text-sm font-bold text-white shadow-md transition hover:bg-[#16236e] sm:w-auto"
             >
               Send request
             </button>

@@ -20,8 +20,8 @@ export function SiteHeader() {
   const [open, setOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-slate-200 bg-slate-100 shadow-sm">
-      <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-2 py-2 sm:px-4">
+    <header className="sticky top-0 z-50 bg-white/98 shadow-[0_6px_18px_rgba(16,26,86,0.05)] backdrop-blur">
+      <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-2 py-3 sm:px-4">
 
         {/* Logo */}
         <Link href="/" className="shrink-0" onClick={() => setOpen(false)}>
@@ -41,7 +41,7 @@ export function SiteHeader() {
             <Link
               key={item.href}
               href={item.href}
-              className="rounded-md px-3 py-2 text-sm font-medium text-slate-600 hover:bg-slate-200 hover:text-[#0e1555] whitespace-nowrap"
+              className="whitespace-nowrap rounded-md px-3 py-2 text-sm font-medium text-slate-600 transition hover:bg-[#eef4ff] hover:text-[#101a56]"
             >
               {item.label}
             </Link>
@@ -52,7 +52,7 @@ export function SiteHeader() {
         <div className="hidden lg:flex shrink-0 items-center gap-2">
           <a
             href={`tel:${site.phoneTel}`}
-            className="inline-flex min-h-10 items-center justify-center rounded-lg bg-[#0e1555] px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-[#1c2a61]"
+            className="inline-flex min-h-10 items-center justify-center rounded-lg bg-[#101a56] px-3 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-[#16236e]"
           >
             {site.phoneDisplay}
           </a>
@@ -60,13 +60,13 @@ export function SiteHeader() {
             href={waUrl()}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex min-h-10 items-center justify-center rounded-lg bg-[#25D366] px-3 py-2 text-sm font-semibold text-white hover:bg-[#1ebe5d]"
+            className="inline-flex min-h-10 items-center justify-center rounded-lg bg-[#25D366] px-3 py-2 text-sm font-semibold text-white transition hover:bg-[#1ebe5d]"
           >
             WhatsApp
           </a>
           <Link
             href="/book"
-            className="inline-flex min-h-10 items-center justify-center rounded-lg bg-[#F1B500] px-4 py-2 text-sm font-bold text-[#0e1555] shadow-md hover:bg-[#d4a000]"
+            className="inline-flex min-h-10 items-center justify-center rounded-lg bg-[#3f63ff] px-4 py-2 text-sm font-bold text-white shadow-md transition hover:bg-[#3354e0]"
           >
             Book now
           </Link>
@@ -76,14 +76,14 @@ export function SiteHeader() {
         <div className="flex items-center gap-2 lg:hidden">
           <Link
             href="/book"
-            className="inline-flex min-h-9 items-center justify-center rounded-lg bg-[#F1B500] px-3 py-2 text-sm font-bold text-[#0e1555] shadow-md hover:bg-[#d4a000]"
+            className="inline-flex min-h-9 items-center justify-center rounded-lg bg-[#3f63ff] px-3 py-2 text-sm font-bold text-white shadow-md transition hover:bg-[#3354e0]"
           >
             Book now
           </Link>
           <button
             type="button"
             onClick={() => setOpen(!open)}
-            className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-slate-300 bg-white text-slate-600 hover:bg-slate-200"
+            className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-[color:var(--border)] bg-white text-slate-600 transition hover:bg-[#eef4ff]"
             aria-label="Toggle menu"
           >
             {open ? (
@@ -103,23 +103,23 @@ export function SiteHeader() {
 
       {/* Mobile menu dropdown */}
       {open && (
-        <div className="lg:hidden border-t border-slate-200 bg-white px-4 py-3 shadow-lg">
+        <div className="lg:hidden border-t border-[color:var(--border)] bg-white px-4 py-3 shadow-lg">
           <nav className="flex flex-col gap-1">
             {nav.map((item) => (
               <Link
                 key={item.href}
                 href={item.href}
                 onClick={() => setOpen(false)}
-                className="rounded-lg px-4 py-3 text-sm font-medium text-slate-700 hover:bg-slate-100 hover:text-[#0e1555]"
+                className="rounded-lg px-4 py-3 text-sm font-medium text-slate-700 transition hover:bg-[#eef4ff] hover:text-[#101a56]"
               >
                 {item.label}
               </Link>
             ))}
           </nav>
-          <div className="mt-3 flex flex-col gap-2 border-t border-slate-100 pt-3">
+          <div className="mt-3 flex flex-col gap-2 border-t border-[#edf2f8] pt-3">
             <a
               href={`tel:${site.phoneTel}`}
-              className="flex min-h-11 items-center justify-center rounded-lg bg-[#0e1555] px-4 py-2 text-sm font-semibold text-white hover:bg-[#1c2a61]"
+              className="flex min-h-11 items-center justify-center rounded-lg bg-[#101a56] px-4 py-2 text-sm font-semibold text-white transition hover:bg-[#16236e]"
             >
               Call {site.phoneDisplay}
             </a>

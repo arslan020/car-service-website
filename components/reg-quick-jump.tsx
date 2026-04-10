@@ -22,7 +22,7 @@ export function RegQuickJump() {
         </label>
         <input
           id="home-reg"
-          className="mt-1 w-full min-h-11 rounded-lg border-2 border-[#1d4e89] bg-[#1c2a61]/80 px-3 py-2.5 text-sm text-white shadow-sm outline-none placeholder:text-slate-400 focus:border-[#F1B500] focus:ring-2 focus:ring-[#F1B500]/30"
+          className="mt-1 w-full min-h-11 rounded-xl border border-[#bfd1ee] bg-white px-3 py-2.5 text-sm text-[#101a56] shadow-sm outline-none placeholder:text-slate-400 focus:border-[#3f63ff] focus:ring-4 focus:ring-[#3f63ff]/15"
           placeholder="e.g. AB12 CDE"
           value={reg}
           onChange={(e) => setReg(e.target.value)}
@@ -31,7 +31,7 @@ export function RegQuickJump() {
       </div>
       <button
         type="submit"
-        className="min-h-11 w-full rounded-lg bg-[#F1B500] px-5 py-2.5 text-sm font-bold text-[#0e1555] shadow-md hover:bg-[#d4a000] sm:w-auto sm:shrink-0"
+        className="min-h-11 w-full rounded-xl bg-[#101a56] px-5 py-2.5 text-sm font-bold text-white shadow-md transition hover:bg-[#16236e] sm:w-auto sm:shrink-0"
       >
         Start booking
       </button>

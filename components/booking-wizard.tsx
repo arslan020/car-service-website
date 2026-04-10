@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
-import { useEffect, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import { ADD_ONS, SERVICE_TYPES } from "@/lib/booking-data";
 import { site, waUrl } from "@/lib/site-config";
 import type { BookingFormValues } from "@/lib/validations/booking";
@@ -40,7 +40,7 @@ function todayISODate() {
 }
 
 function inputClass() {
-  return "mt-1 w-full min-h-11 rounded-lg border-2 border-slate-300 bg-white px-3 py-2 text-sm text-slate-900 shadow-sm outline-none placeholder:text-slate-400 focus:border-[#F1B500] focus:ring-2 focus:ring-[#F1B500]/30";
+  return "mt-1 w-full min-h-11 rounded-xl border border-[#c9d8ee] bg-white px-3 py-2 text-sm text-slate-900 shadow-sm outline-none placeholder:text-slate-400 focus:border-[#3f63ff] focus:ring-4 focus:ring-[#3f63ff]/15";
 }
 
 function labelClass() {
@@ -50,19 +50,15 @@ function labelClass() {
 export function BookingWizard() {
   const searchParams = useSearchParams();
   const [step, setStep] = useState(1);
-  const [form, setForm] = useState<BookingFormValues>(initial);
+  const [form, setForm] = useState<BookingFormValues>(() => ({
+    ...initial,
+    reg: searchParams.get("reg") ?? "",
+  }));
   const [pending, setPending] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [reference, setReference] = useState<string | null>(null);
 
   const minDate = useMemo(() => todayISODate(), []);
-
-  useEffect(() => {
-    const r = searchParams.get("reg");
-    if (r) {
-      setForm((f) => ({ ...f, reg: f.reg || r }));
-    }
-  }, [searchParams]);
 
   function update<K extends keyof BookingFormValues>(key: K, value: BookingFormValues[K]) {
     setForm((f) => ({ ...f, [key]: value }));
@@ -125,7 +121,7 @@ export function BookingWizard() {
             {Array.from({ length: STEPS }, (_, i) => (
               <span
                 key={i}
-                className={`h-2.5 rounded-full ${i + 1 <= step ? "bg-[#F1B500]" : "bg-slate-200"}`}
+                className={`h-2.5 rounded-full ${i + 1 <= step ? "bg-[#3f63ff]" : "bg-slate-200"}`}
                 aria-hidden
               />
             ))}
@@ -144,7 +140,7 @@ export function BookingWizard() {
 
       {step === 1 && (
         <section className="space-y-4">
-          <h2 className="text-xl font-semibold text-[#0e1555]">Vehicle details</h2>
+          <h2 className="text-xl font-semibold text-[#101a56]">Vehicle details</h2>
           <p className="text-sm text-slate-600">
             Enter your registration to start. You can add more details so we are ready when you arrive.
           </p>
@@ -261,23 +257,23 @@ export function BookingWizard() {
 
       {step === 2 && (
         <section className="space-y-4">
-          <h2 className="text-xl font-semibold text-[#0e1555]">Choose service</h2>
+          <h2 className="text-xl font-semibold text-[#101a56]">Choose service</h2>
           <p className="text-sm text-slate-600">Select the main reason for your visit.</p>
           <div className="grid gap-2 sm:grid-cols-2">
             {SERVICE_TYPES.map((s) => (
               <label
                 key={s.id}
-                className={`flex cursor-pointer flex-col rounded-xl border-2 px-3 py-3 text-sm shadow-sm transition hover:border-[#F1B500] ${
+                className={`flex cursor-pointer flex-col rounded-xl border px-3 py-3 text-sm shadow-sm transition hover:border-[#3f63ff] ${
                   form.serviceType === s.id
-                    ? "border-[#F1B500] bg-yellow-50 ring-2 ring-[#F1B500]/35"
-                    : "border-slate-200 bg-white"
+                    ? "border-[#3f63ff] bg-[#eef4ff] ring-2 ring-[#3f63ff]/20"
+                    : "border-[#d9e4f2] bg-white"
                 }`}
               >
                 <span className="flex items-start gap-2">
                   <input
                     type="radio"
                     name="serviceType"
-                    className="mt-1 accent-[#F1B500]"
+                    className="mt-1 accent-[#3f63ff]"
                     checked={form.serviceType === s.id}
                     onChange={() => update("serviceType", s.id)}
                   />
@@ -294,17 +290,17 @@ export function BookingWizard() {
 
       {step === 3 && (
         <section className="space-y-4">
-          <h2 className="text-xl font-semibold text-[#0e1555]">Add-ons</h2>
+          <h2 className="text-xl font-semibold text-[#101a56]">Add-ons</h2>
           <p className="text-sm text-slate-600">Optional extras — we will confirm availability.</p>
           <div className="grid gap-2 sm:grid-cols-2">
             {ADD_ONS.map((a) => (
               <label
                 key={a.id}
-                className="flex cursor-pointer items-center gap-2 rounded-lg border-2 border-slate-200 bg-white px-3 py-2.5 text-sm shadow-sm hover:border-[#F1B500]"
+                className="flex cursor-pointer items-center gap-2 rounded-xl border border-[#d9e4f2] bg-white px-3 py-2.5 text-sm shadow-sm transition hover:border-[#3f63ff]"
               >
                 <input
                   type="checkbox"
-                  className="accent-[#F1B500]"
+                  className="accent-[#3f63ff]"
                   checked={form.addOns.includes(a.id)}
                   onChange={() => toggleAddOn(a.id)}
                 />
@@ -317,15 +313,15 @@ export function BookingWizard() {
 
       {step === 4 && (
         <section className="space-y-4">
-          <h2 className="text-xl font-semibold text-[#0e1555]">Date and time</h2>
+          <h2 className="text-xl font-semibold text-[#101a56]">Date and time</h2>
           <p className="text-sm text-slate-600">
             We will confirm your slot by phone or email. Urgent work?{" "}
-            <a className="font-semibold text-[#0071CE] underline-offset-2 hover:underline" href={`tel:${site.phoneTel}`}>
+            <a className="font-semibold text-[#3f63ff] underline-offset-2 hover:underline" href={`tel:${site.phoneTel}`}>
               Call {site.phoneDisplay}
             </a>{" "}
             or{" "}
             <a
-              className="font-semibold text-[#0071CE] underline-offset-2 hover:underline"
+              className="font-semibold text-[#3f63ff] underline-offset-2 hover:underline"
               href={waUrl("Urgent repair request")}
             >
               WhatsApp us
@@ -352,7 +348,7 @@ export function BookingWizard() {
                 <input
                   type="radio"
                   name="slot"
-                  className="accent-[#F1B500]"
+                  className="accent-[#3f63ff]"
                   checked={form.slotPeriod === "morning"}
                   onChange={() => update("slotPeriod", "morning")}
                 />
@@ -362,7 +358,7 @@ export function BookingWizard() {
                 <input
                   type="radio"
                   name="slot"
-                  className="accent-[#F1B500]"
+                  className="accent-[#3f63ff]"
                   checked={form.slotPeriod === "afternoon"}
                   onChange={() => update("slotPeriod", "afternoon")}
                 />
@@ -378,7 +374,7 @@ export function BookingWizard() {
 
       {step === 5 && (
         <section className="space-y-4">
-          <h2 className="text-xl font-semibold text-[#0e1555]">Your details</h2>
+          <h2 className="text-xl font-semibold text-[#101a56]">Your details</h2>
           <div className="grid gap-4 sm:grid-cols-2">
             <div className="sm:col-span-2">
               <label className={labelClass()} htmlFor="name">
@@ -449,16 +445,16 @@ export function BookingWizard() {
 
       {step === 6 && (
         <section className="space-y-4">
-          <h2 className="text-xl font-semibold text-[#0e1555]">Payment preference</h2>
+          <h2 className="text-xl font-semibold text-[#101a56]">Payment preference</h2>
           <p className="text-sm text-slate-600">
             How would you like to pay when the work is complete?
           </p>
           <fieldset className="space-y-3 text-sm">
-            <label className="flex cursor-pointer gap-2 rounded-lg border border-slate-200 bg-white p-3 hover:border-[#F1B500]">
+            <label className="flex cursor-pointer gap-2 rounded-xl border border-[#d9e4f2] bg-white p-3 transition hover:border-[#3f63ff]">
               <input
                 type="radio"
                 name="pay"
-                className="accent-[#F1B500]"
+                className="accent-[#3f63ff]"
                 checked={form.paymentChoice === "pay_now"}
                 onChange={() => update("paymentChoice", "pay_now")}
               />
@@ -467,11 +463,11 @@ export function BookingWizard() {
                 <span className="mt-1 block text-slate-600">Card checkout (connect Stripe to activate).</span>
               </span>
             </label>
-            <label className="flex cursor-pointer gap-2 rounded-lg border border-slate-200 bg-white p-3 hover:border-[#F1B500]">
+            <label className="flex cursor-pointer gap-2 rounded-xl border border-[#d9e4f2] bg-white p-3 transition hover:border-[#3f63ff]">
               <input
                 type="radio"
                 name="pay"
-                className="accent-[#F1B500]"
+                className="accent-[#3f63ff]"
                 checked={form.paymentChoice === "deposit"}
                 onChange={() => update("paymentChoice", "deposit")}
               />
@@ -480,11 +476,11 @@ export function BookingWizard() {
                 <span className="mt-1 block text-slate-600">Hold your slot with a small deposit.</span>
               </span>
             </label>
-            <label className="flex cursor-pointer gap-2 rounded-lg border border-slate-200 bg-white p-3 hover:border-[#F1B500]">
+            <label className="flex cursor-pointer gap-2 rounded-xl border border-[#d9e4f2] bg-white p-3 transition hover:border-[#3f63ff]">
               <input
                 type="radio"
                 name="pay"
-                className="accent-[#F1B500]"
+                className="accent-[#3f63ff]"
                 checked={form.paymentChoice === "at_garage"}
                 onChange={() => update("paymentChoice", "at_garage")}
               />
@@ -510,7 +506,7 @@ export function BookingWizard() {
           <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:justify-center">
             <Link
               href="/"
-              className="inline-flex min-h-12 w-full items-center justify-center rounded-lg bg-[#0e1555] px-4 py-3 text-sm font-bold text-white shadow-md hover:bg-[#1c2a61] sm:w-auto"
+              className="inline-flex min-h-12 w-full items-center justify-center rounded-xl bg-[#101a56] px-4 py-3 text-sm font-bold text-white shadow-md transition hover:bg-[#16236e] sm:w-auto"
             >
               Back to home
             </Link>
@@ -540,7 +536,7 @@ export function BookingWizard() {
           {step < STEPS ? (
             <button
               type="button"
-              className="min-h-12 w-full rounded-lg bg-[#F1B500] px-5 py-3 text-sm font-bold text-[#0e1555] shadow-md hover:bg-[#d4a000] disabled:opacity-50 sm:w-auto sm:min-w-[10rem]"
+              className="min-h-12 w-full rounded-xl bg-[#101a56] px-5 py-3 text-sm font-bold text-white shadow-md transition hover:bg-[#16236e] disabled:opacity-50 sm:w-auto sm:min-w-[10rem]"
               disabled={pending}
               onClick={() => {
                 setError(null);
@@ -557,7 +553,7 @@ export function BookingWizard() {
           ) : (
             <button
               type="button"
-              className="min-h-12 w-full rounded-lg bg-[#F1B500] px-5 py-3 text-sm font-bold text-[#0e1555] shadow-md hover:bg-[#d4a000] disabled:opacity-50 sm:w-auto sm:min-w-[12rem]"
+              className="min-h-12 w-full rounded-xl bg-[#101a56] px-5 py-3 text-sm font-bold text-white shadow-md transition hover:bg-[#16236e] disabled:opacity-50 sm:w-auto sm:min-w-[12rem]"
               disabled={pending}
               onClick={handleSubmit}
             >
@@ -569,7 +565,7 @@ export function BookingWizard() {
 
       <p className="mt-8 text-center text-sm text-slate-600">
         Not sure what you need?{" "}
-        <Link href="/quote" className="font-semibold text-[#0071CE] underline-offset-2 hover:text-[#0e1555] hover:underline">
+        <Link href="/quote" className="font-semibold text-[#3f63ff] underline-offset-2 hover:text-[#101a56] hover:underline">
           Request a quote
         </Link>
       </p>
