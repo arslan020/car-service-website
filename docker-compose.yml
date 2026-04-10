@@ -1,0 +1,15 @@
+services:
+  db:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: garage
+      POSTGRES_PASSWORD: garage
+      POSTGRES_DB: garage
+    ports:
+      - "5432:5432"
+    volumes:
+      - garage_pg:/var/lib/postgresql/data
+
+volumes:
+  garage_pg:
