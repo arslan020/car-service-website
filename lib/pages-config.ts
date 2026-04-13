@@ -194,36 +194,7 @@ export const PAGES_CONFIG: PageDef[] = [
       },
     ],
   },
-  {
-    slug: "pricing",
-    label: "Pricing",
-    icon: "💷",
-    fields: [
-      {
-        key: "hero_title",
-        label: "Page Title",
-        type: "text",
-        default: "Clear pricing",
-        section: "Hero",
-      },
-      {
-        key: "hero_subtitle",
-        label: "Subtitle",
-        type: "textarea",
-        default:
-          "Starting prices for all our services. Your exact quote is confirmed before we touch the car — no surprises, ever.",
-        section: "Hero",
-      },
-      {
-        key: "note_1",
-        label: "Pricing Note",
-        type: "textarea",
-        default:
-          "All prices are starting prices. Final cost depends on your vehicle specification, age, and parts required.",
-        section: "Notes",
-      },
-    ],
-  },
+
   {
     slug: "contact",
     label: "Contact",
