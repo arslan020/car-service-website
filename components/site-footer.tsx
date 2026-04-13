@@ -54,7 +54,7 @@ export function SiteFooter() {
       </div>
       <div className="border-t border-[#edf2f8] bg-[#f6fbff]">
         <div className="mx-auto flex max-w-7xl flex-col gap-2 px-4 py-4 text-xs text-slate-500 sm:flex-row sm:items-center sm:justify-between sm:px-6">
-          <p>© {new Date().getFullYear()} {site.name}. All rights reserved.</p>
+          <p>&copy; {new Date().getFullYear()} {site.name}. All rights reserved.</p>
           <ul className="flex flex-wrap gap-4">
             {legal.map((l) => (
               <li key={l.href}>

@@ -20,10 +20,24 @@
   --font-mono: var(--font-geist-mono);
 }
 
+html {
+  overflow-x: hidden;
+}
+
 body {
   background:
     radial-gradient(circle at top left, #edf8ff 0%, transparent 28%),
     linear-gradient(180deg, #f8fcff 0%, #f3f8fd 100%);
   color: var(--foreground);
   font-family: var(--font-sans), system-ui, sans-serif;
+  overflow-x: hidden;
+  -webkit-tap-highlight-color: transparent;
+}
+
+img,
+svg,
+video,
+canvas {
+  display: block;
+  max-width: 100%;
 }

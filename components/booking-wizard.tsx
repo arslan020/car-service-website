@@ -3,12 +3,51 @@
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { useMemo, useState } from "react";
-import { ADD_ONS, SERVICE_TYPES } from "@/lib/booking-data";
-import { site, waUrl } from "@/lib/site-config";
+import { site } from "@/lib/site-config";
 import type { BookingFormValues } from "@/lib/validations/booking";
 import { createBooking } from "@/app/book/actions";
 
-const STEPS = 6;
+const BOOKING_SERVICES = [
+  { id: "mot", label: "MOT" },
+  { id: "full", label: "Full service" },
+  { id: "interim", label: "Interim service" },
+  { id: "brakes", label: "Brakes" },
+  { id: "diagnostics", label: "Diagnostics" },
+  { id: "tyres", label: "Tyres" },
+  { id: "ac", label: "Air-con" },
+  { id: "general", label: "Other" },
+] as const;
+
+const TIME_SLOTS = [
+  { time: "09:00", period: "morning" as const },
+  { time: "09:30", period: "morning" as const },
+  { time: "10:00", period: "morning" as const },
+  { time: "10:30", period: "morning" as const },
+  { time: "11:00", period: "morning" as const },
+  { time: "11:30", period: "morning" as const },
+  { time: "12:00", period: "afternoon" as const },
+  { time: "14:00", period: "afternoon" as const },
+  { time: "14:40", period: "afternoon" as const },
+];
+
+const STEP_LABELS = ["Car Details", "Date & time", "Contact"];
+
+function formatSlotHeader(dateStr: string): string {
+  if (!dateStr) return "SELECT A DATE FIRST";
+  const d = new Date(dateStr + "T00:00:00");
+  const day = d.toLocaleDateString("en-GB", { weekday: "short" }).toUpperCase();
+  const date = d.getDate();
+  const month = d.toLocaleDateString("en-GB", { month: "short" }).toUpperCase();
+  return `${day} ${date} ${month}`;
+}
+
+function todayISODate() {
+  const d = new Date();
+  const y = d.getFullYear();
+  const m = String(d.getMonth() + 1).padStart(2, "0");
+  const day = String(d.getDate()).padStart(2, "0");
+  return `${y}-${m}-${day}`;
+}
 
 const initial: BookingFormValues = {
   reg: "",
@@ -31,29 +70,15 @@ const initial: BookingFormValues = {
   paymentChoice: "at_garage",
 };
 
-function todayISODate() {
-  const d = new Date();
-  const y = d.getFullYear();
-  const m = String(d.getMonth() + 1).padStart(2, "0");
-  const day = String(d.getDate()).padStart(2, "0");
-  return `${y}-${m}-${day}`;
-}
-
-function inputClass() {
-  return "mt-1 w-full min-h-11 rounded-xl border border-[#c9d8ee] bg-white px-3 py-2 text-sm text-slate-900 shadow-sm outline-none placeholder:text-slate-400 focus:border-[#3f63ff] focus:ring-4 focus:ring-[#3f63ff]/15";
-}
-
-function labelClass() {
-  return "text-sm font-medium text-slate-700";
-}
-
 export function BookingWizard() {
   const searchParams = useSearchParams();
   const [step, setStep] = useState(1);
   const [form, setForm] = useState<BookingFormValues>(() => ({
     ...initial,
     reg: searchParams.get("reg") ?? "",
+    serviceType: searchParams.get("service") ?? "",
   }));
+  const [selectedTime, setSelectedTime] = useState("");
   const [pending, setPending] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [reference, setReference] = useState<string | null>(null);
@@ -64,510 +89,292 @@ export function BookingWizard() {
     setForm((f) => ({ ...f, [key]: value }));
   }
 
-  function toggleAddOn(id: string) {
-    setForm((f) => {
-      const has = f.addOns.includes(id);
-      return {
-        ...f,
-        addOns: has ? f.addOns.filter((x) => x !== id) : [...f.addOns, id],
-      };
-    });
-  }
-
   function validateStep(s: number): string | null {
     if (s === 1) {
-      if (form.reg.trim().length < 2) return "Enter your registration number.";
+      if (form.reg.trim().length < 2) return "Please enter your registration number.";
+      if (!form.serviceType) return "Please select a service.";
     }
     if (s === 2) {
-      if (!form.serviceType) return "Choose a service type.";
+      if (!form.appointmentDate) return "Please pick a date.";
+      if (!selectedTime) return "Please select a time slot.";
     }
-    if (s === 4) {
-      if (!form.appointmentDate) return "Choose a date.";
-    }
-    if (s === 5) {
-      if (form.customerName.trim().length < 2) return "Enter your full name.";
-      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.customerEmail)) return "Enter a valid email.";
-      if (form.customerPhone.replace(/\D/g, "").length < 10) return "Enter a valid phone number.";
+    if (s === 3) {
+      if (form.customerName.trim().length < 2) return "Please enter your full name.";
+      if (form.customerPhone.replace(/\D/g, "").length < 10) return "Please enter a valid mobile number.";
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.customerEmail)) return "Please enter a valid email address.";
     }
     return null;
   }
 
   async function handleSubmit() {
     setError(null);
-    const v = validateStep(5);
-    if (v) {
-      setError(v);
-      return;
-    }
+    const v = validateStep(3);
+    if (v) { setError(v); return; }
     setPending(true);
     const res = await createBooking(form);
     setPending(false);
-    if (!res.ok) {
-      setError(res.message);
-      return;
-    }
+    if (!res.ok) { setError(res.message); return; }
     setReference(res.reference);
-    setStep(7);
+    setStep(4);
+  }
+
+  function goNext() {
+    setError(null);
+    const msg = validateStep(step);
+    if (msg) { setError(msg); return; }
+    setStep((s) => s + 1);
+  }
+
+  function goBack() {
+    setError(null);
+    setStep((s) => Math.max(1, s - 1));
+  }
+
+  const labelClass = "block text-[10px] font-bold uppercase tracking-widest text-slate-400 mb-1.5";
+  const inputClass =
+    "w-full rounded-xl border border-[#d0dcea] bg-white px-3.5 py-3 text-sm text-slate-900 placeholder-slate-400 outline-none focus:border-[#3f63ff] focus:ring-2 focus:ring-[#3f63ff]/15";
+
+  /* ── Success screen ── */
+  if (step === 4 && reference) {
+    return (
+      <div className="rounded-2xl border border-emerald-200 bg-emerald-50 px-6 py-10 text-center">
+        <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-emerald-100">
+          <svg className="h-7 w-7 text-emerald-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="m4.5 12.75 6 6 9-13.5" />
+          </svg>
+        </div>
+        <p className="text-sm font-semibold text-emerald-800">Booking received</p>
+        <p className="mt-2 text-2xl font-bold tracking-tight text-emerald-950">{reference}</p>
+        <p className="mt-3 text-sm text-emerald-800">
+          Keep this reference. We will confirm your slot by text or call shortly.
+        </p>
+        <Link
+          href="/"
+          className="mt-6 inline-flex min-h-12 w-full items-center justify-center rounded-xl bg-[#101a56] px-4 py-3 text-sm font-bold text-white shadow-md hover:bg-[#16236e]"
+        >
+          Back to home
+        </Link>
+      </div>
+    );
   }
 
   return (
-    <div className="mx-auto max-w-4xl">
-      {step < 7 && (
-        <div className="mb-6 grid gap-3 sm:grid-cols-[1fr_auto] sm:items-center">
-          <p className="text-sm font-medium text-slate-700">
-            Step {step} of {STEPS}
-          </p>
-          <div className="grid w-full grid-cols-6 gap-1.5 sm:max-w-[14rem] sm:justify-self-end">
-            {Array.from({ length: STEPS }, (_, i) => (
-              <span
-                key={i}
-                className={`h-2.5 rounded-full ${i + 1 <= step ? "bg-[#3f63ff]" : "bg-slate-200"}`}
-                aria-hidden
-              />
-            ))}
+    <div>
+      {/* Step indicator */}
+      <div className="flex border-b border-[#f0f4f8]">
+        {STEP_LABELS.map((label, i) => (
+          <div
+            key={label}
+            className={`flex-1 py-3 text-center text-xs font-semibold transition-colors ${
+              step === i + 1
+                ? "border-b-2 border-[#101a56] text-[#101a56]"
+                : step > i + 1
+                ? "text-slate-400"
+                : "text-slate-300"
+            }`}
+          >
+            {i + 1}. {label}
           </div>
-        </div>
-      )}
+        ))}
+      </div>
 
+      {/* Error */}
       {error && (
-        <div
-          className="mb-4 rounded-lg border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-800"
-          role="alert"
-        >
+        <div className="mt-4 rounded-lg border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700">
           {error}
         </div>
       )}
 
+      {/* ── Step 1: Car Details ── */}
       {step === 1 && (
-        <section className="space-y-4">
-          <h2 className="text-xl font-semibold text-[#101a56]">Vehicle details</h2>
-          <p className="text-sm text-slate-600">
-            Enter your registration to start. You can add more details so we are ready when you arrive.
-          </p>
+        <div className="mt-5 space-y-5">
           <div>
-            <label className={labelClass()} htmlFor="reg">
-              Registration <span className="text-red-600">*</span>
-            </label>
-            <input
-              id="reg"
-              className={inputClass()}
-              placeholder="e.g. AB12 CDE"
-              value={form.reg}
-              onChange={(e) => update("reg", e.target.value)}
-              autoComplete="off"
-            />
-          </div>
-          <div className="grid gap-4 sm:grid-cols-2">
-            <div>
-              <label className={labelClass()} htmlFor="make">
-                Make
-              </label>
+            <label className={labelClass}>Your reg plate</label>
+            {/* UK plate */}
+            <div className="relative overflow-hidden rounded-xl border-2 border-[#F5C518] bg-[#F5C518]">
+              <div className="absolute inset-y-0 left-0 flex w-[3.25rem] flex-col items-center justify-center bg-[#003399] px-2">
+                <span className="text-[9px] font-bold leading-none text-yellow-300">★</span>
+                <span className="mt-0.5 text-[9px] font-extrabold leading-none text-white">UK</span>
+              </div>
               <input
-                id="make"
-                className={inputClass()}
-                value={form.make}
-                onChange={(e) => update("make", e.target.value)}
+                type="text"
+                placeholder="LK21 XFT"
+                maxLength={8}
+                value={form.reg}
+                onChange={(e) => update("reg", e.target.value.toUpperCase())}
+                className="w-full bg-transparent py-3.5 pl-[3.5rem] pr-4 text-center text-lg font-extrabold uppercase tracking-widest text-[#101a56] placeholder-[#a89000] focus:outline-none"
               />
-            </div>
-            <div>
-              <label className={labelClass()} htmlFor="model">
-                Model
-              </label>
-              <input
-                id="model"
-                className={inputClass()}
-                value={form.model}
-                onChange={(e) => update("model", e.target.value)}
-              />
-            </div>
-            <div>
-              <label className={labelClass()} htmlFor="year">
-                Year
-              </label>
-              <input
-                id="year"
-                className={inputClass()}
-                inputMode="numeric"
-                value={form.year}
-                onChange={(e) => update("year", e.target.value)}
-              />
-            </div>
-            <div>
-              <label className={labelClass()} htmlFor="fuel">
-                Fuel type
-              </label>
-              <select
-                id="fuel"
-                className={inputClass()}
-                value={form.fuelType}
-                onChange={(e) => update("fuelType", e.target.value)}
-              >
-                <option value="">Select fuel type</option>
-                <option value="Petrol">Petrol</option>
-                <option value="Diesel">Diesel</option>
-                <option value="Hybrid">Hybrid</option>
-                <option value="Electric">Electric (EV)</option>
-                <option value="Plug-in Hybrid">Plug-in Hybrid (PHEV)</option>
-              </select>
-            </div>
-            <div>
-              <label className={labelClass()} htmlFor="engine">
-                Engine size
-              </label>
-              <input
-                id="engine"
-                className={inputClass()}
-                placeholder="e.g. 1.6"
-                value={form.engineSize}
-                onChange={(e) => update("engineSize", e.target.value)}
-              />
-            </div>
-            <div>
-              <label className={labelClass()} htmlFor="mileage">
-                Mileage
-              </label>
-              <input
-                id="mileage"
-                className={inputClass()}
-                inputMode="numeric"
-                value={form.mileage}
-                onChange={(e) => update("mileage", e.target.value)}
-              />
-            </div>
-            <div className="sm:col-span-2">
-              <label className={labelClass()} htmlFor="trans">
-                Transmission
-              </label>
-              <select
-                id="trans"
-                className={inputClass()}
-                value={form.transmission}
-                onChange={(e) => update("transmission", e.target.value)}
-              >
-                <option value="">Select transmission</option>
-                <option value="Manual">Manual</option>
-                <option value="Automatic">Automatic</option>
-                <option value="Semi-automatic">Semi-automatic</option>
-                <option value="CVT">CVT</option>
-              </select>
             </div>
           </div>
-        </section>
-      )}
 
-      {step === 2 && (
-        <section className="space-y-4">
-          <h2 className="text-xl font-semibold text-[#101a56]">Choose service</h2>
-          <p className="text-sm text-slate-600">Select the main reason for your visit.</p>
-          <div className="grid gap-2 sm:grid-cols-2">
-            {SERVICE_TYPES.map((s) => (
-              <label
-                key={s.id}
-                className={`flex cursor-pointer flex-col rounded-xl border px-3 py-3 text-sm shadow-sm transition hover:border-[#3f63ff] ${
-                  form.serviceType === s.id
-                    ? "border-[#3f63ff] bg-[#eef4ff] ring-2 ring-[#3f63ff]/20"
-                    : "border-[#d9e4f2] bg-white"
-                }`}
-              >
-                <span className="flex items-start gap-2">
-                  <input
-                    type="radio"
-                    name="serviceType"
-                    className="mt-1 accent-[#3f63ff]"
-                    checked={form.serviceType === s.id}
-                    onChange={() => update("serviceType", s.id)}
-                  />
-                  <span>
-                    <span className="font-medium text-slate-900">{s.label}</span>
-                    {s.hint && <span className="mt-0.5 block text-slate-500">{s.hint}</span>}
-                  </span>
-                </span>
-              </label>
-            ))}
-          </div>
-        </section>
-      )}
-
-      {step === 3 && (
-        <section className="space-y-4">
-          <h2 className="text-xl font-semibold text-[#101a56]">Add-ons</h2>
-          <p className="text-sm text-slate-600">Optional extras — we will confirm availability.</p>
-          <div className="grid gap-2 sm:grid-cols-2">
-            {ADD_ONS.map((a) => (
-              <label
-                key={a.id}
-                className="flex cursor-pointer items-center gap-2 rounded-xl border border-[#d9e4f2] bg-white px-3 py-2.5 text-sm shadow-sm transition hover:border-[#3f63ff]"
-              >
-                <input
-                  type="checkbox"
-                  className="accent-[#3f63ff]"
-                  checked={form.addOns.includes(a.id)}
-                  onChange={() => toggleAddOn(a.id)}
-                />
-                <span className="text-slate-800">{a.label}</span>
-              </label>
-            ))}
-          </div>
-        </section>
-      )}
-
-      {step === 4 && (
-        <section className="space-y-4">
-          <h2 className="text-xl font-semibold text-[#101a56]">Date and time</h2>
-          <p className="text-sm text-slate-600">
-            We will confirm your slot by phone or email. Urgent work?{" "}
-            <a className="font-semibold text-[#3f63ff] underline-offset-2 hover:underline" href={`tel:${site.phoneTel}`}>
-              Call {site.phoneDisplay}
-            </a>{" "}
-            or{" "}
-            <a
-              className="font-semibold text-[#3f63ff] underline-offset-2 hover:underline"
-              href={waUrl("Urgent repair request")}
-            >
-              WhatsApp us
-            </a>
-            .
-          </p>
           <div>
-            <label className={labelClass()} htmlFor="date">
-              Preferred date <span className="text-red-600">*</span>
-            </label>
-            <input
-              id="date"
-              type="date"
-              min={minDate}
-              className={inputClass()}
-              value={form.appointmentDate}
-              onChange={(e) => update("appointmentDate", e.target.value)}
-            />
-          </div>
-          <fieldset>
-            <legend className={labelClass()}>Preferred period</legend>
-            <div className="mt-2 flex flex-wrap gap-4 text-sm">
-              <label className="flex items-center gap-2">
-                <input
-                  type="radio"
-                  name="slot"
-                  className="accent-[#3f63ff]"
-                  checked={form.slotPeriod === "morning"}
-                  onChange={() => update("slotPeriod", "morning")}
-                />
-                Morning (8:00–12:00)
-              </label>
-              <label className="flex items-center gap-2">
-                <input
-                  type="radio"
-                  name="slot"
-                  className="accent-[#3f63ff]"
-                  checked={form.slotPeriod === "afternoon"}
-                  onChange={() => update("slotPeriod", "afternoon")}
-                />
-                Afternoon (12:00–17:30)
-              </label>
-            </div>
-          </fieldset>
-          <p className="text-xs text-slate-500">
-            {site.addressLines.join(", ")} — {site.hours}
-          </p>
-        </section>
-      )}
-
-      {step === 5 && (
-        <section className="space-y-4">
-          <h2 className="text-xl font-semibold text-[#101a56]">Your details</h2>
-          <div className="grid gap-4 sm:grid-cols-2">
-            <div className="sm:col-span-2">
-              <label className={labelClass()} htmlFor="name">
-                Full name <span className="text-red-600">*</span>
-              </label>
-              <input
-                id="name"
-                className={inputClass()}
-                autoComplete="name"
-                value={form.customerName}
-                onChange={(e) => update("customerName", e.target.value)}
-              />
-            </div>
-            <div>
-              <label className={labelClass()} htmlFor="email">
-                Email <span className="text-red-600">*</span>
-              </label>
-              <input
-                id="email"
-                type="email"
-                className={inputClass()}
-                autoComplete="email"
-                value={form.customerEmail}
-                onChange={(e) => update("customerEmail", e.target.value)}
-              />
-            </div>
-            <div>
-              <label className={labelClass()} htmlFor="phone">
-                Phone <span className="text-red-600">*</span>
-              </label>
-              <input
-                id="phone"
-                type="tel"
-                className={inputClass()}
-                autoComplete="tel"
-                value={form.customerPhone}
-                onChange={(e) => update("customerPhone", e.target.value)}
-              />
-            </div>
-            <div className="sm:col-span-2">
-              <label className={labelClass()} htmlFor="address">
-                Address (optional)
-              </label>
-              <input
-                id="address"
-                className={inputClass()}
-                autoComplete="street-address"
-                value={form.address}
-                onChange={(e) => update("address", e.target.value)}
-              />
-            </div>
-            <div className="sm:col-span-2">
-              <label className={labelClass()} htmlFor="notes">
-                Notes for the mechanic
-              </label>
-              <textarea
-                id="notes"
-                rows={4}
-                className={inputClass()}
-                placeholder="Symptoms, warning lights, previous work…"
-                value={form.notes}
-                onChange={(e) => update("notes", e.target.value)}
-              />
+            <label className={labelClass}>Select service</label>
+            <div className="grid grid-cols-2 gap-2">
+              {BOOKING_SERVICES.map((s) => (
+                <button
+                  key={s.id}
+                  type="button"
+                  onClick={() => update("serviceType", s.id)}
+                  className={`min-h-11 rounded-xl border px-3 py-3 text-sm font-medium text-left transition ${
+                    form.serviceType === s.id
+                      ? "border-[#101a56] bg-white font-semibold text-[#101a56] ring-1 ring-[#101a56]"
+                      : "border-[#d0dcea] bg-white text-slate-700 hover:border-[#9db4ff]"
+                  }`}
+                >
+                  {s.label}
+                </button>
+              ))}
             </div>
           </div>
-        </section>
-      )}
-
-      {step === 6 && (
-        <section className="space-y-4">
-          <h2 className="text-xl font-semibold text-[#101a56]">Payment preference</h2>
-          <p className="text-sm text-slate-600">
-            How would you like to pay when the work is complete?
-          </p>
-          <fieldset className="space-y-3 text-sm">
-            <label className="flex cursor-pointer gap-2 rounded-xl border border-[#d9e4f2] bg-white p-3 transition hover:border-[#3f63ff]">
-              <input
-                type="radio"
-                name="pay"
-                className="accent-[#3f63ff]"
-                checked={form.paymentChoice === "pay_now"}
-                onChange={() => update("paymentChoice", "pay_now")}
-              />
-              <span>
-                <span className="font-medium text-slate-900">Pay now</span>
-                <span className="mt-1 block text-slate-600">Card checkout (connect Stripe to activate).</span>
-              </span>
-            </label>
-            <label className="flex cursor-pointer gap-2 rounded-xl border border-[#d9e4f2] bg-white p-3 transition hover:border-[#3f63ff]">
-              <input
-                type="radio"
-                name="pay"
-                className="accent-[#3f63ff]"
-                checked={form.paymentChoice === "deposit"}
-                onChange={() => update("paymentChoice", "deposit")}
-              />
-              <span>
-                <span className="font-medium text-slate-900">Pay a deposit</span>
-                <span className="mt-1 block text-slate-600">Hold your slot with a small deposit.</span>
-              </span>
-            </label>
-            <label className="flex cursor-pointer gap-2 rounded-xl border border-[#d9e4f2] bg-white p-3 transition hover:border-[#3f63ff]">
-              <input
-                type="radio"
-                name="pay"
-                className="accent-[#3f63ff]"
-                checked={form.paymentChoice === "at_garage"}
-                onChange={() => update("paymentChoice", "at_garage")}
-              />
-              <span>
-                <span className="font-medium text-slate-900">Pay at the garage</span>
-                <span className="mt-1 block text-slate-600">Pay after the work is agreed and completed.</span>
-              </span>
-            </label>
-          </fieldset>
-          <p className="text-xs text-slate-500">
-            Final price depends on vehicle inspection. We confirm costs before starting work.
-          </p>
-        </section>
-      )}
-
-      {step === 7 && reference && (
-        <section className="rounded-2xl border border-emerald-200 bg-emerald-50 px-6 py-8 text-center">
-          <p className="text-sm font-medium text-emerald-800">Booking received</p>
-          <p className="mt-2 text-2xl font-bold tracking-tight text-emerald-950">{reference}</p>
-          <p className="mt-4 text-sm text-emerald-900">
-            Keep this reference. We will confirm your appointment by email or phone shortly.
-          </p>
-          <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:justify-center">
-            <Link
-              href="/"
-              className="inline-flex min-h-12 w-full items-center justify-center rounded-xl bg-[#101a56] px-4 py-3 text-sm font-bold text-white shadow-md transition hover:bg-[#16236e] sm:w-auto"
-            >
-              Back to home
-            </Link>
-            <a
-              href={`tel:${site.phoneTel}`}
-              className="inline-flex min-h-12 w-full items-center justify-center rounded-lg border-2 border-slate-300 bg-white px-4 py-3 text-sm font-bold text-slate-900 shadow-sm hover:bg-slate-50 sm:w-auto"
-            >
-              Call us
-            </a>
-          </div>
-        </section>
-      )}
-
-      {step < 7 && (
-        <div className="mt-8 flex flex-col-reverse gap-3 sm:flex-row sm:flex-wrap sm:justify-between sm:gap-4">
-          <button
-            type="button"
-            className="min-h-12 w-full rounded-lg border-2 border-slate-300 bg-white px-4 py-3 text-sm font-semibold text-slate-800 shadow-sm hover:bg-slate-50 disabled:opacity-40 sm:w-auto sm:min-w-[8rem]"
-            disabled={step === 1 || pending}
-            onClick={() => {
-              setError(null);
-              setStep((s) => Math.max(1, s - 1));
-            }}
-          >
-            Back
-          </button>
-          {step < STEPS ? (
-            <button
-              type="button"
-              className="min-h-12 w-full rounded-xl bg-[#101a56] px-5 py-3 text-sm font-bold text-white shadow-md transition hover:bg-[#16236e] disabled:opacity-50 sm:w-auto sm:min-w-[10rem]"
-              disabled={pending}
-              onClick={() => {
-                setError(null);
-                const msg = validateStep(step);
-                if (msg) {
-                  setError(msg);
-                  return;
-                }
-                setStep((s) => s + 1);
-              }}
-            >
-              Continue
-            </button>
-          ) : (
-            <button
-              type="button"
-              className="min-h-12 w-full rounded-xl bg-[#101a56] px-5 py-3 text-sm font-bold text-white shadow-md transition hover:bg-[#16236e] disabled:opacity-50 sm:w-auto sm:min-w-[12rem]"
-              disabled={pending}
-              onClick={handleSubmit}
-            >
-              {pending ? "Submitting…" : "Confirm booking"}
-            </button>
-          )}
         </div>
       )}
 
-      <p className="mt-8 text-center text-sm text-slate-600">
-        Not sure what you need?{" "}
-        <Link href="/quote" className="font-semibold text-[#3f63ff] underline-offset-2 hover:text-[#101a56] hover:underline">
-          Request a quote
-        </Link>
+      {/* ── Step 2: Date & time ── */}
+      {step === 2 && (
+        <div className="mt-5 space-y-5">
+          <div>
+            <label className={labelClass}>Pick a date</label>
+            <input
+              type="date"
+              min={minDate}
+              value={form.appointmentDate}
+              onChange={(e) => {
+                update("appointmentDate", e.target.value);
+                setSelectedTime("");
+              }}
+              className={inputClass}
+            />
+          </div>
+
+          <div>
+            <label className={labelClass}>
+              Available slots{form.appointmentDate ? ` · ${formatSlotHeader(form.appointmentDate)}` : ""}
+            </label>
+            <div className="grid grid-cols-3 gap-2">
+              {TIME_SLOTS.map((slot) => (
+                <button
+                  key={slot.time}
+                  type="button"
+                  disabled={!form.appointmentDate}
+                  onClick={() => {
+                    setSelectedTime(slot.time);
+                    update("slotPeriod", slot.period);
+                  }}
+                  className={`min-h-11 rounded-xl border py-2.5 text-sm font-semibold transition ${
+                    selectedTime === slot.time
+                      ? "border-[#101a56] bg-[#101a56] text-white"
+                      : form.appointmentDate
+                      ? "border-[#d0dcea] bg-white text-slate-700 hover:border-[#101a56]"
+                      : "cursor-not-allowed border-[#ebebeb] bg-[#f8f8f8] text-slate-300"
+                  }`}
+                >
+                  {slot.time}
+                </button>
+              ))}
+            </div>
+            <div className="mt-2 flex items-center gap-4 text-xs text-slate-400">
+              <span className="flex items-center gap-1.5">
+                <span className="h-2.5 w-2.5 rounded-full bg-emerald-500" />
+                Available
+              </span>
+              <span className="flex items-center gap-1.5">
+                <span className="h-2.5 w-2.5 rounded-full bg-slate-200" />
+                Taken
+              </span>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* ── Step 3: Contact ── */}
+      {step === 3 && (
+        <div className="mt-5 space-y-4">
+          <div>
+            <label className={labelClass}>Your name</label>
+            <input
+              type="text"
+              placeholder="Full name"
+              autoComplete="name"
+              value={form.customerName}
+              onChange={(e) => update("customerName", e.target.value)}
+              className={inputClass}
+            />
+          </div>
+
+          <div>
+            <label className={labelClass}>Mobile number</label>
+            <input
+              type="tel"
+              placeholder="07"
+              autoComplete="tel"
+              value={form.customerPhone}
+              onChange={(e) => update("customerPhone", e.target.value)}
+              className={inputClass}
+            />
+          </div>
+
+          <div>
+            <label className={labelClass}>Email address</label>
+            <input
+              type="email"
+              placeholder="you@email.com"
+              autoComplete="email"
+              value={form.customerEmail}
+              onChange={(e) => update("customerEmail", e.target.value)}
+              className={inputClass}
+            />
+          </div>
+
+          {/* Notice */}
+          <div className="flex items-start gap-3 rounded-xl border border-emerald-200 bg-emerald-50 px-4 py-3">
+            <svg className="mt-0.5 h-4 w-4 shrink-0 text-emerald-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="m4.5 12.75 6 6 9-13.5" />
+            </svg>
+            <p className="text-xs text-emerald-800">
+              No payment needed to book. We will confirm your slot and quote before any work starts.
+            </p>
+          </div>
+        </div>
+      )}
+
+      {/* ── Navigation ── */}
+      <div className={`mt-6 flex ${step > 1 ? "gap-3" : ""}`}>
+        {step > 1 && (
+          <button
+            type="button"
+            onClick={goBack}
+            disabled={pending}
+            className="flex-1 rounded-xl border border-[#d0dcea] bg-white py-4 text-sm font-semibold text-slate-700 hover:bg-slate-50 disabled:opacity-40"
+          >
+            Back
+          </button>
+        )}
+        {step < 3 ? (
+          <button
+            type="button"
+            onClick={goNext}
+            className={`rounded-xl bg-[#101a56] py-4 text-sm font-bold text-white shadow-md transition hover:bg-[#16236e] ${step > 1 ? "flex-1" : "w-full"}`}
+          >
+            Continue
+          </button>
+        ) : (
+          <button
+            type="button"
+            onClick={handleSubmit}
+            disabled={pending}
+            className="flex-1 rounded-xl bg-[#101a56] py-4 text-sm font-bold text-white shadow-md transition hover:bg-[#16236e] disabled:opacity-50"
+          >
+            {pending ? "Submitting…" : "Continue"}
+          </button>
+        )}
+      </div>
+
+      {/* Contact info */}
+      <p className="mt-5 text-center text-xs text-slate-400">
+        Questions? Call{" "}
+        <a href={`tel:${site.phoneTel}`} className="font-semibold text-[#3f63ff]">
+          {site.phoneDisplay}
+        </a>
       </p>
     </div>
   );
