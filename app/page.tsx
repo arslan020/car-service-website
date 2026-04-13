@@ -205,7 +205,7 @@ export default function HomePage() {
                 />
               </div>
               <Link
-                href={`/book?service=${selectedService}${reg ? `&reg=${encodeURIComponent(reg)}` : ""}`}
+                href={`/book?service=${selectedService}${reg ? `&reg=${encodeURIComponent(reg)}&autoLookup=1` : ""}`}
                 className="flex w-full items-center justify-center gap-2 rounded-xl bg-[#101a56] px-5 py-3 text-sm font-bold text-white shadow-md transition hover:bg-[#16236e] sm:w-auto sm:shrink-0"
               >
                 Start booking
@@ -253,25 +253,27 @@ export default function HomePage() {
             </Link>
           </div>
 
-          <div className="mt-6 grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
+          <div className="mt-6 grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
             {SERVICES.map((svc) => (
               <Link
                 key={svc.title}
                 href={svc.href}
-                className="group flex items-center gap-4 rounded-2xl border border-[#e8effa] bg-white p-4 shadow-sm transition-all hover:-translate-y-0.5 hover:border-[#3f63ff]/30 hover:shadow-[0_6px_24px_rgba(63,99,255,0.1)] sm:p-5"
+                className="group flex flex-col rounded-2xl border border-[#e8effa] bg-white p-5 shadow-sm transition-all hover:-translate-y-0.5 hover:border-[#3f63ff]/30 hover:shadow-[0_6px_24px_rgba(63,99,255,0.1)]"
               >
-                <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-[#eef4ff] text-[#3f63ff] transition-all group-hover:bg-[#3f63ff] group-hover:text-white">
+                <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-[#eef4ff] text-[#3f63ff] transition-all group-hover:bg-[#3f63ff] group-hover:text-white">
                   {svc.icon}
                 </span>
-                <span className="flex-1 min-w-0">
-                  <span className="block font-bold text-[#101a56] transition-colors group-hover:text-[#3f63ff]">
+                <span className="mt-4 flex-1">
+                  <span className="block font-semibold text-[#101a56] transition-colors group-hover:text-[#3f63ff]">
                     {svc.title}
                   </span>
-                  <span className="mt-0.5 block text-xs text-slate-500">{svc.desc}</span>
+                  <span className="mt-1.5 block text-sm leading-relaxed text-slate-500">
+                    {svc.desc}
+                  </span>
                 </span>
-                <span className="shrink-0 text-right">
-                  <span className="block text-[10px] font-medium text-slate-400">from</span>
-                  <span className="block text-lg font-extrabold text-[#101a56]">
+                <span className="mt-5 flex items-center justify-between border-t border-[#eef4ff] pt-4">
+                  <span className="text-xs font-medium text-slate-400">from</span>
+                  <span className="text-xl font-extrabold text-[#101a56]">
                     {svc.price ?? "£???"}
                   </span>
                 </span>

@@ -1,12 +1,6 @@
 import Link from "next/link";
 import { site } from "@/lib/site-config";
 
-const legal = [
-  { href: "/privacy", label: "Privacy" },
-  { href: "/terms", label: "Terms" },
-  { href: "/cookies", label: "Cookies" },
-] as const;
-
 export function SiteFooter() {
   return (
     <footer className="mt-auto border-t border-[color:var(--border)] bg-white">
@@ -55,14 +49,15 @@ export function SiteFooter() {
       <div className="border-t border-[#edf2f8] bg-[#f6fbff]">
         <div className="mx-auto flex max-w-7xl flex-col gap-2 px-4 py-4 text-xs text-slate-500 sm:flex-row sm:items-center sm:justify-between sm:px-6">
           <p>&copy; {new Date().getFullYear()} {site.name}. All rights reserved.</p>
-          <ul className="flex flex-wrap gap-4">
-            {legal.map((l) => (
-              <li key={l.href}>
-                <Link href={l.href} className="hover:text-slate-800">
-                  {l.label}
-                </Link>
-              </li>
-            ))}
+          <ul className="flex flex-wrap items-center gap-4">
+            <li>
+              <Link
+                href="/login"
+                className="font-medium text-black transition-colors hover:text-slate-700"
+              >
+                Admin
+              </Link>
+            </li>
           </ul>
         </div>
       </div>

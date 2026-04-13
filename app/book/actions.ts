@@ -42,6 +42,7 @@ export async function createBooking(input: unknown): Promise<CreateBookingResult
         serviceType: data.serviceType,
         addOns: data.addOns,
         appointmentDate: data.appointmentDate,
+        appointmentTime: data.appointmentTime,
         slotPeriod: data.slotPeriod,
         customerName: data.customerName,
         customerEmail: data.customerEmail,

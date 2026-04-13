@@ -7,6 +7,34 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+model Admin {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  password  String
+  name      String   @default("Admin")
+  createdAt DateTime @default(now())
+}
+
+model ServicePrice {
+  id           String   @id @default(cuid())
+  brand        String   // "all" = default for any brand, otherwise normalized key e.g. "toyota"
+  serviceType  String
+  startingFrom Int      // whole pounds
+  updatedAt    DateTime @updatedAt
+
+  @@unique([brand, serviceType])
+}
+
+model PageContent {
+  id        String   @id @default(cuid())
+  pageKey   String   // page slug e.g. "mot", "services", "car-servicing"
+  fieldKey  String   // field id e.g. "hero_title", "faq_1_q"
+  value     String   @db.Text
+  updatedAt DateTime @updatedAt
+
+  @@unique([pageKey, fieldKey])
+}
+
 model Booking {
   id              String   @id @default(cuid())
   reference       String   @unique
@@ -26,6 +54,7 @@ model Booking {
   addOns          Json
 
   appointmentDate String
+  appointmentTime String?
   slotPeriod      String
 
   customerName    String

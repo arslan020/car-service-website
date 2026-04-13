@@ -15,6 +15,7 @@ export const bookingFormSchema = z.object({
   serviceType: z.string().min(1),
   addOns: z.array(z.string()),
   appointmentDate: z.string().regex(/^\d{4}-\d{2}-\d{2}$/),
+  appointmentTime: z.string().regex(/^\d{2}:\d{2}$/),
   slotPeriod: z.enum(["morning", "afternoon"]),
   customerName: z.string().min(2).max(120),
   customerEmail: z.string().email(),

@@ -7,7 +7,6 @@ import { site, waUrl } from "@/lib/site-config";
 
 const nav = [
   { href: "/", label: "Home" },
-  { href: "/about", label: "About" },
   { href: "/services", label: "Services" },
   { href: "/mot", label: "MOT" },
   { href: "/car-servicing", label: "Car servicing" },
