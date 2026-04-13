@@ -281,7 +281,10 @@ export function BookingWizard() {
 
       if (!response.ok || !payload || !payload.ok) {
         setLookupVehicle(null);
-        setLookupError(payload?.message ?? "Vehicle lookup failed. Please try again.");
+        setLookupError(
+          (payload && !payload.ok ? payload.message : undefined) ??
+            "Vehicle lookup failed. Please try again."
+        );
         return;
       }
 

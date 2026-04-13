@@ -130,7 +130,8 @@ async function getAdvertiserId(apiUrl: string, accessToken: string, configuredAd
     );
   }
 
-  const advertiserId = payload?.results?.[0]?.advertiserId;
+  const advertiserId =
+    payload && "results" in payload ? payload.results?.[0]?.advertiserId : undefined;
 
   if (!advertiserId) {
     throw new Error("No AutoTrader advertiser was found for these credentials.");
@@ -204,7 +205,7 @@ export async function lookupDvlaVehicle(registrationNumber: string) {
       };
     }
 
-    const vehicle = payload?.vehicle;
+    const vehicle = payload && "vehicle" in payload ? payload.vehicle : undefined;
 
     if (!vehicle) {
       return {
