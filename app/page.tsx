@@ -89,11 +89,44 @@ const HOW_IT_WORKS = [
   },
 ] as const;
 
+const TYPEWRITER_TEXT = "We collect, we fix & we return your car";
+
 export default function HomePage() {
   const [selectedService, setSelectedService] = useState("mot");
   const [reg, setReg] = useState("");
   const [isOpen, setIsOpen] = useState<boolean | null>(null);
   const [closingTime, setClosingTime] = useState("");
+  const [typed, setTyped] = useState("");
+
+  useEffect(() => {
+    let i = 0;
+    let deleting = false;
+    let timeout: ReturnType<typeof setTimeout>;
+
+    function tick() {
+      if (!deleting) {
+        i++;
+        setTyped(TYPEWRITER_TEXT.slice(0, i));
+        if (i >= TYPEWRITER_TEXT.length) {
+          // pause at end, then start deleting
+          timeout = setTimeout(() => { deleting = true; tick(); }, 2000);
+          return;
+        }
+      } else {
+        i--;
+        setTyped(TYPEWRITER_TEXT.slice(0, i));
+        if (i <= 0) {
+          // pause at start, then start typing again
+          timeout = setTimeout(() => { deleting = false; tick(); }, 600);
+          return;
+        }
+      }
+      timeout = setTimeout(tick, deleting ? 35 : 70);
+    }
+
+    timeout = setTimeout(tick, 500);
+    return () => clearTimeout(timeout);
+  }, []);
 
   useEffect(() => {
     const now = new Date();
@@ -116,7 +149,7 @@ export default function HomePage() {
       {/* ════════════════════════════════
           HERO — text left, car right
       ════════════════════════════════ */}
-      <section className="relative overflow-hidden bg-gradient-to-b from-[#eefdff] via-[#f5feff] via-60% to-white px-4 pb-0 pt-8 text-center sm:pt-12">
+      <section className="relative overflow-hidden bg-gradient-to-b from-[#eefdff] via-[#f5feff] via-60% to-white px-4 pb-0 pt-16 text-center sm:pt-20 lg:pt-24">
         <div className="mx-auto max-w-3xl">
 
           {/* Heading */}
@@ -127,7 +160,8 @@ export default function HomePage() {
 
           {/* Subtitle */}
           <p className="mt-3 text-base text-slate-500 sm:mt-4 sm:text-lg">
-            We collect, we fix &amp; we return your car
+            {typed}
+            <span className="inline-block w-0.5 h-[1em] align-middle bg-slate-400 ml-0.5 animate-pulse" />
           </p>
 
           {/* ── Booking widget ── */}
