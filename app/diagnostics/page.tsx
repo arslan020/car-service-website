@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { PageIntro } from "@/components/page-intro";
+import { BookingBar } from "@/components/booking-bar";
 
 export default function DiagnosticsPage() {
   return (
@@ -19,6 +20,9 @@ export default function DiagnosticsPage() {
         >
           Book diagnostics
         </Link>
+        <div className="pt-4">
+          <BookingBar defaultService="diagnostics" />
+        </div>
       </PageIntro>
     </>
   );

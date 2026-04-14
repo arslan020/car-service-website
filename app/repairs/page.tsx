@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { site, waUrl } from "@/lib/site-config";
 import { getPageContent, f } from "@/lib/page-content";
+import { BookingBar } from "@/components/booking-bar";
 
 const D = {
   hero_title: "Repairs",
@@ -45,6 +46,7 @@ export default async function RepairsPage() {
               WhatsApp for a quote
             </a>
           </div>
+          <BookingBar defaultService="brakes" />
         </div>
       </section>
 

@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { site, waUrl } from "@/lib/site-config";
 import { getPageContent, f } from "@/lib/page-content";
+import { BookingBar } from "@/components/booking-bar";
 
 const CHECKS = [
   "Lights, reflectors & electrical equipment",
@@ -95,6 +96,9 @@ export default async function MotPage() {
                 </div>
               ))}
             </div>
+          </div>
+          <div className="mt-8 border-t border-[#e8effa] pt-8">
+            <BookingBar defaultService="mot" />
           </div>
         </div>
       </section>

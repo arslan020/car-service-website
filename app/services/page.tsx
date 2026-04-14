@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { site } from "@/lib/site-config";
 import { getPageContent, f } from "@/lib/page-content";
+import { BookingBar } from "@/components/booking-bar";
 
 const DEFAULTS = {
   hero_title: "Everything we offer",
@@ -151,6 +152,7 @@ export default async function ServicesPage() {
               View pricing
             </Link>
           </div>
+          <BookingBar defaultService="mot" />
         </div>
       </section>
 
