@@ -51,69 +51,30 @@ const BRANDS: { key: string; label: string }[] = [
   { key: "volvo",      label: "Volvo"      },
 ];
 
-// Known-good carlogos.org URLs for brands where generic pattern doesn't work
-const CARLOGOS_KNOWN: Record<string, string> = {
-  audi:         "https://www.carlogos.org/car-logos/audi-logo-2016-download.png",
-  bmw:          "https://www.carlogos.org/car-logos/bmw-logo-2020-gray-download.png",
-  alfaromeo:    "https://www.carlogos.org/car-logos/alfa-romeo-logo.png",
-  ford:         "https://www.carlogos.org/car-logos/ford-logo-2017-download.png",
-  honda:        "https://www.carlogos.org/car-logos/honda-logo-2000-full-download.png",
-  hyundai:      "https://www.carlogos.org/car-logos/hyundai-logo-2011-download.png",
-  kia:          "https://www.carlogos.org/car-logos/kia-logo-2021-download.png",
-  landrover:    "https://logo.clearbit.com/landrover.com",
-  mazda:        "https://www.carlogos.org/car-logos/mazda-logo-1997-download.png",
-  mercedes:     "https://www.carlogos.org/car-logos/mercedes-benz-logo-2011-download.png",
-  mini:         "https://www.carlogos.org/car-logos/mini-logo-2018-download.png",
-  nissan:       "https://www.carlogos.org/car-logos/nissan-logo-2020-download.png",
-  peugeot:      "https://www.carlogos.org/car-logos/peugeot-logo-2021-download.png",
-  porsche:      "https://www.carlogos.org/car-logos/porsche-logo-download.png",
-  renault:      "https://www.carlogos.org/car-logos/renault-logo-2021-download.png",
-  skoda:        "https://www.carlogos.org/car-logos/skoda-logo-2016-download.png",
-  suzuki:       "https://www.carlogos.org/car-logos/suzuki-logo-download.png",
-  tesla:        "https://www.carlogos.org/car-logos/tesla-logo-download.png",
-  toyota:       "https://www.carlogos.org/car-logos/toyota-logo-download.png",
-  vauxhall:     "https://www.carlogos.org/car-logos/vauxhall-logo-download.png",
-  volkswagen:   "https://www.carlogos.org/car-logos/volkswagen-logo-2019-download.png",
-  volvo:        "https://www.carlogos.org/car-logos/volvo-logo-2014-download.png",
-};
-
-/** Derive logo URLs — tries vehapi first, then known carlogos URL, then clearbit */
-function getLogoSources(brandKey: string, label: string): string[] {
-  const dashed = label
-    .normalize("NFD")
-    .replace(/[\u0300-\u036f]/g, "")
-    .toLowerCase()
-    .replace(/[^a-z0-9]+/g, "-")
-    .replace(/^-|-$/g, "");
-  const sources: string[] = [
-    `https://vehapi.com/apis/logo-api/img/logo/${dashed}.png`,
-  ];
-  if (CARLOGOS_KNOWN[brandKey]) sources.push(CARLOGOS_KNOWN[brandKey]);
-  return sources;
-}
 
 type PriceMap = Record<string, Record<string, number>>;
 
 function BrandLogo({ brandKey, label, size = "md" }: { brandKey: string; label: string; size?: "sm" | "md" }) {
-  const sources = brandKey === "all" ? [] : getLogoSources(brandKey, label);
-  const [srcIndex, setSrcIndex] = useState(0);
+  const [failed, setFailed] = useState(false);
   const dim = size === "sm" ? "h-8 w-8" : "h-10 w-10";
 
-  if (!sources.length || srcIndex >= sources.length) {
+  if (brandKey === "all" || failed) {
     return (
       <div className={`mx-auto mb-1 flex ${dim} items-center justify-center rounded-full bg-[#eef4ff] text-xs font-bold uppercase text-[#101a56]`}>
-        {label.slice(0, 2)}
+        {label.slice(0, 1)}
       </div>
     );
   }
 
+  const src = `/api/logo?brand=${encodeURIComponent(brandKey)}&label=${encodeURIComponent(label)}`;
+
   return (
     // eslint-disable-next-line @next/next/no-img-element
     <img
-      src={sources[srcIndex]}
+      src={src}
       alt={label}
       className={`mx-auto mb-1 ${dim} object-contain`}
-      onError={() => setSrcIndex((i) => i + 1)}
+      onError={() => setFailed(true)}
     />
   );
 }

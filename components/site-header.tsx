@@ -11,7 +11,6 @@ const nav = [
   { href: "/mot", label: "MOT" },
   { href: "/car-servicing", label: "Car servicing" },
   { href: "/repairs", label: "Repairs" },
-  { href: "/pricing", label: "Pricing" },
   { href: "/contact", label: "Contact" },
 ] as const;
 

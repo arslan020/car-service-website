@@ -50,7 +50,7 @@ export default async function EditPageDashboard({ params }: Props) {
 
       {/* Page tabs — other pages quick nav */}
       <div className="mb-6 flex gap-2 overflow-x-auto pb-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-        {["services", "mot", "car-servicing", "repairs", "pricing", "contact"].map((s) => {
+        {["services", "mot", "car-servicing", "repairs", "contact"].map((s) => {
           const def = getPageDef(s);
           if (!def) return null;
           return (
