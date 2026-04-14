@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { site, waUrl } from "@/lib/site-config";
+import { site } from "@/lib/site-config";
 import { BookingBar } from "@/components/booking-bar";
 
 const INCLUDES = [
@@ -31,7 +31,7 @@ export default function OilChangePage() {
             Right-spec oil and filter for your engine. Fast turnaround — often while you wait.
             Helps fuel economy and protects against premature wear.
           </p>
-          <BookingBar defaultService="oil" category="servicing" />
+          <BookingBar defaultService="oil" category="services" />
         </div>
       </section>
 

@@ -61,7 +61,7 @@ const SERVICES = [
     ),
   },
   {
-    href: "/car-servicing",
+    href: "/oil-change",
     eyebrow: "Premium Oil",
     title: "Oil Change",
     desc: "Right-spec oil and filter for your engine. Fast turnaround — often while you wait. Helps fuel economy and protects against premature wear.",
@@ -74,7 +74,7 @@ const SERVICES = [
     ),
   },
   {
-    href: "/repairs",
+    href: "/repairs/brakes",
     eyebrow: "Safety First",
     title: "Brakes & Tyres",
     desc: "Brake pads, discs, callipers, and tyre fitting or replacement. We check tread depth and brake performance and advise only when action is genuinely needed.",

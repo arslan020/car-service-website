@@ -8,13 +8,55 @@ const SERVICE_OPTIONS = [
   { id: "mot", label: "MOT Test" },
   { id: "full", label: "Full Service" },
   { id: "interim", label: "Interim Service" },
+  { id: "major", label: "Major Service" },
+  { id: "oil", label: "Oil Change" },
   { id: "brakes", label: "Brakes" },
+  { id: "clutch", label: "Clutch & Gearbox" },
+  { id: "suspension", label: "Suspension & Steering" },
+  { id: "exhaust", label: "Exhaust & Emissions" },
+  { id: "engine", label: "Engine & Cooling" },
+  { id: "electrical", label: "Electrical" },
   { id: "diagnostics", label: "Diagnostics" },
   { id: "tyres", label: "Tyres" },
   { id: "ac", label: "Air-Con" },
-  { id: "oil", label: "Oil Change" },
   { id: "battery", label: "Battery Check" },
 ] as const;
+
+const BRANDS = [
+  { key: "alfaromeo", label: "Alfa Romeo" },
+  { key: "audi", label: "Audi" },
+  { key: "bmw", label: "BMW" },
+  { key: "chevrolet", label: "Chevrolet" },
+  { key: "citroen", label: "Citroën" },
+  { key: "dacia", label: "Dacia" },
+  { key: "fiat", label: "Fiat" },
+  { key: "ford", label: "Ford" },
+  { key: "honda", label: "Honda" },
+  { key: "hyundai", label: "Hyundai" },
+  { key: "jaguar", label: "Jaguar" },
+  { key: "jeep", label: "Jeep" },
+  { key: "kia", label: "Kia" },
+  { key: "landrover", label: "Land Rover" },
+  { key: "lexus", label: "Lexus" },
+  { key: "mazda", label: "Mazda" },
+  { key: "mercedes", label: "Mercedes-Benz" },
+  { key: "mini", label: "MINI" },
+  { key: "mitsubishi", label: "Mitsubishi" },
+  { key: "nissan", label: "Nissan" },
+  { key: "peugeot", label: "Peugeot" },
+  { key: "porsche", label: "Porsche" },
+  { key: "renault", label: "Renault" },
+  { key: "seat", label: "SEAT" },
+  { key: "skoda", label: "Škoda" },
+  { key: "smart", label: "Smart" },
+  { key: "subaru", label: "Subaru" },
+  { key: "suzuki", label: "Suzuki" },
+  { key: "tesla", label: "Tesla" },
+  { key: "toyota", label: "Toyota" },
+  { key: "vauxhall", label: "Vauxhall" },
+  { key: "volkswagen", label: "Volkswagen" },
+  { key: "volvo", label: "Volvo" },
+];
 
 const SERVICES = [
   {
@@ -42,7 +84,7 @@ const SERVICES = [
     ),
   },
   {
-    href: "/car-servicing",
+    href: "/oil-change",
     title: "Oil Change",
     desc: "Premium oil and filter replacement",
     price: null,
@@ -54,7 +96,7 @@ const SERVICES = [
     ),
   },
   {
-    href: "/services",
+    href: "/battery-check",
     title: "Battery Check",
     desc: "Testing, charging, and replacement",
     price: null,
@@ -96,6 +138,7 @@ export default function HomePage() {
   const [reg, setReg] = useState("");
   const [isOpen, setIsOpen] = useState<boolean | null>(null);
   const [closingTime, setClosingTime] = useState("");
+  const [today, setToday] = useState(0);
   const [typed, setTyped] = useState("");
 
   useEffect(() => {
@@ -132,6 +175,7 @@ export default function HomePage() {
     const now = new Date();
     const day = now.getDay();
     const mins = now.getHours() * 60 + now.getMinutes();
+    setToday(day);
     if (day === 0) {
       // Sunday — closed
       setIsOpen(false);
@@ -190,11 +234,10 @@ export default function HomePage() {
                   key={s.id}
                   type="button"
                   onClick={() => setSelectedService(s.id)}
-                  className={`shrink-0 rounded-full px-4 py-2 text-sm font-semibold transition-all ${
-                    selectedService === s.id
+                  className={`shrink-0 rounded-full px-4 py-2 text-sm font-semibold transition-all ${selectedService === s.id
                       ? "bg-[#101a56] text-white shadow-sm"
                       : "border border-[#d0dcea] bg-white text-slate-600 hover:border-[#101a56] hover:text-[#101a56]"
-                  }`}
+                    }`}
                 >
                   {s.label}
                 </button>
@@ -235,7 +278,7 @@ export default function HomePage() {
             <img
               src="/big-removebg-preview.png"
               alt="Heston Automotive"
-              className="mx-auto w-full max-w-md sm:max-w-lg" style={{filter: "none"}}
+              className="mx-auto w-full max-w-md sm:max-w-lg" style={{ filter: "none" }}
               draggable={false}
             />
             {/* smooth fade to white at the bottom */}
@@ -297,6 +340,50 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+
+      {/* ════════════════════════════════
+          BRANDS WE SERVICE (MARQUEE)
+      ════════════════════════════════ */}
+      <section className="overflow-hidden border-y border-[#e0ebff] bg-white py-12">
+        <div className="mx-auto max-w-5xl px-4 text-center">
+          <h2 className="mt-1 mb-8 text-2xl font-extrabold text-[#101a56] sm:text-3xl">Brands we service</h2>
+        </div>
+
+        {/* Marquee container */}
+        <div className="relative flex w-full overflow-hidden">
+          {/* Left/Right Fading Gradients */}
+          <div className="pointer-events-none absolute left-0 top-0 z-10 hidden h-full w-32 bg-gradient-to-r from-white to-transparent sm:block" />
+          <div className="pointer-events-none absolute right-0 top-0 z-10 hidden h-full w-32 bg-gradient-to-l from-white to-transparent sm:block" />
+
+          {/* Scrolling track */}
+          <div className="flex w-max animate-marquee items-center gap-10 pr-10 hover:animation-play-state-paused">
+            {BRANDS.map((brand) => (
+              <img
+                key={`a-${brand.key}`}
+                src={`/api/logo?brand=${encodeURIComponent(brand.key)}&label=${encodeURIComponent(brand.label)}`}
+                alt={brand.label}
+                title={brand.label}
+                className="h-10 w-auto object-contain sm:h-12 lg:h-14 transition-transform hover:scale-110"
+                draggable={false}
+                loading="lazy"
+              />
+            ))}
+            {/* Duplicate set for seamless looping */}
+            {BRANDS.map((brand) => (
+              <img
+                key={`b-${brand.key}`}
+                src={`/api/logo?brand=${encodeURIComponent(brand.key)}&label=${encodeURIComponent(brand.label)}`}
+                alt={brand.label}
+                title={brand.label}
+                className="h-10 w-auto object-contain sm:h-12 lg:h-14 transition-transform hover:scale-110"
+                draggable={false}
+                loading="lazy"
+              />
+            ))}
+          </div>
+        </div>
+      </section>
+
 
       {/* ════════════════════════════════
           HOW IT WORKS
@@ -384,36 +471,50 @@ export default function HomePage() {
                 </p>
               </div>
 
-              {/* Right: opening hours */}
-              <div className="p-5 sm:p-8">
-                <p className="text-xs font-bold uppercase tracking-widest text-[#3f63ff]">Opening hours</p>
-                <ul className="mt-5 space-y-4">
-                  {[
-                    { day: "Monday – Saturday", hours: "10:00 – 20:00", closed: false },
-                    { day: "Sunday", hours: "Closed", closed: true },
-                  ].map((row) => (
-                    <li key={row.day} className="flex items-center justify-between">
-                      <span className="text-sm font-medium text-slate-700">{row.day}</span>
-                      <span className={`rounded-full px-3 py-1 text-xs font-bold ${row.closed ? "bg-red-50 text-red-500" : "bg-emerald-50 text-emerald-700"}`}>
-                        {row.hours}
-                      </span>
-                    </li>
-                  ))}
-                </ul>
-
-                <div className="my-6 border-t border-[#e8f0fb]" />
-
-                <Link
-                  href="/book"
-                  className="flex w-full items-center justify-center gap-2 rounded-xl border-2 border-[#101a56] py-3 text-sm font-bold text-[#101a56] transition hover:bg-[#101a56] hover:text-white"
-                >
-                  Book online now
-                  <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
-                  </svg>
-                </Link>
+              {/* Right: Google Map */}
+              <div className="overflow-hidden">
+                <iframe
+                  title="Heston Automotive location"
+                  className="h-full min-h-[260px] w-full border-0"
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  src="https://maps.google.com/maps?q=235+Yeading+Lane,+Hayes,+UB4+9AD,+UK&output=embed&z=16"
+                />
               </div>
 
+            </div>
+
+            {/* Opening Times — 7-day pills */}
+            <div className="border-t border-[#e0ebff] px-6 py-5">
+              <p className="mb-3 text-xs font-bold uppercase tracking-widest text-[#3f63ff]">Opening Times</p>
+              <div className="grid grid-cols-4 gap-2 sm:grid-cols-7">
+                {[
+                  { label: "Monday", hours: "10:00 – 20:00", dayIndex: 1 },
+                  { label: "Tuesday", hours: "10:00 – 20:00", dayIndex: 2 },
+                  { label: "Wednesday", hours: "10:00 – 20:00", dayIndex: 3 },
+                  { label: "Thursday", hours: "10:00 – 20:00", dayIndex: 4 },
+                  { label: "Friday", hours: "10:00 – 20:00", dayIndex: 5 },
+                  { label: "Saturday", hours: "10:00 – 20:00", dayIndex: 6 },
+                  { label: "Sunday", hours: "Closed", dayIndex: 0 },
+                ].map((d) => {
+                  const isToday = today === d.dayIndex;
+                  const isClosed = d.dayIndex === 0;
+                  return (
+                    <div
+                      key={d.label}
+                      className={`flex flex-col items-center rounded-xl border px-2 py-3 text-center transition-all ${isToday
+                          ? "border-[#101a56] bg-[#101a56] text-white shadow-md"
+                          : isClosed
+                            ? "border-red-100 bg-red-50 text-red-500"
+                            : "border-[#e0ebff] bg-white text-[#101a56]"
+                        }`}
+                    >
+                      <span className={`text-xs font-bold ${isToday ? "text-white" : isClosed ? "text-red-400" : "text-slate-500"}`}>{d.label}</span>
+                      <span className={`mt-1 text-[11px] font-semibold ${isToday ? "text-blue-200" : isClosed ? "text-red-400" : "text-[#3f63ff]"}`}>{d.hours}</span>
+                    </div>
+                  );
+                })}
+              </div>
             </div>
           </div>
         </div>

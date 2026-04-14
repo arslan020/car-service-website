@@ -8,7 +8,7 @@ const SERVICE_OPTIONS = [
   { id: "full",        label: "Full Service",           category: "servicing" },
   { id: "interim",     label: "Interim Service",        category: "servicing" },
   { id: "major",       label: "Major Service",          category: "servicing" },
-  { id: "oil",         label: "Oil Change",             category: "servicing" },
+  { id: "oil",         label: "Oil Change",             category: "services"  },
   { id: "brakes",      label: "Brakes",                 category: "repairs"   },
   { id: "clutch",      label: "Clutch & Gearbox",       category: "repairs"   },
   { id: "suspension",  label: "Suspension & Steering",  category: "repairs"   },
