@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { site, waUrl } from "@/lib/site-config";
+import { BookingBar } from "@/components/booking-bar";
 
 const SERVICES = [
   "Clutch plate, pressure plate & release bearing",
@@ -39,6 +40,7 @@ export default function ClutchGearboxPage() {
               WhatsApp us
             </a>
           </div>
+          <BookingBar defaultService="clutch" category="repairs" />
         </div>
       </section>
 

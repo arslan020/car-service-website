@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { site, waUrl } from "@/lib/site-config";
+import { BookingBar } from "@/components/booking-bar";
 
 const SERVICES = [
   "Exhaust pipe, centre section & back box replacement",
@@ -40,6 +41,7 @@ export default function ExhaustEmissionsPage() {
               WhatsApp us
             </a>
           </div>
+          <BookingBar defaultService="exhaust" category="repairs" />
         </div>
       </section>
 

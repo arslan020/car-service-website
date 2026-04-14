@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { site, waUrl } from "@/lib/site-config";
+import { BookingBar } from "@/components/booking-bar";
 
 const SERVICES = [
   "Shock absorber & strut replacement",
@@ -40,6 +41,7 @@ export default function SuspensionSteeringPage() {
               WhatsApp us
             </a>
           </div>
+          <BookingBar defaultService="suspension" category="repairs" />
         </div>
       </section>
 

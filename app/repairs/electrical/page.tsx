@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { site, waUrl } from "@/lib/site-config";
+import { BookingBar } from "@/components/booking-bar";
 
 const SERVICES = [
   "Battery testing, charging & replacement",
@@ -40,6 +41,7 @@ export default function ElectricalPage() {
               WhatsApp us
             </a>
           </div>
+          <BookingBar defaultService="electrical" category="repairs" />
         </div>
       </section>
 

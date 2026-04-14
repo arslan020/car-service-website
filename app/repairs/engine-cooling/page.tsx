@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { site, waUrl } from "@/lib/site-config";
+import { BookingBar } from "@/components/booking-bar";
 
 const SERVICES = [
   "Coolant system pressure test & leak trace",
@@ -40,6 +41,7 @@ export default function EngineCoolingPage() {
               WhatsApp us
             </a>
           </div>
+          <BookingBar defaultService="engine" category="repairs" />
         </div>
       </section>
 
