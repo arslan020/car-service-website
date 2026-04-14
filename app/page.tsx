@@ -293,20 +293,9 @@ export default function HomePage() {
       ════════════════════════════════ */}
       <section className="px-4 py-12 sm:py-16">
         <div className="mx-auto max-w-5xl">
-          <div className="flex items-end justify-between">
-            <div>
-              <p className="text-xs font-bold uppercase tracking-widest text-[#3f63ff]">What we offer</p>
-              <h2 className="mt-1 text-2xl font-extrabold text-[#101a56] sm:text-3xl">Our services</h2>
-            </div>
-            <Link
-              href="/services"
-              className="flex items-center gap-1 text-sm font-semibold text-[#3f63ff] hover:text-[#101a56]"
-            >
-              View all
-              <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
-              </svg>
-            </Link>
+          <div className="text-center">
+            <p className="text-xs font-bold uppercase tracking-widest text-[#3f63ff]">What we offer</p>
+            <h2 className="mt-1 text-2xl font-extrabold text-[#101a56] sm:text-3xl">Our services</h2>
           </div>
 
           <div className="mt-6 grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
@@ -337,6 +326,18 @@ export default function HomePage() {
                 </span>
               </Link>
             ))}
+          </div>
+
+          <div className="mt-10 text-center">
+            <Link
+              href="/services"
+              className="inline-flex items-center gap-1.5 rounded-full bg-[#eef4ff] px-6 py-2.5 text-sm font-bold text-[#3f63ff] transition hover:bg-[#3f63ff] hover:text-white"
+            >
+              View all services
+              <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
+              </svg>
+            </Link>
           </div>
         </div>
       </section>

@@ -254,6 +254,9 @@ export function SiteHeader() {
             </div>
           </div>
 
+          <Link href="/faqs" className="whitespace-nowrap rounded-md px-3 py-2 text-sm font-medium text-slate-600 transition hover:bg-[#eef4ff] hover:text-[#101a56]">
+            FAQs
+          </Link>
           <Link href="/contact" className="whitespace-nowrap rounded-md px-3 py-2 text-sm font-medium text-slate-600 transition hover:bg-[#eef4ff] hover:text-[#101a56]">
             Contact
           </Link>
