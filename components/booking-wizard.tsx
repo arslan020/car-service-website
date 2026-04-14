@@ -12,10 +12,18 @@ const BOOKING_SERVICES = [
   { id: "mot", label: "MOT" },
   { id: "full", label: "Full service" },
   { id: "interim", label: "Interim service" },
+  { id: "major", label: "Major service" },
+  { id: "oil", label: "Oil change" },
   { id: "brakes", label: "Brakes" },
+  { id: "clutch", label: "Clutch & Gearbox" },
+  { id: "suspension", label: "Suspension & Steering" },
+  { id: "exhaust", label: "Exhaust & Emissions" },
+  { id: "engine", label: "Engine & Cooling" },
+  { id: "electrical", label: "Electrical" },
   { id: "diagnostics", label: "Diagnostics" },
   { id: "tyres", label: "Tyres" },
   { id: "ac", label: "Air-con" },
+  { id: "battery", label: "Battery check" },
   { id: "general", label: "Other" },
 ] as const;
 
@@ -226,6 +234,7 @@ const initial: BookingFormValues = {
 export function BookingWizard() {
   const searchParams = useSearchParams();
   const autoLookupFromHome = searchParams.get("autoLookup") === "1";
+  const serviceParam = searchParams.get("service") ?? "";
   const [step, setStep] = useState(1);
   const [form, setForm] = useState<BookingFormValues>(() => ({
     ...initial,
@@ -333,7 +342,7 @@ export function BookingWizard() {
     const brand = lookupVehicle?.make
       ? lookupVehicle.make.toLowerCase().replace(/[^a-z0-9]/g, "")
       : "all";
-    const SERVICES = ["mot", "full", "interim", "brakes", "diagnostics", "tyres", "ac", "general"];
+    const SERVICES = BOOKING_SERVICES.map((s) => s.id);
     Promise.all(
       SERVICES.map((s) =>
         fetch(`/api/service-price?brand=${brand}&service=${s}`)
@@ -545,31 +554,44 @@ export function BookingWizard() {
 
           <div>
             <label className={labelClass}>Select service</label>
-            <div className="grid grid-cols-2 gap-2">
-              {BOOKING_SERVICES.map((s) => {
-                const price = servicePrices[s.id];
-                const isSelected = form.serviceType === s.id;
-                return (
-                  <button
-                    key={s.id}
-                    type="button"
-                    onClick={() => update("serviceType", s.id)}
-                    className={`min-h-11 rounded-xl border px-3 py-3 text-sm font-medium text-left transition ${
-                      isSelected
-                        ? "border-[#101a56] bg-white font-semibold text-[#101a56] ring-1 ring-[#101a56]"
-                        : "border-[#d0dcea] bg-white text-slate-700 hover:border-[#9db4ff]"
-                    }`}
-                  >
-                    <span className="block">{s.label}</span>
-                    {price !== undefined && (
-                      <span className={`mt-0.5 block text-[11px] font-semibold ${isSelected ? "text-[#3f63ff]" : "text-slate-400"}`}>
-                        From £{price}
-                      </span>
-                    )}
-                  </button>
-                );
-              })}
-            </div>
+            {serviceParam ? (
+              <div className="rounded-xl border border-[#101a56] bg-white px-4 py-3 ring-1 ring-[#101a56]">
+                <span className="text-sm font-semibold text-[#101a56]">
+                  {BOOKING_SERVICES.find((s) => s.id === serviceParam)?.label ?? serviceParam}
+                </span>
+                {servicePrices[serviceParam] !== undefined && (
+                  <span className="ml-2 text-[11px] font-semibold text-[#3f63ff]">
+                    From £{servicePrices[serviceParam]}
+                  </span>
+                )}
+              </div>
+            ) : (
+              <div className="grid grid-cols-2 gap-2">
+                {BOOKING_SERVICES.map((s) => {
+                  const price = servicePrices[s.id];
+                  const isSelected = form.serviceType === s.id;
+                  return (
+                    <button
+                      key={s.id}
+                      type="button"
+                      onClick={() => update("serviceType", s.id)}
+                      className={`min-h-11 rounded-xl border px-3 py-3 text-sm font-medium text-left transition ${
+                        isSelected
+                          ? "border-[#101a56] bg-white font-semibold text-[#101a56] ring-1 ring-[#101a56]"
+                          : "border-[#d0dcea] bg-white text-slate-700 hover:border-[#9db4ff]"
+                      }`}
+                    >
+                      <span className="block">{s.label}</span>
+                      {price !== undefined && (
+                        <span className={`mt-0.5 block text-[11px] font-semibold ${isSelected ? "text-[#3f63ff]" : "text-slate-400"}`}>
+                          From £{price}
+                        </span>
+                      )}
+                    </button>
+                  );
+                })}
+              </div>
+            )}
           </div>
         </div>
       )}

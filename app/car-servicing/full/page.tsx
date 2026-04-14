@@ -42,7 +42,7 @@ export default function FullServicePage() {
             The UK standard annual service — comprehensive, warranty-safe, and stamped.
             Covers everything from oil and filters to a full 60-point vehicle health check.
           </p>
-          <BookingBar defaultService="full" />
+          <BookingBar defaultService="full" category="servicing" />
         </div>
       </section>
 

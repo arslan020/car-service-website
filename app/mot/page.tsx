@@ -98,7 +98,7 @@ export default async function MotPage() {
             </div>
           </div>
           <div className="mt-8 border-t border-[#e8effa] pt-8">
-            <BookingBar defaultService="mot" />
+            <BookingBar defaultService="mot" category="servicing" />
           </div>
         </div>
       </section>

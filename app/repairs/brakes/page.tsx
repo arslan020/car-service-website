@@ -32,7 +32,7 @@ export default function BrakesPage() {
             Brakes are your car&apos;s most important safety system. We diagnose, quote clearly,
             and only replace what genuinely needs doing — no upselling.
           </p>
-          <BookingBar defaultService="brakes" />
+          <BookingBar defaultService="brakes" category="repairs" />
         </div>
       </section>
 

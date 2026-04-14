@@ -4,20 +4,37 @@ import Link from "next/link";
 import { useState } from "react";
 
 const SERVICE_OPTIONS = [
-  { id: "mot", label: "MOT Test" },
-  { id: "full", label: "Full Service" },
-  { id: "interim", label: "Interim Service" },
-  { id: "brakes", label: "Brakes" },
-  { id: "diagnostics", label: "Diagnostics" },
-  { id: "tyres", label: "Tyres" },
-  { id: "ac", label: "Air-Con" },
-  { id: "oil", label: "Oil Change" },
-  { id: "battery", label: "Battery Check" },
+  { id: "mot",         label: "MOT Test",              category: "servicing" },
+  { id: "full",        label: "Full Service",           category: "servicing" },
+  { id: "interim",     label: "Interim Service",        category: "servicing" },
+  { id: "major",       label: "Major Service",          category: "servicing" },
+  { id: "oil",         label: "Oil Change",             category: "servicing" },
+  { id: "brakes",      label: "Brakes",                 category: "repairs"   },
+  { id: "clutch",      label: "Clutch & Gearbox",       category: "repairs"   },
+  { id: "suspension",  label: "Suspension & Steering",  category: "repairs"   },
+  { id: "exhaust",     label: "Exhaust & Emissions",    category: "repairs"   },
+  { id: "engine",      label: "Engine & Cooling",       category: "repairs"   },
+  { id: "electrical",  label: "Electrical",             category: "repairs"   },
+  { id: "diagnostics", label: "Diagnostics",            category: "services"  },
+  { id: "tyres",       label: "Tyres",                  category: "services"  },
+  { id: "ac",          label: "Air-Con",                category: "services"  },
+  { id: "battery",     label: "Battery Check",          category: "services"  },
 ] as const;
 
 type ServiceId = (typeof SERVICE_OPTIONS)[number]["id"];
+type Category = "servicing" | "repairs" | "services" | "all";
 
-export function BookingBar({ defaultService = "mot" }: { defaultService?: ServiceId }) {
+export function BookingBar({
+  defaultService = "mot",
+  category = "all",
+}: {
+  defaultService?: ServiceId;
+  category?: Category;
+}) {
+  const visible = category === "all"
+    ? SERVICE_OPTIONS
+    : SERVICE_OPTIONS.filter((s) => s.category === category);
+
   const [selected, setSelected] = useState<ServiceId>(defaultService);
   const [reg, setReg] = useState("");
 
@@ -29,7 +46,7 @@ export function BookingBar({ defaultService = "mot" }: { defaultService?: Servic
 
       {/* Scrollable service tabs */}
       <div className="flex gap-2 overflow-x-auto pb-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-        {SERVICE_OPTIONS.map((s) => (
+        {visible.map((s) => (
           <button
             key={s.id}
             type="button"

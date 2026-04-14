@@ -30,7 +30,7 @@ export default function BatteryCheckPage() {
             A full battery and charging system test using professional diagnostic equipment.
             Know your battery&apos;s health before it leaves you stranded.
           </p>
-          <BookingBar defaultService="battery" />
+          <BookingBar defaultService="battery" category="services" />
         </div>
       </section>
 

@@ -31,7 +31,7 @@ export default function OilChangePage() {
             Right-spec oil and filter for your engine. Fast turnaround — often while you wait.
             Helps fuel economy and protects against premature wear.
           </p>
-          <BookingBar defaultService="oil" />
+          <BookingBar defaultService="oil" category="servicing" />
         </div>
       </section>
 

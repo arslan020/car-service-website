@@ -46,7 +46,7 @@ export default async function RepairsPage() {
               WhatsApp for a quote
             </a>
           </div>
-          <BookingBar defaultService="brakes" />
+          <BookingBar defaultService="brakes" category="repairs" />
         </div>
       </section>
 

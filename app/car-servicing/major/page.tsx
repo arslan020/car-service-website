@@ -42,7 +42,7 @@ export default function MajorServicePage() {
             The most thorough service your car can have. Follows your manufacturer&apos;s long-interval
             schedule — spark plugs, fluid flushes, and a full road test included.
           </p>
-          <BookingBar defaultService="full" />
+          <BookingBar defaultService="major" category="servicing" />
         </div>
       </section>
 
@@ -119,7 +119,7 @@ export default function MajorServicePage() {
               Full manufacturer-schedule service. We text you when ready. {site.addressLines.join(", ")}.
             </p>
             <div className="mt-7 flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
-              <Link href="/book?service=full" className="flex w-full items-center justify-center gap-2 rounded-xl bg-[#3f63ff] px-7 py-3.5 text-sm font-bold text-white shadow-md transition hover:bg-[#2f53ef] sm:w-auto">
+              <Link href="/book?service=major" className="flex w-full items-center justify-center gap-2 rounded-xl bg-[#3f63ff] px-7 py-3.5 text-sm font-bold text-white shadow-md transition hover:bg-[#2f53ef] sm:w-auto">
                 Book Major Service
                 <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}><path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" /></svg>
               </Link>

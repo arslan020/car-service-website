@@ -30,7 +30,7 @@ export default function AirConPage() {
             Full air conditioning regas and system health check. Get your cabin cool and fresh again
             — recommended every 2 years.
           </p>
-          <BookingBar defaultService="ac" />
+          <BookingBar defaultService="ac" category="services" />
         </div>
       </section>
 

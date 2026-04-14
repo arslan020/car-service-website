@@ -39,7 +39,7 @@ export default function InterimServicePage() {
             A thorough mid-year health check to keep oil fresh, fluids topped up, and potential
             problems caught early — ideal for high-mileage drivers.
           </p>
-          <BookingBar defaultService="interim" />
+          <BookingBar defaultService="interim" category="servicing" />
         </div>
       </section>
 
