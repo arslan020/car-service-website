@@ -55,9 +55,13 @@ export default async function RepairsPage() {
           <div className="mt-6 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {REPAIR_CATEGORIES.map((cat) => (
               <div key={cat.title} className="flex flex-col rounded-2xl border border-[#e8effa] bg-white p-6 shadow-sm">
-                <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-[#eef4ff] text-[#3f63ff]">{cat.icon}</span>
-                <h3 className="mt-4 font-bold text-[#101a56]">{cat.title}</h3>
-                <p className="mt-1.5 text-sm leading-relaxed text-slate-500">{cat.desc}</p>
+                <div className="flex items-start gap-3 sm:flex-col sm:gap-0">
+                  <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-[#eef4ff] text-[#3f63ff] sm:h-12 sm:w-12 sm:mb-4">{cat.icon}</span>
+                  <div>
+                    <h3 className="font-bold text-[#101a56]">{cat.title}</h3>
+                    <p className="mt-1 text-sm leading-relaxed text-slate-500">{cat.desc}</p>
+                  </div>
+                </div>
                 <ul className="mt-4 space-y-1.5 border-t border-[#eef4ff] pt-4">
                   {cat.items.map((item) => (
                     <li key={item} className="flex items-center gap-2 text-xs text-slate-600">
@@ -79,10 +83,12 @@ export default async function RepairsPage() {
           </div>
           <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {PROCESS.map((step) => (
-              <div key={step.n} className="rounded-2xl border border-[#e0ebff] bg-white p-5 shadow-sm">
-                <span className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-br from-[#3f63ff] to-[#6b8fff] text-sm font-extrabold text-white shadow-md shadow-[#3f63ff]/25">{step.n}</span>
-                <h3 className="mt-4 font-bold text-[#101a56]">{step.title}</h3>
-                <p className="mt-1.5 text-sm leading-relaxed text-slate-500">{step.body}</p>
+              <div key={step.n} className="flex items-start gap-3 rounded-2xl border border-[#e0ebff] bg-white p-5 shadow-sm sm:flex-col sm:gap-0">
+                <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-[#3f63ff] to-[#6b8fff] text-sm font-extrabold text-white shadow-md shadow-[#3f63ff]/25 sm:mb-4">{step.n}</span>
+                <div>
+                  <h3 className="font-bold text-[#101a56]">{step.title}</h3>
+                  <p className="mt-1 text-sm leading-relaxed text-slate-500">{step.body}</p>
+                </div>
               </div>
             ))}
           </div>
