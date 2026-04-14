@@ -92,7 +92,7 @@ export default function FaqsPage() {
               href={`tel:${site.phoneTel}`}
               className="inline-flex min-h-10 items-center justify-center rounded-lg border border-[#3f63ff] bg-[#101a56] px-5 py-2 text-sm font-bold text-white transition hover:bg-[#3f63ff]/20"
             >
-              Call {site.phone}
+              Call {site.phoneDisplay}
             </a>
           </div>
         </div>
