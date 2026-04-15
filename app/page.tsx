@@ -137,7 +137,7 @@ const HOW_IT_WORKS = [
   },
 ] as const;
 
-const TYPEWRITER_TEXT = "We collect, we fix & we return your car";
+const TYPEWRITER_TEXT = "Drop off, we fix, drive away happy";
 
 export default function HomePage() {
   const router = useRouter();
@@ -294,7 +294,16 @@ export default function HomePage() {
               </button>
             </div>
             {regError && (
-              <p className="mt-2 text-sm font-medium text-red-600">{regError}</p>
+              <div className="mt-2 flex flex-col items-start gap-1 sm:flex-row sm:items-center sm:gap-3">
+                <p className="text-sm font-medium text-red-600">{regError}</p>
+                <button
+                  type="button"
+                  onClick={() => router.push(`/book?service=${selectedService}&manual=1${reg ? `&reg=${encodeURIComponent(reg)}` : ""}`)}
+                  className="text-sm font-semibold text-[#3f63ff] underline underline-offset-2 hover:text-[#101a56]"
+                >
+                  Enter car details manually instead
+                </button>
+              </div>
             )}
           </div>
 
@@ -426,15 +435,15 @@ export default function HomePage() {
             {HOW_IT_WORKS.map((step) => (
               <div
                 key={step.n}
-                className="flex items-center gap-3 rounded-2xl border border-[#e0ebff] bg-white p-5 shadow-sm sm:flex-col sm:gap-0"
+                className="flex flex-col gap-3 rounded-2xl border border-[#e0ebff] bg-white p-5 shadow-sm"
               >
-                <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-[#3f63ff] to-[#6b8fff] text-sm font-extrabold text-white shadow-md shadow-[#3f63ff]/25 sm:mb-4">
-                  {step.n}
-                </span>
-                <div>
+                <div className="flex items-center gap-3">
+                  <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-[#3f63ff] to-[#6b8fff] text-sm font-extrabold text-white shadow-md shadow-[#3f63ff]/25">
+                    {step.n}
+                  </span>
                   <h3 className="font-bold text-[#101a56]">{step.title}</h3>
-                  <p className="mt-1 text-sm leading-relaxed text-slate-500">{step.body}</p>
                 </div>
+                <p className="text-sm leading-relaxed text-slate-500">{step.body}</p>
               </div>
             ))}
           </div>

@@ -244,7 +244,7 @@ export function BookingWizard() {
   const [lookupPending, setLookupPending] = useState(false);
   const [lookupError, setLookupError] = useState<string | null>(null);
   const [lookupVehicle, setLookupVehicle] = useState<LookupVehicle | null>(null);
-  const [manualEntry, setManualEntry] = useState(false);
+  const [manualEntry, setManualEntry] = useState(searchParams.get("manual") === "1");
   const [logoSourceIndex, setLogoSourceIndex] = useState(0);
   const [pending, setPending] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -630,6 +630,7 @@ export function BookingWizard() {
                   setLookupVehicle(null);
                   setLookupError(null);
                   setLogoSourceIndex(0);
+                  setManualEntry(false);
                 }}
                 className="w-full bg-transparent py-3.5 pl-[3.5rem] pr-4 text-center text-lg font-extrabold uppercase tracking-widest text-[#101a56] placeholder-[#a89000] focus:outline-none"
               />

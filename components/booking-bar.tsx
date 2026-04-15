@@ -113,7 +113,16 @@ export function BookingBar({
         </button>
       </div>
       {regError && (
-        <p className="mt-2 text-sm font-medium text-red-600">{regError}</p>
+        <div className="mt-2 flex flex-col items-start gap-1 sm:flex-row sm:items-center sm:gap-3">
+          <p className="text-sm font-medium text-red-600">{regError}</p>
+          <button
+            type="button"
+            onClick={() => router.push(`/book?service=${selected}&manual=1${reg ? `&reg=${encodeURIComponent(reg)}` : ""}`)}
+            className="text-sm font-semibold text-[#3f63ff] underline underline-offset-2 hover:text-[#101a56]"
+          >
+            Enter car details manually instead
+          </button>
+        </div>
       )}
     </div>
   );
