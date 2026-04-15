@@ -384,9 +384,9 @@ export function BookingWizard() {
       if (form.reg.trim().length < 2) return "Please enter your registration number.";
       if (!lookupVehicle && !manualEntry) return "Please find your vehicle first using the 'Find vehicle from reg' button.";
       if (manualEntry) {
-        if (!form.make.trim()) return "Please enter your car make (e.g. Ford).";
-        if (!form.model.trim()) return "Please enter your car model (e.g. Focus).";
-        if (!form.year.trim()) return "Please enter the year of your car.";
+        if (!(form.make ?? "").trim()) return "Please enter your car make (e.g. Ford).";
+        if (!(form.model ?? "").trim()) return "Please enter your car model (e.g. Focus).";
+        if (!(form.year ?? "").trim()) return "Please enter the year of your car.";
       }
       if (!form.serviceType) return "Please select a service.";
     }
