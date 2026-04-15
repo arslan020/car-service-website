@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { site, waUrl } from "@/lib/site-config";
 import { BookingBar } from "@/components/booking-bar";
+import { getPageContent, f } from "@/lib/page-content";
 
 const SERVICES = [
   "Shock absorber & strut replacement",
@@ -20,17 +21,20 @@ const SIGNS = [
   { title: "Vague or heavy steering", body: "Excessive play in the steering wheel or heavy effort to turn indicates worn steering rack or pump." },
 ] as const;
 
-export default function SuspensionSteeringPage() {
+export default async function SuspensionSteeringPage() {
+  const content = await getPageContent("repairs-suspension-steering");
+  const title = f(content, "hero_title", "Suspension & Steering");
+  const subtitle = f(content, "hero_subtitle", "Knocking, pulling, or vague steering — we inspect, diagnose, and repair. Wheel alignment included after every relevant repair.");
+
   return (
     <div className="bg-white">
 
       <section className="bg-gradient-to-b from-[#eefdff] via-[#f5feff] via-60% to-white px-4 pb-12 pt-16 text-center sm:pt-20">
         <div className="mx-auto max-w-2xl">
           <p className="text-xs font-bold uppercase tracking-widest text-[#3f63ff]">Chassis & Handling</p>
-          <h1 className="mt-2 text-3xl font-extrabold leading-tight text-[#101a56] sm:text-5xl">Suspension & Steering</h1>
+          <h1 className="mt-2 text-3xl font-extrabold leading-tight text-[#101a56] sm:text-5xl">{title}</h1>
           <p className="mt-4 text-base leading-relaxed text-slate-500 sm:text-lg">
-            Knocking, pulling, or vague steering — we inspect, diagnose, and repair.
-            Wheel alignment included after every relevant repair.
+            {subtitle}
           </p>
           <div className="mx-auto mt-7 flex max-w-sm flex-col gap-3 sm:flex-row sm:justify-center">
             <Link href="/book?service=suspension" className="flex items-center justify-center gap-2 rounded-xl bg-[#101a56] px-6 py-3.5 text-sm font-bold text-white shadow-md transition hover:bg-[#16236e]">

@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { site, waUrl } from "@/lib/site-config";
 import { BookingBar } from "@/components/booking-bar";
+import { getPageContent, f } from "@/lib/page-content";
 
 const SERVICES = [
   "Brake pad replacement (front & rear)",
@@ -20,17 +21,20 @@ const SIGNS = [
   { title: "Vibration when braking", body: "Warped or corroded discs cause a judder through the pedal or steering wheel under braking." },
 ] as const;
 
-export default function BrakesPage() {
+export default async function BrakesPage() {
+  const content = await getPageContent("repairs-brakes");
+  const title = f(content, "hero_title", "Brakes & Tyres");
+  const subtitle = f(content, "hero_subtitle", "Brakes are your car's most important safety system. We diagnose, quote clearly, and only replace what genuinely needs doing — no upselling.");
+
   return (
     <div className="bg-white">
 
       <section className="bg-gradient-to-b from-[#eefdff] via-[#f5feff] via-60% to-white px-4 pb-12 pt-16 text-center sm:pt-20">
         <div className="mx-auto max-w-2xl">
           <p className="text-xs font-bold uppercase tracking-widest text-[#3f63ff]">Safety First</p>
-          <h1 className="mt-2 text-3xl font-extrabold leading-tight text-[#101a56] sm:text-5xl">Brakes & Tyres</h1>
+          <h1 className="mt-2 text-3xl font-extrabold leading-tight text-[#101a56] sm:text-5xl">{title}</h1>
           <p className="mt-4 text-base leading-relaxed text-slate-500 sm:text-lg">
-            Brakes are your car&apos;s most important safety system. We diagnose, quote clearly,
-            and only replace what genuinely needs doing — no upselling.
+            {subtitle}
           </p>
           <BookingBar defaultService="brakes" category="repairs" />
         </div>

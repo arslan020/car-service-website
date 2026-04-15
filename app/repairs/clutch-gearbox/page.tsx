@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { site, waUrl } from "@/lib/site-config";
 import { BookingBar } from "@/components/booking-bar";
+import { getPageContent, f } from "@/lib/page-content";
 
 const SERVICES = [
   "Clutch plate, pressure plate & release bearing",
@@ -19,17 +20,20 @@ const SIGNS = [
   { title: "Judder on take-off", body: "A shudder when pulling away smoothly usually points to a contaminated or worn clutch plate." },
 ] as const;
 
-export default function ClutchGearboxPage() {
+export default async function ClutchGearboxPage() {
+  const content = await getPageContent("repairs-clutch-gearbox");
+  const title = f(content, "hero_title", "Clutch & Gearbox");
+  const subtitle = f(content, "hero_subtitle", "Slipping clutch, stiff biting point, or grinding gears — we diagnose the root cause and give you a clear quote before any work starts.");
+
   return (
     <div className="bg-white">
 
       <section className="bg-gradient-to-b from-[#eefdff] via-[#f5feff] via-60% to-white px-4 pb-12 pt-16 text-center sm:pt-20">
         <div className="mx-auto max-w-2xl">
           <p className="text-xs font-bold uppercase tracking-widest text-[#3f63ff]">Drivetrain Repairs</p>
-          <h1 className="mt-2 text-3xl font-extrabold leading-tight text-[#101a56] sm:text-5xl">Clutch & Gearbox</h1>
+          <h1 className="mt-2 text-3xl font-extrabold leading-tight text-[#101a56] sm:text-5xl">{title}</h1>
           <p className="mt-4 text-base leading-relaxed text-slate-500 sm:text-lg">
-            Slipping clutch, stiff biting point, or grinding gears — we diagnose the root cause
-            and give you a clear quote before any work starts.
+            {subtitle}
           </p>
           <div className="mx-auto mt-7 flex max-w-sm flex-col gap-3 sm:flex-row sm:justify-center">
             <Link href="/book?service=clutch" className="flex items-center justify-center gap-2 rounded-xl bg-[#101a56] px-6 py-3.5 text-sm font-bold text-white shadow-md transition hover:bg-[#16236e]">

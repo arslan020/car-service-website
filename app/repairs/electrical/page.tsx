@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { site, waUrl } from "@/lib/site-config";
 import { BookingBar } from "@/components/booking-bar";
+import { getPageContent, f } from "@/lib/page-content";
 
 const SERVICES = [
   "Battery testing, charging & replacement",
@@ -20,17 +21,20 @@ const SIGNS = [
   { title: "Electrics not working", body: "Windows, locks, or the radio cutting out — usually a fuse, relay, or wiring fault we can trace quickly." },
 ] as const;
 
-export default function ElectricalPage() {
+export default async function ElectricalPage() {
+  const content = await getPageContent("repairs-electrical");
+  const title = f(content, "hero_title", "Electrical Repairs");
+  const subtitle = f(content, "hero_subtitle", "Warning lights, failed electrics, battery drain, or blown bulbs — diagnosed with professional equipment and repaired correctly.");
+
   return (
     <div className="bg-white">
 
       <section className="bg-gradient-to-b from-[#eefdff] via-[#f5feff] via-60% to-white px-4 pb-12 pt-16 text-center sm:pt-20">
         <div className="mx-auto max-w-2xl">
           <p className="text-xs font-bold uppercase tracking-widest text-[#3f63ff]">Auto Electrics</p>
-          <h1 className="mt-2 text-3xl font-extrabold leading-tight text-[#101a56] sm:text-5xl">Electrical & Lighting</h1>
+          <h1 className="mt-2 text-3xl font-extrabold leading-tight text-[#101a56] sm:text-5xl">{title}</h1>
           <p className="mt-4 text-base leading-relaxed text-slate-500 sm:text-lg">
-            Warning lights, failed electrics, battery drain, or blown bulbs — diagnosed
-            with professional equipment and repaired correctly.
+            {subtitle}
           </p>
           <div className="mx-auto mt-7 flex max-w-sm flex-col gap-3 sm:flex-row sm:justify-center">
             <Link href="/book?service=electrical" className="flex items-center justify-center gap-2 rounded-xl bg-[#101a56] px-6 py-3.5 text-sm font-bold text-white shadow-md transition hover:bg-[#16236e]">

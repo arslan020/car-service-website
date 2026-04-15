@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { site, waUrl } from "@/lib/site-config";
 import { BookingBar } from "@/components/booking-bar";
+import { getPageContent, f } from "@/lib/page-content";
 
 const SERVICES = [
   "Coolant system pressure test & leak trace",
@@ -20,17 +21,20 @@ const SIGNS = [
   { title: "White exhaust smoke", body: "Thick white smoke from the exhaust often means coolant is burning — a potential head gasket issue." },
 ] as const;
 
-export default function EngineCoolingPage() {
+export default async function EngineCoolingPage() {
+  const content = await getPageContent("repairs-engine-cooling");
+  const title = f(content, "hero_title", "Engine & Cooling");
+  const subtitle = f(content, "hero_subtitle", "Overheating, oil leaks, warning lights — we trace the root cause with diagnostics before quoting. No guesswork, no unnecessary parts.");
+
   return (
     <div className="bg-white">
 
       <section className="bg-gradient-to-b from-[#eefdff] via-[#f5feff] via-60% to-white px-4 pb-12 pt-16 text-center sm:pt-20">
         <div className="mx-auto max-w-2xl">
           <p className="text-xs font-bold uppercase tracking-widest text-[#3f63ff]">Engine Repairs</p>
-          <h1 className="mt-2 text-3xl font-extrabold leading-tight text-[#101a56] sm:text-5xl">Engine & Cooling</h1>
+          <h1 className="mt-2 text-3xl font-extrabold leading-tight text-[#101a56] sm:text-5xl">{title}</h1>
           <p className="mt-4 text-base leading-relaxed text-slate-500 sm:text-lg">
-            Overheating, oil leaks, warning lights — we trace the root cause with diagnostics
-            before quoting. No guesswork, no unnecessary parts.
+            {subtitle}
           </p>
           <div className="mx-auto mt-7 flex max-w-sm flex-col gap-3 sm:flex-row sm:justify-center">
             <Link href="/book?service=engine" className="flex items-center justify-center gap-2 rounded-xl bg-[#101a56] px-6 py-3.5 text-sm font-bold text-white shadow-md transition hover:bg-[#16236e]">

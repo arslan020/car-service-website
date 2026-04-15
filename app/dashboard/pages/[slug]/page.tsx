@@ -1,5 +1,5 @@
 import { notFound } from "next/navigation";
-import { getPageDef, getSections } from "@/lib/pages-config";
+import { getPageDef, getSections, PAGES_CONFIG } from "@/lib/pages-config";
 import { getPageContent } from "@/lib/page-content";
 import { PageContentEditor } from "@/components/page-content-editor";
 import Link from "next/link";
@@ -36,7 +36,7 @@ export default async function EditPageDashboard({ params }: Props) {
           </p>
         </div>
         <a
-          href={`/${slug}`}
+          href={pageDef.publicPath ?? `/${slug}`}
           target="_blank"
           rel="noopener noreferrer"
           className="hidden items-center gap-2 rounded-xl border border-[#e0ebff] bg-white px-4 py-2 text-sm font-semibold text-[#3f63ff] shadow-sm transition hover:border-[#3f63ff] sm:flex"
@@ -50,23 +50,19 @@ export default async function EditPageDashboard({ params }: Props) {
 
       {/* Page tabs — other pages quick nav */}
       <div className="mb-6 flex gap-2 overflow-x-auto pb-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-        {["services", "mot", "car-servicing", "repairs", "contact"].map((s) => {
-          const def = getPageDef(s);
-          if (!def) return null;
-          return (
-            <Link
-              key={s}
-              href={`/dashboard/pages/${s}`}
-              className={`shrink-0 rounded-full px-4 py-1.5 text-sm font-semibold transition-all ${
-                s === slug
-                  ? "bg-[#101a56] text-white"
-                  : "border border-[#d0dcea] bg-white text-slate-600 hover:border-[#101a56] hover:text-[#101a56]"
-              }`}
-            >
-              {def.label}
-            </Link>
-          );
-        })}
+        {PAGES_CONFIG.map((page) => (
+          <Link
+            key={page.slug}
+            href={`/dashboard/pages/${page.slug}`}
+            className={`shrink-0 rounded-full px-4 py-1.5 text-sm font-semibold transition-all ${
+              page.slug === slug
+                ? "bg-[#101a56] text-white"
+                : "border border-[#d0dcea] bg-white text-slate-600 hover:border-[#101a56] hover:text-[#101a56]"
+            }`}
+          >
+            {page.icon} {page.label}
+          </Link>
+        ))}
       </div>
 
       {/* Editor sections */}

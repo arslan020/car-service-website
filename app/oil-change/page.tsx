@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { site } from "@/lib/site-config";
 import { BookingBar } from "@/components/booking-bar";
+import { getPageContent, f } from "@/lib/page-content";
 
 const INCLUDES = [
   "Drain old engine oil completely",
@@ -19,17 +20,20 @@ const BENEFITS = [
   { title: "Catches problems early", body: "We inspect while we work — if we spot something, we tell you before it becomes expensive." },
 ] as const;
 
-export default function OilChangePage() {
+export default async function OilChangePage() {
+  const content = await getPageContent("oil-change");
+  const title = f(content, "hero_title", "Oil Change");
+  const subtitle = f(content, "hero_subtitle", "Right-spec oil and filter for your engine. Fast turnaround — often while you wait. Helps fuel economy and protects against premature wear.");
+
   return (
     <div className="bg-white">
 
       <section className="bg-gradient-to-b from-[#eefdff] via-[#f5feff] via-60% to-white px-4 pb-12 pt-16 text-center sm:pt-20">
         <div className="mx-auto max-w-2xl">
           <p className="text-xs font-bold uppercase tracking-widest text-[#3f63ff]">Premium Oil</p>
-          <h1 className="mt-2 text-3xl font-extrabold leading-tight text-[#101a56] sm:text-5xl">Oil Change</h1>
+          <h1 className="mt-2 text-3xl font-extrabold leading-tight text-[#101a56] sm:text-5xl">{title}</h1>
           <p className="mt-4 text-base leading-relaxed text-slate-500 sm:text-lg">
-            Right-spec oil and filter for your engine. Fast turnaround — often while you wait.
-            Helps fuel economy and protects against premature wear.
+            {subtitle}
           </p>
           <BookingBar defaultService="oil" category="services" />
         </div>

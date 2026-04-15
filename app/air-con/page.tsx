@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { site, waUrl } from "@/lib/site-config";
 import { BookingBar } from "@/components/booking-bar";
+import { getPageContent, f } from "@/lib/page-content";
 
 const INCLUDES = [
   "Recover and recycle existing refrigerant",
@@ -18,17 +19,20 @@ const SIGNS = [
   { title: "Windows fogging slowly", body: "A healthy AC system clears fog fast. Slow clearing means reduced performance." },
 ] as const;
 
-export default function AirConPage() {
+export default async function AirConPage() {
+  const content = await getPageContent("air-con");
+  const title = f(content, "hero_title", "Air Con Regas & Service");
+  const subtitle = f(content, "hero_subtitle", "Full air conditioning regas and system health check. Get your cabin cool and fresh again — recommended every 2 years.");
+
   return (
     <div className="bg-white">
 
       <section className="bg-gradient-to-b from-[#eefdff] via-[#f5feff] via-60% to-white px-4 pb-12 pt-16 text-center sm:pt-20">
         <div className="mx-auto max-w-2xl">
           <p className="text-xs font-bold uppercase tracking-widest text-[#3f63ff]">Air Conditioning</p>
-          <h1 className="mt-2 text-3xl font-extrabold leading-tight text-[#101a56] sm:text-5xl">Air Con Regas & Service</h1>
+          <h1 className="mt-2 text-3xl font-extrabold leading-tight text-[#101a56] sm:text-5xl">{title}</h1>
           <p className="mt-4 text-base leading-relaxed text-slate-500 sm:text-lg">
-            Full air conditioning regas and system health check. Get your cabin cool and fresh again
-            — recommended every 2 years.
+            {subtitle}
           </p>
           <BookingBar defaultService="ac" category="services" />
         </div>

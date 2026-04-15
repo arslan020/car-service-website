@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { site, waUrl } from "@/lib/site-config";
 import { BookingBar } from "@/components/booking-bar";
+import { getPageContent, f } from "@/lib/page-content";
 
 const INCLUDES = [
   "Everything in the Interim Service",
@@ -17,30 +18,33 @@ const INCLUDES = [
   "Stamped service record & digital update where supported",
 ];
 
-const FAQS = [
-  { q: "What is a Full Service?", a: "A Full Service is the UK standard annual car service covering all the checks an Interim does, plus filter replacements, brake measurements, and a comprehensive 60-point health check of your vehicle." },
-  { q: "How often should I have a Full Service?", a: "Every 12 months or 12,000 miles — whichever comes first. If you do high mileage, combine it with an Interim at 6 months." },
-  { q: "Will it keep my manufacturer warranty valid?", a: "Yes. Under the UK Block Exemption Regulation, having your car serviced at an independent garage using the manufacturer-specified oil and parts does not void your warranty." },
-  { q: "Do I get a service stamp?", a: "Yes — we stamp your service book and can update digital service histories (Volkswagen Group, Ford, BMW etc.) where the system allows." },
-  { q: "How long does a Full Service take?", a: "Typically 2–3 hours. We text you when your car is ready for collection." },
-] as const;
+export default async function FullServicePage() {
+  const content = await getPageContent("car-servicing-full");
+  const title = f(content, "hero_title", "Full Service");
+  const subtitle = f(content, "hero_subtitle", "The UK standard annual service — comprehensive, warranty-safe, and stamped. Covers everything from oil and filters to a full 60-point vehicle health check.");
 
-export default function FullServicePage() {
+  const FAQS = [
+    { q: f(content, "faq_1_q", "What is a Full Service?"), a: f(content, "faq_1_a", "A Full Service is the UK standard annual car service covering all the checks an Interim does, plus filter replacements, brake measurements, and a comprehensive 60-point health check of your vehicle.") },
+    { q: f(content, "faq_2_q", "How often should I have a Full Service?"), a: f(content, "faq_2_a", "Every 12 months or 12,000 miles — whichever comes first. If you do high mileage, combine it with an Interim at 6 months.") },
+    { q: f(content, "faq_3_q", "Will it keep my manufacturer warranty valid?"), a: f(content, "faq_3_a", "Yes. Under the UK Block Exemption Regulation, having your car serviced at an independent garage using the manufacturer-specified oil and parts does not void your warranty.") },
+    { q: f(content, "faq_4_q", "Do I get a service stamp?"), a: f(content, "faq_4_a", "Yes — we stamp your service book and can update digital service histories (Volkswagen Group, Ford, BMW etc.) where the system allows.") },
+    { q: f(content, "faq_5_q", "How long does a Full Service take?"), a: f(content, "faq_5_a", "Typically 2–3 hours. We text you when your car is ready for collection.") },
+  ];
+
   return (
     <div className="bg-white">
 
       <section className="bg-gradient-to-b from-[#eefdff] via-[#f5feff] via-60% to-white px-4 pb-12 pt-16 text-center sm:pt-20">
         <div className="mx-auto max-w-2xl">
           <p className="text-xs font-bold uppercase tracking-widest text-[#3f63ff]">Car Servicing</p>
-          <h1 className="mt-2 text-3xl font-extrabold leading-tight text-[#101a56] sm:text-5xl">Full Service</h1>
+          <h1 className="mt-2 text-3xl font-extrabold leading-tight text-[#101a56] sm:text-5xl">{title}</h1>
           <div className="mt-3 inline-flex items-center gap-2 rounded-full border border-[#3f63ff]/30 bg-[#eef4ff] px-4 py-2 text-sm shadow-sm">
             <span className="h-2 w-2 rounded-full bg-[#3f63ff]" />
             <span className="font-semibold text-[#3f63ff]">Most popular</span>
             <span className="text-slate-500">— recommended every 12 months or 12,000 miles</span>
           </div>
           <p className="mt-4 text-base leading-relaxed text-slate-500 sm:text-lg">
-            The UK standard annual service — comprehensive, warranty-safe, and stamped.
-            Covers everything from oil and filters to a full 60-point vehicle health check.
+            {subtitle}
           </p>
           <BookingBar defaultService="full" category="servicing" />
         </div>

@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { site, waUrl } from "@/lib/site-config";
 import { BookingBar } from "@/components/booking-bar";
+import { getPageContent, f } from "@/lib/page-content";
 
 const INCLUDES = [
   "Everything in the Full Service",
@@ -18,29 +19,32 @@ const INCLUDES = [
   "Stamped service record & digital history update",
 ];
 
-const FAQS = [
-  { q: "What is a Major Service?", a: "A Major Service is the most comprehensive annual service, following your car's manufacturer schedule. It includes everything in a Full Service plus spark plugs, brake fluid flush, coolant change, and a full road test — typically due every 2 years or 24,000 miles." },
-  { q: "How is it different from a Full Service?", a: "A Full Service covers the standard 12-month checks. A Major Service adds component replacements that are due on a longer cycle — spark plugs, fluids that degrade over time, and a manufacturer-schedule compliance check." },
-  { q: "Does this protect my manufacturer warranty?", a: "Yes. UK Block Exemption Regulation law means using a qualified independent garage with correct spec parts and oils keeps your warranty fully valid." },
-  { q: "How long does a Major Service take?", a: "Typically 3–4 hours depending on the vehicle. We will always confirm timing when you book and text you when the car is ready." },
-  { q: "Can I combine it with an MOT?", a: "Absolutely — many customers book both together. It saves a separate trip and we can usually fit both in one visit." },
-] as const;
+export default async function MajorServicePage() {
+  const content = await getPageContent("car-servicing-major");
+  const title = f(content, "hero_title", "Major Service");
+  const subtitle = f(content, "hero_subtitle", "The most comprehensive service — everything in a Full Service plus spark plugs, brake fluid flush, coolant change, and a full road test.");
 
-export default function MajorServicePage() {
+  const FAQS = [
+    { q: f(content, "faq_1_q", "What is a Major Service?"), a: f(content, "faq_1_a", "A Major Service is the most comprehensive annual service, following your car's manufacturer schedule. It includes everything in a Full Service plus spark plugs, brake fluid flush, coolant change, and a full road test — typically due every 2 years or 24,000 miles.") },
+    { q: f(content, "faq_2_q", "How is it different from a Full Service?"), a: f(content, "faq_2_a", "A Full Service covers the standard 12-month checks. A Major Service adds component replacements that are due on a longer cycle — spark plugs, fluids that degrade over time, and a manufacturer-schedule compliance check.") },
+    { q: f(content, "faq_3_q", "Does this protect my manufacturer warranty?"), a: f(content, "faq_3_a", "Yes. UK Block Exemption Regulation law means using a qualified independent garage with correct spec parts and oils keeps your warranty fully valid.") },
+    { q: f(content, "faq_4_q", "How long does a Major Service take?"), a: f(content, "faq_4_a", "Typically 3–4 hours depending on the vehicle. We will always confirm timing when you book and text you when the car is ready.") },
+    { q: f(content, "faq_5_q", "Can I combine it with an MOT?"), a: f(content, "faq_5_a", "Absolutely — many customers book both together. It saves a separate trip and we can usually fit both in one visit.") },
+  ];
+
   return (
     <div className="bg-white">
 
       <section className="bg-gradient-to-b from-[#eefdff] via-[#f5feff] via-60% to-white px-4 pb-12 pt-16 text-center sm:pt-20">
         <div className="mx-auto max-w-2xl">
           <p className="text-xs font-bold uppercase tracking-widest text-[#3f63ff]">Car Servicing</p>
-          <h1 className="mt-2 text-3xl font-extrabold leading-tight text-[#101a56] sm:text-5xl">Major Service</h1>
+          <h1 className="mt-2 text-3xl font-extrabold leading-tight text-[#101a56] sm:text-5xl">{title}</h1>
           <p className="mt-3 inline-flex items-center gap-2 rounded-full border border-[#e0ebff] bg-white px-4 py-2 text-sm text-slate-500 shadow-sm">
             <svg className="h-4 w-4 text-[#3f63ff]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><circle cx="12" cy="12" r="9"/><path strokeLinecap="round" d="M12 7v5l3 3"/></svg>
             As per <strong className="text-[#101a56]">manufacturer schedule</strong> — typically every 2 years or 24,000 miles
           </p>
           <p className="mt-4 text-base leading-relaxed text-slate-500 sm:text-lg">
-            The most thorough service your car can have. Follows your manufacturer&apos;s long-interval
-            schedule — spark plugs, fluid flushes, and a full road test included.
+            {subtitle}
           </p>
           <BookingBar defaultService="major" category="servicing" />
         </div>

@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { site, waUrl } from "@/lib/site-config";
 import { BookingBar } from "@/components/booking-bar";
+import { getPageContent, f } from "@/lib/page-content";
 
 const CHECKS = [
   "Battery voltage & state-of-charge test",
@@ -18,17 +19,20 @@ const SIGNS = [
   { title: "Battery over 3 years old", body: "Most batteries last 3–5 years. A free health check prevents an unexpected breakdown." },
 ] as const;
 
-export default function BatteryCheckPage() {
+export default async function BatteryCheckPage() {
+  const content = await getPageContent("battery-check");
+  const title = f(content, "hero_title", "Battery Check");
+  const subtitle = f(content, "hero_subtitle", "A full battery and charging system test using professional diagnostic equipment. Know your battery's health before it leaves you stranded.");
+
   return (
     <div className="bg-white">
 
       <section className="bg-gradient-to-b from-[#eefdff] via-[#f5feff] via-60% to-white px-4 pb-12 pt-16 text-center sm:pt-20">
         <div className="mx-auto max-w-2xl">
           <p className="text-xs font-bold uppercase tracking-widest text-[#3f63ff]">Electrical Health</p>
-          <h1 className="mt-2 text-3xl font-extrabold leading-tight text-[#101a56] sm:text-5xl">Battery Check</h1>
+          <h1 className="mt-2 text-3xl font-extrabold leading-tight text-[#101a56] sm:text-5xl">{title}</h1>
           <p className="mt-4 text-base leading-relaxed text-slate-500 sm:text-lg">
-            A full battery and charging system test using professional diagnostic equipment.
-            Know your battery&apos;s health before it leaves you stranded.
+            {subtitle}
           </p>
           <BookingBar defaultService="battery" category="services" />
         </div>

@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { site, waUrl } from "@/lib/site-config";
 import { BookingBar } from "@/components/booking-bar";
+import { getPageContent, f } from "@/lib/page-content";
 
 const INCLUDES = [
   "Engine oil drain & refill with correct-grade oil",
@@ -16,28 +17,31 @@ const INCLUDES = [
   "Stamped service record provided",
 ];
 
-const FAQS = [
-  { q: "Who is an interim service for?", a: "Drivers covering more than 12,000 miles a year benefit most — the extra oil change keeps the engine protected between annual full services." },
-  { q: "Does it protect my warranty?", a: "Yes. UK law (Block Exemption Regulation) means manufacturer warranties remain valid when serviced at an independent garage using the correct oil grade and parts." },
-  { q: "How long does it take?", a: "Usually 1–1.5 hours. Many customers drop off and collect the same morning." },
-  { q: "Will I get a service stamp?", a: "Yes — we provide a stamped service record for your handbook and can update digital service records where supported." },
-] as const;
+export default async function InterimServicePage() {
+  const content = await getPageContent("car-servicing-interim");
+  const title = f(content, "hero_title", "Interim Service");
+  const subtitle = f(content, "hero_subtitle", "A thorough mid-year health check to keep oil fresh, fluids topped up, and potential problems caught early — ideal for high-mileage drivers.");
 
-export default function InterimServicePage() {
+  const FAQS = [
+    { q: f(content, "faq_1_q", "Who is an interim service for?"), a: f(content, "faq_1_a", "Drivers covering more than 12,000 miles a year benefit most — the extra oil change keeps the engine protected between annual full services.") },
+    { q: f(content, "faq_2_q", "Does it protect my warranty?"), a: f(content, "faq_2_a", "Yes. UK law (Block Exemption Regulation) means manufacturer warranties remain valid when serviced at an independent garage using the correct oil grade and parts.") },
+    { q: f(content, "faq_3_q", "How long does it take?"), a: f(content, "faq_3_a", "Usually 1–1.5 hours. Many customers drop off and collect the same morning.") },
+    { q: f(content, "faq_4_q", "Will I get a service stamp?"), a: f(content, "faq_4_a", "Yes — we provide a stamped service record for your handbook and can update digital service records where supported.") },
+  ];
+
   return (
     <div className="bg-white">
 
       <section className="bg-gradient-to-b from-[#eefdff] via-[#f5feff] via-60% to-white px-4 pb-12 pt-16 text-center sm:pt-20">
         <div className="mx-auto max-w-2xl">
           <p className="text-xs font-bold uppercase tracking-widest text-[#3f63ff]">Car Servicing</p>
-          <h1 className="mt-2 text-3xl font-extrabold leading-tight text-[#101a56] sm:text-5xl">Interim Service</h1>
+          <h1 className="mt-2 text-3xl font-extrabold leading-tight text-[#101a56] sm:text-5xl">{title}</h1>
           <p className="mt-3 inline-flex items-center gap-2 rounded-full border border-[#e0ebff] bg-white px-4 py-2 text-sm text-slate-500 shadow-sm">
             <svg className="h-4 w-4 text-[#3f63ff]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><circle cx="12" cy="12" r="9"/><path strokeLinecap="round" d="M12 7v5l3 3"/></svg>
             Recommended every <strong className="text-[#101a56]">6 months</strong> or <strong className="text-[#101a56]">6,000 miles</strong>
           </p>
           <p className="mt-4 text-base leading-relaxed text-slate-500 sm:text-lg">
-            A thorough mid-year health check to keep oil fresh, fluids topped up, and potential
-            problems caught early — ideal for high-mileage drivers.
+            {subtitle}
           </p>
           <BookingBar defaultService="interim" category="servicing" />
         </div>
