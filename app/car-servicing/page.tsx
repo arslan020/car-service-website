@@ -107,7 +107,7 @@ export default async function CarServicingPage() {
           </div>
           <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {BENEFITS.map((b) => (
-              <div key={b.title} className="flex items-start gap-3 rounded-2xl border border-[#e0ebff] bg-white p-5 shadow-sm sm:flex-col sm:gap-0">
+              <div key={b.title} className="flex items-center gap-3 rounded-2xl border border-[#e0ebff] bg-white p-5 shadow-sm sm:flex-col sm:items-start sm:gap-0">
                 <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[#eef4ff] text-[#3f63ff] sm:mb-3">{b.icon}</span>
                 <div>
                   <h3 className="font-bold text-[#101a56]">{b.title}</h3>
