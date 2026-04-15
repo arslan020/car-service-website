@@ -381,6 +381,8 @@ export function BookingWizard() {
   function validateStep(s: number): string | null {
     if (s === 1) {
       if (form.reg.trim().length < 2) return "Please enter your registration number.";
+      if (!lookupVehicle && lookupError) return "Vehicle not found. Please check your registration number and try again.";
+      if (!lookupVehicle) return "Please find your vehicle first using the 'Find vehicle from reg' button.";
       if (!form.serviceType) return "Please select a service.";
     }
     if (s === 2) {
@@ -725,7 +727,8 @@ export function BookingWizard() {
           <button
             type="button"
             onClick={goNext}
-            className={`rounded-xl bg-[#101a56] py-4 text-sm font-bold text-white shadow-md transition hover:bg-[#16236e] ${step > 1 ? "flex-1" : "w-full"}`}
+            disabled={step === 1 && (lookupPending || (!lookupVehicle))}
+            className={`rounded-xl bg-[#101a56] py-4 text-sm font-bold text-white shadow-md transition hover:bg-[#16236e] disabled:opacity-40 disabled:cursor-not-allowed ${step > 1 ? "flex-1" : "w-full"}`}
           >
             Continue
           </button>
