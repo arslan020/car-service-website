@@ -244,6 +244,7 @@ export function BookingWizard() {
   const [lookupPending, setLookupPending] = useState(false);
   const [lookupError, setLookupError] = useState<string | null>(null);
   const [lookupVehicle, setLookupVehicle] = useState<LookupVehicle | null>(null);
+  const [manualEntry, setManualEntry] = useState(false);
   const [logoSourceIndex, setLogoSourceIndex] = useState(0);
   const [pending, setPending] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -381,8 +382,12 @@ export function BookingWizard() {
   function validateStep(s: number): string | null {
     if (s === 1) {
       if (form.reg.trim().length < 2) return "Please enter your registration number.";
-      if (!lookupVehicle && lookupError) return "Vehicle not found. Please check your registration number and try again.";
-      if (!lookupVehicle) return "Please find your vehicle first using the 'Find vehicle from reg' button.";
+      if (!lookupVehicle && !manualEntry) return "Please find your vehicle first using the 'Find vehicle from reg' button.";
+      if (manualEntry) {
+        if (!form.make.trim()) return "Please enter your car make (e.g. Ford).";
+        if (!form.model.trim()) return "Please enter your car model (e.g. Focus).";
+        if (!form.year.trim()) return "Please enter the year of your car.";
+      }
       if (!form.serviceType) return "Please select a service.";
     }
     if (s === 2) {
@@ -427,21 +432,149 @@ export function BookingWizard() {
 
   /* ── Success screen ── */
   if (step === 4 && reference) {
+    const serviceDurations: Record<string, number> = {
+      mot: 60, full: 180, interim: 120, major: 240, oil: 45,
+      brakes: 90, clutch: 180, suspension: 120, exhaust: 60,
+      engine: 120, electrical: 90, diagnostics: 60, tyres: 45,
+      ac: 60, battery: 30, general: 90,
+    };
+    const durationMins = serviceDurations[form.serviceType] ?? 90;
+    const endTime = (() => {
+      const [h, m] = form.appointmentTime.split(":").map(Number);
+      const total = h * 60 + m + durationMins;
+      return `${String(Math.floor(total / 60)).padStart(2, "0")}:${String(total % 60).padStart(2, "0")}`;
+    })();
+    const durationLabel = (() => {
+      const h = Math.floor(durationMins / 60);
+      const m = durationMins % 60;
+      if (m === 0) return `${h}h`;
+      if (h === 0) return `${m}m`;
+      return `${h}h ${m}m`;
+    })();
+    const serviceLabel = BOOKING_SERVICES.find(s => s.id === form.serviceType)?.label ?? form.serviceType;
+    const apptDate = new Date(form.appointmentDate + "T00:00:00");
+    const dayOfWeek = apptDate.toLocaleDateString("en-GB", { weekday: "long" });
+    const dateFormatted = apptDate.toLocaleDateString("en-GB", { day: "2-digit", month: "2-digit", year: "numeric" });
+
+    const eventTitle = `${serviceLabel} – ${form.reg}`;
+    const eventDesc = `Ref: ${reference} | ${form.make} ${form.model} (${form.reg}) | ${serviceLabel}`;
+    const eventLocation = site.addressLines.join(", ");
+    const startFlat = `${form.appointmentDate.replace(/-/g, "")}T${form.appointmentTime.replace(":", "")}00`;
+    const endFlat   = `${form.appointmentDate.replace(/-/g, "")}T${endTime.replace(":", "")}00`;
+    const googleUrl  = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(eventTitle)}&dates=${startFlat}/${endFlat}&details=${encodeURIComponent(eventDesc)}&location=${encodeURIComponent(eventLocation)}`;
+    const outlookUrl = `https://outlook.live.com/calendar/0/deeplink/compose?subject=${encodeURIComponent(eventTitle)}&startdt=${form.appointmentDate}T${form.appointmentTime}:00&enddt=${form.appointmentDate}T${endTime}:00&body=${encodeURIComponent(eventDesc)}&location=${encodeURIComponent(eventLocation)}`;
+    const office365Url = `https://outlook.office.com/calendar/0/deeplink/compose?subject=${encodeURIComponent(eventTitle)}&startdt=${form.appointmentDate}T${form.appointmentTime}:00&enddt=${form.appointmentDate}T${endTime}:00&body=${encodeURIComponent(eventDesc)}&location=${encodeURIComponent(eventLocation)}`;
+    const yahooUrl   = `https://calendar.yahoo.com/?v=60&title=${encodeURIComponent(eventTitle)}&st=${startFlat}&et=${endFlat}&desc=${encodeURIComponent(eventDesc)}&in_loc=${encodeURIComponent(eventLocation)}`;
+    const icsContent = `BEGIN:VCALENDAR\r\nVERSION:2.0\r\nBEGIN:VEVENT\r\nDTSTART:${startFlat}\r\nDTEND:${endFlat}\r\nSUMMARY:${eventTitle}\r\nDESCRIPTION:${eventDesc}\r\nLOCATION:${eventLocation}\r\nEND:VEVENT\r\nEND:VCALENDAR`;
+    const icsUrl     = `data:text/calendar;charset=utf-8,${encodeURIComponent(icsContent)}`;
+    const qrUrl      = `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${encodeURIComponent(`Ref:${reference} | ${form.reg} | ${serviceLabel} | ${dateFormatted} ${form.appointmentTime}`)}`;
+
     return (
-      <div className="rounded-2xl border border-emerald-200 bg-emerald-50 px-6 py-10 text-center">
-        <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-emerald-100">
-          <svg className="h-7 w-7 text-emerald-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-            <path strokeLinecap="round" strokeLinejoin="round" d="m4.5 12.75 6 6 9-13.5" />
-          </svg>
+      <div className="space-y-4 pb-8">
+        {/* Header */}
+        <div className="flex items-start gap-3 rounded-xl border border-emerald-200 bg-emerald-50 px-4 py-4">
+          <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-emerald-500">
+            <svg className="h-5 w-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="m4.5 12.75 6 6 9-13.5" />
+            </svg>
+          </div>
+          <div>
+            <p className="font-bold text-emerald-800">Your appointment has been confirmed!</p>
+            <p className="mt-0.5 text-xs text-emerald-700">We look forward to seeing you. If you have any questions or need to make changes, feel free to contact us.</p>
+          </div>
         </div>
-        <p className="text-sm font-semibold text-emerald-800">Booking received</p>
-        <p className="mt-2 text-2xl font-bold tracking-tight text-emerald-950">{reference}</p>
-        <p className="mt-3 text-sm text-emerald-800">
-          Keep this reference. We will confirm your slot by text or call shortly.
-        </p>
+
+        {/* Appointment Details */}
+        <div className="overflow-hidden rounded-xl border border-slate-200">
+          <div className="bg-slate-100 px-4 py-2">
+            <p className="text-xs font-bold uppercase tracking-widest text-slate-500">Appointment Details</p>
+          </div>
+          <div className="space-y-2 px-4 py-3 text-sm text-slate-700">
+            <div className="flex gap-2"><span className="w-36 shrink-0 text-slate-400">Appointment:</span><span className="font-semibold">{serviceLabel}</span></div>
+            <div className="flex gap-2"><span className="w-36 shrink-0 text-slate-400">Date &amp; Time:</span><span className="font-semibold">{dateFormatted} ({dayOfWeek}) at {form.appointmentTime}</span></div>
+            <div className="flex flex-wrap gap-x-4 gap-y-1">
+              <div className="flex gap-2"><span className="text-slate-400">Est. End Time:</span><span className="font-semibold">{endTime}</span></div>
+              <div className="flex gap-2"><span className="text-slate-400">Est. Duration:</span><span className="font-semibold">{durationLabel}</span></div>
+            </div>
+            <div className="flex gap-2"><span className="w-36 shrink-0 text-slate-400">Reference:</span><span className="font-bold text-[#101a56]">{reference}</span></div>
+          </div>
+        </div>
+
+        {/* Your Details + Vehicle Details */}
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+          <div className="overflow-hidden rounded-xl border border-slate-200">
+            <div className="bg-slate-100 px-4 py-2">
+              <p className="text-xs font-bold uppercase tracking-widest text-slate-500">Your Details</p>
+            </div>
+            <div className="space-y-1 px-4 py-3 text-sm">
+              <p className="font-semibold text-slate-800">{form.customerName}</p>
+              <p className="text-slate-500">Email: {form.customerEmail}</p>
+              <p className="text-slate-500">Tel: {form.customerPhone}</p>
+            </div>
+          </div>
+
+          <div className="overflow-hidden rounded-xl border border-slate-200">
+            <div className="bg-slate-100 px-4 py-2">
+              <p className="text-xs font-bold uppercase tracking-widest text-slate-500">Vehicle Details</p>
+            </div>
+            <div className="space-y-2 px-4 py-3 text-sm">
+              <div className="inline-flex overflow-hidden rounded border-2 border-[#F5C518] bg-[#F5C518]">
+                <div className="flex w-7 flex-col items-center justify-center bg-[#003399] px-1">
+                  <span className="text-[6px] font-bold leading-none text-yellow-300">★</span>
+                  <span className="text-[6px] font-extrabold leading-none text-white">UK</span>
+                </div>
+                <span className="px-2 py-1 text-sm font-extrabold uppercase tracking-widest text-[#101a56]">{form.reg}</span>
+              </div>
+              <div className="space-y-0.5 text-slate-600">
+                {(form.make || form.model) && <p className="font-semibold text-slate-800">{form.make} {form.model}</p>}
+                {form.year && <p>Year: {form.year}</p>}
+                {form.mileage && <p>Mileage: {Number(form.mileage).toLocaleString()}</p>}
+                {(form.fuelType || lookupVehicle?.fuelType) && <p>Fuel Type: {form.fuelType || titleCase(lookupVehicle?.fuelType ?? "")}</p>}
+                {lookupVehicle?.colour && <p>Colour: {titleCase(lookupVehicle.colour)}</p>}
+                {lookupVehicle?.engineCapacity && <p>Engine CC: {lookupVehicle.engineCapacity}</p>}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Add to Calendar */}
+        <div className="overflow-hidden rounded-xl border border-emerald-200">
+          <div className="bg-emerald-50 px-4 py-2">
+            <p className="text-xs font-bold uppercase tracking-widest text-emerald-600">Add to Calendar</p>
+          </div>
+          <div className="space-y-3 px-4 py-3">
+            <div className="grid grid-cols-3 gap-2">
+              {[
+                { label: "Google", href: googleUrl, target: "_blank" },
+                { label: "Apple", href: icsUrl, download: "appointment.ics" },
+                { label: "Outlook", href: outlookUrl, target: "_blank" },
+                { label: "Yahoo", href: yahooUrl, target: "_blank" },
+                { label: "Office 365", href: office365Url, target: "_blank" },
+                { label: "ICS File", href: icsUrl, download: "appointment.ics" },
+              ].map((cal) => (
+                <a
+                  key={cal.label}
+                  href={cal.href}
+                  target={"target" in cal ? cal.target : undefined}
+                  download={"download" in cal ? cal.download : undefined}
+                  rel="noopener noreferrer"
+                  className="flex items-center justify-center rounded-lg border border-slate-200 bg-white px-2 py-2 text-xs font-semibold text-slate-700 transition hover:border-[#101a56] hover:text-[#101a56]"
+                >
+                  {cal.label}
+                </a>
+              ))}
+            </div>
+            <div>
+              <p className="mb-2 text-xs text-slate-400">Scan QR Code:</p>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src={qrUrl} alt="Booking QR Code" className="h-32 w-32 rounded-lg border border-slate-200" />
+            </div>
+          </div>
+        </div>
+
         <Link
           href="/"
-          className="mt-6 inline-flex min-h-12 w-full items-center justify-center rounded-xl bg-[#101a56] px-4 py-3 text-sm font-bold text-white shadow-md hover:bg-[#16236e]"
+          className="inline-flex min-h-12 w-full items-center justify-center rounded-xl bg-[#101a56] px-4 py-3 text-sm font-bold text-white shadow-md hover:bg-[#16236e]"
         >
           Back to home
         </Link>
@@ -516,39 +649,131 @@ export function BookingWizard() {
             {autoLookupFromHome && lookupPending && (
               <p className="mt-3 text-sm text-slate-500">Looking up vehicle details...</p>
             )}
-            {lookupError && (
-              <p className="mt-2 text-sm text-red-600">{lookupError}</p>
+            {lookupError && !manualEntry && (
+              <div className="mt-2">
+                <p className="text-sm text-red-600">{lookupError}</p>
+                <button
+                  type="button"
+                  onClick={() => setManualEntry(true)}
+                  className="mt-2 text-sm font-semibold text-[#3f63ff] underline underline-offset-2 hover:text-[#101a56]"
+                >
+                  Enter car details manually instead
+                </button>
+              </div>
+            )}
+            {manualEntry && (
+              <div className="mt-3 space-y-3 rounded-xl border border-[#d0dcea] bg-slate-50 p-4">
+                <p className="text-xs font-bold uppercase tracking-widest text-slate-400">Enter your car details</p>
+                <div className="grid grid-cols-2 gap-3">
+                  <div>
+                    <label className="mb-1 block text-[10px] font-bold uppercase tracking-widest text-slate-400">Make</label>
+                    <input
+                      type="text"
+                      placeholder="e.g. Ford"
+                      value={form.make}
+                      onChange={(e) => update("make", e.target.value)}
+                      className={inputClass}
+                    />
+                  </div>
+                  <div>
+                    <label className="mb-1 block text-[10px] font-bold uppercase tracking-widest text-slate-400">Model</label>
+                    <input
+                      type="text"
+                      placeholder="e.g. Focus"
+                      value={form.model}
+                      onChange={(e) => update("model", e.target.value)}
+                      className={inputClass}
+                    />
+                  </div>
+                  <div>
+                    <label className="mb-1 block text-[10px] font-bold uppercase tracking-widest text-slate-400">Year</label>
+                    <input
+                      type="text"
+                      placeholder="e.g. 2019"
+                      maxLength={4}
+                      value={form.year}
+                      onChange={(e) => update("year", e.target.value)}
+                      className={inputClass}
+                    />
+                  </div>
+                  <div>
+                    <label className="mb-1 block text-[10px] font-bold uppercase tracking-widest text-slate-400">Fuel type</label>
+                    <select
+                      value={form.fuelType}
+                      onChange={(e) => update("fuelType", e.target.value)}
+                      className={inputClass}
+                    >
+                      <option value="">Select…</option>
+                      <option value="Petrol">Petrol</option>
+                      <option value="Diesel">Diesel</option>
+                      <option value="Electric">Electric</option>
+                      <option value="Hybrid">Hybrid</option>
+                    </select>
+                  </div>
+                  <div className="col-span-2">
+                    <label className="mb-1 block text-[10px] font-bold uppercase tracking-widest text-slate-400">Mileage</label>
+                    <input
+                      type="number"
+                      placeholder="e.g. 45000"
+                      min={0}
+                      value={form.mileage}
+                      onChange={(e) => update("mileage", e.target.value)}
+                      className={inputClass}
+                    />
+                  </div>
+                </div>
+                <button
+                  type="button"
+                  onClick={() => { setManualEntry(false); setLookupError(null); }}
+                  className="text-xs text-slate-400 underline hover:text-slate-600"
+                >
+                  Cancel — try reg lookup again
+                </button>
+              </div>
             )}
             {lookupVehicle && (
-              <div className="mt-3 rounded-xl border border-emerald-200 bg-emerald-50 px-4 py-3">
-                <div className="flex items-center gap-3">
-                  {activeMakeLogoUrl ? (
-                    // eslint-disable-next-line @next/next/no-img-element
-                    <img
-                      src={activeMakeLogoUrl}
-                      alt={`${lookupVehicle.make ?? "Vehicle"} logo`}
-                      className="h-11 w-11 rounded-xl bg-white p-2 shadow-sm"
-                      onError={() => {
-                        if (logoSourceIndex < makeLogoUrls.length - 1) {
-                          setLogoSourceIndex((current) => current + 1);
-                        } else {
-                          setLogoSourceIndex(makeLogoUrls.length);
-                        }
-                      }}
-                    />
-                  ) : (
-                    <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-white text-xs font-bold uppercase text-[#101a56] shadow-sm">
-                      {lookupVehicle.make?.slice(0, 2) ?? "Car"}
+              <div className="mt-3 space-y-3">
+                <div className="rounded-xl border border-emerald-200 bg-emerald-50 px-4 py-3">
+                  <div className="flex items-center gap-3">
+                    {activeMakeLogoUrl ? (
+                      // eslint-disable-next-line @next/next/no-img-element
+                      <img
+                        src={activeMakeLogoUrl}
+                        alt={`${lookupVehicle.make ?? "Vehicle"} logo`}
+                        className="h-11 w-11 rounded-xl bg-white p-2 shadow-sm"
+                        onError={() => {
+                          if (logoSourceIndex < makeLogoUrls.length - 1) {
+                            setLogoSourceIndex((current) => current + 1);
+                          } else {
+                            setLogoSourceIndex(makeLogoUrls.length);
+                          }
+                        }}
+                      />
+                    ) : (
+                      <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-white text-xs font-bold uppercase text-[#101a56] shadow-sm">
+                        {lookupVehicle.make?.slice(0, 2) ?? "Car"}
+                      </div>
+                    )}
+                    <div className="min-w-0">
+                      <p className="text-xs font-bold uppercase tracking-widest text-emerald-700">
+                        Vehicle found
+                      </p>
+                      <p className="mt-1 text-sm font-semibold text-emerald-950">
+                        {formatVehicleSummary(lookupVehicle) || lookupVehicle.registrationNumber}
+                      </p>
                     </div>
-                  )}
-                  <div className="min-w-0">
-                    <p className="text-xs font-bold uppercase tracking-widest text-emerald-700">
-                      Vehicle found
-                    </p>
-                    <p className="mt-1 text-sm font-semibold text-emerald-950">
-                      {formatVehicleSummary(lookupVehicle) || lookupVehicle.registrationNumber}
-                    </p>
                   </div>
+                </div>
+                <div>
+                  <label className={labelClass}>Mileage <span className="normal-case font-normal text-slate-400">(optional)</span></label>
+                  <input
+                    type="number"
+                    placeholder="e.g. 45000"
+                    min={0}
+                    value={form.mileage}
+                    onChange={(e) => update("mileage", e.target.value)}
+                    className={inputClass}
+                  />
                 </div>
               </div>
             )}
@@ -694,6 +919,11 @@ export function BookingWizard() {
           <div className="rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-xs text-slate-600 space-y-1">
             <p className="font-bold uppercase tracking-widest text-slate-400 mb-2">Your booking</p>
             <p><span className="font-semibold">Reg:</span> {form.reg}</p>
+            {form.make && <p><span className="font-semibold">Make:</span> {form.make}</p>}
+            {form.model && <p><span className="font-semibold">Model:</span> {form.model}</p>}
+            {form.year && <p><span className="font-semibold">Year:</span> {form.year}</p>}
+            {form.fuelType && <p><span className="font-semibold">Fuel:</span> {form.fuelType}</p>}
+            {form.mileage && <p><span className="font-semibold">Mileage:</span> {Number(form.mileage).toLocaleString()} miles</p>}
             <p><span className="font-semibold">Service:</span> {BOOKING_SERVICES.find(s => s.id === form.serviceType)?.label ?? form.serviceType}</p>
             <p><span className="font-semibold">Date:</span> {formatSlotHeader(form.appointmentDate)}</p>
             <p><span className="font-semibold">Time:</span> {form.appointmentTime}</p>
@@ -727,7 +957,7 @@ export function BookingWizard() {
           <button
             type="button"
             onClick={goNext}
-            disabled={step === 1 && (lookupPending || (!lookupVehicle))}
+            disabled={step === 1 && (lookupPending || (!lookupVehicle && !manualEntry))}
             className={`rounded-xl bg-[#101a56] py-4 text-sm font-bold text-white shadow-md transition hover:bg-[#16236e] disabled:opacity-40 disabled:cursor-not-allowed ${step > 1 ? "flex-1" : "w-full"}`}
           >
             Continue

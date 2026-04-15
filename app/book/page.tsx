@@ -5,7 +5,7 @@ import Link from "next/link";
 export default function BookPage() {
   return (
     <div className="min-h-screen bg-white">
-      <div className="mx-auto max-w-lg px-4 py-5">
+      <div className="mx-auto max-w-2xl px-4 py-5">
         {/* Back link */}
         <Link
           href="/"

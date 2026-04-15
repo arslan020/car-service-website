@@ -161,11 +161,13 @@ export default async function ServicesPage() {
           <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {SERVICES.map((svc) => (
               <Link key={svc.title} href={svc.href} className="group flex flex-col rounded-2xl border border-[#e8effa] bg-white p-6 shadow-sm transition-all hover:-translate-y-0.5 hover:border-[#3f63ff]/30 hover:shadow-[0_6px_24px_rgba(63,99,255,0.1)]">
-                <div className="flex flex-1 items-start gap-3 sm:flex-col sm:gap-0">
-                  <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-[#eef4ff] text-[#3f63ff] transition-all group-hover:bg-[#3f63ff] group-hover:text-white sm:h-12 sm:w-12 sm:mb-4">{svc.icon}</span>
-                  <div className="flex-1">
+                <div className="flex flex-1 flex-col gap-3">
+                  <div className="flex items-center gap-3">
+                    <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-[#eef4ff] text-[#3f63ff] transition-all group-hover:bg-[#3f63ff] group-hover:text-white">{svc.icon}</span>
                     <h2 className="font-bold text-[#101a56] transition-colors group-hover:text-[#3f63ff]">{svc.title}</h2>
-                    <p className="mt-1.5 text-sm leading-relaxed text-slate-500">{svc.desc}</p>
+                  </div>
+                  <div>
+                    <p className="text-sm leading-relaxed text-slate-500">{svc.desc}</p>
                     <span className="mt-3 inline-block rounded-full bg-[#f4f8ff] px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-[#3f63ff]">{svc.eyebrow}</span>
                   </div>
                 </div>
@@ -187,12 +189,12 @@ export default async function ServicesPage() {
           </div>
           <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {REASONS.map((r) => (
-              <div key={r.title} className="flex items-start gap-3 rounded-2xl border border-[#e0ebff] bg-white p-5 shadow-sm sm:flex-col sm:gap-0">
-                <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[#eef4ff] text-[#3f63ff] sm:mb-3">{r.icon}</span>
-                <div>
+              <div key={r.title} className="flex flex-col gap-3 rounded-2xl border border-[#e0ebff] bg-white p-5 shadow-sm">
+                <div className="flex items-center gap-3">
+                  <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[#eef4ff] text-[#3f63ff]">{r.icon}</span>
                   <h3 className="font-bold text-[#101a56]">{r.title}</h3>
-                  <p className="mt-1 text-sm leading-relaxed text-slate-500">{r.body}</p>
                 </div>
+                <p className="text-sm leading-relaxed text-slate-500">{r.body}</p>
               </div>
             ))}
           </div>

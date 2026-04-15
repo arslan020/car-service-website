@@ -331,17 +331,17 @@ export default function HomePage() {
                 href={svc.href}
                 className="group flex flex-col rounded-2xl border border-[#e8effa] bg-white p-5 shadow-sm transition-all hover:-translate-y-0.5 hover:border-[#3f63ff]/30 hover:shadow-[0_6px_24px_rgba(63,99,255,0.1)]"
               >
-                <span className="flex flex-1 items-start gap-3 sm:flex-col sm:gap-0">
-                  <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[#eef4ff] text-[#3f63ff] transition-all group-hover:bg-[#3f63ff] group-hover:text-white sm:h-12 sm:w-12 sm:mb-4">
-                    {svc.icon}
-                  </span>
-                  <span>
-                    <span className="block font-semibold text-[#101a56] transition-colors group-hover:text-[#3f63ff]">
+                <span className="flex flex-1 flex-col gap-3">
+                  <span className="flex items-center gap-3">
+                    <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[#eef4ff] text-[#3f63ff] transition-all group-hover:bg-[#3f63ff] group-hover:text-white">
+                      {svc.icon}
+                    </span>
+                    <span className="font-semibold text-[#101a56] transition-colors group-hover:text-[#3f63ff]">
                       {svc.title}
                     </span>
-                    <span className="mt-1 block text-sm leading-relaxed text-slate-500">
-                      {svc.desc}
-                    </span>
+                  </span>
+                  <span className="text-sm leading-relaxed text-slate-500">
+                    {svc.desc}
                   </span>
                 </span>
                 <span className="mt-4 flex items-center justify-between border-t border-[#eef4ff] pt-4">
