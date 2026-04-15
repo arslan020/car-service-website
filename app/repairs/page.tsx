@@ -57,7 +57,7 @@ export default async function RepairsPage() {
           <div className="mt-6 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {REPAIR_CATEGORIES.map((cat) => (
               <Link key={cat.title} href={cat.href} className="group flex flex-col rounded-2xl border border-[#e8effa] bg-white p-6 shadow-sm transition-all hover:-translate-y-0.5 hover:border-[#3f63ff]/30 hover:shadow-[0_6px_24px_rgba(63,99,255,0.1)]">
-                <div className="flex items-center gap-3 sm:flex-col sm:items-start sm:gap-0">
+                <div className="flex items-start gap-3 sm:flex-col sm:gap-0">
                   <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-[#eef4ff] text-[#3f63ff] transition-all group-hover:bg-[#3f63ff] group-hover:text-white sm:h-12 sm:w-12 sm:mb-4">{cat.icon}</span>
                   <div>
                     <h3 className="font-bold text-[#101a56] transition-colors group-hover:text-[#3f63ff]">{cat.title}</h3>
@@ -89,7 +89,7 @@ export default async function RepairsPage() {
           </div>
           <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {PROCESS.map((step) => (
-              <div key={step.n} className="flex items-center gap-3 rounded-2xl border border-[#e0ebff] bg-white p-5 shadow-sm sm:flex-col sm:items-start sm:gap-0">
+              <div key={step.n} className="flex items-center gap-3 rounded-2xl border border-[#e0ebff] bg-white p-5 shadow-sm sm:flex-col sm:gap-0">
                 <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-[#3f63ff] to-[#6b8fff] text-sm font-extrabold text-white shadow-md shadow-[#3f63ff]/25 sm:mb-4">{step.n}</span>
                 <div>
                   <h3 className="font-bold text-[#101a56]">{step.title}</h3>
