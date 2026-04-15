@@ -52,6 +52,7 @@ export async function createBooking(input: unknown): Promise<CreateBookingResult
         paymentChoice: data.paymentChoice,
       },
     });
+
     return { ok: true, reference };
   } catch (e) {
     console.error(e);

@@ -32,6 +32,30 @@ const FAQS = [
     q: "Do you offer a collection and delivery service?",
     a: "Yes! We offer a local collection and delivery service to make taking care of your car as convenient as possible. Just let us know when making your booking.",
   },
+  {
+    q: "How much does a service or MOT cost?",
+    a: "Our prices are transparent and shown upfront when you book online — no hidden fees. The final cost only changes if we discover additional work needed, and we will always contact you for approval before proceeding.",
+  },
+  {
+    q: "What payment methods do you accept?",
+    a: "We accept all major credit and debit cards, as well as cash. Payment is taken on collection of your vehicle once all work is completed and explained to you.",
+  },
+  {
+    q: "Is there somewhere I can wait while my car is being worked on?",
+    a: "Yes, we have a comfortable waiting area with free Wi-Fi and refreshments. Alternatively, if the job is longer, you are welcome to drop your car off and collect it later.",
+  },
+  {
+    q: "Do you work on electric and hybrid vehicles?",
+    a: "Yes, we service and maintain electric and hybrid vehicles. Our technicians are trained to work on EV and hybrid systems safely and to manufacturer standards.",
+  },
+  {
+    q: "Can you carry out a diagnostic check on my car?",
+    a: "Absolutely. We use the latest diagnostic equipment to read fault codes and identify issues across all makes and models. A diagnostic check is a great first step if a warning light has appeared on your dashboard.",
+  },
+  {
+    q: "Do you supply and fit tyres?",
+    a: "Yes, we supply and fit a wide range of tyres to suit all budgets — from premium to budget brands. We can advise on the best option for your vehicle and driving needs.",
+  },
 ];
 
 export default function FaqsPage() {
