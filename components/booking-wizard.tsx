@@ -554,44 +554,31 @@ export function BookingWizard() {
 
           <div>
             <label className={labelClass}>Select service</label>
-            {serviceParam ? (
-              <div className="rounded-xl border border-[#101a56] bg-white px-4 py-3 ring-1 ring-[#101a56]">
-                <span className="text-sm font-semibold text-[#101a56]">
-                  {BOOKING_SERVICES.find((s) => s.id === serviceParam)?.label ?? serviceParam}
-                </span>
-                {servicePrices[serviceParam] !== undefined && (
-                  <span className="ml-2 text-[11px] font-semibold text-[#3f63ff]">
-                    From £{servicePrices[serviceParam]}
-                  </span>
-                )}
-              </div>
-            ) : (
-              <div className="grid grid-cols-2 gap-2">
-                {BOOKING_SERVICES.map((s) => {
-                  const price = servicePrices[s.id];
-                  const isSelected = form.serviceType === s.id;
-                  return (
-                    <button
-                      key={s.id}
-                      type="button"
-                      onClick={() => update("serviceType", s.id)}
-                      className={`min-h-11 rounded-xl border px-3 py-3 text-sm font-medium text-left transition ${
-                        isSelected
-                          ? "border-[#101a56] bg-white font-semibold text-[#101a56] ring-1 ring-[#101a56]"
-                          : "border-[#d0dcea] bg-white text-slate-700 hover:border-[#9db4ff]"
-                      }`}
-                    >
-                      <span className="block">{s.label}</span>
-                      {price !== undefined && (
-                        <span className={`mt-0.5 block text-[11px] font-semibold ${isSelected ? "text-[#3f63ff]" : "text-slate-400"}`}>
-                          From £{price}
-                        </span>
-                      )}
-                    </button>
-                  );
-                })}
-              </div>
-            )}
+            <div className="grid grid-cols-2 gap-2">
+              {BOOKING_SERVICES.map((s) => {
+                const price = servicePrices[s.id];
+                const isSelected = form.serviceType === s.id;
+                return (
+                  <button
+                    key={s.id}
+                    type="button"
+                    onClick={() => update("serviceType", s.id)}
+                    className={`min-h-11 rounded-xl border px-3 py-3 text-sm font-medium text-left transition ${
+                      isSelected
+                        ? "border-[#101a56] bg-white font-semibold text-[#101a56] ring-1 ring-[#101a56]"
+                        : "border-[#d0dcea] bg-white text-slate-700 hover:border-[#9db4ff]"
+                    }`}
+                  >
+                    <span className="block">{s.label}</span>
+                    {price !== undefined && (
+                      <span className={`mt-0.5 block text-[11px] font-semibold ${isSelected ? "text-[#3f63ff]" : "text-slate-400"}`}>
+                        From £{price}
+                      </span>
+                    )}
+                  </button>
+                );
+              })}
+            </div>
           </div>
         </div>
       )}
