@@ -59,13 +59,8 @@ export async function sendBookingConfirmationEmail(data: BookingEmailData) {
   const eventLoc = encodeURIComponent(site.addressLines.join(", "));
   const startFlat = `${data.appointmentDate.replace(/-/g, "")}T${data.appointmentTime.replace(":", "")}00`;
   const endFlat   = `${data.appointmentDate.replace(/-/g, "")}T${endTime.replace(":", "")}00`;
-  const startISO  = `${data.appointmentDate}T${data.appointmentTime}:00`;
-  const endISO    = `${data.appointmentDate}T${endTime}:00`;
-
-  const googleUrl    = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${eventTitle}&dates=${startFlat}/${endFlat}&details=${eventDesc}&location=${eventLoc}`;
-  const outlookUrl   = `https://outlook.live.com/calendar/action/compose?subject=${eventTitle}&startdt=${startISO}&enddt=${endISO}&body=${eventDesc}&location=${eventLoc}&allday=false&path=%2Fcalendar%2Faction%2Fcompose&rru=addevent`;
-  const office365Url = `https://outlook.office.com/calendar/action/compose?subject=${eventTitle}&startdt=${startISO}&enddt=${endISO}&body=${eventDesc}&location=${eventLoc}&allday=false&path=%2Fcalendar%2Faction%2Fcompose&rru=addevent`;
-  const yahooUrl     = `https://calendar.yahoo.com/?v=60&title=${eventTitle}&st=${startFlat}&et=${endFlat}&desc=${eventDesc}&in_loc=${eventLoc}`;
+const googleUrl    = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${eventTitle}&dates=${startFlat}/${endFlat}&details=${eventDesc}&location=${eventLoc}`;
+const yahooUrl     = `https://calendar.yahoo.com/?v=60&title=${eventTitle}&st=${startFlat}&et=${endFlat}&desc=${eventDesc}&in_loc=${eventLoc}`;
 
   // Vehicle detail rows
   const vehicleRowItems = [
@@ -240,16 +235,10 @@ export async function sendBookingConfirmationEmail(data: BookingEmailData) {
             <table cellpadding="0" cellspacing="0" border="0" style="margin:0 auto;">
               <tr>
                 <td style="padding:4px;">
-                  <a href="${googleUrl}" style="${btnStyle}">Google</a>
+                  <a href="${googleUrl}" style="${btnStyle}">Google Calendar</a>
                 </td>
                 <td style="padding:4px;">
-                  <a href="${outlookUrl}" style="${btnStyle}">Outlook</a>
-                </td>
-                <td style="padding:4px;">
-                  <a href="${office365Url}" style="${btnStyle}">Office 365</a>
-                </td>
-                <td style="padding:4px;">
-                  <a href="${yahooUrl}" style="${btnStyle}">Yahoo</a>
+                  <a href="${yahooUrl}" style="${btnStyle}">Yahoo Calendar</a>
                 </td>
               </tr>
             </table>
