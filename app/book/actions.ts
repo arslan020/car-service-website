@@ -3,6 +3,7 @@
 import { randomBytes } from "crypto";
 import { prisma } from "@/lib/prisma";
 import { bookingFormSchema } from "@/lib/validations/booking";
+import { sendBookingConfirmationEmail } from "@/lib/booking-email";
 
 function makeReference() {
   return `BK-${randomBytes(3).toString("hex").toUpperCase()}`;
@@ -52,6 +53,25 @@ export async function createBooking(input: unknown): Promise<CreateBookingResult
         paymentChoice: data.paymentChoice,
       },
     });
+
+    // Send confirmation email to customer (non-blocking — don't fail booking if email fails)
+    sendBookingConfirmationEmail({
+      reference,
+      customerName: data.customerName,
+      customerEmail: data.customerEmail,
+      customerPhone: data.customerPhone,
+      serviceType: data.serviceType,
+      appointmentDate: data.appointmentDate,
+      appointmentTime: data.appointmentTime,
+      reg: data.reg.toUpperCase().replace(/\s/g, ""),
+      make: data.make,
+      model: data.model,
+      year: data.year,
+      fuelType: data.fuelType,
+      colour: null,
+      engineSize: data.engineSize,
+      mileage: data.mileage,
+    }).catch((err) => console.error("Booking email failed:", err));
 
     return { ok: true, reference };
   } catch (e) {
