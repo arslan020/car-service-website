@@ -69,12 +69,12 @@ export function SiteFooter() {
             <p className="text-xs font-bold uppercase tracking-widest text-white">Services</p>
             <ul className="mt-4 space-y-2.5">
               {[
-                { label: "MOT Test",       href: "/mot" },
-                { label: "Full Service",   href: "/services/full-service" },
-                { label: "Interim Service",href: "/services/interim-service" },
-                { label: "Oil Change",     href: "/services/oil-change" },
-                { label: "Air Conditioning",href: "/services/air-con" },
-                { label: "Brakes & Tyres", href: "/services/brakes-tyres" },
+                { label: "MOT Test",        href: "/mot" },
+                { label: "Full Service",    href: "/car-servicing/full" },
+                { label: "Interim Service", href: "/car-servicing/interim" },
+                { label: "Oil Change",      href: "/oil-change" },
+                { label: "Air Conditioning",href: "/air-con" },
+                { label: "Brakes & Tyres",  href: "/repairs/brakes" },
               ].map((l) => (
                 <li key={l.href}>
                   <Link href={l.href} className="text-sm text-slate-400 transition hover:text-white">

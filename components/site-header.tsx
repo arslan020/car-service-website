@@ -7,16 +7,6 @@ import { site, waUrl } from "@/lib/site-config";
 
 const SERVICES_MENU = [
   {
-    href: "/mot",
-    label: "MOT Test",
-    desc: "DVSA approved, same-day slots",
-    icon: (
-      <svg className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth={1.75} viewBox="0 0 24 24">
-        <circle cx="12" cy="12" r="9" /><path strokeLinecap="round" d="M12 7v5l3 3" />
-      </svg>
-    ),
-  },
-  {
     href: "/car-servicing",
     label: "Car Servicing",
     desc: "Interim, full & major service",
