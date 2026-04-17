@@ -244,7 +244,7 @@ export default function HomePage() {
       {/* ════════════════════════════════
           HERO — text left, car right
       ════════════════════════════════ */}
-      <section className="relative overflow-hidden bg-gradient-to-b from-[#eefdff] via-[#f5feff] via-60% to-white px-4 pb-0 pt-16 text-center sm:pt-20 lg:pt-24">
+      <section className="relative overflow-hidden bg-gradient-to-b from-[#eefdff] via-[#f5feff] via-60% to-white px-4 pb-0 pt-10 text-center sm:pt-14 lg:pt-16">
         <div className="mx-auto max-w-3xl">
 
           {/* Location pill */}
