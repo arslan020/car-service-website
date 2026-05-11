@@ -164,11 +164,6 @@ export function SiteFooter() {
           <ul className="flex flex-wrap items-center gap-4 text-xs text-slate-500">
             <li><Link href="/privacy" className="transition hover:text-slate-300">Privacy Policy</Link></li>
             <li><Link href="/terms" className="transition hover:text-slate-300">Terms of Use</Link></li>
-            <li>
-              <Link href="/login" className="font-medium text-slate-400 transition hover:text-white">
-                Admin
-              </Link>
-            </li>
           </ul>
         </div>
       </div>
