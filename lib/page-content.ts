@@ -31,6 +31,18 @@ export function f(content: ContentMap, key: string, fallback: string): string {
   return content[key] !== undefined ? content[key] : fallback;
 }
 
+/** Multi-line textarea stored in CMS: one non-empty line = one list item. */
+export function fl(content: ContentMap, key: string, fallback: readonly string[]): string[] {
+  const raw = content[key];
+  if (raw !== undefined && raw.trim()) {
+    return raw
+      .split("\n")
+      .map((s) => s.trim())
+      .filter(Boolean);
+  }
+  return [...fallback];
+}
+
 /**
  * Get content map for a page with defaults pre-filled.
  * Keys from pages-config will always be present.

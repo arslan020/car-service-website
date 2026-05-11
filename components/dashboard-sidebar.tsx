@@ -53,9 +53,9 @@ export function DashboardSidebar({ adminName }: { adminName: string }) {
   const isOnPagesRoute = pathname.startsWith("/dashboard/pages");
 
   return (
-    <>
-      {/* ── Mobile top bar ── */}
-      <div className="flex items-center justify-between border-b border-[#e0ebff] bg-white px-4 py-3 lg:hidden">
+    <div className="flex w-full shrink-0 flex-col lg:contents">
+      {/* ── Mobile top bar (full-width row on small screens; not a side column) ── */}
+      <div className="flex w-full items-center justify-between border-b border-[#e0ebff] bg-white px-4 py-3 lg:hidden">
         <Link href="/dashboard">
           <Image src="/business-logo.png" alt={site.name} width={120} height={36} className="h-auto w-28 object-contain" />
         </Link>
@@ -205,6 +205,6 @@ export function DashboardSidebar({ adminName }: { adminName: string }) {
           </form>
         </div>
       </aside>
-    </>
+    </div>
   );
 }

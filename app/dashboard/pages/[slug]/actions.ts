@@ -4,7 +4,24 @@ import { revalidatePath } from "next/cache";
 import { randomBytes } from "crypto";
 import { prisma } from "@/lib/prisma";
 import { getSession } from "@/app/login/actions";
-import { PAGES_CONFIG } from "@/lib/pages-config";
+import { getPageDef, PAGES_CONFIG } from "@/lib/pages-config";
+
+function revalidatePublicRoutes(pageKey: string) {
+  const def = getPageDef(pageKey);
+  const paths = new Set<string>();
+  if (def?.publicPath) paths.add(def.publicPath);
+  else if (pageKey === "home") paths.add("/");
+  else paths.add(`/${pageKey}`);
+
+  if (pageKey.startsWith("car-servicing-") && pageKey !== "car-servicing") {
+    paths.add("/car-servicing");
+  }
+  if (pageKey.startsWith("repairs-")) {
+    paths.add("/repairs");
+  }
+
+  paths.forEach((p) => revalidatePath(p));
+}
 
 /** Save a single field value for a page. */
 export async function savePageField(
@@ -30,10 +47,7 @@ export async function savePageField(
       DO UPDATE SET "value" = ${value}, "updatedAt" = NOW()
     `;
 
-    // Revalidate the public page
-    const publicPath =
-      pageKey === "car-servicing" ? "/car-servicing" : `/${pageKey}`;
-    revalidatePath(publicPath);
+    revalidatePublicRoutes(pageKey);
     revalidatePath(`/dashboard/pages/${pageKey}`);
 
     return { ok: true };
@@ -56,9 +70,7 @@ export async function resetPageField(
       DELETE FROM "PageContent"
       WHERE "pageKey" = ${pageKey} AND "fieldKey" = ${fieldKey}
     `;
-    const publicPath =
-      pageKey === "car-servicing" ? "/car-servicing" : `/${pageKey}`;
-    revalidatePath(publicPath);
+    revalidatePublicRoutes(pageKey);
     revalidatePath(`/dashboard/pages/${pageKey}`);
     return { ok: true };
   } catch {

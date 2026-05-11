@@ -19,7 +19,109 @@ export interface PageDef {
   fields: FieldDef[];
 }
 
+function T(key: string, label: string, default_: string, section: string): FieldDef {
+  return { key, label, type: "text", default: default_, section };
+}
+
+function A(key: string, label: string, default_: string, section: string): FieldDef {
+  return { key, label, type: "textarea", default: default_, section };
+}
+
+const BOOKING_TABS_DEFAULT = `mot|MOT Test
+full|Full Service
+interim|Interim Service
+major|Major Service
+oil|Oil Change
+brakes|Brakes
+clutch|Clutch & Gearbox
+suspension|Suspension & Steering
+exhaust|Exhaust & Emissions
+engine|Engine & Cooling
+electrical|Electrical
+diagnostics|Diagnostics
+tyres|Tyres
+ac|Air-Con
+battery|Battery Check`;
+
+const CONTACT_SERVICE_OPTIONS_DEFAULT = `MOT Test
+Full Service
+Interim Service
+Major Service
+Oil Change
+Diagnostics
+Brakes & Tyres
+Air Conditioning
+Battery Check
+Clutch & Gearbox
+Suspension & Steering
+Exhaust & Emissions
+Engine & Cooling
+Electrical
+Other`;
+
+const HOME_FIELDS: FieldDef[] = [
+  T("hero_title_line1", "Hero — first line (navy)", "Car maintenance,", "Hero"),
+  T("hero_title_accent", "Hero — accent line (blue)", "made easy", "Hero"),
+  A("hero_typewriter", "Hero — typing subtitle (one phrase)", "Drop off, we fix, drive away happy", "Hero"),
+  T("booking_widget_label", "Booking — label above service tabs", "Select a service to book", "Booking widget"),
+  A("booking_service_labels", "Booking — tabs (one per line: id|Label)", BOOKING_TABS_DEFAULT, "Booking widget"),
+  T("booking_placeholder", "Booking — reg input placeholder", "YOUR REG", "Booking widget"),
+  T("booking_cta", "Booking — primary button", "Start booking", "Booking widget"),
+  T("booking_reg_error_empty", "Booking — error: empty reg", "Please enter your registration number.", "Booking widget"),
+  T("booking_reg_error_invalid", "Booking — error: invalid UK reg", "Please enter a valid UK reg (e.g. AB12 CDE).", "Booking widget"),
+  T("booking_manual_link", "Booking — manual entry link text", "Enter car details manually instead", "Booking widget"),
+  T("why_kicker", "Why us — kicker", "Why drivers choose us", "Why choose us"),
+  T("why_title", "Why us — heading", "Why Choose Us", "Why choose us"),
+  A("why_intro", "Why us — intro paragraph", "Reliable service, practical advice, and a garage team that keeps things simple from booking to collection.", "Why choose us"),
+  T("why_1_title", "Why card 1 — title", "DVSA-approved garage", "Why choose us"),
+  A("why_1_body", "Why card 1 — text", "Trusted MOT testing, servicing, diagnostics, and repairs from an experienced local team.", "Why choose us"),
+  T("why_2_title", "Why card 2 — title", "Same-day help available", "Why choose us"),
+  A("why_2_body", "Why card 2 — text", "Need something sorted quickly? We aim to offer fast turnaround and practical booking slots.", "Why choose us"),
+  T("why_3_title", "Why card 3 — title", "Clear, honest pricing", "Why choose us"),
+  A("why_3_body", "Why card 3 — text", "Straightforward advice, fair quotes, and no extra work carried out without your approval.", "Why choose us"),
+  T("why_4_title", "Why card 4 — title", "Local and easy to reach", "Why choose us"),
+  A("why_4_body", "Why card 4 — text", "Conveniently based in Hayes with online booking, phone support, and quick WhatsApp contact.", "Why choose us"),
+  T("svc_block_kicker", "Our services — kicker", "What we offer", "Our services"),
+  T("svc_block_title", "Our services — heading", "Our services", "Our services"),
+  T("svc_block_from_label", "Our services — price prefix", "from", "Our services"),
+  T("svc_block_view_all", "Our services — view all button", "View all services", "Our services"),
+  T("svc_1_title", "Featured 1 — title", "MOT Test", "Our services"),
+  A("svc_1_desc", "Featured 1 — description", "DVSA approved, same-day slots available", "Our services"),
+  T("svc_1_price", "Featured 1 — price display", "£54", "Our services"),
+  T("svc_2_title", "Featured 2 — title", "Full Service", "Our services"),
+  A("svc_2_desc", "Featured 2 — description", "Oil, filters & comprehensive 60-point check", "Our services"),
+  T("svc_2_price", "Featured 2 — price (or £???)", "£???", "Our services"),
+  T("svc_3_title", "Featured 3 — title", "Oil Change", "Our services"),
+  A("svc_3_desc", "Featured 3 — description", "Premium oil and filter replacement", "Our services"),
+  T("svc_3_price", "Featured 3 — price", "£???", "Our services"),
+  T("svc_4_title", "Featured 4 — title", "Battery Check", "Our services"),
+  A("svc_4_desc", "Featured 4 — description", "Testing, charging, and replacement", "Our services"),
+  T("svc_4_price", "Featured 4 — price", "£???", "Our services"),
+  T("brands_title", "Brands row — heading", "Brands we service", "Brands"),
+  T("hiw_kicker", "How it works — kicker", "Simple process", "How it works"),
+  T("hiw_title", "How it works — heading", "How it works", "How it works"),
+  T("hiw_1_title", "Step 1 — title", "Choose your service", "How it works"),
+  A("hiw_1_body", "Step 1 — text", "Select your service and a preferred time slot in just a few minutes.", "How it works"),
+  T("hiw_2_title", "Step 2 — title", "We confirm by text or call", "How it works"),
+  A("hiw_2_body", "Step 2 — text", "Confirmation within the hour — no chasing, no waiting on hold.", "How it works"),
+  T("hiw_3_title", "Step 3 — title", "Drop off & relax", "How it works"),
+  A("hiw_3_body", "Step 3 — text", "Arrive at your time or use our collection service if arranged.", "How it works"),
+  T("hiw_4_title", "Step 4 — title", "Drive away happy", "How it works"),
+  A("hiw_4_body", "Step 4 — text", "Full paperwork provided. We text you when ready, you pay on collection.", "How it works"),
+  T("find_title", "Find us — heading", "Find Us", "Find us"),
+  A("find_address_line", "Find us — address line under heading", "We're located at 235 Yeading Ln, Hayes, UB4 9AD", "Find us"),
+  T("hours_kicker", "Opening times — kicker", "Opening Times", "Opening times"),
+  A("hours_grid", "Opening times — lines (Day|hours, one per line)", "Monday|10:00 – 20:00\nTuesday|10:00 – 20:00\nWednesday|10:00 – 20:00\nThursday|10:00 – 20:00\nFriday|10:00 – 20:00\nSaturday|10:00 – 20:00\nSunday|Closed", "Opening times"),
+];
+
 export const PAGES_CONFIG: PageDef[] = [
+  {
+    slug: "home",
+    label: "Homepage",
+    icon: "🏠",
+    publicPath: "/",
+    fields: HOME_FIELDS,
+  },
   {
     slug: "services",
     label: "Services",
@@ -40,6 +142,47 @@ export const PAGES_CONFIG: PageDef[] = [
           "From scheduled servicing and MOTs to diagnostics and repairs — all under one roof in Hayes.",
         section: "Hero",
       },
+      T("hero_kicker", "Hero — small kicker above title", "What we offer", "Hero"),
+      T("cta_book", "Hero — primary button", "Book online", "Hero"),
+      T("cta_pricing", "Hero — secondary button", "View pricing", "Hero"),
+      T("card_price_label", "Service cards — price row label", "Price", "Service grid"),
+      T("svc_mot_eyebrow", "Card MOT — eyebrow tag", "DVSA Approved", "Service grid"),
+      T("svc_mot_title", "Card MOT — title", "MOT Test", "Service grid"),
+      A("svc_mot_desc", "Card MOT — description", "Annual MOT inspections to keep your car legal and safe. Same-day slots available. If it fails, we explain every advisory clearly and can quote for repair work on the spot.", "Service grid"),
+      T("svc_mot_price", "Card MOT — price", "from £54", "Service grid"),
+      T("svc_cs_eyebrow", "Card Car Servicing — eyebrow", "Scheduled", "Service grid"),
+      T("svc_cs_title", "Card Car Servicing — title", "Car Servicing", "Service grid"),
+      A("svc_cs_desc", "Card Car Servicing — description", "Interim, full, and major servicing tailored to your make and model. Manufacturer-scheduled checks keep your warranty valid and your car running smoothly.", "Service grid"),
+      T("svc_cs_price", "Card Car Servicing — price", "from £X", "Service grid"),
+      T("svc_rep_eyebrow", "Card Repairs — eyebrow", "All Makes", "Service grid"),
+      T("svc_rep_title", "Card Repairs — title", "Repairs", "Service grid"),
+      A("svc_rep_desc", "Card Repairs — description", "Brakes, clutch, exhausts, suspension, steering and more. We diagnose first, give you a clear quote, and only proceed with your approval — no surprises.", "Service grid"),
+      T("svc_rep_price", "Card Repairs — price", "Quote provided", "Service grid"),
+      T("svc_diag_eyebrow", "Card Diagnostics — eyebrow", "OBD & Live Data", "Service grid"),
+      T("svc_diag_title", "Card Diagnostics — title", "Diagnostics", "Service grid"),
+      A("svc_diag_desc", "Card Diagnostics — description", "Engine warning lights, fault codes, and intermittent issues. We use professional-grade diagnostic equipment to trace the root cause — not just clear the light.", "Service grid"),
+      T("svc_diag_price", "Card Diagnostics — price", "from £X", "Service grid"),
+      T("svc_oil_eyebrow", "Card Oil — eyebrow", "Premium Oil", "Service grid"),
+      T("svc_oil_title", "Card Oil — title", "Oil Change", "Service grid"),
+      A("svc_oil_desc", "Card Oil — description", "Right-spec oil and filter for your engine. Fast turnaround — often while you wait. Helps fuel economy and protects against premature wear.", "Service grid"),
+      T("svc_oil_price", "Card Oil — price", "from £X", "Service grid"),
+      T("svc_brakes_eyebrow", "Card Brakes — eyebrow", "Safety First", "Service grid"),
+      T("svc_brakes_title", "Card Brakes — title", "Brakes & Tyres", "Service grid"),
+      A("svc_brakes_desc", "Card Brakes — description", "Brake pads, discs, callipers, and tyre fitting or replacement. We check tread depth and brake performance and advise only when action is genuinely needed.", "Service grid"),
+      T("svc_brakes_price", "Card Brakes — price", "from £X", "Service grid"),
+      T("why_kicker", "Why us — kicker", "Why Heston Automotive", "Why us"),
+      T("why_title", "Why us — heading", "The difference you'll notice", "Why us"),
+      T("why_1_title", "Why card 1 — title", "Transparent pricing", "Why us"),
+      A("why_1_body", "Why card 1 — text", "You get a clear quote before we touch the car. No hidden extras, no surprises at collection.", "Why us"),
+      T("why_2_title", "Why card 2 — title", "DVSA approved", "Why us"),
+      A("why_2_body", "Why card 2 — text", "Authorised MOT testing station with qualified technicians working to DVSA standards.", "Why us"),
+      T("why_3_title", "Why card 3 — title", "Collection & delivery", "Why us"),
+      A("why_3_body", "Why card 3 — text", "Can't get to us? We can collect your car, carry out the work, and return it when ready.", "Why us"),
+      T("why_4_title", "Why card 4 — title", "All makes & models", "Why us"),
+      A("why_4_body", "Why card 4 — text", "From city cars to SUVs and light commercials. Foreign plates welcome.", "Why us"),
+      T("cta_band_kicker", "Bottom CTA — kicker", "Ready to book?", "Bottom CTA"),
+      T("cta_band_title", "Bottom CTA — heading", "Get your car booked in today", "Bottom CTA"),
+      T("cta_band_primary", "Bottom CTA — primary button", "Book online now", "Bottom CTA"),
     ],
   },
   {
@@ -128,6 +271,52 @@ export const PAGES_CONFIG: PageDef[] = [
         default: "Usually 45–60 minutes for a straightforward test. We'll text you when it's ready.",
         section: "FAQs",
       },
+      T("hero_eyebrow", "Hero — kicker", "DVSA Approved", "Hero"),
+      T("hero_price_suffix", "Hero — text after price badge", "— DVSA max fee", "Hero"),
+      T("btn_book_mot", "Hero — book button", "Book MOT", "Hero"),
+      T("btn_whatsapp", "Hero — WhatsApp button", "WhatsApp us", "Hero"),
+      T("stat_1_label", "Stat tile 1 — label (value uses price badge)", "DVSA max fee", "Stat tiles"),
+      T("stat_2_value", "Stat tile 2 — value", "~1 hr", "Stat tiles"),
+      T("stat_2_label", "Stat tile 2 — label", "typical test time", "Stat tiles"),
+      T("stat_3_value", "Stat tile 3 — value", "Same day", "Stat tiles"),
+      T("stat_3_label", "Stat tile 3 — label", "slots often available", "Stat tiles"),
+      T("stat_4_value", "Stat tile 4 — value", "Free", "Stat tiles"),
+      T("stat_4_label", "Stat tile 4 — label", "partial retest if we do repairs", "Stat tiles"),
+      T("checks_kicker", "Inspection — kicker", "The inspection", "What we check"),
+      T("checks_title", "Inspection — heading", "What we check", "What we check"),
+      A(
+        "checks_list",
+        "Inspection checklist (one line per item)",
+        `Lights, reflectors & electrical equipment
+Steering & suspension components
+Brakes — pads, discs & hydraulics
+Tyres — tread depth, condition & pressure
+Seatbelts & restraint systems
+Windscreen, wipers & washers
+Horn & mirrors
+Exhaust emissions & noise
+Fuel system integrity
+Vehicle identification (VIN / number plate)
+Body structure & underbody
+Driver's view of the road`,
+        "What we check",
+      ),
+      T("process_kicker", "Process — kicker", "Simple process", "How it works"),
+      T("process_title", "Process — heading", "How the MOT works", "How it works"),
+      T("step_1_title", "Step 1 — title", "Book your slot", "How it works"),
+      A("step_1_body", "Step 1 — text", "Choose a date and time online or call us. Same-day slots often available.", "How it works"),
+      T("step_2_title", "Step 2 — title", "Drop off your car", "How it works"),
+      A("step_2_body", "Step 2 — text", "Arrive at your booked time. Tests typically take 45–60 minutes.", "How it works"),
+      T("step_3_title", "Step 3 — title", "Pass or advisory", "How it works"),
+      A("step_3_body", "Step 3 — text", "We walk you through the result clearly. No jargon, no pressure.", "How it works"),
+      T("step_4_title", "Step 4 — title", "Repair & retest (if needed)", "How it works"),
+      A("step_4_body", "Step 4 — text", "We can quote and carry out any work, then retest at a reduced rate.", "How it works"),
+      T("faq_section_kicker", "FAQ block — kicker", "FAQs", "FAQ intro"),
+      T("faq_section_title", "FAQ block — heading", "Common questions", "FAQ intro"),
+      T("bottom_kicker", "Bottom CTA — kicker", "Book today", "Bottom CTA"),
+      T("bottom_title", "Bottom CTA — heading", "Ready for your MOT?", "Bottom CTA"),
+      A("bottom_body", "Bottom CTA — paragraph", "Same-day slots often available. Book online in under a minute or call us.", "Bottom CTA"),
+      T("bottom_btn_book", "Bottom CTA — book button", "Book MOT online", "Bottom CTA"),
     ],
   },
   {
@@ -171,6 +360,72 @@ export const PAGES_CONFIG: PageDef[] = [
         default: "from £X",
         section: "Service Tier Prices",
       },
+      T("hero_eyebrow", "Hero — kicker", "Scheduled servicing", "Hero"),
+      T("btn_book", "Hero — book button", "Book a service", "Hero"),
+      T("btn_whatsapp", "Hero — WhatsApp button", "WhatsApp us", "Hero"),
+      T("tier_section_kicker", "Tiers section — kicker", "Service levels", "Service tiers"),
+      T("tier_section_title", "Tiers section — heading", "Choose your service", "Service tiers"),
+      T("tier_popular_badge", "“Most popular” badge text", "Most popular", "Service tiers"),
+      T("tier_interim_title", "Interim — card title", "Interim Service", "Service tiers"),
+      T("tier_interim_subtitle", "Interim — subtitle", "Every 6 months or 6,000 miles", "Service tiers"),
+      A(
+        "tier_interim_includes",
+        "Interim — bullet lines (one per line)",
+        `Engine oil & filter change
+Air filter inspection
+Brake fluid level check
+Coolant level check
+Battery check
+Tyre condition & pressure
+Lights & electrics check
+Wiper blade inspection`,
+        "Service tiers",
+      ),
+      T("tier_full_title", "Full — card title", "Full Service", "Service tiers"),
+      T("tier_full_subtitle", "Full — subtitle", "Every 12 months or 12,000 miles", "Service tiers"),
+      A(
+        "tier_full_includes",
+        "Full — bullet lines (one per line)",
+        `Everything in Interim
+Air filter replacement
+Pollen / cabin filter check
+Fuel filter inspection
+Brake pad & disc measurement
+Suspension & steering inspection
+Exhaust system check
+60-point vehicle health check`,
+        "Service tiers",
+      ),
+      T("tier_major_title", "Major — card title", "Major Service", "Service tiers"),
+      T("tier_major_subtitle", "Major — subtitle", "As per manufacturer schedule", "Service tiers"),
+      A(
+        "tier_major_includes",
+        "Major — bullet lines (one per line)",
+        `Everything in Full Service
+Spark plugs replacement
+Timing belt inspection (if due)
+Gearbox oil check
+Differential oil check
+Brake fluid flush
+Coolant flush (if due)
+Full road test & report`,
+        "Service tiers",
+      ),
+      T("tier_book_prefix", "Tier cards — book button prefix", "Book", "Service tiers"),
+      T("benefits_kicker", "Benefits — kicker", "Why service regularly", "Benefits"),
+      T("benefits_title", "Benefits — heading", "The benefits", "Benefits"),
+      T("ben_1_title", "Benefit 1 — title", "Protects your warranty", "Benefits"),
+      A("ben_1_body", "Benefit 1 — text", "Manufacturer-schedule servicing maintains your vehicle warranty — even at independent garages.", "Benefits"),
+      T("ben_2_title", "Benefit 2 — title", "Saves money long-term", "Benefits"),
+      A("ben_2_body", "Benefit 2 — text", "Regular servicing catches small problems before they become expensive repairs.", "Benefits"),
+      T("ben_3_title", "Benefit 3 — title", "Improves fuel economy", "Benefits"),
+      A("ben_3_body", "Benefit 3 — text", "Fresh oil, clean filters and correct tyre pressures all contribute to better MPG.", "Benefits"),
+      T("ben_4_title", "Benefit 4 — title", "Boosts resale value", "Benefits"),
+      A("ben_4_body", "Benefit 4 — text", "A full service history is one of the most valuable things you can have when selling your car.", "Benefits"),
+      T("bottom_kicker", "Bottom CTA — kicker", "Book today", "Bottom CTA"),
+      T("bottom_title", "Bottom CTA — heading", "Ready to book your service?", "Bottom CTA"),
+      A("bottom_body", "Bottom CTA — intro paragraph", "Typical service time 1.5–3 hours. Drop off and collect, or ask about our collection service.", "Bottom CTA"),
+      T("bottom_btn", "Bottom CTA — primary button", "Book online now", "Bottom CTA"),
     ],
   },
   {
@@ -193,6 +448,44 @@ export const PAGES_CONFIG: PageDef[] = [
           "From brakes and suspension to clutches, exhausts and timing components. We diagnose first, quote clearly, and only proceed with your approval — no surprises.",
         section: "Hero",
       },
+      T("hero_eyebrow", "Hero — kicker", "All makes & models", "Hero"),
+      T("btn_quote", "Hero — quote button", "Request a quote", "Hero"),
+      T("btn_whatsapp", "Hero — WhatsApp button", "WhatsApp for a quote", "Hero"),
+      T("cats_kicker", "Categories — kicker", "What we repair", "Repair categories"),
+      T("cats_title", "Categories — heading", "Repair categories", "Repair categories"),
+      T("cat_link_text", "Category cards — link text", "View details", "Repair categories"),
+      T("cat_brakes_title", "Brakes — title", "Brakes", "Repair categories"),
+      A("cat_brakes_desc", "Brakes — intro", "Pads, discs, callipers, brake lines and handbrake cables. We measure wear and advise only when action is genuinely needed.", "Repair categories"),
+      A("cat_brakes_items", "Brakes — bullets (one per line)", "Brake pads & discs\nCallipers & cylinders\nBrake lines & hoses\nABS sensor faults", "Repair categories"),
+      T("cat_clutch_title", "Clutch & Gearbox — title", "Clutch & Gearbox", "Repair categories"),
+      A("cat_clutch_desc", "Clutch & Gearbox — intro", "Slipping clutch, stiff biting point, grinding gears — we diagnose and repair manual and automatic transmissions.", "Repair categories"),
+      A("cat_clutch_items", "Clutch — bullets (one per line)", "Clutch plate & pressure\nFlywheel replacement\nGear linkage\nAutomatic transmission service", "Repair categories"),
+      T("cat_sus_title", "Suspension — title", "Suspension & Steering", "Repair categories"),
+      A("cat_sus_desc", "Suspension — intro", "Knocking on bumps, pulling to one side, or vague steering? We check and replace worn components.", "Repair categories"),
+      A("cat_sus_items", "Suspension — bullets (one per line)", "Shock absorbers & struts\nWishbones & ball joints\nTrack rod ends\nPower steering faults", "Repair categories"),
+      T("cat_exhaust_title", "Exhaust — title", "Exhaust & Emissions", "Repair categories"),
+      A("cat_exhaust_desc", "Exhaust — intro", "Blowing exhaust, rattling heat shields, catalytic converter issues, or failed emissions on MOT — we fix it.", "Repair categories"),
+      A("cat_exhaust_items", "Exhaust — bullets (one per line)", "Exhaust pipe & silencer\nCatalytic converter\nDPF cleaning & replacement\nLambda / O2 sensors", "Repair categories"),
+      T("cat_engine_title", "Engine — title", "Engine & Cooling", "Repair categories"),
+      A("cat_engine_desc", "Engine — intro", "Overheating, oil leaks, warning lights — we trace the root cause with diagnostics before quoting.", "Repair categories"),
+      A("cat_engine_items", "Engine — bullets (one per line)", "Coolant system leaks\nThermostat replacement\nWater pump\nTiming belt & chain", "Repair categories"),
+      T("cat_elec_title", "Electrical — title", "Electrical & Lighting", "Repair categories"),
+      A("cat_elec_desc", "Electrical — intro", "Warning lights, failed electrics, battery drain or blown bulbs — diagnosed and repaired.", "Repair categories"),
+      A("cat_elec_items", "Electrical — bullets (one per line)", "Battery testing & replacement\nAlternator & starter motor\nBulb & light unit replacement\nCentral locking & windows", "Repair categories"),
+      T("process_kicker", "Process — kicker", "How it works", "Our process"),
+      T("process_title", "Process — heading", "Our repair process", "Our process"),
+      T("proc_1_title", "Process 1 — title", "We diagnose first", "Our process"),
+      A("proc_1_body", "Process 1 — text", "We identify the root cause using diagnostic tools, visual inspection, and a road test where needed.", "Our process"),
+      T("proc_2_title", "Process 2 — title", "You get a clear quote", "Our process"),
+      A("proc_2_body", "Process 2 — text", "Parts and labour quoted upfront. No work starts until you approve the price.", "Our process"),
+      T("proc_3_title", "Process 3 — title", "We carry out the repair", "Our process"),
+      A("proc_3_body", "Process 3 — text", "Quality parts fitted by experienced technicians. We text you when the car is ready.", "Our process"),
+      T("proc_4_title", "Process 4 — title", "We test & road check", "Our process"),
+      A("proc_4_body", "Process 4 — text", "Every repair is tested before we hand the car back — no guesswork.", "Our process"),
+      T("bottom_kicker", "Bottom CTA — kicker", "Get it fixed", "Bottom CTA"),
+      T("bottom_title", "Bottom CTA — heading", "Need a repair quote?", "Bottom CTA"),
+      A("bottom_body", "Bottom CTA — paragraph", "Tell us your reg and what's happening — we'll come back with a clear price. No obligation.", "Bottom CTA"),
+      T("bottom_btn", "Bottom CTA — button", "Request a quote", "Bottom CTA"),
     ],
   },
   {
@@ -200,22 +493,89 @@ export const PAGES_CONFIG: PageDef[] = [
     label: "Contact",
     icon: "📞",
     fields: [
-      {
-        key: "hero_subtitle",
-        label: "Hero Description",
-        type: "textarea",
-        default:
-          "Call us, WhatsApp, or book online. We respond as soon as we're off the ramp.",
-        section: "Hero",
-      },
-      {
-        key: "collection_note",
-        label: "Collection Service Note",
-        type: "textarea",
-        default:
-          "Can't make it to us? We offer a collection and delivery service for customers in the local area. Ask us when you book or give us a call to arrange.",
-        section: "Other",
-      },
+      T("hero_kicker", "Hero — kicker", "We're here to help", "Hero"),
+      T("hero_title", "Hero — heading", "Get in touch", "Hero"),
+      A(
+        "hero_subtitle",
+        "Hero — intro (use {{address}} for the site address)",
+        "Call us, WhatsApp, or book online. Visit us at {{address}}. We respond as soon as we're off the ramp.",
+        "Hero"
+      ),
+      T("status_open_template", "Status — when open (include {time} for closing time)", "Open now · closes {time}", "Hero"),
+      T("status_closed", "Status — when closed", "Currently closed", "Hero"),
+      T("status_closing_time", "Status — default closing time label", "20:00", "Hero"),
+      T("form_kicker", "Form block — kicker", "Send a message", "Form"),
+      T("form_title", "Form block — heading", "Get in touch directly", "Form"),
+      T("success_title", "After send — heading", "Message sent!", "Form"),
+      A(
+        "success_body",
+        "After send — paragraph",
+        "Thanks for getting in touch. We'll get back to you as soon as possible — usually within a few hours during opening times.",
+        "Form"
+      ),
+      T("success_again", "After send — button", "Send another message", "Form"),
+      T("label_name", "Field — full name", "Full Name", "Form"),
+      T("label_email", "Field — email", "Email Address", "Form"),
+      T("label_phone", "Field — phone", "Phone Number", "Form"),
+      T("label_service", "Field — service", "Service Required", "Form"),
+      T("label_message", "Field — message", "Message", "Form"),
+      T("ph_name", "Placeholder — name", "John Smith", "Form"),
+      T("ph_email", "Placeholder — email", "john@example.com", "Form"),
+      T("ph_phone", "Placeholder — phone", "07700 900000", "Form"),
+      T("ph_message", "Placeholder — message", "Tell us about your vehicle and what you need help with...", "Form"),
+      T("service_select_placeholder", "Service dropdown — first option", "Select a service...", "Form"),
+      A("contact_service_options", "Service dropdown — options (one per line)", CONTACT_SERVICE_OPTIONS_DEFAULT, "Form"),
+      T("required_suffix", "Required marker note", "* Required fields", "Form"),
+      T("err_name", "Validation — name", "Name is required.", "Form"),
+      T("err_email", "Validation — email missing", "Email is required.", "Form"),
+      T("err_email_fmt", "Validation — email format", "Enter a valid email address.", "Form"),
+      T("err_message", "Validation — message", "Message is required.", "Form"),
+      T("btn_sending", "Submit — loading", "Sending...", "Form"),
+      T("btn_send", "Submit — default", "Send message", "Form"),
+      T("reach_kicker", "Reach us — kicker", "Contact us", "Reach us"),
+      T("reach_title", "Reach us — heading", "How to reach us", "Reach us"),
+      T("card_phone", "Card label — phone", "Phone", "Reach us"),
+      T("card_whatsapp", "Card label — WhatsApp", "WhatsApp", "Reach us"),
+      T("card_email", "Card label — email", "Email", "Reach us"),
+      T("card_address", "Card label — address", "Address", "Reach us"),
+      T("hours_kicker", "Hours card — kicker", "Opening hours", "Reach us"),
+      A(
+        "contact_hours_grid",
+        "Hours — lines (Day|hours, one per line)",
+        "Monday – Saturday|10:00 – 20:00\nSunday|Closed",
+        "Reach us"
+      ),
+      T("btn_book", "Hours card — book button", "Book online now", "Reach us"),
+      T("btn_call_prefix", "Hours card — call button prefix", "Call", "Reach us"),
+      T("collection_kicker", "Collection — kicker", "Collection service", "Reach us"),
+      A(
+        "collection_body",
+        "Collection — paragraph (plain text)",
+        "Can't make it to us? We offer a free collection and delivery service for customers in the local area. Drop us a WhatsApp or give us a call to arrange — we'll come to you, carry out the work, and bring it back when ready.",
+        "Reach us"
+      ),
+      T("map_kicker", "Map — kicker", "Find us", "Map"),
+      T("map_iframe_title", "Map — iframe title", "Heston Automotive — 235 Yeading Ln, Hayes UB4 9AD", "Map"),
+      A(
+        "map_embed_src",
+        "Map — iframe src (full URL)",
+        "https://maps.google.com/maps?q=235+Yeading+Lane,+Hayes,+UB4+9AD,+UK&output=embed&z=16",
+        "Map"
+      ),
+      T("map_caption", "Map — caption under frame", "235 Yeading Ln, Hayes, UB4 9AD — free parking on site", "Map"),
+      T("map_open_label", "Map — Google Maps button", "Open in Google Maps", "Map"),
+      A(
+        "map_open_url",
+        "Map — Google Maps link (full URL)",
+        "https://www.google.com/maps/search/?api=1&query=235+Yeading+Lane+Hayes+UB4+9AD",
+        "Map"
+      ),
+      A(
+        "address_maps_url",
+        "Address card — Google Maps link (full URL)",
+        "https://www.google.com/maps/search/?api=1&query=235+Yeading+Lane+Hayes+UB4+9AD",
+        "Reach us"
+      ),
     ],
   },
   {
@@ -223,6 +583,7 @@ export const PAGES_CONFIG: PageDef[] = [
     label: "FAQs",
     icon: "❓",
     fields: [
+      { key: "page_kicker", label: "Header — kicker above title", type: "text", default: "Support", section: "Hero" },
       { key: "hero_title", label: "Page Title", type: "text", default: "Frequently Asked Questions", section: "Hero" },
       { key: "hero_subtitle", label: "Subtitle", type: "textarea", default: "Have a question? We're here to help. Find answers to common questions about our services, booking process, and more.", section: "Hero" },
       { key: "faq_1_q", label: "FAQ 1 — Question", type: "text", default: "What service does my car need?", section: "FAQs" },
@@ -260,6 +621,46 @@ export const PAGES_CONFIG: PageDef[] = [
     fields: [
       { key: "hero_title", label: "Page Title", type: "text", default: "Diagnostics", section: "Hero" },
       { key: "hero_subtitle", label: "Subtitle", type: "textarea", default: "Warning lights, limp mode, odd noises, or poor running — we use serial diagnostics and measured tests to find the root cause before replacing parts.", section: "Hero" },
+      T("hero_eyebrow", "Hero — kicker", "Diagnostics", "Hero"),
+      T("btn_book", "Hero — book button", "Book diagnostics", "Hero"),
+      T("btn_whatsapp", "Hero — WhatsApp", "WhatsApp us", "Hero"),
+      T("cover_kicker", "What we cover — kicker", "What we cover", "Coverage"),
+      T("cover_title", "What we cover — heading", "Full diagnostic service", "Coverage"),
+      A(
+        "cover_list",
+        "Coverage bullet list (one line per item)",
+        `OBD-II / serial diagnostics — all makes & models
+Engine management & ECU fault reading
+ABS, airbag & traction control system faults
+Transmission & gearbox fault codes
+Emission & DPF system diagnosis
+Live data analysis — sensors, injectors, MAF
+Electrical circuit testing & short tracing
+Pre-purchase inspection & health check`,
+        "Coverage",
+      ),
+      T("stat_1_value", "Stat 1 — value", "Root cause", "Stats"),
+      T("stat_1_label", "Stat 1 — label", "not guesswork repairs", "Stats"),
+      T("stat_2_value", "Stat 2 — value", "All makes", "Stats"),
+      T("stat_2_label", "Stat 2 — label", "petrol, diesel & hybrid", "Stats"),
+      T("stat_3_value", "Stat 3 — value", "Live data", "Stats"),
+      T("stat_3_label", "Stat 3 — label", "sensor & injector analysis", "Stats"),
+      T("stat_4_value", "Stat 4 — value", "Clear report", "Stats"),
+      T("stat_4_label", "Stat 4 — label", "written fault summary", "Stats"),
+      T("signs_kicker", "Warning signs — kicker", "Warning signs", "Warning signs"),
+      T("signs_title", "Warning signs — heading", "Signs your car needs a diagnostic check", "Warning signs"),
+      T("sign_1_title", "Sign card 1 — title", "Engine warning light", "Warning signs"),
+      A("sign_1_body", "Sign card 1 — text", "A solid or flashing engine light can mean anything from a loose sensor to a serious fault — we read the codes and tell you exactly what's wrong.", "Warning signs"),
+      T("sign_2_title", "Sign card 2 — title", "Limp mode", "Warning signs"),
+      A("sign_2_body", "Sign card 2 — text", "If your car suddenly loses power and rev-limits itself, the ECU has detected a fault. We diagnose the root cause before any guesswork repairs.", "Warning signs"),
+      T("sign_3_title", "Sign card 3 — title", "Odd noises or running", "Warning signs"),
+      A("sign_3_body", "Sign card 3 — text", "Misfires, rough idle, hesitation under load — live data lets us pinpoint faulty sensors, injectors, or ignition issues fast.", "Warning signs"),
+      T("sign_4_title", "Sign card 4 — title", "Multiple dashboard lights", "Warning signs"),
+      A("sign_4_body", "Sign card 4 — text", "ABS, traction control, airbag or TPMS lights on together often point to a shared fault. We trace it properly rather than replacing parts blindly.", "Warning signs"),
+      T("bottom_kicker", "Bottom CTA — kicker", "Don't ignore it", "Bottom CTA"),
+      T("bottom_title", "Bottom CTA — heading", "Get your car diagnosed today", "Bottom CTA"),
+      A("bottom_body", "Bottom CTA — paragraph", "We find the fault first — then quote for the fix. No parts replaced on guesswork.", "Bottom CTA"),
+      T("bottom_btn", "Bottom CTA — book button", "Book diagnostics", "Bottom CTA"),
     ],
   },
   {
@@ -269,6 +670,13 @@ export const PAGES_CONFIG: PageDef[] = [
     fields: [
       { key: "hero_title", label: "Page Title", type: "text", default: "Air Con Regas & Service", section: "Hero" },
       { key: "hero_subtitle", label: "Subtitle", type: "textarea", default: "Full air conditioning regas and system health check. Get your cabin cool and fresh again — recommended every 2 years.", section: "Hero" },
+      T("hero_eyebrow", "Hero — kicker", "Air conditioning", "Hero"),
+      T("btn_book", "Hero — book button", "Book air-con service", "Hero"),
+      T("btn_whatsapp", "Hero — WhatsApp", "WhatsApp us", "Hero"),
+      T("bottom_kicker", "Bottom CTA — kicker", "Stay comfortable", "Bottom CTA"),
+      T("bottom_title", "Bottom CTA — heading", "Book your regas or check", "Bottom CTA"),
+      A("bottom_body", "Bottom CTA — paragraph", "Keep your cabin cool and your system healthy. Book online or call us.", "Bottom CTA"),
+      T("bottom_btn", "Bottom CTA — button", "Book online", "Bottom CTA"),
     ],
   },
   {

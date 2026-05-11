@@ -1,7 +1,7 @@
 import { site } from "@/lib/site-config";
 import Link from "next/link";
 import { Metadata } from "next";
-import { getPageContent, f } from "@/lib/page-content";
+import { getPageContentWithDefaults } from "@/lib/page-content";
 
 export const metadata: Metadata = {
   title: `Frequently Asked Questions | ${site.name}`,
@@ -9,26 +9,27 @@ export const metadata: Metadata = {
 };
 
 export default async function FaqsPage() {
-  const content = await getPageContent("faqs");
+  const content = await getPageContentWithDefaults("faqs");
 
-  const heroTitle = f(content, "hero_title", "Frequently Asked Questions");
-  const heroSubtitle = f(content, "hero_subtitle", "Have a question? We're here to help. Find answers to common questions about our services, booking process, and more.");
-  const ctaTitle = f(content, "cta_title", "Still have questions?");
-  const ctaSubtitle = f(content, "cta_subtitle", "Cant find the answer you are looking for? Our team is ready to assist you.");
+  const heroTitle = content.hero_title;
+  const heroSubtitle = content.hero_subtitle;
+  const ctaTitle = content.cta_title;
+  const ctaSubtitle = content.cta_subtitle;
+  const pageKicker = content.page_kicker;
 
   const FAQS = [
-    { q: f(content, "faq_1_q", "What service does my car need?"), a: f(content, "faq_1_a", "Use your manufacturer schedule and mileage. If you are unsure, book a free health check or call us — we will gladly recommend whether you need an interim, full, or major service.") },
-    { q: f(content, "faq_2_q", "How long does an MOT or full service take?"), a: f(content, "faq_2_a", "A standard MOT test takes around 45 to 60 minutes. A full service typically takes 1.5–3 hours depending on the vehicle and our findings. We will give you a clear time window when you book.") },
-    { q: f(content, "faq_3_q", "Can I book an MOT and service together?"), a: f(content, "faq_3_a", "Yes! We highly recommend it as it saves you time and money. Just choose the MOT + Service package in our online booking flow.") },
-    { q: f(content, "faq_4_q", "Do you use genuine parts and are they under warranty?"), a: f(content, "faq_4_a", "Absolutely. We use high-quality OE (Original Equipment) or equivalent replacement parts. All parts and labor are fully guaranteed, giving you complete peace of mind.") },
-    { q: f(content, "faq_5_q", "What happens if extra work is needed or my car fails its MOT?"), a: f(content, "faq_5_a", "If we find any issues during a service or an MOT failure, we will systematically explain the problem and provide a no-obligation quote. We never proceed with extra work without your explicit approval. No surprises.") },
-    { q: f(content, "faq_6_q", "Do you offer a collection and delivery service?"), a: f(content, "faq_6_a", "Yes! We offer a local collection and delivery service to make taking care of your car as convenient as possible. Just let us know when making your booking.") },
-    { q: f(content, "faq_7_q", "How much does a service or MOT cost?"), a: f(content, "faq_7_a", "Our prices are transparent and shown upfront when you book online — no hidden fees. The final cost only changes if we discover additional work needed, and we will always contact you for approval before proceeding.") },
-    { q: f(content, "faq_8_q", "What payment methods do you accept?"), a: f(content, "faq_8_a", "We accept all major credit and debit cards, as well as cash. Payment is taken on collection of your vehicle once all work is completed and explained to you.") },
-    { q: f(content, "faq_9_q", "Is there somewhere I can wait while my car is being worked on?"), a: f(content, "faq_9_a", "Yes, we have a comfortable waiting area with free Wi-Fi and refreshments. Alternatively, if the job is longer, you are welcome to drop your car off and collect it later.") },
-    { q: f(content, "faq_10_q", "Do you work on electric and hybrid vehicles?"), a: f(content, "faq_10_a", "Yes, we service and maintain electric and hybrid vehicles. Our technicians are trained to work on EV and hybrid systems safely and to manufacturer standards.") },
-    { q: f(content, "faq_11_q", "Can you carry out a diagnostic check on my car?"), a: f(content, "faq_11_a", "Absolutely. We use the latest diagnostic equipment to read fault codes and identify issues across all makes and models. A diagnostic check is a great first step if a warning light has appeared on your dashboard.") },
-    { q: f(content, "faq_12_q", "Do you supply and fit tyres?"), a: f(content, "faq_12_a", "Yes, we supply and fit a wide range of tyres to suit all budgets — from premium to budget brands. We can advise on the best option for your vehicle and driving needs.") },
+    { q: content.faq_1_q, a: content.faq_1_a },
+    { q: content.faq_2_q, a: content.faq_2_a },
+    { q: content.faq_3_q, a: content.faq_3_a },
+    { q: content.faq_4_q, a: content.faq_4_a },
+    { q: content.faq_5_q, a: content.faq_5_a },
+    { q: content.faq_6_q, a: content.faq_6_a },
+    { q: content.faq_7_q, a: content.faq_7_a },
+    { q: content.faq_8_q, a: content.faq_8_a },
+    { q: content.faq_9_q, a: content.faq_9_a },
+    { q: content.faq_10_q, a: content.faq_10_a },
+    { q: content.faq_11_q, a: content.faq_11_a },
+    { q: content.faq_12_q, a: content.faq_12_a },
   ];
 
   return (
@@ -36,7 +37,7 @@ export default async function FaqsPage() {
       {/* ── Page Header ── */}
       <section className="bg-white px-4 py-16 sm:py-20 border-b border-[#e0ebff]">
         <div className="mx-auto max-w-3xl text-center">
-          <p className="mb-3 text-[11px] font-bold uppercase tracking-widest text-[#3f63ff]">Support</p>
+          <p className="mb-3 text-[11px] font-bold uppercase tracking-widest text-[#3f63ff]">{pageKicker}</p>
           <h1 className="text-3xl font-extrabold tracking-tight text-[#101a56] sm:text-5xl">
             {heroTitle}
           </h1>
