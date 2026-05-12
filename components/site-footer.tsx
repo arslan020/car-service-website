@@ -164,6 +164,17 @@ export function SiteFooter() {
           <ul className="flex flex-wrap items-center gap-4 text-xs text-slate-500">
             <li><Link href="/privacy" className="transition hover:text-slate-300">Privacy Policy</Link></li>
             <li><Link href="/terms" className="transition hover:text-slate-300">Terms of Use</Link></li>
+            <li>
+              <Link
+                href="/login"
+                className="flex items-center gap-1 transition hover:text-slate-300"
+              >
+                <svg className="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0 0 13.5 3h-6a2.25 2.25 0 0 0-2.25 2.25v13.5A2.25 2.25 0 0 0 7.5 21h6a2.25 2.25 0 0 0 2.25-2.25V15m3 0 3-3m0 0-3-3m3 3H9" />
+                </svg>
+                Admin Login
+              </Link>
+            </li>
           </ul>
         </div>
       </div>
