@@ -25,14 +25,18 @@ export default function LoginPage() {
 
         {/* Logo */}
         <div className="mb-8 flex justify-center">
-          <Image
-            src="/business-logo.png"
-            alt={site.name}
-            width={160}
-            height={48}
-            className="h-auto w-36 object-contain"
-            priority
-          />
+          <div className="w-36">
+            <Image
+              src="/business-logo.png"
+              alt={site.name}
+              width={144}
+              height={43}
+              className="h-auto w-full object-contain"
+              priority
+              fetchPriority="high"
+              sizes="144px"
+            />
+          </div>
         </div>
 
         {/* Card */}

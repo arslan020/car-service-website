@@ -54,7 +54,7 @@ export default function QuotePage() {
           <p className="mt-4 text-base leading-relaxed text-slate-500">
             For non-standard jobs — noises, warning lights, damage — send details and we&apos;ll come back with next steps.
             For routine servicing, use the{" "}
-            <Link href="/book" className="font-semibold text-[#3f63ff] underline-offset-2 hover:text-[#101a56] hover:underline">
+            <Link href="/online-booking" className="font-semibold text-[#3f63ff] underline-offset-2 hover:text-[#101a56] hover:underline">
               booking form
             </Link>.
           </p>

@@ -100,14 +100,20 @@ export function SiteHeader() {
   return (
     <header className="sticky top-0 z-50 bg-white/98 shadow-[0_6px_18px_rgba(16,26,86,0.05)] backdrop-blur">
       <div className="mx-auto flex max-w-7xl items-center justify-between gap-2 px-3 py-3 sm:gap-4 sm:px-4">
-        <Link href="/" className="shrink-0" onClick={() => setOpen(false)}>
+        <Link
+          href="/"
+          className="block w-[132px] shrink-0 sm:w-[160px] lg:w-[180px]"
+          onClick={() => setOpen(false)}
+        >
           <Image
             src="/business-logo.png"
             alt={site.name}
-            width={160}
-            height={48}
-            className="h-auto w-[132px] object-contain sm:w-[160px] lg:w-[180px]"
+            width={180}
+            height={54}
+            className="h-auto w-full object-contain"
             priority
+            fetchPriority="high"
+            sizes="(min-width: 1280px) 180px, (min-width: 640px) 160px, 132px"
           />
         </Link>
 
@@ -271,7 +277,7 @@ export function SiteHeader() {
             WhatsApp
           </a>
           <Link
-            href="/book"
+            href="/online-booking"
             className="inline-flex min-h-10 items-center justify-center rounded-lg bg-[#3f63ff] px-4 py-2 text-sm font-bold text-white shadow-md transition hover:bg-[#3354e0]"
           >
             Book now
@@ -281,7 +287,7 @@ export function SiteHeader() {
         {/* ── Mobile hamburger ── */}
         <div className="flex items-center gap-2 xl:hidden">
           <Link
-            href="/book"
+            href="/online-booking"
             className="inline-flex min-h-11 items-center justify-center rounded-lg bg-[#3f63ff] px-3 py-2 text-xs font-bold text-white shadow-md transition hover:bg-[#3354e0] sm:px-4 sm:text-sm"
           >
             Book now

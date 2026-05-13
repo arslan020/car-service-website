@@ -2,7 +2,6 @@
 
 import Link from "next/link";
 import { useState, useEffect, useMemo } from "react";
-import { useRouter } from "next/navigation";
 import { site } from "@/lib/site-config";
 import type { ContentMap } from "@/lib/page-content";
 
@@ -185,16 +184,11 @@ function parseHoursRows(raw: string) {
 }
 
 export function HomePageClient({ content }: { content: ContentMap }) {
-  const router = useRouter();
-  const [selectedService, setSelectedService] = useState("mot");
-  const [reg, setReg] = useState("");
-  const [regError, setRegError] = useState<string | null>(null);
   const [isOpen, setIsOpen] = useState<boolean | null>(null);
   const [closingTime, setClosingTime] = useState("");
   const [today, setToday] = useState(0);
   const [typed, setTyped] = useState("");
 
-  const serviceTabs = useMemo(() => parseBookingTabs(content.booking_service_labels), [content.booking_service_labels]);
   const hoursRows = useMemo(() => parseHoursRows(content.hours_grid), [content.hours_grid]);
 
   const whyCards = useMemo(
@@ -300,80 +294,17 @@ export function HomePageClient({ content }: { content: ContentMap }) {
             <span className="inline-block w-0.5 h-[1em] align-middle bg-slate-400 ml-0.5 animate-pulse" />
           </p>
 
-          {/* ── Booking widget ── */}
+          {/* ── Book now button ── */}
           <div className="mx-auto mt-7 max-w-2xl">
-            <p className="mb-3 text-[10px] font-bold uppercase tracking-widest text-slate-400">{content.booking_widget_label}</p>
-
-            {/* Scrollable service tabs */}
-            <div className="flex gap-2 overflow-x-auto pb-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-              {serviceTabs.map((s) => (
-                <button
-                  key={s.id}
-                  type="button"
-                  onClick={() => setSelectedService(s.id)}
-                  className={`shrink-0 rounded-full px-4 py-2 text-sm font-semibold transition-all ${selectedService === s.id
-                      ? "bg-[#101a56] text-white shadow-sm"
-                      : "border border-[#d0dcea] bg-white text-slate-600 hover:border-[#101a56] hover:text-[#101a56]"
-                    }`}
-                >
-                  {s.label}
-                </button>
-              ))}
-            </div>
-
-            {/* UK plate + button */}
-            <div className="mt-4 flex flex-col gap-3 sm:flex-row">
-              <div className={`relative flex w-full overflow-hidden rounded-xl border-2 shadow-md sm:flex-1 ${regError ? "border-red-400 bg-[#F5C518]" : "border-[#F5C518] bg-[#F5C518]"}`}>
-                <div className="flex w-[3.25rem] shrink-0 flex-col items-center justify-center bg-[#003399] py-3">
-                  <span className="text-[9px] font-bold leading-none text-yellow-300">★</span>
-                  <span className="mt-0.5 text-[9px] font-extrabold leading-none text-white">UK</span>
-                </div>
-                <input
-                  type="text"
-                  placeholder={content.booking_placeholder}
-                  maxLength={8}
-                  value={reg}
-                  onChange={(e) => {
-                    setReg(e.target.value.toUpperCase());
-                    setRegError(null);
-                  }}
-                  className="min-w-0 flex-1 bg-transparent py-3 pr-3 text-center text-lg font-extrabold uppercase tracking-widest text-[#101a56] placeholder-[#8b7200] focus:outline-none"
-                />
-              </div>
-              <button
-                type="button"
-                onClick={() => {
-                  if (!reg.trim()) {
-                    setRegError(content.booking_reg_error_empty);
-                    return;
-                  }
-                  if (!isValidUKReg(reg)) {
-                    setRegError(content.booking_reg_error_invalid);
-                    return;
-                  }
-                  setRegError(null);
-                  router.push(`/book?service=${selectedService}&reg=${encodeURIComponent(reg)}&autoLookup=1`);
-                }}
-                className="flex w-full items-center justify-center gap-2 rounded-xl bg-[#101a56] px-5 py-3 text-sm font-bold text-white shadow-md transition hover:bg-[#16236e] sm:w-auto sm:shrink-0"
-              >
-                {content.booking_cta}
-                <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
-                </svg>
-              </button>
-            </div>
-            {regError && (
-              <div className="mt-2 flex flex-col items-start gap-1 sm:flex-row sm:items-center sm:gap-3">
-                <p className="text-sm font-medium text-red-600">{regError}</p>
-                <button
-                  type="button"
-                  onClick={() => router.push(`/book?service=${selectedService}&manual=1${reg ? `&reg=${encodeURIComponent(reg)}` : ""}`)}
-                  className="text-sm font-semibold text-[#3f63ff] underline underline-offset-2 hover:text-[#101a56]"
-                >
-                  {content.booking_manual_link}
-                </button>
-              </div>
-            )}
+            <Link
+              href="/online-booking"
+              className="inline-flex items-center justify-center gap-2 rounded-xl bg-[#101a56] px-8 py-4 text-base font-bold text-white shadow-md transition hover:bg-[#16236e]"
+            >
+              {content.booking_cta}
+              <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
+              </svg>
+            </Link>
           </div>
 
           {/* Car image with bottom fade */}

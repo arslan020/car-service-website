@@ -85,7 +85,7 @@ export default async function CarServicingPage() {
           <h1 className="mt-2 text-3xl font-extrabold leading-tight text-[#101a56] sm:text-5xl">{c.hero_title}</h1>
           <p className="mt-4 text-base leading-relaxed text-slate-500 sm:text-lg">{c.hero_subtitle}</p>
           <div className="mt-7 flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
-            <Link href="/book?service=full" className="flex w-full items-center justify-center gap-2 rounded-xl bg-[#101a56] px-6 py-3.5 text-sm font-bold text-white shadow-md transition hover:bg-[#16236e] sm:w-auto">
+            <Link href="/online-booking?service=full" className="flex w-full items-center justify-center gap-2 rounded-xl bg-[#101a56] px-6 py-3.5 text-sm font-bold text-white shadow-md transition hover:bg-[#16236e] sm:w-auto">
               {c.btn_book}
               <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
@@ -138,7 +138,7 @@ export default async function CarServicingPage() {
                   ))}
                 </ul>
                 <Link
-                  href={`/book?service=${tier.id}`}
+                  href={`/online-booking?service=${tier.id}`}
                   className={`mt-7 flex w-full items-center justify-center gap-2 rounded-xl py-3 text-sm font-bold transition ${tier.popular ? "bg-[#101a56] text-white shadow-md hover:bg-[#16236e]" : "border-2 border-[#101a56] text-[#101a56] hover:bg-[#101a56] hover:text-white"}`}
                 >
                   {c.tier_book_prefix} {tier.title}
@@ -202,7 +202,7 @@ export default async function CarServicingPage() {
               {c.bottom_body} {site.addressLines.join(", ")}.
             </p>
             <div className="mt-7 flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
-              <Link href="/book?service=full" className="flex w-full items-center justify-center gap-2 rounded-xl bg-[#3f63ff] px-7 py-3.5 text-sm font-bold text-white shadow-md transition hover:bg-[#2f53ef] sm:w-auto">
+              <Link href="/online-booking?service=full" className="flex w-full items-center justify-center gap-2 rounded-xl bg-[#3f63ff] px-7 py-3.5 text-sm font-bold text-white shadow-md transition hover:bg-[#2f53ef] sm:w-auto">
                 {c.bottom_btn}
                 <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />

@@ -8,7 +8,7 @@ export default function ReviewsPage() {
         Embed your Google reviews widget here, or paste a few testimonials with permission. Star summary and
         before/after photos (where relevant) lift conversion on booking pages.
       </p>
-      <Link href="/book" className="inline-flex font-semibold text-[#0071CE] underline-offset-2 hover:text-[#0e1555] hover:underline">
+      <Link href="/online-booking" className="inline-flex font-semibold text-[#0071CE] underline-offset-2 hover:text-[#0e1555] hover:underline">
         Book a service →
       </Link>
     </PageIntro>

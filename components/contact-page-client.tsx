@@ -397,7 +397,7 @@ export function ContactPageClient({ content }: { content: ContentMap }) {
                 <div className="my-5 border-t border-[#e8f0fb]" />
                 <div className="flex flex-col gap-3">
                   <Link
-                    href="/book"
+                    href="/online-booking"
                     className="flex w-full items-center justify-center gap-2 rounded-xl bg-[#101a56] py-3.5 text-sm font-bold text-white shadow-md transition hover:bg-[#16236e]"
                   >
                     {f(content, "btn_book", "Book online now")}
