@@ -166,12 +166,12 @@ function parseHoursRows(raw: string) {
     sunday: 0,
   };
   const fallback = [
-    { label: "Monday", hours: "10:00 – 20:00", dayIndex: 1 },
-    { label: "Tuesday", hours: "10:00 – 20:00", dayIndex: 2 },
-    { label: "Wednesday", hours: "10:00 – 20:00", dayIndex: 3 },
-    { label: "Thursday", hours: "10:00 – 20:00", dayIndex: 4 },
-    { label: "Friday", hours: "10:00 – 20:00", dayIndex: 5 },
-    { label: "Saturday", hours: "10:00 – 20:00", dayIndex: 6 },
+    { label: "Monday", hours: "9:00 – 18:00", dayIndex: 1 },
+    { label: "Tuesday", hours: "9:00 – 18:00", dayIndex: 2 },
+    { label: "Wednesday", hours: "9:00 – 18:00", dayIndex: 3 },
+    { label: "Thursday", hours: "9:00 – 18:00", dayIndex: 4 },
+    { label: "Friday", hours: "9:00 – 18:00", dayIndex: 5 },
+    { label: "Saturday", hours: "9:00 – 18:00", dayIndex: 6 },
     { label: "Sunday", hours: "Closed", dayIndex: 0 },
   ];
   const lines = raw.split("\n").map((l) => l.trim()).filter(Boolean);
@@ -253,9 +253,9 @@ export function HomePageClient({ content }: { content: ContentMap }) {
       setIsOpen(false);
       setClosingTime("");
     } else {
-      // Mon–Sat 10:00–20:00
-      setIsOpen(mins >= 600 && mins < 1200);
-      setClosingTime("20:00");
+      // Mon–Sat 9:00–18:00
+      setIsOpen(mins >= 540 && mins < 1080);
+      setClosingTime("18:00");
     }
   }, []);
 
