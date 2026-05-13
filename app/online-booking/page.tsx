@@ -8,6 +8,7 @@ const BOOKING_URL =
 
 const IFRAME_MIN_WIDTH = 1280;
 const HEADER_OFFSET_PX = 72;
+const IFRAME_CONTENT_HEIGHT = 2400;
 
 export default function OnlineBookingPage() {
   const wrapperRef = useRef<HTMLDivElement>(null);
@@ -17,7 +18,7 @@ export default function OnlineBookingPage() {
   useEffect(() => {
     // Mobile: redirect directly to Mota Soft URL
     if (window.innerWidth < 768) {
-      window.location.href = BOOKING_URL;
+      window.location.replace(BOOKING_URL);
       return;
     }
 
@@ -30,13 +31,12 @@ export default function OnlineBookingPage() {
       const available = wrapper!.getBoundingClientRect().width || window.innerWidth;
       const layoutWidth = Math.max(IFRAME_MIN_WIDTH, available);
       const scale = Math.min(1, available / layoutWidth);
-      const visibleHeight = Math.max(700, window.innerHeight - HEADER_OFFSET_PX);
 
       iframe!.style.width = `${layoutWidth}px`;
-      iframe!.style.height = `${visibleHeight / scale}px`;
+      iframe!.style.height = `${IFRAME_CONTENT_HEIGHT / scale}px`;
       iframe!.style.transform = `scale(${scale})`;
       iframe!.style.transformOrigin = "top left";
-      wrapper!.style.height = `${visibleHeight}px`;
+      wrapper!.style.height = `${IFRAME_CONTENT_HEIGHT}px`;
     }
 
     applyScale();
@@ -57,7 +57,7 @@ export default function OnlineBookingPage() {
   }, []);
 
   return (
-    <div ref={wrapperRef} className="w-full max-w-full overflow-hidden">
+    <div ref={wrapperRef} className="w-full max-w-full overflow-x-hidden">
       <iframe
         ref={iframeRef}
         title="Online booking — Heston Automotive"
@@ -65,8 +65,8 @@ export default function OnlineBookingPage() {
           display: "block",
           border: "none",
           minWidth: IFRAME_MIN_WIDTH,
-          height: `max(700px, calc(100vh - ${HEADER_OFFSET_PX}px))`,
-          minHeight: 700,
+          height: `${IFRAME_CONTENT_HEIGHT}px`,
+          minHeight: 600,
         }}
         allow="payment *; fullscreen"
       />
