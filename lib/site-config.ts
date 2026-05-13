@@ -7,7 +7,7 @@ export const site = {
   phoneTel: "+442085648030",
   email: "enquiries@hestonautomotive.com",
   addressLines: ["235 Yeading Ln", "Hayes", "UB4 9AD"] as const,
-  hours: "Mon–Sat 10:00–20:00 • Closed Sun",
+  hours: "Mon–Sat 9:00–18:00 • Closed Sun",
   /** WhatsApp number without + for wa.me */
   whatsappE164: "447487694578",
 } as const;

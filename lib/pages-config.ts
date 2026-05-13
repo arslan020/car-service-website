@@ -111,7 +111,7 @@ const HOME_FIELDS: FieldDef[] = [
   T("find_title", "Find us — heading", "Find Us", "Find us"),
   A("find_address_line", "Find us — address line under heading", "We're located at 235 Yeading Ln, Hayes, UB4 9AD", "Find us"),
   T("hours_kicker", "Opening times — kicker", "Opening Times", "Opening times"),
-  A("hours_grid", "Opening times — lines (Day|hours, one per line)", "Monday|10:00 – 20:00\nTuesday|10:00 – 20:00\nWednesday|10:00 – 20:00\nThursday|10:00 – 20:00\nFriday|10:00 – 20:00\nSaturday|10:00 – 20:00\nSunday|Closed", "Opening times"),
+  A("hours_grid", "Opening times — lines (Day|hours, one per line)", "Monday|9:00 – 18:00\nTuesday|9:00 – 18:00\nWednesday|9:00 – 18:00\nThursday|9:00 – 18:00\nFriday|9:00 – 18:00\nSaturday|9:00 – 18:00\nSunday|Closed", "Opening times"),
 ];
 
 export const PAGES_CONFIG: PageDef[] = [
@@ -503,7 +503,7 @@ Full road test & report`,
       ),
       T("status_open_template", "Status — when open (include {time} for closing time)", "Open now · closes {time}", "Hero"),
       T("status_closed", "Status — when closed", "Currently closed", "Hero"),
-      T("status_closing_time", "Status — default closing time label", "20:00", "Hero"),
+      T("status_closing_time", "Status — default closing time label", "18:00", "Hero"),
       T("form_kicker", "Form block — kicker", "Send a message", "Form"),
       T("form_title", "Form block — heading", "Get in touch directly", "Form"),
       T("success_title", "After send — heading", "Message sent!", "Form"),
@@ -542,7 +542,7 @@ Full road test & report`,
       A(
         "contact_hours_grid",
         "Hours — lines (Day|hours, one per line)",
-        "Monday – Saturday|10:00 – 20:00\nSunday|Closed",
+        "Monday – Saturday|9:00 – 18:00\nSunday|Closed",
         "Reach us"
       ),
       T("btn_book", "Hours card — book button", "Book online now", "Reach us"),

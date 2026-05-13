@@ -64,7 +64,7 @@ export function ContactPageClient({ content }: { content: ContentMap }) {
       setIsOpen(false);
       setClosingTime("");
     } else {
-      setIsOpen(mins >= 600 && mins < 1200);
+      setIsOpen(mins >= 540 && mins < 1080);
       setClosingTime(defaultClosing);
     }
   }, [defaultClosing]);
