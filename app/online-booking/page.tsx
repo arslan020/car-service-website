@@ -1,13 +1,12 @@
 "use client";
 
-import { useLayoutEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
+
 
 const BOOKING_URL =
   "https://booking-system.motasoftvgm.co.uk/#/5ca95796-14a1-44d1-8807-1fcfa810ce47/758/booking/select-services";
 
-/** Below this inner width Motasoft tends to show the small “Book online” card — keep at least this, scale down on narrow screens. */
 const IFRAME_MIN_WIDTH = 1280;
-
 const HEADER_OFFSET_PX = 72;
 
 export default function OnlineBookingPage() {
@@ -15,27 +14,28 @@ export default function OnlineBookingPage() {
   const iframeRef = useRef<HTMLIFrameElement>(null);
   const didSetSrc = useRef(false);
 
-  useLayoutEffect(() => {
+  useEffect(() => {
+    // Mobile: redirect directly to Mota Soft URL
+    if (window.innerWidth < 768) {
+      window.location.href = BOOKING_URL;
+      return;
+    }
+
+    // Desktop: scale iframe to fit
     const wrapper = wrapperRef.current;
     const iframe = iframeRef.current;
     if (!wrapper || !iframe) return;
 
     function applyScale() {
-      const available =
-        wrapper!.getBoundingClientRect().width || window.innerWidth;
-      /** Wider viewports use full width; narrow ones keep min width and scale to fit (no page-level horizontal scroll). */
+      const available = wrapper!.getBoundingClientRect().width || window.innerWidth;
       const layoutWidth = Math.max(IFRAME_MIN_WIDTH, available);
       const scale = Math.min(1, available / layoutWidth);
-      const visibleHeight = Math.max(
-        700,
-        window.innerHeight - HEADER_OFFSET_PX,
-      );
+      const visibleHeight = Math.max(700, window.innerHeight - HEADER_OFFSET_PX);
 
       iframe!.style.width = `${layoutWidth}px`;
       iframe!.style.height = `${visibleHeight / scale}px`;
       iframe!.style.transform = `scale(${scale})`;
       iframe!.style.transformOrigin = "top left";
-
       wrapper!.style.height = `${visibleHeight}px`;
     }
 
