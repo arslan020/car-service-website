@@ -1,33 +1,28 @@
-import { Suspense } from "react";
-import { BookingWizard } from "@/components/booking-wizard";
-import Link from "next/link";
+"use client";
+
+import { useEffect } from "react";
 
 export default function BookPage() {
+  useEffect(() => {
+    if (document.getElementById("motasoftScript")) return;
+
+    const script = document.createElement("script");
+    script.id = "motasoftScript";
+    script.src = "https://booking-system.motasoftvgm.co.uk/scripts/script.js";
+    script.setAttribute("data-booking-system-id", "758");
+    script.setAttribute("data-guid", "5ca95796-14a1-44d1-8807-1fcfa810ec47");
+    document.body.appendChild(script);
+
+    return () => {
+      const existing = document.getElementById("motasoftScript");
+      if (existing) existing.remove();
+    };
+  }, []);
+
   return (
     <div className="min-h-screen bg-white">
-      <div className="mx-auto max-w-2xl px-4 py-5">
-        {/* Back link */}
-        <Link
-          href="/"
-          className="inline-flex items-center gap-1.5 text-sm font-medium text-slate-600 hover:text-[#101a56]"
-        >
-          <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-            <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18" />
-          </svg>
-          Back
-        </Link>
-
-        <p className="mt-3 text-sm text-slate-500">
-          Fill in 3 quick steps — takes under 2 minutes
-        </p>
-
-        <div className="mt-4">
-          <Suspense fallback={
-            <div className="py-8 text-center text-sm text-slate-400">Loading…</div>
-          }>
-            <BookingWizard />
-          </Suspense>
-        </div>
+      <div className="mx-auto max-w-4xl px-4 py-5">
+        <div id="motasoft" suppressHydrationWarning></div>
       </div>
     </div>
   );
