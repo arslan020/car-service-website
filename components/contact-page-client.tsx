@@ -119,7 +119,7 @@ export function ContactPageClient({ content }: { content: ContentMap }) {
   const addressMapsUrl = f(
     content,
     "address_maps_url",
-    "https://www.google.com/maps/search/?api=1&query=235+Yeading+Lane+Hayes+UB4+9AD"
+    "https://www.google.com/maps/place/Marieston+Service+Centre/@51.5268571,-0.399722,18z"
   );
 
   return (
@@ -460,7 +460,7 @@ export function ContactPageClient({ content }: { content: ContentMap }) {
                 src={f(
                   content,
                   "map_embed_src",
-                  "https://maps.google.com/maps?q=235+Yeading+Lane,+Hayes,+UB4+9AD,+UK&output=embed&z=16"
+                  "https://maps.google.com/maps?q=51.5268571,-0.399722&output=embed&z=18"
                 )}
               />
             </div>
@@ -471,7 +471,7 @@ export function ContactPageClient({ content }: { content: ContentMap }) {
               href={f(
                 content,
                 "map_open_url",
-                "https://www.google.com/maps/search/?api=1&query=235+Yeading+Lane+Hayes+UB4+9AD"
+                "https://www.google.com/maps/place/Marieston+Service+Centre/@51.5268571,-0.399722,18z"
               )}
               target="_blank"
               rel="noopener noreferrer"

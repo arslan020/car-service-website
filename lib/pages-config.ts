@@ -170,7 +170,7 @@ export const PAGES_CONFIG: PageDef[] = [
       T("svc_brakes_title", "Card Brakes — title", "Brakes & Tyres", "Service grid"),
       A("svc_brakes_desc", "Card Brakes — description", "Brake pads, discs, callipers, and tyre fitting or replacement. We check tread depth and brake performance and advise only when action is genuinely needed.", "Service grid"),
       T("svc_brakes_price", "Card Brakes — price", "from £X", "Service grid"),
-      T("why_kicker", "Why us — kicker", "Why Heston Automotive", "Why us"),
+      T("why_kicker", "Why us — kicker", "Why Marieston Service Centre", "Why us"),
       T("why_title", "Why us — heading", "The difference you'll notice", "Why us"),
       T("why_1_title", "Why card 1 — title", "Transparent pricing", "Why us"),
       A("why_1_body", "Why card 1 — text", "You get a clear quote before we touch the car. No hidden extras, no surprises at collection.", "Why us"),
@@ -555,7 +555,7 @@ Full road test & report`,
         "Reach us"
       ),
       T("map_kicker", "Map — kicker", "Find us", "Map"),
-      T("map_iframe_title", "Map — iframe title", "Heston Automotive — 235 Yeading Ln, Hayes UB4 9AD", "Map"),
+      T("map_iframe_title", "Map — iframe title", "Marieston Service Centre — 235 Yeading Ln, Hayes UB4 9AD", "Map"),
       A(
         "map_embed_src",
         "Map — iframe src (full URL)",

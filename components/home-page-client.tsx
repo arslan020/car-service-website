@@ -312,7 +312,7 @@ export function HomePageClient({ content }: { content: ContentMap }) {
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src="/big-removebg-preview.png"
-              alt="Heston Automotive"
+              alt="Marieston Service Centre"
               className="mx-auto w-full max-w-md sm:max-w-lg" style={{ filter: "none" }}
               draggable={false}
             />
@@ -510,11 +510,11 @@ export function HomePageClient({ content }: { content: ContentMap }) {
           <div className="px-6 sm:px-12">
             <div className="overflow-hidden rounded-2xl border border-[#e0ebff]">
               <iframe
-                title="Heston Automotive location"
+                title="Marieston Service Centre location"
                 className="h-[420px] w-full border-0"
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
-                src="https://maps.google.com/maps?q=235+Yeading+Lane,+Hayes,+UB4+9AD,+UK&output=embed&z=16&iwloc=near"
+                src="https://maps.google.com/maps?q=51.5268571,-0.399722&output=embed&z=18"
               />
             </div>
           </div>

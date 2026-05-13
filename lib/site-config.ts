@@ -1,5 +1,5 @@
 export const site = {
-  name: "Heston Automotive",
+  name: "Marieston Service Centre",
   tagline: "Professional garage care for every car",
   description:
     "MOT, interim and full servicing, repairs, diagnostics, tyres, and brakes — DVSA approved garage in Hayes, UB4 with transparent pricing.",
