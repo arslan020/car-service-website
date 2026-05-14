@@ -15,16 +15,6 @@ model Admin {
   createdAt DateTime @default(now())
 }
 
-model ServicePrice {
-  id           String   @id @default(cuid())
-  brand        String   // "all" = default for any brand, otherwise normalized key e.g. "toyota"
-  serviceType  String
-  startingFrom Int      // whole pounds
-  updatedAt    DateTime @updatedAt
-
-  @@unique([brand, serviceType])
-}
-
 model PageContent {
   id        String   @id @default(cuid())
   pageKey   String   // page slug e.g. "mot", "services", "car-servicing"
@@ -35,34 +25,3 @@ model PageContent {
   @@unique([pageKey, fieldKey])
 }
 
-model Booking {
-  id              String   @id @default(cuid())
-  reference       String   @unique
-  createdAt       DateTime @default(now())
-  updatedAt       DateTime @updatedAt
-
-  reg             String
-  make            String?
-  model           String?
-  year            String?
-  fuelType        String?
-  engineSize      String?
-  mileage         String?
-  transmission    String?
-
-  serviceType     String
-  addOns          Json
-
-  appointmentDate String
-  appointmentTime String?
-  slotPeriod      String
-
-  customerName    String
-  customerEmail   String
-  customerPhone   String
-  address         String?
-  notes           String?
-
-  paymentChoice   String
-  status          String   @default("pending")
-}

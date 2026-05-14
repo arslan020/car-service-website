@@ -1,4 +1,4 @@
-import Link from "next/link";
+﻿import Link from "next/link";
 import { site, waUrl } from "@/lib/site-config";
 import { BookingBar } from "@/components/booking-bar";
 import { getPageContent, f } from "@/lib/page-content";
@@ -16,15 +16,15 @@ const SERVICES = [
 
 const SIGNS = [
   { title: "Temperature gauge rising", body: "If your temperature gauge creeps toward red, pull over safely. Overheating causes serious engine damage quickly." },
-  { title: "Oil or coolant leaks", body: "Puddles under the car or a sweet smell while driving — coolant leaks need tracing before they get worse." },
+  { title: "Oil or coolant leaks", body: "Puddles under the car or a sweet smell while driving â€” coolant leaks need tracing before they get worse." },
   { title: "Engine warning light", body: "A solid or flashing engine light can indicate anything from a loose sensor to a more serious fault." },
-  { title: "White exhaust smoke", body: "Thick white smoke from the exhaust often means coolant is burning — a potential head gasket issue." },
+  { title: "White exhaust smoke", body: "Thick white smoke from the exhaust often means coolant is burning â€” a potential head gasket issue." },
 ] as const;
 
 export default async function EngineCoolingPage() {
   const content = await getPageContent("repairs-engine-cooling");
   const title = f(content, "hero_title", "Engine & Cooling");
-  const subtitle = f(content, "hero_subtitle", "Overheating, oil leaks, warning lights — we trace the root cause with diagnostics before quoting. No guesswork, no unnecessary parts.");
+  const subtitle = f(content, "hero_subtitle", "Overheating, oil leaks, warning lights â€” we trace the root cause with diagnostics before quoting. No guesswork, no unnecessary parts.");
 
   return (
     <div className="bg-white">
@@ -37,7 +37,7 @@ export default async function EngineCoolingPage() {
             {subtitle}
           </p>
           <div className="mx-auto mt-7 flex max-w-sm flex-col gap-3 sm:flex-row sm:justify-center">
-            <Link href="/quote" className="flex items-center justify-center gap-2 rounded-xl bg-[#101a56] px-6 py-3.5 text-sm font-bold text-white shadow-md transition hover:bg-[#16236e]">
+            <Link href="/online-booking" className="flex items-center justify-center gap-2 rounded-xl bg-[#101a56] px-6 py-3.5 text-sm font-bold text-white shadow-md transition hover:bg-[#16236e]">
               Request a quote
               <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}><path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" /></svg>
             </Link>
@@ -114,7 +114,7 @@ export default async function EngineCoolingPage() {
             <h2 className="mt-2 text-2xl font-extrabold text-white sm:text-3xl">Engine or cooling concern?</h2>
             <p className="mx-auto mt-3 max-w-md text-sm leading-relaxed text-slate-300">Early diagnosis prevents costly damage. {site.addressLines.join(", ")}.</p>
             <div className="mt-7 flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
-              <Link href="/quote" className="flex w-full items-center justify-center gap-2 rounded-xl bg-[#3f63ff] px-7 py-3.5 text-sm font-bold text-white shadow-md transition hover:bg-[#2f53ef] sm:w-auto">
+              <Link href="/online-booking" className="flex w-full items-center justify-center gap-2 rounded-xl bg-[#3f63ff] px-7 py-3.5 text-sm font-bold text-white shadow-md transition hover:bg-[#2f53ef] sm:w-auto">
                 Request a quote
                 <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}><path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" /></svg>
               </Link>
@@ -129,3 +129,4 @@ export default async function EngineCoolingPage() {
     </div>
   );
 }
+

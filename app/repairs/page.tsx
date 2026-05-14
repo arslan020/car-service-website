@@ -1,4 +1,4 @@
-import Link from "next/link";
+﻿import Link from "next/link";
 import { site, waUrl } from "@/lib/site-config";
 import { getPageContentWithDefaults, fl } from "@/lib/page-content";
 import { BookingBar } from "@/components/booking-bar";
@@ -105,7 +105,7 @@ export default async function RepairsPage() {
           <h1 className="mt-2 text-3xl font-extrabold leading-tight text-[#101a56] sm:text-5xl">{c.hero_title}</h1>
           <p className="mt-4 text-base leading-relaxed text-slate-500 sm:text-lg">{c.hero_subtitle}</p>
           <div className="mt-7 flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
-            <Link href="/quote" className="flex w-full items-center justify-center gap-2 rounded-xl bg-[#101a56] px-6 py-3.5 text-sm font-bold text-white shadow-md transition hover:bg-[#16236e] sm:w-auto">
+            <Link href="/online-booking" className="flex w-full items-center justify-center gap-2 rounded-xl bg-[#101a56] px-6 py-3.5 text-sm font-bold text-white shadow-md transition hover:bg-[#16236e] sm:w-auto">
               {c.btn_quote}
               <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
@@ -195,7 +195,7 @@ export default async function RepairsPage() {
             <h2 className="mt-2 text-2xl font-extrabold text-white sm:text-3xl">{c.bottom_title}</h2>
             <p className="mx-auto mt-3 max-w-md text-sm leading-relaxed text-slate-300">{c.bottom_body}</p>
             <div className="mt-7 flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
-              <Link href="/quote" className="flex w-full items-center justify-center gap-2 rounded-xl bg-[#3f63ff] px-7 py-3.5 text-sm font-bold text-white shadow-md transition hover:bg-[#2f53ef] sm:w-auto">
+              <Link href="/online-booking" className="flex w-full items-center justify-center gap-2 rounded-xl bg-[#3f63ff] px-7 py-3.5 text-sm font-bold text-white shadow-md transition hover:bg-[#2f53ef] sm:w-auto">
                 {c.bottom_btn}
                 <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
@@ -211,3 +211,4 @@ export default async function RepairsPage() {
     </div>
   );
 }
+

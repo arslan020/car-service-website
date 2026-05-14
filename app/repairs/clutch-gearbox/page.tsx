@@ -1,4 +1,4 @@
-import Link from "next/link";
+﻿import Link from "next/link";
 import { site, waUrl } from "@/lib/site-config";
 import { BookingBar } from "@/components/booking-bar";
 import { getPageContent, f } from "@/lib/page-content";
@@ -14,7 +14,7 @@ const SERVICES = [
 ];
 
 const SIGNS = [
-  { title: "Slipping clutch", body: "Engine revs rise but the car doesn&apos;t accelerate — the clutch disc is worn and slipping under load." },
+  { title: "Slipping clutch", body: "Engine revs rise but the car doesn&apos;t accelerate â€” the clutch disc is worn and slipping under load." },
   { title: "High biting point", body: "If the clutch only bites near the top of the pedal travel, the friction material is running thin." },
   { title: "Grinding when changing gear", body: "Often a worn synchromesh or a clutch that isn&apos;t fully disengaging. Needs investigation before it worsens." },
   { title: "Judder on take-off", body: "A shudder when pulling away smoothly usually points to a contaminated or worn clutch plate." },
@@ -23,7 +23,7 @@ const SIGNS = [
 export default async function ClutchGearboxPage() {
   const content = await getPageContent("repairs-clutch-gearbox");
   const title = f(content, "hero_title", "Clutch & Gearbox");
-  const subtitle = f(content, "hero_subtitle", "Slipping clutch, stiff biting point, or grinding gears — we diagnose the root cause and give you a clear quote before any work starts.");
+  const subtitle = f(content, "hero_subtitle", "Slipping clutch, stiff biting point, or grinding gears â€” we diagnose the root cause and give you a clear quote before any work starts.");
 
   return (
     <div className="bg-white">
@@ -36,7 +36,7 @@ export default async function ClutchGearboxPage() {
             {subtitle}
           </p>
           <div className="mx-auto mt-7 flex max-w-sm flex-col gap-3 sm:flex-row sm:justify-center">
-            <Link href="/quote" className="flex items-center justify-center gap-2 rounded-xl bg-[#101a56] px-6 py-3.5 text-sm font-bold text-white shadow-md transition hover:bg-[#16236e]">
+            <Link href="/online-booking" className="flex items-center justify-center gap-2 rounded-xl bg-[#101a56] px-6 py-3.5 text-sm font-bold text-white shadow-md transition hover:bg-[#16236e]">
               Request a quote
               <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}><path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" /></svg>
             </Link>
@@ -111,9 +111,9 @@ export default async function ClutchGearboxPage() {
           <div className="overflow-hidden rounded-3xl bg-[#101a56] px-8 py-10 text-center shadow-xl sm:py-14">
             <p className="text-xs font-bold uppercase tracking-widest text-[#6b8fff]">Get it sorted</p>
             <h2 className="mt-2 text-2xl font-extrabold text-white sm:text-3xl">Need a clutch or gearbox quote?</h2>
-            <p className="mx-auto mt-3 max-w-md text-sm leading-relaxed text-slate-300">Tell us your reg and symptoms — we&apos;ll come back with a clear price. {site.addressLines.join(", ")}.</p>
+            <p className="mx-auto mt-3 max-w-md text-sm leading-relaxed text-slate-300">Tell us your reg and symptoms â€” we&apos;ll come back with a clear price. {site.addressLines.join(", ")}.</p>
             <div className="mt-7 flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
-              <Link href="/quote" className="flex w-full items-center justify-center gap-2 rounded-xl bg-[#3f63ff] px-7 py-3.5 text-sm font-bold text-white shadow-md transition hover:bg-[#2f53ef] sm:w-auto">
+              <Link href="/online-booking" className="flex w-full items-center justify-center gap-2 rounded-xl bg-[#3f63ff] px-7 py-3.5 text-sm font-bold text-white shadow-md transition hover:bg-[#2f53ef] sm:w-auto">
                 Request a quote
                 <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}><path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" /></svg>
               </Link>
@@ -128,3 +128,4 @@ export default async function ClutchGearboxPage() {
     </div>
   );
 }
+
