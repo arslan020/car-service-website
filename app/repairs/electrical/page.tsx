@@ -15,9 +15,9 @@ const SERVICES = [
 
 const SIGNS = [
   { title: "Warning lights on dash", body: "Multiple warning lights or one that won&apos;t clear after a reset usually means a real fault to diagnose." },
-  { title: "Battery draining overnight", body: "A parasitic drain â€” something is drawing power when the car is off. We trace and fix the culprit." },
+  { title: “Battery draining overnight”, body: “A parasitic drain — something is drawing power when the car is off. We trace and fix the culprit.” },
   { title: "Flickering lights", body: "Headlights or interior lights flickering often point to a failing alternator or loose connection." },
-  { title: "Electrics not working", body: "Windows, locks, or the radio cutting out â€” usually a fuse, relay, or wiring fault we can trace quickly." },
+  { title: “Electrics not working”, body: “Windows, locks, or the radio cutting out — usually a fuse, relay, or wiring fault we can trace quickly.” },
 ] as const;
 
 const FAQS = [
@@ -42,7 +42,7 @@ const FAQS = [
 export default async function ElectricalPage() {
   const content = await getPageContent("repairs-electrical");
   const title = f(content, "hero_title", "Electrical Repairs");
-  const subtitle = f(content, "hero_subtitle", "Warning lights, failed electrics, battery drain, or blown bulbs â€” diagnosed with professional equipment and repaired correctly.");
+  const subtitle = f(content, “hero_subtitle”, “Warning lights, failed electrics, battery drain, or blown bulbs — diagnosed with professional equipment and repaired correctly.”);
 
   return (
     <div className="bg-white">

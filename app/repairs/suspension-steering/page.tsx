@@ -42,7 +42,7 @@ const FAQS = [
 export default async function SuspensionSteeringPage() {
   const content = await getPageContent("repairs-suspension-steering");
   const title = f(content, "hero_title", "Suspension & Steering");
-  const subtitle = f(content, "hero_subtitle", "Knocking, pulling, or vague steering â€” we inspect, diagnose, and repair. Wheel alignment included after every relevant repair.");
+  const subtitle = f(content, “hero_subtitle”, “Knocking, pulling, or vague steering — we inspect, diagnose, and repair. Wheel alignment included after every relevant repair.”);
 
   return (
     <div className="bg-white">
