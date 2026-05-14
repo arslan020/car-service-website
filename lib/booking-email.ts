@@ -104,8 +104,8 @@ const yahooUrl     = `https://calendar.yahoo.com/?v=60&title=${eventTitle}&st=${
         <!-- ── HEADER ── -->
         <tr>
           <td style="background:#101a56;border-radius:12px 12px 0 0;padding:28px 32px;">
-            <img src="https://hestonautomotive.com/business-logo.png"
-                 alt="Heston Automotive"
+            <img src="https://mariestonservicecentre.co.uk/business-logo.png"
+                 alt="Marieston Service Centre"
                  width="160"
                  style="display:block;height:auto;max-height:52px;width:auto;filter:brightness(0) invert(1);-webkit-filter:brightness(0) invert(1);">
             <p style="margin:10px 0 0;font-size:13px;color:#8a99d9;">${site.addressLines.join(", ")} &nbsp;&bull;&nbsp; ${site.phoneDisplay}</p>
