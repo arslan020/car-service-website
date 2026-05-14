@@ -20,6 +20,25 @@ const SIGNS = [
   { title: "Rattling underneath", body: "A heat shield loose on the exhaust or a loose mounting bracket â€” annoying but easy to fix." },
 ] as const;
 
+const FAQS = [
+  {
+    q: "Why is my car failing its MOT on emissions?",
+    a: "High emissions typically point to a faulty catalytic converter, a failed lambda or O2 sensor, a blocked DPF, or a rich-running engine. We diagnose the root cause before quoting for any parts.",
+  },
+  {
+    q: "What is a DPF and why does it get blocked?",
+    a: "A diesel particulate filter (DPF) captures soot from the exhaust. Short, low-speed journeys prevent it from reaching the temperature needed to self-clean (regenerate), causing it to block over time.",
+  },
+  {
+    q: "Can a DPF be cleaned instead of replaced?",
+    a: "In many cases yes — a forced regeneration or a professional clean can restore a partially blocked DPF. We'll assess your vehicle and recommend the most cost-effective solution.",
+  },
+  {
+    q: "Is a blowing exhaust an MOT failure?",
+    a: "Yes. An exhaust leaking through a crack, hole, or failed joint creates excessive noise and is an MOT failure. It's also a safety concern as carbon monoxide can enter the cabin.",
+  },
+] as const;
+
 export default async function ExhaustEmissionsPage() {
   const content = await getPageContent("repairs-exhaust-emissions");
   const title = f(content, "hero_title", "Exhaust & Emissions");
@@ -98,6 +117,23 @@ export default async function ExhaustEmissionsPage() {
                   <h3 className="font-bold text-[#101a56]">{s.title}</h3>
                 </div>
                 <p className="text-sm leading-relaxed text-slate-500">{s.body}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="px-4 py-12 sm:py-16">
+        <div className="mx-auto max-w-3xl">
+          <div className="text-center">
+            <p className="text-xs font-bold uppercase tracking-widest text-[#3f63ff]">Common questions</p>
+            <h2 className="mt-1 text-2xl font-extrabold text-[#101a56] sm:text-3xl">Frequently asked questions</h2>
+          </div>
+          <div className="mt-8 space-y-4">
+            {FAQS.map((faq) => (
+              <div key={faq.q} className="rounded-2xl border border-[#e8effa] bg-white p-5 shadow-sm">
+                <h3 className="font-bold text-[#101a56]">{faq.q}</h3>
+                <p className="mt-2 text-sm leading-relaxed text-slate-500">{faq.a}</p>
               </div>
             ))}
           </div>

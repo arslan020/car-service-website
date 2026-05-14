@@ -20,6 +20,25 @@ const SIGNS = [
   { title: "Electrics not working", body: "Windows, locks, or the radio cutting out â€” usually a fuse, relay, or wiring fault we can trace quickly." },
 ] as const;
 
+const FAQS = [
+  {
+    q: "What does OBD diagnostic equipment find in electrical faults?",
+    a: "It reads fault codes from the ECU, ABS, airbag, and body control modules, showing exactly which circuit, sensor, or component is reporting a problem — removing the guesswork from electrical diagnosis.",
+  },
+  {
+    q: "Why do I have multiple warning lights on at once?",
+    a: "Multiple warning lights frequently appear when battery voltage drops or a central control module develops a fault — it doesn't always mean separate faults. A diagnostic scan quickly identifies the root cause.",
+  },
+  {
+    q: "Can you fix a car that won't start due to an electrical fault?",
+    a: "Yes. We trace starting system faults including the starter motor, ignition circuit, immobiliser, battery, and wiring to identify and fix the underlying cause.",
+  },
+  {
+    q: "How long does an electrical repair take?",
+    a: "Simple repairs like bulb or fuse replacement are completed same day. More complex wiring or module faults vary — we'll give you a clear timeline and a quote before any work begins.",
+  },
+] as const;
+
 export default async function ElectricalPage() {
   const content = await getPageContent("repairs-electrical");
   const title = f(content, "hero_title", "Electrical Repairs");
@@ -98,6 +117,23 @@ export default async function ElectricalPage() {
                   <h3 className="font-bold text-[#101a56]">{s.title}</h3>
                 </div>
                 <p className="text-sm leading-relaxed text-slate-500" dangerouslySetInnerHTML={{ __html: s.body }} />
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="px-4 py-12 sm:py-16">
+        <div className="mx-auto max-w-3xl">
+          <div className="text-center">
+            <p className="text-xs font-bold uppercase tracking-widest text-[#3f63ff]">Common questions</p>
+            <h2 className="mt-1 text-2xl font-extrabold text-[#101a56] sm:text-3xl">Frequently asked questions</h2>
+          </div>
+          <div className="mt-8 space-y-4">
+            {FAQS.map((faq) => (
+              <div key={faq.q} className="rounded-2xl border border-[#e8effa] bg-white p-5 shadow-sm">
+                <h3 className="font-bold text-[#101a56]">{faq.q}</h3>
+                <p className="mt-2 text-sm leading-relaxed text-slate-500">{faq.a}</p>
               </div>
             ))}
           </div>

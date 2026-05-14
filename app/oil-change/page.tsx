@@ -19,6 +19,25 @@ const BENEFITS = [
   { title: "Catches problems early", body: "We inspect while we work — if we spot something, we tell you before it becomes expensive." },
 ] as const;
 
+const FAQS = [
+  {
+    q: "How often should I change my engine oil?",
+    a: "Most modern cars need an oil change every 10,000–15,000 miles or once a year — whichever comes first. Check your handbook for your specific interval, as turbocharged engines may need it sooner.",
+  },
+  {
+    q: "What's the difference between synthetic and semi-synthetic oil?",
+    a: "Fully synthetic oil offers superior protection at higher temperatures and lasts longer — ideal for modern, turbocharged, or high-mileage engines. Semi-synthetic suits older or lower-mileage vehicles. We always use the correct grade for your car.",
+  },
+  {
+    q: "What happens if I don't change my oil?",
+    a: "Old oil thickens and loses its ability to lubricate engine components, causing increased wear, overheating, and eventually serious engine damage. Regular changes are one of the cheapest ways to protect your engine long-term.",
+  },
+  {
+    q: "Will an oil change improve my fuel economy?",
+    a: "Yes. Fresh oil reduces internal engine friction, which can lead to a small but noticeable improvement in fuel efficiency — particularly if the old oil was significantly overdue.",
+  },
+] as const;
+
 export default async function OilChangePage() {
   const content = await getPageContent("oil-change");
   const title = f(content, "hero_title", "Oil Change");
@@ -97,6 +116,23 @@ export default async function OilChangePage() {
                   <h3 className="font-bold text-[#101a56]">{b.title}</h3>
                 </div>
                 <p className="text-sm leading-relaxed text-slate-500">{b.body}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="px-4 py-12 sm:py-16">
+        <div className="mx-auto max-w-3xl">
+          <div className="text-center">
+            <p className="text-xs font-bold uppercase tracking-widest text-[#3f63ff]">Common questions</p>
+            <h2 className="mt-1 text-2xl font-extrabold text-[#101a56] sm:text-3xl">Frequently asked questions</h2>
+          </div>
+          <div className="mt-8 space-y-4">
+            {FAQS.map((faq) => (
+              <div key={faq.q} className="rounded-2xl border border-[#e8effa] bg-white p-5 shadow-sm">
+                <h3 className="font-bold text-[#101a56]">{faq.q}</h3>
+                <p className="mt-2 text-sm leading-relaxed text-slate-500">{faq.a}</p>
               </div>
             ))}
           </div>

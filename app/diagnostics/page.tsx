@@ -13,6 +13,25 @@ const COVER_FALLBACK = [
   "Pre-purchase inspection & health check",
 ] as const;
 
+const FAQS = [
+  {
+    q: "What does a car diagnostic check actually do?",
+    a: "We connect professional OBD-II equipment to your car's onboard system, reading fault codes and live sensor data across the engine, ABS, airbag, transmission, and other modules — giving a precise picture of what's wrong.",
+  },
+  {
+    q: "Can you find a fault even if the warning light has gone off?",
+    a: "Yes. Fault codes are stored in the ECU even after a warning light clears. We can retrieve historical codes and identify intermittent faults that don't keep a light on permanently.",
+  },
+  {
+    q: "How long does a diagnostic check take?",
+    a: "A standard scan takes 30–60 minutes. More complex faults requiring live data analysis or circuit testing may take longer — we'll advise once we've assessed the vehicle.",
+  },
+  {
+    q: "Do you charge for the diagnostic check?",
+    a: "We charge a clearly quoted diagnostic fee upfront. If you proceed with the repair at our garage, the diagnostic cost is factored into the overall quote — ask us for details when you book.",
+  },
+] as const;
+
 export default async function DiagnosticsPage() {
   const c = await getPageContentWithDefaults("diagnostics");
   const services = fl(c, "cover_list", COVER_FALLBACK);
@@ -98,6 +117,23 @@ export default async function DiagnosticsPage() {
                   <h3 className="font-bold text-[#101a56]">{s.title}</h3>
                 </div>
                 <p className="text-sm leading-relaxed text-slate-500">{s.body}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="px-4 py-12 sm:py-16">
+        <div className="mx-auto max-w-3xl">
+          <div className="text-center">
+            <p className="text-xs font-bold uppercase tracking-widest text-[#3f63ff]">Common questions</p>
+            <h2 className="mt-1 text-2xl font-extrabold text-[#101a56] sm:text-3xl">Frequently asked questions</h2>
+          </div>
+          <div className="mt-8 space-y-4">
+            {FAQS.map((faq) => (
+              <div key={faq.q} className="rounded-2xl border border-[#e8effa] bg-white p-5 shadow-sm">
+                <h3 className="font-bold text-[#101a56]">{faq.q}</h3>
+                <p className="mt-2 text-sm leading-relaxed text-slate-500">{faq.a}</p>
               </div>
             ))}
           </div>

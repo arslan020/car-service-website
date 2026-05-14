@@ -18,6 +18,25 @@ const SIGNS = [
   { title: "Windows fogging slowly", body: "A healthy AC system clears fog fast. Slow clearing means reduced performance." },
 ] as const;
 
+const FAQS = [
+  {
+    q: "How often should I have my air con regassed?",
+    a: "Most manufacturers recommend an AC regas every 2 years. Even without a fault, air con systems lose around 10–15% of their refrigerant annually through natural permeation.",
+  },
+  {
+    q: "Why does my air con smell musty?",
+    a: "Bacteria and mould build up in the evaporator over time, producing unpleasant odours when the fan runs. Our service includes an antibacterial treatment that eliminates the source of the smell.",
+  },
+  {
+    q: "What refrigerant does my car use?",
+    a: "Cars registered before 2017 typically use R134a. Newer models use the more eco-friendly R1234yf. We carry both and will always use the correct refrigerant for your vehicle.",
+  },
+  {
+    q: "Will a regas fix my air con if it isn't cooling at all?",
+    a: "Low refrigerant is the most common cause of poor cooling, so a regas resolves it in most cases. If a leak or component fault is present, we'll diagnose and advise before any work begins.",
+  },
+] as const;
+
 export default async function AirConPage() {
   const content = await getPageContent("air-con");
   const title = f(content, "hero_title", "Air Con Regas & Service");
@@ -96,6 +115,23 @@ export default async function AirConPage() {
                   <h3 className="font-bold text-[#101a56]">{s.title}</h3>
                 </div>
                 <p className="text-sm leading-relaxed text-slate-500" dangerouslySetInnerHTML={{ __html: s.body }} />
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="px-4 py-12 sm:py-16">
+        <div className="mx-auto max-w-3xl">
+          <div className="text-center">
+            <p className="text-xs font-bold uppercase tracking-widest text-[#3f63ff]">Common questions</p>
+            <h2 className="mt-1 text-2xl font-extrabold text-[#101a56] sm:text-3xl">Frequently asked questions</h2>
+          </div>
+          <div className="mt-8 space-y-4">
+            {FAQS.map((faq) => (
+              <div key={faq.q} className="rounded-2xl border border-[#e8effa] bg-white p-5 shadow-sm">
+                <h3 className="font-bold text-[#101a56]">{faq.q}</h3>
+                <p className="mt-2 text-sm leading-relaxed text-slate-500">{faq.a}</p>
               </div>
             ))}
           </div>

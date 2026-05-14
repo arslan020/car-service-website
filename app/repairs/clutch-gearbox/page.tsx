@@ -19,6 +19,25 @@ const SIGNS = [
   { title: "Judder on take-off", body: "A shudder when pulling away smoothly usually points to a contaminated or worn clutch plate." },
 ] as const;
 
+const FAQS = [
+  {
+    q: "How do I know if my clutch is worn?",
+    a: "Symptoms include the clutch biting very high or very low in its travel, slipping under acceleration (revs rise without speed increasing), a burning smell, or difficulty selecting gears smoothly.",
+  },
+  {
+    q: "How long does a clutch replacement take?",
+    a: "Most clutch replacements take 3–5 hours depending on the vehicle and drivetrain layout. We'll give you an accurate time estimate when you book.",
+  },
+  {
+    q: "Is clutch wear covered by manufacturer warranty?",
+    a: "Clutches are classified as wear-and-tear items and are not covered under most manufacturer warranties. Our replacement parts come with their own warranty.",
+  },
+  {
+    q: "Do you work on automatic gearboxes?",
+    a: "Yes. We service and repair both manual and automatic gearboxes, including diagnosing hesitation, slipping, delayed engagement, and gearbox warning lights.",
+  },
+] as const;
+
 export default async function ClutchGearboxPage() {
   const content = await getPageContent("repairs-clutch-gearbox");
   const title = f(content, "hero_title", "Clutch & Gearbox");
@@ -97,6 +116,23 @@ export default async function ClutchGearboxPage() {
                   <h3 className="font-bold text-[#101a56]">{s.title}</h3>
                 </div>
                 <p className="text-sm leading-relaxed text-slate-500" dangerouslySetInnerHTML={{ __html: s.body }} />
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="px-4 py-12 sm:py-16">
+        <div className="mx-auto max-w-3xl">
+          <div className="text-center">
+            <p className="text-xs font-bold uppercase tracking-widest text-[#3f63ff]">Common questions</p>
+            <h2 className="mt-1 text-2xl font-extrabold text-[#101a56] sm:text-3xl">Frequently asked questions</h2>
+          </div>
+          <div className="mt-8 space-y-4">
+            {FAQS.map((faq) => (
+              <div key={faq.q} className="rounded-2xl border border-[#e8effa] bg-white p-5 shadow-sm">
+                <h3 className="font-bold text-[#101a56]">{faq.q}</h3>
+                <p className="mt-2 text-sm leading-relaxed text-slate-500">{faq.a}</p>
               </div>
             ))}
           </div>

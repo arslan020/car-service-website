@@ -18,6 +18,25 @@ const SIGNS = [
   { title: "Battery over 3 years old", body: "Most batteries last 3–5 years. A free health check prevents an unexpected breakdown." },
 ] as const;
 
+const FAQS = [
+  {
+    q: "How long does a car battery typically last in the UK?",
+    a: "Most batteries last 3–5 years. Cold winters, short urban journeys, and leaving the car unused all accelerate wear. If your battery is approaching 3 years old, a free health check is a sensible precaution.",
+  },
+  {
+    q: "Is the battery check really free?",
+    a: "Yes — our battery health test covering voltage, cold cranking amps, and state-of-charge is completely free with no obligation. If a replacement is needed, we'll quote before touching anything.",
+  },
+  {
+    q: "Why does my battery drain overnight?",
+    a: "A parasitic drain — a component drawing current when the car is switched off — is the most common cause. We can trace the source using specialist equipment and repair it.",
+  },
+  {
+    q: "Does the check cover my alternator too?",
+    a: "Yes. Our full charging system test includes the alternator output and starter motor draw alongside the battery, giving you a complete picture of your car's electrical health.",
+  },
+] as const;
+
 export default async function BatteryCheckPage() {
   const content = await getPageContent("battery-check");
   const title = f(content, "hero_title", "Battery Check");
@@ -96,6 +115,23 @@ export default async function BatteryCheckPage() {
                   <h3 className="font-bold text-[#101a56]">{s.title}</h3>
                 </div>
                 <p className="text-sm leading-relaxed text-slate-500">{s.body}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="px-4 py-12 sm:py-16">
+        <div className="mx-auto max-w-3xl">
+          <div className="text-center">
+            <p className="text-xs font-bold uppercase tracking-widest text-[#3f63ff]">Common questions</p>
+            <h2 className="mt-1 text-2xl font-extrabold text-[#101a56] sm:text-3xl">Frequently asked questions</h2>
+          </div>
+          <div className="mt-8 space-y-4">
+            {FAQS.map((faq) => (
+              <div key={faq.q} className="rounded-2xl border border-[#e8effa] bg-white p-5 shadow-sm">
+                <h3 className="font-bold text-[#101a56]">{faq.q}</h3>
+                <p className="mt-2 text-sm leading-relaxed text-slate-500">{faq.a}</p>
               </div>
             ))}
           </div>

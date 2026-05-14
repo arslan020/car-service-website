@@ -20,6 +20,25 @@ const SIGNS = [
   { title: "Vague or heavy steering", body: "Excessive play in the steering wheel or heavy effort to turn indicates worn steering rack or pump." },
 ] as const;
 
+const FAQS = [
+  {
+    q: "What are the signs of worn suspension?",
+    a: "Your car continues bouncing after a bump, you hear clunking or knocking over uneven roads, the car pulls to one side, or you notice uneven tyre wear — all common signs that suspension components need inspection.",
+  },
+  {
+    q: "Is wheel alignment included with a suspension repair?",
+    a: "Yes. We carry out a wheel alignment check after any repair where tracking could be affected. Correct alignment ensures even tyre wear and prevents the car pulling to one side.",
+  },
+  {
+    q: "Can worn suspension cause an MOT failure?",
+    a: "Yes. Excessive play in steering components, failed shock absorbers, and damaged springs are all MOT failure points. We can identify and repair these before your test.",
+  },
+  {
+    q: "How long does a suspension repair take?",
+    a: "Individual component repairs such as a ball joint or shock absorber typically take 1–2 hours per corner. We always road-test the vehicle after any suspension work.",
+  },
+] as const;
+
 export default async function SuspensionSteeringPage() {
   const content = await getPageContent("repairs-suspension-steering");
   const title = f(content, "hero_title", "Suspension & Steering");
@@ -98,6 +117,23 @@ export default async function SuspensionSteeringPage() {
                   <h3 className="font-bold text-[#101a56]">{s.title}</h3>
                 </div>
                 <p className="text-sm leading-relaxed text-slate-500">{s.body}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="px-4 py-12 sm:py-16">
+        <div className="mx-auto max-w-3xl">
+          <div className="text-center">
+            <p className="text-xs font-bold uppercase tracking-widest text-[#3f63ff]">Common questions</p>
+            <h2 className="mt-1 text-2xl font-extrabold text-[#101a56] sm:text-3xl">Frequently asked questions</h2>
+          </div>
+          <div className="mt-8 space-y-4">
+            {FAQS.map((faq) => (
+              <div key={faq.q} className="rounded-2xl border border-[#e8effa] bg-white p-5 shadow-sm">
+                <h3 className="font-bold text-[#101a56]">{faq.q}</h3>
+                <p className="mt-2 text-sm leading-relaxed text-slate-500">{faq.a}</p>
               </div>
             ))}
           </div>

@@ -20,6 +20,25 @@ const SIGNS = [
   { title: "Vibration when braking", body: "Warped or corroded discs cause a judder through the pedal or steering wheel under braking." },
 ] as const;
 
+const FAQS = [
+  {
+    q: "How do I know when my brake pads need replacing?",
+    a: "Common signs include a high-pitched squealing when braking, a longer stopping distance, a vibrating brake pedal, or the brake warning light illuminating on your dashboard.",
+  },
+  {
+    q: "Should I replace brake pads and discs at the same time?",
+    a: "Not necessarily — but if a disc is scored, corroded, or worn below its minimum thickness, fitting new pads to a worn disc reduces the lifespan of both. We inspect and advise when you bring the car in.",
+  },
+  {
+    q: "How long do brake pads last in the UK?",
+    a: "Typically 25,000–60,000 miles, but this varies with driving style. Urban stop-start driving wears pads much faster than motorway use. Front pads usually wear before rear.",
+  },
+  {
+    q: "Is it safe to drive with a brake warning light on?",
+    a: "No — book in immediately. The light can indicate worn pads, low brake fluid, or a more serious hydraulic fault. Brakes are safety-critical and should never be ignored.",
+  },
+] as const;
+
 export default async function BrakesPage() {
   const content = await getPageContent("repairs-brakes");
   const title = f(content, "hero_title", "Brakes & Tyres");
@@ -98,6 +117,23 @@ export default async function BrakesPage() {
                   <h3 className="font-bold text-[#101a56]">{s.title}</h3>
                 </div>
                 <p className="text-sm leading-relaxed text-slate-500">{s.body}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="px-4 py-12 sm:py-16">
+        <div className="mx-auto max-w-3xl">
+          <div className="text-center">
+            <p className="text-xs font-bold uppercase tracking-widest text-[#3f63ff]">Common questions</p>
+            <h2 className="mt-1 text-2xl font-extrabold text-[#101a56] sm:text-3xl">Frequently asked questions</h2>
+          </div>
+          <div className="mt-8 space-y-4">
+            {FAQS.map((faq) => (
+              <div key={faq.q} className="rounded-2xl border border-[#e8effa] bg-white p-5 shadow-sm">
+                <h3 className="font-bold text-[#101a56]">{faq.q}</h3>
+                <p className="mt-2 text-sm leading-relaxed text-slate-500">{faq.a}</p>
               </div>
             ))}
           </div>

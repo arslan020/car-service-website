@@ -20,6 +20,25 @@ const SIGNS = [
   { title: "White exhaust smoke", body: "Thick white smoke from the exhaust often means coolant is burning â€” a potential head gasket issue." },
 ] as const;
 
+const FAQS = [
+  {
+    q: "What causes a car to overheat?",
+    a: "The most common causes are low coolant level, a faulty thermostat, a failing water pump, a blocked radiator, or a head gasket fault. Overheating is urgent — pull over safely and switch off the engine.",
+  },
+  {
+    q: "Can I drive with the temperature warning light on?",
+    a: "No. Pull over safely as soon as possible and switch off the engine. Continuing to drive an overheating engine can cause catastrophic and very expensive damage within just a few minutes.",
+  },
+  {
+    q: "How do I know if I have a head gasket problem?",
+    a: "Tell-tale signs include white smoke from the exhaust, a sweet smell under the bonnet, coolant loss with no visible leak, milky residue under the oil cap, or the engine overheating repeatedly.",
+  },
+  {
+    q: "How often should engine coolant be changed?",
+    a: "Most manufacturers recommend a coolant flush every 2–5 years or 30,000–50,000 miles. Old coolant loses its anti-freeze protection and anti-corrosion additives, which can damage the cooling system over time.",
+  },
+] as const;
+
 export default async function EngineCoolingPage() {
   const content = await getPageContent("repairs-engine-cooling");
   const title = f(content, "hero_title", "Engine & Cooling");
@@ -98,6 +117,23 @@ export default async function EngineCoolingPage() {
                   <h3 className="font-bold text-[#101a56]">{s.title}</h3>
                 </div>
                 <p className="text-sm leading-relaxed text-slate-500">{s.body}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="px-4 py-12 sm:py-16">
+        <div className="mx-auto max-w-3xl">
+          <div className="text-center">
+            <p className="text-xs font-bold uppercase tracking-widest text-[#3f63ff]">Common questions</p>
+            <h2 className="mt-1 text-2xl font-extrabold text-[#101a56] sm:text-3xl">Frequently asked questions</h2>
+          </div>
+          <div className="mt-8 space-y-4">
+            {FAQS.map((faq) => (
+              <div key={faq.q} className="rounded-2xl border border-[#e8effa] bg-white p-5 shadow-sm">
+                <h3 className="font-bold text-[#101a56]">{faq.q}</h3>
+                <p className="mt-2 text-sm leading-relaxed text-slate-500">{faq.a}</p>
               </div>
             ))}
           </div>
