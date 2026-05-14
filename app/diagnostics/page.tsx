@@ -39,22 +39,6 @@ export default async function DiagnosticsPage() {
           <p className="text-xs font-bold uppercase tracking-widest text-[#3f63ff]">{c.hero_eyebrow}</p>
           <h1 className="mt-2 text-3xl font-extrabold leading-tight text-[#101a56] sm:text-5xl">{c.hero_title}</h1>
           <p className="mt-4 text-base leading-relaxed text-slate-500 sm:text-lg">{c.hero_subtitle}</p>
-          <div className="mx-auto mt-7 flex max-w-sm flex-col gap-3 sm:flex-row sm:justify-center">
-            <Link href="/online-booking?service=diagnostics" className="flex items-center justify-center gap-2 rounded-xl bg-[#101a56] px-6 py-3.5 text-sm font-bold text-white shadow-md transition hover:bg-[#16236e]">
-              {c.btn_book}
-              <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
-              </svg>
-            </Link>
-            <a
-              href={waUrl("Hi, I need a diagnostics check please.")}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center justify-center gap-2 rounded-xl bg-[#25D366] px-6 py-3.5 text-sm font-bold text-white shadow-md transition hover:bg-[#1ebe5d]"
-            >
-              {c.btn_whatsapp}
-            </a>
-          </div>
           <BookingBar defaultService="diagnostics" category="services" />
         </div>
       </section>

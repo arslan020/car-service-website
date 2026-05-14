@@ -146,7 +146,7 @@ export function SiteFooter() {
                 <svg className="mt-0.5 h-4 w-4 shrink-0 text-[#3f63ff]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
                 </svg>
-                <span className="text-sm text-slate-400">Mon–Sat 10:00–20:00<br /><span className="text-red-400">Closed Sunday</span></span>
+                <span className="text-sm text-slate-400">Mon–Sat 9:00–18:00<br /><span className="text-red-400">Closed Sunday</span></span>
               </li>
             </ul>
           </div>

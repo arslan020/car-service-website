@@ -37,10 +37,6 @@ export default async function ElectricalPage() {
             {subtitle}
           </p>
           <div className="mx-auto mt-7 flex max-w-sm flex-col gap-3 sm:flex-row sm:justify-center">
-            <Link href="/quote" className="flex items-center justify-center gap-2 rounded-xl bg-[#101a56] px-6 py-3.5 text-sm font-bold text-white shadow-md transition hover:bg-[#16236e]">
-              Request a quote
-              <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}><path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" /></svg>
-            </Link>
             <a href={waUrl("Hi, I need an electrical repair quote please.")} target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-2 rounded-xl bg-[#25D366] px-6 py-3.5 text-sm font-bold text-white shadow-md transition hover:bg-[#1ebe5d]">
               WhatsApp us
             </a>
@@ -114,10 +110,6 @@ export default async function ElectricalPage() {
             <h2 className="mt-2 text-2xl font-extrabold text-white sm:text-3xl">Electrical problem? Let&apos;s find it.</h2>
             <p className="mx-auto mt-3 max-w-md text-sm leading-relaxed text-slate-300">{site.addressLines.join(", ")}. We diagnose first, quote before we fix.</p>
             <div className="mt-7 flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
-              <Link href="/quote" className="flex w-full items-center justify-center gap-2 rounded-xl bg-[#3f63ff] px-7 py-3.5 text-sm font-bold text-white shadow-md transition hover:bg-[#2f53ef] sm:w-auto">
-                Request a quote
-                <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}><path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" /></svg>
-              </Link>
               <a href={`tel:${site.phoneTel}`} className="flex w-full items-center justify-center gap-2 rounded-xl border-2 border-white/20 px-7 py-3.5 text-sm font-bold text-white transition hover:bg-white/10 sm:w-auto">
                 Call {site.phoneDisplay}
               </a>
@@ -129,6 +121,7 @@ export default async function ElectricalPage() {
     </div>
   );
 }
+
 
 
 
