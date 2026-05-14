@@ -15,9 +15,9 @@ const SERVICES = [
 
 const SIGNS = [
   { title: "Temperature gauge rising", body: "If your temperature gauge creeps toward red, pull over safely. Overheating causes serious engine damage quickly." },
-  { title: “Oil or coolant leaks”, body: “Puddles under the car or a sweet smell while driving — coolant leaks need tracing before they get worse.” },
+  { title: "Oil or coolant leaks", body: "Puddles under the car or a sweet smell while driving — coolant leaks need tracing before they get worse." },
   { title: "Engine warning light", body: "A solid or flashing engine light can indicate anything from a loose sensor to a more serious fault." },
-  { title: “White exhaust smoke”, body: “Thick white smoke from the exhaust often means coolant is burning — a potential head gasket issue.” },
+  { title: "White exhaust smoke", body: "Thick white smoke from the exhaust often means coolant is burning — a potential head gasket issue." },
 ] as const;
 
 const FAQS = [
@@ -42,7 +42,7 @@ const FAQS = [
 export default async function EngineCoolingPage() {
   const content = await getPageContent("repairs-engine-cooling");
   const title = f(content, "hero_title", "Engine & Cooling");
-  const subtitle = f(content, “hero_subtitle”, “Overheating, oil leaks, warning lights — we trace the root cause with diagnostics before quoting. No guesswork, no unnecessary parts.”);
+  const subtitle = f(content, "hero_subtitle", "Overheating, oil leaks, warning lights — we trace the root cause with diagnostics before quoting. No guesswork, no unnecessary parts.");
 
   return (
     <div className="bg-white">
