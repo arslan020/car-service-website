@@ -20,6 +20,13 @@ export const metadata: Metadata = {
     template: `%s | ${site.name}`,
   },
   description: site.description,
+  icons: {
+    icon: [
+      { url: "/icon.png", type: "image/png" },
+    ],
+    apple: "/icon.png",
+    shortcut: "/icon.png",
+  },
   robots: {
     index: true,
     follow: true,
