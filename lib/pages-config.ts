@@ -559,7 +559,7 @@ Full road test & report`,
       A(
         "map_embed_src",
         "Map — iframe src (full URL)",
-        "https://maps.google.com/maps?q=235+Yeading+Lane,+Hayes,+UB4+9AD,+UK&output=embed&z=16",
+        "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d586!2d-0.399722!3d51.5268571!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x48766dd076f12283%3A0x9b182de007f87a84!2sMarieston%20Service%20Centre!5e0!3m2!1sen!2suk!4v1715769600000!5m2!1sen!2suk",
         "Map"
       ),
       T("map_caption", "Map — caption under frame", "235 Yeading Ln, Hayes, UB4 9AD — free parking on site", "Map"),
@@ -567,13 +567,13 @@ Full road test & report`,
       A(
         "map_open_url",
         "Map — Google Maps link (full URL)",
-        "https://www.google.com/maps/search/?api=1&query=235+Yeading+Lane+Hayes+UB4+9AD",
+        "https://www.google.com/maps/place/Marieston+Service+Centre/@51.5268571,-0.4022969,586m/data=!3m2!1e3!4b1!4m6!3m5!1s0x48766dd076f12283:0x9b182de007f87a84!8m2!3d51.5268571!4d-0.399722!16s%2Fg%2F11njnzzcdd",
         "Map"
       ),
       A(
         "address_maps_url",
         "Address card — Google Maps link (full URL)",
-        "https://www.google.com/maps/search/?api=1&query=235+Yeading+Lane+Hayes+UB4+9AD",
+        "https://www.google.com/maps/place/Marieston+Service+Centre/@51.5268571,-0.4022969,586m/data=!3m2!1e3!4b1!4m6!3m5!1s0x48766dd076f12283:0x9b182de007f87a84!8m2!3d51.5268571!4d-0.399722!16s%2Fg%2F11njnzzcdd",
         "Reach us"
       ),
     ],
