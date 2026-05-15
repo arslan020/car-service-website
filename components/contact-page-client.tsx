@@ -460,7 +460,7 @@ export function ContactPageClient({ content }: { content: ContentMap }) {
                 src={f(
                   content,
                   "map_embed_src",
-                  "https://maps.google.com/maps?q=51.5268571,-0.399722&output=embed&z=18"
+                  "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d586!2d-0.399722!3d51.5268571!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x48766dd076f12283%3A0x9b182de007f87a84!2sMarieston%20Service%20Centre!5e0!3m2!1sen!2suk!4v1715769600000!5m2!1sen!2suk"
                 )}
               />
             </div>
@@ -471,7 +471,7 @@ export function ContactPageClient({ content }: { content: ContentMap }) {
               href={f(
                 content,
                 "map_open_url",
-                "https://www.google.com/maps/place/Marieston+Service+Centre/@51.5268571,-0.399722,18z"
+                "https://www.google.com/maps/place/Marieston+Service+Centre/@51.5268571,-0.4022969,586m/data=!3m2!1e3!4b1!4m6!3m5!1s0x48766dd076f12283:0x9b182de007f87a84!8m2!3d51.5268571!4d-0.399722!16s%2Fg%2F11njnzzcdd"
               )}
               target="_blank"
               rel="noopener noreferrer"

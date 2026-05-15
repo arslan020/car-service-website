@@ -188,8 +188,7 @@ export function HomePageClient({ content }: { content: ContentMap }) {
   const [isOpen, setIsOpen] = useState<boolean | null>(null);
   const [closingTime, setClosingTime] = useState("");
   const [today, setToday] = useState(0);
-  const [typed, setTyped] = useState("");
-
+  const [typed, setTyped] = useState(content.hero_typewriter);
   const hoursRows = useMemo(() => parseHoursRows(content.hours_grid), [content.hours_grid]);
 
   const whyCards = useMemo(
@@ -215,7 +214,7 @@ export function HomePageClient({ content }: { content: ContentMap }) {
   const phrase = content.hero_typewriter;
 
   useEffect(() => {
-    let i = 0;
+    let i = phrase.length;
     let deleting = false;
     let timeout: ReturnType<typeof setTimeout>;
 
@@ -224,7 +223,6 @@ export function HomePageClient({ content }: { content: ContentMap }) {
         i++;
         setTyped(phrase.slice(0, i));
         if (i >= phrase.length) {
-          // pause at end, then start deleting
           timeout = setTimeout(() => { deleting = true; tick(); }, 2000);
           return;
         }
@@ -232,7 +230,6 @@ export function HomePageClient({ content }: { content: ContentMap }) {
         i--;
         setTyped(phrase.slice(0, i));
         if (i <= 0) {
-          // pause at start, then start typing again
           timeout = setTimeout(() => { deleting = false; tick(); }, 600);
           return;
         }
@@ -240,7 +237,7 @@ export function HomePageClient({ content }: { content: ContentMap }) {
       timeout = setTimeout(tick, deleting ? 35 : 70);
     }
 
-    timeout = setTimeout(tick, 500);
+    timeout = setTimeout(tick, 2000);
     return () => clearTimeout(timeout);
   }, [phrase]);
 
@@ -270,7 +267,12 @@ export function HomePageClient({ content }: { content: ContentMap }) {
         <div className="mx-auto max-w-3xl">
 
           {/* Location pill */}
-          <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-[#d0dcea] bg-white px-4 py-2 shadow-sm">
+          <a
+            href="https://www.google.com/maps/place/Marieston+Service+Centre/@51.5268571,-0.4022969,586m/data=!3m2!1e3!4b1!4m6!3m5!1s0x48766dd076f12283:0x9b182de007f87a84!8m2!3d51.5268571!4d-0.399722!16s%2Fg%2F11njnzzcdd"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mb-5 inline-flex items-center gap-2 rounded-full border border-[#d0dcea] bg-white px-4 py-2 shadow-sm transition hover:border-[#3f63ff]/40 hover:shadow-md"
+          >
             <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[#eef4ff]">
               <svg className="h-3.5 w-3.5 text-[#3f63ff]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
@@ -280,7 +282,7 @@ export function HomePageClient({ content }: { content: ContentMap }) {
             <span className="text-xs font-semibold text-slate-600">
               {site.addressLines.join(", ")}
             </span>
-          </div>
+          </a>
 
           {/* Heading */}
           <h1 className="text-3xl font-extrabold leading-[1.1] tracking-tight text-[#101a56] sm:text-5xl lg:text-6xl">
@@ -336,7 +338,7 @@ export function HomePageClient({ content }: { content: ContentMap }) {
                     <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[#eef4ff] text-[#3f63ff] transition-all group-hover:bg-[#3f63ff] group-hover:text-white">
                       {item.icon}
                     </span>
-                    <span className="font-semibold text-[#101a56] transition-colors group-hover:text-[#3f63ff]">
+                    <span className="font-semibold leading-snug text-[#101a56] transition-colors group-hover:text-[#3f63ff]">
                       {item.title}
                     </span>
                   </span>
@@ -505,7 +507,7 @@ export function HomePageClient({ content }: { content: ContentMap }) {
                 className="h-[420px] w-full border-0"
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
-                src="https://maps.google.com/maps?q=51.5268571,-0.399722&output=embed&z=18"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d586!2d-0.399722!3d51.5268571!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x48766dd076f12283%3A0x9b182de007f87a84!2sMarieston%20Service%20Centre!5e0!3m2!1sen!2suk!4v1715769600000!5m2!1sen!2suk"
               />
             </div>
           </div>
