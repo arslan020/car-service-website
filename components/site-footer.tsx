@@ -16,7 +16,7 @@ export function SiteFooter() {
           <div className="lg:col-span-1">
             <Link href="/" className="inline-block w-[160px]">
               <Image
-                src="/business-logo.png"
+                src="/main-logo-removebg.png"
                 alt={site.name}
                 width={160}
                 height={48}

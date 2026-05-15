@@ -95,7 +95,7 @@ export function SiteHeader() {
           onClick={() => setOpen(false)}
         >
           <Image
-            src="/business-logo.png"
+            src="/main-logo-removebg.png"
             alt={site.name}
             width={180}
             height={54}

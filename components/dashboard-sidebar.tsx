@@ -39,7 +39,7 @@ export function DashboardSidebar({ adminName }: { adminName: string }) {
       {/* ── Mobile top bar (full-width row on small screens; not a side column) ── */}
       <div className="flex w-full items-center justify-between border-b border-[#e0ebff] bg-white px-4 py-3 lg:hidden">
         <Link href="/dashboard">
-          <Image src="/business-logo.png" alt={site.name} width={120} height={36} className="h-auto w-28 object-contain" />
+          <Image src="/main-logo-removebg.png" alt={site.name} width={120} height={36} className="h-auto w-28 object-contain" />
         </Link>
         <button
           type="button"
@@ -76,7 +76,7 @@ export function DashboardSidebar({ adminName }: { adminName: string }) {
         {/* Logo */}
         <div className="flex h-16 shrink-0 items-center border-b border-[#e0ebff] px-5">
           <Link href="/dashboard" onClick={() => setOpen(false)}>
-            <Image src="/business-logo.png" alt={site.name} width={140} height={42} className="h-auto w-32 object-contain" />
+            <Image src="/main-logo-removebg.png" alt={site.name} width={140} height={42} className="h-auto w-32 object-contain" />
           </Link>
         </div>
 
