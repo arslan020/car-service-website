@@ -91,7 +91,7 @@ export function SiteHeader() {
       <div className="mx-auto flex max-w-7xl items-center justify-between gap-2 px-3 py-3 sm:gap-4 sm:px-4">
         <Link
           href="/"
-          className="block w-[132px] shrink-0 sm:w-[160px] lg:w-[180px]"
+          className="block w-[160px] shrink-0 sm:w-[190px] lg:w-[220px]"
           onClick={() => setOpen(false)}
         >
           <Image
