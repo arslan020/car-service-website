@@ -103,7 +103,7 @@ const HOME_FIELDS: FieldDef[] = [
   T("hiw_1_title", "Step 1 — title", "Choose Your Service", "How it works"),
   A("hiw_1_body", "Step 1 — text", "Select your service and a preferred time slot in just a few minutes.", "How it works"),
   T("hiw_2_title", "Step 2 — title", "We Confirm by Text or Call", "How it works"),
-  A("hiw_2_body", "Step 2 — text", "Confirmation within the hour — no chasing, no waiting on hold.", "How it works"),
+  A("hiw_2_body", "Step 2 — text", "No chasing, no waiting on hold. You'll receive an instant text and email confirmation straight to your details the moment your booking is placed.", "How it works"),
   T("hiw_3_title", "Step 3 — title", "Drop Off & Relax", "How it works"),
   A("hiw_3_body", "Step 3 — text", "Arrive at your time or use our collection service if arranged.", "How it works"),
   T("hiw_4_title", "Step 4 — title", "Drive Away Happy", "How it works"),
