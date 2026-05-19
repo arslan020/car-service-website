@@ -53,6 +53,7 @@ export default function OnlineBookingPage() {
     return () => {
       window.removeEventListener("resize", applyScale);
       ro.disconnect();
+    
     };
   }, []);
 
