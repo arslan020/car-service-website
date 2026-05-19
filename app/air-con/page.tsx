@@ -65,10 +65,10 @@ export default async function AirConPage() {
             </div>
             <div className="grid grid-cols-2 gap-4">
               {[
-                { stat: "Every 2 yrs", label: "recommended interval" },
-                { stat: "~1 hr", label: "typical service time" },
-                { stat: "R134a & R1234yf", label: "all refrigerant types" },
-                { stat: "All makes", label: "cars & light vans" },
+                { stat: "Every 2 yrs", label: "Recommended Interval" },
+                { stat: "~1 hr", label: "Typical Service Time" },
+                { stat: "R134a & R1234yf", label: "All Refrigerant Types" },
+                { stat: "All makes", label: "Cars & Light Vans" },
               ].map((s) => (
                 <div key={s.label} className="rounded-2xl border border-[#e8effa] bg-white p-5 text-center shadow-sm">
                   <p className="text-2xl font-extrabold text-[#3f63ff]">{s.stat}</p>
@@ -83,7 +83,7 @@ export default async function AirConPage() {
       <section className="px-4 py-12 sm:py-16">
         <div className="mx-auto max-w-5xl">
           <p className="text-xs font-bold uppercase tracking-widest text-[#3f63ff]">What&apos;s included</p>
-          <h2 className="mt-1 text-2xl font-extrabold text-[#101a56] sm:text-3xl">Full AC service</h2>
+          <h2 className="mt-1 text-2xl font-extrabold text-[#101a56] sm:text-3xl">Full AC Service</h2>
           <ul className="mt-6 grid gap-3 sm:grid-cols-2">
             {INCLUDES.map((item) => (
               <li key={item} className="flex items-start gap-3 text-sm text-slate-600">
@@ -100,8 +100,8 @@ export default async function AirConPage() {
       <section className="bg-[#f4f8ff] px-4 py-10 sm:py-16">
         <div className="mx-auto max-w-5xl">
           <div className="text-center">
-            <p className="text-xs font-bold uppercase tracking-widest text-[#3f63ff]">Warning signs</p>
-            <h2 className="mt-1 text-2xl font-extrabold text-[#101a56] sm:text-3xl">Does your AC need attention?</h2>
+            <p className="text-xs font-bold uppercase tracking-widest text-red-500">Warning signs</p>
+            <h2 className="mt-1 text-2xl font-extrabold text-[#101a56] sm:text-3xl">Does Your AC Need Attention?</h2>
           </div>
           <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {SIGNS.map((s) => (
@@ -125,7 +125,7 @@ export default async function AirConPage() {
         <div className="mx-auto max-w-3xl">
           <div className="text-center">
             <p className="text-xs font-bold uppercase tracking-widest text-[#3f63ff]">Common questions</p>
-            <h2 className="mt-1 text-2xl font-extrabold text-[#101a56] sm:text-3xl">Frequently asked questions</h2>
+            <h2 className="mt-1 text-2xl font-extrabold text-[#101a56] sm:text-3xl">Frequently Asked Questions</h2>
           </div>
           <div className="mt-8 space-y-4">
             {FAQS.map((faq) => (
@@ -142,7 +142,7 @@ export default async function AirConPage() {
         <div className="mx-auto max-w-5xl">
           <div className="overflow-hidden rounded-3xl bg-[#101a56] px-8 py-10 text-center shadow-xl sm:py-14">
             <p className="text-xs font-bold uppercase tracking-widest text-[#6b8fff]">Stay cool</p>
-            <h2 className="mt-2 text-2xl font-extrabold text-white sm:text-3xl">Book your AC regas today</h2>
+            <h2 className="mt-2 text-2xl font-extrabold text-white sm:text-3xl">Book Your AC Regas Today</h2>
             <p className="mx-auto mt-3 max-w-md text-sm leading-relaxed text-slate-300">{site.addressLines.join(", ")}.</p>
             <div className="mt-7 flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
               <Link href="/online-booking?service=ac" className="flex w-full items-center justify-center gap-2 rounded-xl bg-[#3f63ff] px-7 py-3.5 text-sm font-bold text-white shadow-md transition hover:bg-[#2f53ef] sm:w-auto">

@@ -49,7 +49,7 @@ export default function QuotePage() {
         <div className="mx-auto max-w-2xl">
           <p className="text-xs font-bold uppercase tracking-widest text-[#3f63ff]">Quote request</p>
           <h1 className="mt-2 text-3xl font-extrabold leading-tight text-[#101a56] sm:text-5xl">
-            Describe the problem
+            Describe the Problem
           </h1>
           <p className="mt-4 text-base leading-relaxed text-slate-500">
             For non-standard jobs — noises, warning lights, damage — send details and we&apos;ll come back with next steps.
@@ -71,7 +71,7 @@ export default function QuotePage() {
                     <path strokeLinecap="round" strokeLinejoin="round" d="m4.5 12.75 6 6 9-13.5" />
                   </svg>
                 </span>
-                <h3 className="text-xl font-extrabold text-[#101a56]">Request sent!</h3>
+                <h3 className="text-xl font-extrabold text-[#101a56]">Request Sent!</h3>
                 <p className="max-w-sm text-sm text-slate-500">
                   We&apos;ve received your quote request and will get back to you as soon as possible — usually within a few hours during opening times.
                 </p>

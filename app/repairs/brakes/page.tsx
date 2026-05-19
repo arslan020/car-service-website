@@ -67,13 +67,13 @@ export default async function BrakesPage() {
             </div>
             <div className="grid grid-cols-2 gap-4">
               {[
-                { stat: "Same day", label: "most repairs completed" },
-                { stat: "All makes", label: "cars & light vans" },
-                { stat: "Quality parts", label: "OEM & premium brands" },
-                { stat: "Road tested", label: "before every handback" },
+                { stat: "Only replace what's worn", label: "We show you the evidence first" },
+                { stat: "Brembo & TRW parts", label: "OEM-grade, not budget brands" },
+                { stat: "Brake test drive", label: "Road tested before you collect" },
+                { stat: "Free tyre check", label: "Depth & pressure checked every visit" },
               ].map((s) => (
-                <div key={s.label} className="rounded-2xl border border-[#e8effa] bg-white p-5 text-center shadow-sm">
-                  <p className="text-2xl font-extrabold text-[#3f63ff]">{s.stat}</p>
+                <div key={s.label} className="flex h-full flex-col justify-center rounded-2xl border border-[#e8effa] bg-white p-5 text-center shadow-sm">
+                  <p className="text-2xl font-extrabold capitalize text-[#3f63ff]">{s.stat}</p>
                   <p className="mt-1 text-xs text-slate-500">{s.label}</p>
                 </div>
               ))}
@@ -102,7 +102,7 @@ export default async function BrakesPage() {
       <section className="bg-[#f4f8ff] px-4 py-10 sm:py-16">
         <div className="mx-auto max-w-5xl">
           <div className="text-center">
-            <p className="text-xs font-bold uppercase tracking-widest text-[#3f63ff]">Warning signs</p>
+            <p className="text-xs font-bold uppercase tracking-widest text-red-500">Warning signs</p>
             <h2 className="mt-1 text-2xl font-extrabold text-[#101a56] sm:text-3xl">Signs your brakes need attention</h2>
           </div>
           <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">

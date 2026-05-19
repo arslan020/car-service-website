@@ -1,4 +1,4 @@
-﻿import Link from "next/link";
+import Link from "next/link";
 import { site, waUrl } from "@/lib/site-config";
 import { getPageContent, f } from "@/lib/page-content";
 
@@ -66,13 +66,13 @@ export default async function ClutchGearboxPage() {
             </div>
             <div className="grid grid-cols-2 gap-4">
               {[
-                { stat: "Diagnose first", label: "before any parts ordered" },
-                { stat: "Clear quote", label: "parts & labour upfront" },
-                { stat: "All makes", label: "manual & automatic" },
-                { stat: "Road tested", label: "after every repair" },
+                { stat: "Biting point check", label: "Clutch wear assessed before quoting" },
+                { stat: "Manual & auto gearboxes", label: "Including DSG & CVT" },
+                { stat: "Flywheel inspection", label: "Checked every clutch job, no extras" },
+                { stat: "Gear change road test", label: "Verified through all gears before return" },
               ].map((s) => (
-                <div key={s.label} className="rounded-2xl border border-[#e8effa] bg-white p-5 text-center shadow-sm">
-                  <p className="text-2xl font-extrabold text-[#3f63ff]">{s.stat}</p>
+                <div key={s.label} className="flex h-full flex-col justify-center rounded-2xl border border-[#e8effa] bg-white p-5 text-center shadow-sm">
+                  <p className="text-2xl font-extrabold capitalize text-[#3f63ff]">{s.stat}</p>
                   <p className="mt-1 text-xs text-slate-500">{s.label}</p>
                 </div>
               ))}
@@ -101,7 +101,7 @@ export default async function ClutchGearboxPage() {
       <section className="bg-[#f4f8ff] px-4 py-10 sm:py-16">
         <div className="mx-auto max-w-5xl">
           <div className="text-center">
-            <p className="text-xs font-bold uppercase tracking-widest text-[#3f63ff]">Warning signs</p>
+            <p className="text-xs font-bold uppercase tracking-widest text-red-500">Warning signs</p>
             <h2 className="mt-1 text-2xl font-extrabold text-[#101a56] sm:text-3xl">Signs your clutch or gearbox needs work</h2>
           </div>
           <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
@@ -144,7 +144,7 @@ export default async function ClutchGearboxPage() {
           <div className="overflow-hidden rounded-3xl bg-[#101a56] px-8 py-10 text-center shadow-xl sm:py-14">
             <p className="text-xs font-bold uppercase tracking-widest text-[#6b8fff]">Get it sorted</p>
             <h2 className="mt-2 text-2xl font-extrabold text-white sm:text-3xl">Need a clutch or gearbox quote?</h2>
-            <p className="mx-auto mt-3 max-w-md text-sm leading-relaxed text-slate-300">Tell us your reg and symptoms — we&apos;ll come back with a clear price. {site.addressLines.join(", ")}.</p>
+            <p className="mx-auto mt-3 max-w-md text-sm leading-relaxed text-slate-300">Tell us your registration and symptoms — we&apos;ll come back with a clear price. {site.addressLines.join(", ")}.</p>
             <div className="mt-7 flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
               <a href={`tel:${site.phoneTel}`} className="flex w-full items-center justify-center gap-2 rounded-xl border-2 border-white/20 px-7 py-3.5 text-sm font-bold text-white transition hover:bg-white/10 sm:w-auto">
                 Call {site.phoneDisplay}

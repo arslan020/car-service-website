@@ -102,7 +102,7 @@ export default async function DiagnosticsPage() {
       <section className="bg-[#f4f8ff] px-4 py-10 sm:py-16">
         <div className="mx-auto max-w-5xl">
           <div className="text-center">
-            <p className="text-xs font-bold uppercase tracking-widest text-[#3f63ff]">{c.signs_kicker}</p>
+            <p className="text-xs font-bold uppercase tracking-widest text-red-500">{c.signs_kicker}</p>
             <h2 className="mt-1 text-2xl font-extrabold text-[#101a56] sm:text-3xl">{c.signs_title}</h2>
           </div>
           <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
@@ -127,7 +127,7 @@ export default async function DiagnosticsPage() {
         <div className="mx-auto max-w-3xl">
           <div className="text-center">
             <p className="text-xs font-bold uppercase tracking-widest text-[#3f63ff]">Common questions</p>
-            <h2 className="mt-1 text-2xl font-extrabold text-[#101a56] sm:text-3xl">Frequently asked questions</h2>
+            <h2 className="mt-1 text-2xl font-extrabold text-[#101a56] sm:text-3xl">Frequently Asked Questions</h2>
           </div>
           <div className="mt-8 space-y-4">
             {FAQS.map((faq) => (

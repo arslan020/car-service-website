@@ -41,7 +41,7 @@ export default function LoginPage() {
 
         {/* Card */}
         <div className="rounded-2xl border border-[#e0ebff] bg-white p-8 shadow-lg shadow-[#3f63ff]/5">
-          <h1 className="text-xl font-extrabold text-[#101a56]">Admin login</h1>
+          <h1 className="text-xl font-extrabold text-[#101a56]">Admin Login</h1>
           <p className="mt-1 text-sm text-slate-500">Sign in to your dashboard</p>
 
           {error && (

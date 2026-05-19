@@ -1,4 +1,4 @@
-﻿import Link from "next/link";
+import Link from "next/link";
 import { site, waUrl } from "@/lib/site-config";
 import { getPageContent, f } from "@/lib/page-content";
 
@@ -67,13 +67,13 @@ export default async function EngineCoolingPage() {
             </div>
             <div className="grid grid-cols-2 gap-4">
               {[
-                { stat: "Diagnose first", label: "before any parts" },
-                { stat: "Clear quote", label: "upfront pricing" },
-                { stat: "All makes", label: "petrol & diesel" },
-                { stat: "Road tested", label: "after every repair" },
+                { stat: "Cooling pressure test", label: "Leak pinpointed before parts ordered" },
+                { stat: "Head gasket check", label: "Combustion gas test included" },
+                { stat: "Thermostat & water pump", label: "Common culprits always checked" },
+                { stat: "Temp monitored test drive", label: "Live temp gauge checked on road" },
               ].map((s) => (
-                <div key={s.label} className="rounded-2xl border border-[#e8effa] bg-white p-5 text-center shadow-sm">
-                  <p className="text-2xl font-extrabold text-[#3f63ff]">{s.stat}</p>
+                <div key={s.label} className="flex h-full flex-col justify-center rounded-2xl border border-[#e8effa] bg-white p-5 text-center shadow-sm">
+                  <p className="text-2xl font-extrabold capitalize text-[#3f63ff]">{s.stat}</p>
                   <p className="mt-1 text-xs text-slate-500">{s.label}</p>
                 </div>
               ))}
@@ -102,7 +102,7 @@ export default async function EngineCoolingPage() {
       <section className="bg-[#f4f8ff] px-4 py-10 sm:py-16">
         <div className="mx-auto max-w-5xl">
           <div className="text-center">
-            <p className="text-xs font-bold uppercase tracking-widest text-[#3f63ff]">Warning signs</p>
+            <p className="text-xs font-bold uppercase tracking-widest text-red-500">Warning signs</p>
             <h2 className="mt-1 text-2xl font-extrabold text-[#101a56] sm:text-3xl">Signs your engine needs attention</h2>
           </div>
           <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">

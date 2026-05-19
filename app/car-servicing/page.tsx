@@ -15,7 +15,7 @@ const INTERIM_FALLBACK = [
 ] as const;
 
 const FULL_FALLBACK = [
-  "Everything in Interim",
+  "Everything in Interim Service",
   "Air filter replacement",
   "Pollen / cabin filter check",
   "Fuel filter inspection",

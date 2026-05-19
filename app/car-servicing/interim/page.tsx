@@ -55,13 +55,13 @@ export default async function InterimServicePage() {
             </div>
             <div className="grid grid-cols-2 gap-4">
               {[
-                { stat: "~1–1.5 hrs", label: "typical duration" },
-                { stat: "Same day", label: "drop-off & collect" },
-                { stat: "All makes", label: "petrol, diesel & hybrid" },
-                { stat: "Warranty safe", label: "block exemption compliant" },
+                { stat: "~1–1.5 hrs", label: "Typical duration" },
+                { stat: "Same day", label: "Drop-off & collect" },
+                { stat: "All makes", label: "Petrol, diesel & hybrid" },
+                { stat: "Warranty safe", label: "Block exemption compliant" },
               ].map((s) => (
-                <div key={s.label} className="rounded-2xl border border-[#e8effa] bg-white p-5 text-center shadow-sm">
-                  <p className="text-2xl font-extrabold text-[#3f63ff]">{s.stat}</p>
+                <div key={s.label} className="flex h-full flex-col justify-center rounded-2xl border border-[#e8effa] bg-white p-5 text-center shadow-sm">
+                  <p className="text-2xl font-extrabold capitalize text-[#3f63ff]">{s.stat}</p>
                   <p className="mt-1 text-xs text-slate-500">{s.label}</p>
                 </div>
               ))}

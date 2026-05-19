@@ -58,13 +58,13 @@ export default async function MajorServicePage() {
             </div>
             <div className="grid grid-cols-2 gap-4">
               {[
-                { stat: "~3–4 hrs", label: "typical duration" },
-                { stat: "Road test", label: "included with report" },
-                { stat: "Warranty safe", label: "block exemption compliant" },
-                { stat: "Service stamp", label: "book & digital history" },
+                { stat: "~3–4 hrs", label: "Typical duration" },
+                { stat: "Road test", label: "Included with report" },
+                { stat: "Warranty safe", label: "Block exemption compliant" },
+                { stat: "Service stamp", label: "Book & digital history" },
               ].map((s) => (
-                <div key={s.label} className="rounded-2xl border border-[#e8effa] bg-white p-5 text-center shadow-sm">
-                  <p className="text-2xl font-extrabold text-[#3f63ff]">{s.stat}</p>
+                <div key={s.label} className="flex h-full flex-col justify-center rounded-2xl border border-[#e8effa] bg-white p-5 text-center shadow-sm">
+                  <p className="text-2xl font-extrabold capitalize text-[#3f63ff]">{s.stat}</p>
                   <p className="mt-1 text-xs text-slate-500">{s.label}</p>
                 </div>
               ))}

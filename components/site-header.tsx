@@ -126,7 +126,7 @@ export function SiteHeader() {
             <div className="absolute left-0 top-full h-2 w-full" />
             <div className="pointer-events-none absolute left-0 top-[calc(100%+8px)] w-[520px] opacity-0 transition-all duration-150 group-hover/nav:pointer-events-auto group-hover/nav:opacity-100">
               <div className="rounded-2xl border border-[#e8effa] bg-white p-4 shadow-[0_16px_48px_rgba(16,26,86,0.12)]">
-                <p className="mb-3 px-1 text-[10px] font-bold uppercase tracking-widest text-slate-400">Our services</p>
+                <p className="mb-3 px-1 text-[10px] font-bold uppercase tracking-widest text-slate-400">Our Services</p>
                 <div className="grid grid-cols-2 gap-1">
                   {SERVICES_MENU.map((item) => (
                     <Link
@@ -160,13 +160,13 @@ export function SiteHeader() {
               href="/car-servicing"
               className="flex items-center gap-1 whitespace-nowrap rounded-md px-3 py-2 text-sm font-medium text-slate-600 transition hover:bg-[#eef4ff] hover:text-[#101a56]"
             >
-              Car servicing
+              Car Servicing
               <ChevronDown />
             </Link>
             <div className="absolute left-0 top-full h-2 w-full" />
             <div className="pointer-events-none absolute left-0 top-[calc(100%+8px)] w-[300px] opacity-0 transition-all duration-150 group-hover/nav:pointer-events-auto group-hover/nav:opacity-100">
               <div className="rounded-2xl border border-[#e8effa] bg-white p-4 shadow-[0_16px_48px_rgba(16,26,86,0.12)]">
-                <p className="mb-3 px-1 text-[10px] font-bold uppercase tracking-widest text-slate-400">Service levels</p>
+                <p className="mb-3 px-1 text-[10px] font-bold uppercase tracking-widest text-slate-400">Service Levels</p>
                 <div className="flex flex-col gap-0.5">
                   {SERVICING_MENU.map((item) => (
                     <Link
@@ -209,7 +209,7 @@ export function SiteHeader() {
             <div className="absolute left-0 top-full h-2 w-full" />
             <div className="pointer-events-none absolute left-0 top-[calc(100%+8px)] w-[340px] opacity-0 transition-all duration-150 group-hover/nav:pointer-events-auto group-hover/nav:opacity-100">
               <div className="rounded-2xl border border-[#e8effa] bg-white p-4 shadow-[0_16px_48px_rgba(16,26,86,0.12)]">
-                <p className="mb-3 px-1 text-[10px] font-bold uppercase tracking-widest text-slate-400">Repair categories</p>
+                <p className="mb-3 px-1 text-[10px] font-bold uppercase tracking-widest text-slate-400">Repair Categories</p>
                 <div className="flex flex-col gap-0.5">
                   {REPAIRS_MENU.map((item) => (
                     <Link
@@ -307,7 +307,7 @@ export function SiteHeader() {
 
             {/* Our services card */}
             <div>
-              <p className="mb-2 px-1 text-[11px] font-bold uppercase tracking-widest text-slate-400">Our services</p>
+              <p className="mb-2 px-1 text-[11px] font-bold uppercase tracking-widest text-slate-400">Our Services</p>
               <div className="overflow-hidden rounded-2xl border border-[#edf2f8] bg-white shadow-sm divide-y divide-[#f0f4fa]">
 
                 {/* MOT */}

@@ -3,7 +3,7 @@ import { PageIntro } from "@/components/page-intro";
 
 export default function ReviewsPage() {
   return (
-    <PageIntro eyebrow="Reviews" title="What customers say">
+    <PageIntro eyebrow="Reviews" title="What Customers Say">
       <p>
         Embed your Google reviews widget here, or paste a few testimonials with permission. Star summary and
         before/after photos (where relevant) lift conversion on booking pages.
