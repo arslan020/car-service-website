@@ -680,6 +680,15 @@ Pre-purchase inspection & health check`,
     ],
   },
   {
+    slug: "ev-battery",
+    label: "EV Battery Health",
+    icon: "⚡",
+    fields: [
+      { key: "hero_title", label: "Page Title", type: "text", default: "EV Battery Health Check", section: "Hero" },
+      { key: "hero_subtitle", label: "Subtitle", type: "textarea", default: "Professional battery diagnostics for electric and hybrid vehicles. Get a full State-of-Health report, understand your true range, and catch cell degradation before it becomes a costly repair.", section: "Hero" },
+    ],
+  },
+  {
     slug: "battery-check",
     label: "Battery Check",
     icon: "🔋",
