@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import Link from "next/link";
 import { useState, useEffect, useMemo } from "react";
@@ -271,10 +271,10 @@ export function HomePageClient({ content }: { content: ContentMap }) {
             href="https://www.google.com/maps/place/Marieston+Service+Centre/@51.5268571,-0.4022969,586m/data=!3m2!1e3!4b1!4m6!3m5!1s0x48766dd076f12283:0x9b182de007f87a84!8m2!3d51.5268571!4d-0.399722!16s%2Fg%2F11njnzzcdd"
             target="_blank"
             rel="noopener noreferrer"
-            className="mb-5 inline-flex items-center gap-2 rounded-full border border-[#d0dcea] bg-white px-4 py-2 shadow-sm transition hover:border-[#3f63ff]/40 hover:shadow-md"
+            className="mb-5 inline-flex items-center gap-2 rounded-full border border-[#d0dcea] bg-white px-4 py-2 shadow-sm transition hover:border-[#0F63FF]/40 hover:shadow-md"
           >
             <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[#eef4ff]">
-              <svg className="h-3.5 w-3.5 text-[#3f63ff]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+              <svg className="h-3.5 w-3.5 text-[#0F63FF]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
                 <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z" />
               </svg>
@@ -285,10 +285,10 @@ export function HomePageClient({ content }: { content: ContentMap }) {
           </a>
 
           {/* Heading */}
-          <h1 className="text-3xl font-extrabold leading-[1.1] tracking-tight text-[#101a56] sm:text-5xl lg:text-6xl">
+          <h1 className="text-3xl font-extrabold leading-[1.1] tracking-tight text-[#020F3D] sm:text-5xl lg:text-6xl">
             {content.hero_title_line1}
             <br />
-            <span className="text-[#3f63ff]">{content.hero_title_accent}</span>
+            <span className="text-[#0F63FF]">{content.hero_title_accent}</span>
           </h1>
 
           {/* Subtitle */}
@@ -322,8 +322,8 @@ export function HomePageClient({ content }: { content: ContentMap }) {
       <section className="px-4 py-12 sm:py-16">
         <div className="mx-auto max-w-5xl">
           <div className="text-center">
-            <p className="text-xs font-bold uppercase tracking-widest text-[#3f63ff]">{content.why_kicker}</p>
-            <h2 className="mt-1 text-2xl font-extrabold text-[#101a56] sm:text-3xl">{content.why_title}</h2>
+            <p className="text-xs font-bold uppercase tracking-widest text-[#0F63FF]">{content.why_kicker}</p>
+            <h2 className="mt-1 text-2xl font-extrabold text-[#020F3D] sm:text-3xl">{content.why_title}</h2>
             <p className="mx-auto mt-3 max-w-2xl text-sm leading-relaxed text-slate-500 sm:text-base">{content.why_intro}</p>
           </div>
 
@@ -331,14 +331,14 @@ export function HomePageClient({ content }: { content: ContentMap }) {
             {whyCards.map((item) => (
               <div
                 key={item.title}
-                className="group flex flex-col rounded-2xl border border-[#e8effa] bg-white p-5 shadow-sm transition-all hover:-translate-y-0.5 hover:border-[#3f63ff]/30 hover:shadow-[0_6px_24px_rgba(63,99,255,0.1)]"
+                className="group flex flex-col rounded-2xl border border-[#e8effa] bg-white p-5 shadow-sm transition-all hover:-translate-y-0.5 hover:border-[#0F63FF]/30 hover:shadow-[0_6px_24px_rgba(15,99,255,0.1)]"
               >
                 <span className="flex flex-1 flex-col gap-3">
                   <span className="flex items-center gap-3">
-                    <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[#eef4ff] text-[#3f63ff] transition-all group-hover:bg-[#3f63ff] group-hover:text-white">
+                    <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[#eef4ff] text-[#0F63FF] transition-all group-hover:bg-[#0F63FF] group-hover:text-white">
                       {item.icon}
                     </span>
-                    <span className="font-semibold leading-snug text-[#101a56] transition-colors group-hover:text-[#3f63ff]">
+                    <span className="font-semibold leading-snug text-[#020F3D] transition-colors group-hover:text-[#0F63FF]">
                       {item.title}
                     </span>
                   </span>
@@ -355,8 +355,8 @@ export function HomePageClient({ content }: { content: ContentMap }) {
       <section className="px-4 py-12 sm:py-16">
         <div className="mx-auto max-w-5xl">
           <div className="text-center">
-            <p className="text-xs font-bold uppercase tracking-widest text-[#3f63ff]">{content.svc_block_kicker}</p>
-            <h2 className="mt-1 text-2xl font-extrabold text-[#101a56] sm:text-3xl">{content.svc_block_title}</h2>
+            <p className="text-xs font-bold uppercase tracking-widest text-[#0F63FF]">{content.svc_block_kicker}</p>
+            <h2 className="mt-1 text-2xl font-extrabold text-[#020F3D] sm:text-3xl">{content.svc_block_title}</h2>
           </div>
 
           <div className="mt-6 grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
@@ -368,14 +368,14 @@ export function HomePageClient({ content }: { content: ContentMap }) {
               <Link
                 key={svc.href}
                 href={svc.href}
-                className="group flex flex-col rounded-2xl border border-[#e8effa] bg-white p-5 shadow-sm transition-all hover:-translate-y-0.5 hover:border-[#3f63ff]/30 hover:shadow-[0_6px_24px_rgba(63,99,255,0.1)]"
+                className="group flex flex-col rounded-2xl border border-[#e8effa] bg-white p-5 shadow-sm transition-all hover:-translate-y-0.5 hover:border-[#0F63FF]/30 hover:shadow-[0_6px_24px_rgba(15,99,255,0.1)]"
               >
                 <span className="flex flex-1 flex-col gap-3">
                   <span className="flex items-center gap-3">
-                    <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[#eef4ff] text-[#3f63ff] transition-all group-hover:bg-[#3f63ff] group-hover:text-white">
+                    <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[#eef4ff] text-[#0F63FF] transition-all group-hover:bg-[#0F63FF] group-hover:text-white">
                       {svc.icon}
                     </span>
-                    <span className="font-semibold text-[#101a56] transition-colors group-hover:text-[#3f63ff]">
+                    <span className="font-semibold text-[#020F3D] transition-colors group-hover:text-[#0F63FF]">
                       {title}
                     </span>
                   </span>
@@ -385,7 +385,7 @@ export function HomePageClient({ content }: { content: ContentMap }) {
                 </span>
                 <span className="mt-4 flex items-center justify-between border-t border-[#eef4ff] pt-4">
                   <span className="text-xs font-medium text-slate-400">{content.svc_block_from_label}</span>
-                  <span className="text-xl font-extrabold text-[#101a56]">
+                  <span className="text-xl font-extrabold text-[#020F3D]">
                     {!price || price === "£???" ? "£???" : price}
                   </span>
                 </span>
@@ -397,7 +397,7 @@ export function HomePageClient({ content }: { content: ContentMap }) {
           <div className="mt-10 text-center">
             <Link
               href="/services"
-              className="inline-flex items-center gap-1.5 rounded-full bg-[#eef4ff] px-6 py-2.5 text-sm font-bold text-[#3f63ff] transition hover:bg-[#3f63ff] hover:text-white"
+              className="inline-flex items-center gap-1.5 rounded-full bg-[#eef4ff] px-6 py-2.5 text-sm font-bold text-[#0F63FF] transition hover:bg-[#0F63FF] hover:text-white"
             >
               {content.svc_block_view_all}
               <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
@@ -413,7 +413,7 @@ export function HomePageClient({ content }: { content: ContentMap }) {
       ════════════════════════════════ */}
       <section className="overflow-hidden border-y border-[#e0ebff] bg-white py-12">
         <div className="mx-auto max-w-5xl px-4 text-center">
-          <h2 className="mt-1 mb-8 text-2xl font-extrabold text-[#101a56] sm:text-3xl">{content.brands_title}</h2>
+          <h2 className="mt-1 mb-8 text-2xl font-extrabold text-[#020F3D] sm:text-3xl">{content.brands_title}</h2>
         </div>
 
         {/* Marquee container */}
@@ -458,8 +458,8 @@ export function HomePageClient({ content }: { content: ContentMap }) {
       <section className="bg-[#f4f8ff] px-4 py-10 sm:py-16">
         <div className="mx-auto max-w-5xl">
           <div className="text-center">
-            <p className="text-xs font-bold uppercase tracking-widest text-[#3f63ff]">{content.hiw_kicker}</p>
-            <h2 className="mt-1 text-2xl font-extrabold text-[#101a56] sm:text-3xl">{content.hiw_title}</h2>
+            <p className="text-xs font-bold uppercase tracking-widest text-[#0F63FF]">{content.hiw_kicker}</p>
+            <h2 className="mt-1 text-2xl font-extrabold text-[#020F3D] sm:text-3xl">{content.hiw_title}</h2>
           </div>
 
           <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
@@ -469,10 +469,10 @@ export function HomePageClient({ content }: { content: ContentMap }) {
                 className="flex flex-col gap-3 rounded-2xl border border-[#e0ebff] bg-white p-5 shadow-sm"
               >
                 <div className="flex items-center gap-3">
-                  <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-[#3f63ff] to-[#6b8fff] text-sm font-extrabold text-white shadow-md shadow-[#3f63ff]/25">
+                  <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-[#0F63FF] to-[#4DA3FF] text-sm font-extrabold text-white shadow-md shadow-[#0F63FF]/25">
                     {step.n}
                   </span>
-                  <h3 className="font-bold text-[#101a56]">{step.title}</h3>
+                  <h3 className="font-bold text-[#020F3D]">{step.title}</h3>
                 </div>
                 <p className="text-sm leading-relaxed text-slate-500">{step.body}</p>
               </div>
@@ -489,9 +489,9 @@ export function HomePageClient({ content }: { content: ContentMap }) {
 
           {/* Section heading + contact info — all centered */}
           <div className="px-6 pb-8 text-center sm:px-12">
-            <h2 className="text-3xl font-extrabold text-[#101a56]">{content.find_title}</h2>
+            <h2 className="text-3xl font-extrabold text-[#020F3D]">{content.find_title}</h2>
             <p className="mt-2 flex items-center justify-center gap-2 text-sm text-slate-500">
-              <svg className="h-4 w-4 shrink-0 text-[#3f63ff]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+              <svg className="h-4 w-4 shrink-0 text-[#0F63FF]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
                 <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z" />
               </svg>
@@ -516,11 +516,11 @@ export function HomePageClient({ content }: { content: ContentMap }) {
           <div className="bg-white border-b border-[#e0ebff]">
             <div className="px-6 py-5 sm:px-12">
               <div className="mb-3 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-                <p className="text-xs font-bold uppercase tracking-widest text-[#3f63ff]">{content.hours_kicker}</p>
+                <p className="text-xs font-bold uppercase tracking-widest text-[#0F63FF]">{content.hours_kicker}</p>
                 {isOpen !== null && (
                   <div className="inline-flex items-center gap-2 rounded-full border border-[#e0ebff] bg-[#f4f8ff] px-4 py-1.5">
                     <span className={`h-2.5 w-2.5 animate-pulse rounded-full ${isOpen ? "bg-emerald-500" : "bg-red-400"}`} />
-                    <span className="text-sm font-semibold text-[#101a56]">
+                    <span className="text-sm font-semibold text-[#020F3D]">
                       {isOpen ? `Open now · closes ${closingTime}` : "Currently closed"}
                     </span>
                   </div>
@@ -534,14 +534,14 @@ export function HomePageClient({ content }: { content: ContentMap }) {
                     <div
                       key={d.label}
                       className={`flex flex-col items-center rounded-xl border px-2 py-3 text-center transition-all ${isToday
-                          ? "border-[#101a56] bg-[#101a56] text-white shadow-md"
+                          ? "border-[#020F3D] bg-[#020F3D] text-white shadow-md"
                           : isClosed
                             ? "border-red-100 bg-red-50 text-red-500"
-                            : "border-[#e0ebff] bg-white text-[#101a56]"
+                            : "border-[#e0ebff] bg-white text-[#020F3D]"
                         }`}
                     >
                       <span className={`text-xs font-bold ${isToday ? "text-white" : isClosed ? "text-red-400" : "text-slate-500"}`}>{d.label}</span>
-                      <span className={`mt-1 text-[11px] font-semibold ${isToday ? "text-blue-200" : isClosed ? "text-red-400" : "text-[#3f63ff]"}`}>{d.hours}</span>
+                      <span className={`mt-1 text-[11px] font-semibold ${isToday ? "text-blue-200" : isClosed ? "text-red-400" : "text-[#0F63FF]"}`}>{d.hours}</span>
                     </div>
                   );
                 })}

@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useState, useTransition } from "react";
 import Image from "next/image";
@@ -40,8 +40,8 @@ export default function LoginPage() {
         </div>
 
         {/* Card */}
-        <div className="rounded-2xl border border-[#e0ebff] bg-white p-8 shadow-lg shadow-[#3f63ff]/5">
-          <h1 className="text-xl font-extrabold text-[#101a56]">Admin Login</h1>
+        <div className="rounded-2xl border border-[#e0ebff] bg-white p-8 shadow-lg shadow-[#0F63FF]/5">
+          <h1 className="text-xl font-extrabold text-[#020F3D]">Admin Login</h1>
           <p className="mt-1 text-sm text-slate-500">Sign in to your dashboard</p>
 
           {error && (
@@ -62,7 +62,7 @@ export default function LoginPage() {
                 required
                 autoComplete="email"
                 placeholder="you@example.com"
-                className="w-full rounded-xl border border-[#d0dcea] bg-white px-4 py-3 text-sm text-slate-900 placeholder-slate-400 outline-none focus:border-[#3f63ff] focus:ring-2 focus:ring-[#3f63ff]/15"
+                className="w-full rounded-xl border border-[#d0dcea] bg-white px-4 py-3 text-sm text-slate-900 placeholder-slate-400 outline-none focus:border-[#0F63FF] focus:ring-2 focus:ring-[#0F63FF]/15"
               />
             </div>
 
@@ -77,14 +77,14 @@ export default function LoginPage() {
                 required
                 autoComplete="current-password"
                 placeholder="••••••••"
-                className="w-full rounded-xl border border-[#d0dcea] bg-white px-4 py-3 text-sm text-slate-900 placeholder-slate-400 outline-none focus:border-[#3f63ff] focus:ring-2 focus:ring-[#3f63ff]/15"
+                className="w-full rounded-xl border border-[#d0dcea] bg-white px-4 py-3 text-sm text-slate-900 placeholder-slate-400 outline-none focus:border-[#0F63FF] focus:ring-2 focus:ring-[#0F63FF]/15"
               />
             </div>
 
             <button
               type="submit"
               disabled={isPending}
-              className="mt-2 w-full rounded-xl bg-[#101a56] py-3.5 text-sm font-bold text-white shadow-md transition hover:bg-[#16236e] disabled:opacity-60"
+              className="mt-2 w-full rounded-xl bg-[#020F3D] py-3.5 text-sm font-bold text-white shadow-md transition hover:bg-[#061744] disabled:opacity-60"
             >
               {isPending ? "Signing in…" : "Sign in"}
             </button>

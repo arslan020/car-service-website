@@ -1,4 +1,4 @@
-import Link from "next/link";
+﻿import Link from "next/link";
 import { site, waUrl } from "@/lib/site-config";
 import { getPageContent, f } from "@/lib/page-content";
 
@@ -38,15 +38,15 @@ export default async function MajorServicePage() {
         <div className="mx-auto max-w-5xl">
           <div className="grid items-center gap-10 lg:grid-cols-2">
             <div>
-              <p className="text-xs font-bold uppercase tracking-widest text-[#3f63ff]">Car Servicing</p>
-              <h1 className="mt-2 text-3xl font-extrabold leading-tight text-[#101a56] sm:text-5xl">{title}</h1>
+              <p className="text-xs font-bold uppercase tracking-widest text-[#0F63FF]">Car Servicing</p>
+              <h1 className="mt-2 text-3xl font-extrabold leading-tight text-[#020F3D] sm:text-5xl">{title}</h1>
               <p className="mt-4 text-base leading-relaxed text-slate-500 sm:text-lg">{subtitle}</p>
               <div className="mt-3 inline-flex items-center gap-2 rounded-full border border-[#e0ebff] bg-white px-4 py-2 shadow-sm">
-                <svg className="h-4 w-4 text-[#3f63ff]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><circle cx="12" cy="12" r="9"/><path strokeLinecap="round" d="M12 7v5l3 3"/></svg>
-                <span className="text-sm text-slate-500">Every <strong className="text-[#101a56]">2 years</strong> or <strong className="text-[#101a56]">24,000 miles</strong></span>
+                <svg className="h-4 w-4 text-[#0F63FF]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><circle cx="12" cy="12" r="9"/><path strokeLinecap="round" d="M12 7v5l3 3"/></svg>
+                <span className="text-sm text-slate-500">Every <strong className="text-[#020F3D]">2 years</strong> or <strong className="text-[#020F3D]">24,000 miles</strong></span>
               </div>
               <div className="mt-7 flex flex-col gap-3 sm:flex-row">
-                <Link href="/online-booking?service=major" className="flex items-center justify-center gap-2 rounded-xl bg-[#101a56] px-6 py-3.5 text-sm font-bold text-white shadow-md transition hover:bg-[#16236e]">
+                <Link href="/online-booking?service=major" className="flex items-center justify-center gap-2 rounded-xl bg-[#020F3D] px-6 py-3.5 text-sm font-bold text-white shadow-md transition hover:bg-[#061744]">
                   Book Major Service
                   <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}><path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" /></svg>
                 </Link>
@@ -64,7 +64,7 @@ export default async function MajorServicePage() {
                 { stat: "Service stamp", label: "Book & digital history" },
               ].map((s) => (
                 <div key={s.label} className="flex h-full flex-col justify-center rounded-2xl border border-[#e8effa] bg-white p-5 text-center shadow-sm">
-                  <p className="text-2xl font-extrabold capitalize text-[#3f63ff]">{s.stat}</p>
+                  <p className="text-2xl font-extrabold capitalize text-[#0F63FF]">{s.stat}</p>
                   <p className="mt-1 text-xs text-slate-500">{s.label}</p>
                 </div>
               ))}
@@ -77,12 +77,12 @@ export default async function MajorServicePage() {
         <div className="mx-auto max-w-5xl">
           <div className="grid gap-10 lg:grid-cols-2">
             <div>
-              <p className="text-xs font-bold uppercase tracking-widest text-[#3f63ff]">What&apos;s included</p>
-              <h2 className="mt-1 text-2xl font-extrabold text-[#101a56] sm:text-3xl">Major Service checklist</h2>
+              <p className="text-xs font-bold uppercase tracking-widest text-[#0F63FF]">What&apos;s included</p>
+              <h2 className="mt-1 text-2xl font-extrabold text-[#020F3D] sm:text-3xl">Major Service checklist</h2>
               <ul className="mt-6 space-y-3">
                 {INCLUDES.map((item) => (
                   <li key={item} className="flex items-start gap-3 text-sm text-slate-600">
-                    <svg className="mt-0.5 h-5 w-5 shrink-0 text-[#3f63ff]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                    <svg className="mt-0.5 h-5 w-5 shrink-0 text-[#0F63FF]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
                       <path strokeLinecap="round" strokeLinejoin="round" d="m4.5 12.75 6 6 9-13.5" />
                     </svg>
                     {item}
@@ -92,12 +92,12 @@ export default async function MajorServicePage() {
             </div>
             <div>
               <div className="rounded-2xl border border-[#e0ebff] bg-[#f4f8ff] p-5">
-                <p className="text-xs font-bold uppercase tracking-widest text-[#3f63ff]">Combine & save</p>
+                <p className="text-xs font-bold uppercase tracking-widest text-[#0F63FF]">Combine & save</p>
                 <p className="mt-2 text-sm text-slate-600 leading-relaxed">
-                  Booking a Major Service alongside your annual <strong className="text-[#101a56]">MOT</strong> means
+                  Booking a Major Service alongside your annual <strong className="text-[#020F3D]">MOT</strong> means
                   one drop-off, one collection, and any MOT advisories can be quoted and fixed the same day.
                 </p>
-                <Link href="/mot" className="mt-3 inline-flex items-center gap-1 text-sm font-semibold text-[#3f63ff] hover:text-[#101a56]">
+                <Link href="/mot" className="mt-3 inline-flex items-center gap-1 text-sm font-semibold text-[#0F63FF] hover:text-[#020F3D]">
                   Learn about our MOT
                   <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}><path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" /></svg>
                 </Link>
@@ -110,13 +110,13 @@ export default async function MajorServicePage() {
       <section className="bg-[#f4f8ff] px-4 py-10 sm:py-16">
         <div className="mx-auto max-w-3xl">
           <div className="text-center">
-            <p className="text-xs font-bold uppercase tracking-widest text-[#3f63ff]">FAQs</p>
-            <h2 className="mt-1 text-2xl font-extrabold text-[#101a56] sm:text-3xl">Common questions</h2>
+            <p className="text-xs font-bold uppercase tracking-widest text-[#0F63FF]">FAQs</p>
+            <h2 className="mt-1 text-2xl font-extrabold text-[#020F3D] sm:text-3xl">Common questions</h2>
           </div>
           <div className="mt-8 space-y-4">
             {FAQS.map((faq) => (
               <div key={faq.q} className="rounded-2xl border border-[#e8effa] bg-white p-5 shadow-sm">
-                <h3 className="font-bold text-[#101a56]">{faq.q}</h3>
+                <h3 className="font-bold text-[#020F3D]">{faq.q}</h3>
                 <p className="mt-2 text-sm leading-relaxed text-slate-500">{faq.a}</p>
               </div>
             ))}
@@ -126,14 +126,14 @@ export default async function MajorServicePage() {
 
       <section className="px-4 py-12 sm:py-16">
         <div className="mx-auto max-w-5xl">
-          <div className="overflow-hidden rounded-3xl bg-[#101a56] px-8 py-10 text-center shadow-xl sm:py-14">
-            <p className="text-xs font-bold uppercase tracking-widest text-[#6b8fff]">Book today</p>
+          <div className="overflow-hidden rounded-3xl bg-[#020F3D] px-8 py-10 text-center shadow-xl sm:py-14">
+            <p className="text-xs font-bold uppercase tracking-widest text-[#4DA3FF]">Book today</p>
             <h2 className="mt-2 text-2xl font-extrabold text-white sm:text-3xl">Book your Major Service</h2>
             <p className="mx-auto mt-3 max-w-md text-sm leading-relaxed text-slate-300">
               Full manufacturer-schedule service. We text you when ready. {site.addressLines.join(", ")}.
             </p>
             <div className="mt-7 flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
-              <Link href="/online-booking?service=major" className="flex w-full items-center justify-center gap-2 rounded-xl bg-[#3f63ff] px-7 py-3.5 text-sm font-bold text-white shadow-md transition hover:bg-[#2f53ef] sm:w-auto">
+              <Link href="/online-booking?service=major" className="flex w-full items-center justify-center gap-2 rounded-xl bg-[#0F63FF] px-7 py-3.5 text-sm font-bold text-white shadow-md transition hover:bg-[#2f53ef] sm:w-auto">
                 Book Major Service
                 <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}><path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" /></svg>
               </Link>

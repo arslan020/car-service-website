@@ -1,4 +1,4 @@
-import { site } from "@/lib/site-config";
+﻿import { site } from "@/lib/site-config";
 import Link from "next/link";
 import { Metadata } from "next";
 import { getPageContentWithDefaults } from "@/lib/page-content";
@@ -37,8 +37,8 @@ export default async function FaqsPage() {
       {/* ── Page Header ── */}
       <section className="bg-white px-4 py-16 sm:py-20 border-b border-[#e0ebff]">
         <div className="mx-auto max-w-3xl text-center">
-          <p className="mb-3 text-[11px] font-bold uppercase tracking-widest text-[#3f63ff]">{pageKicker}</p>
-          <h1 className="text-3xl font-extrabold tracking-tight text-[#101a56] sm:text-5xl">
+          <p className="mb-3 text-[11px] font-bold uppercase tracking-widest text-[#0F63FF]">{pageKicker}</p>
+          <h1 className="text-3xl font-extrabold tracking-tight text-[#020F3D] sm:text-5xl">
             {heroTitle}
           </h1>
           <p className="mt-4 text-base leading-relaxed text-slate-500 sm:text-lg">
@@ -56,9 +56,9 @@ export default async function FaqsPage() {
                 key={index}
                 className="group border-b border-[#e0ebff] last:border-0 [&_summary::-webkit-details-marker]:hidden"
               >
-                <summary className="flex cursor-pointer select-none items-center justify-between py-5 font-semibold text-[#101a56] outline-none">
+                <summary className="flex cursor-pointer select-none items-center justify-between py-5 font-semibold text-[#020F3D] outline-none">
                   {faq.q}
-                  <span className="ml-4 shrink-0 rounded-full bg-[#f4f8ff] p-1.5 text-[#3f63ff] transition duration-200 group-open:rotate-180 group-open:bg-[#e6ebf5]">
+                  <span className="ml-4 shrink-0 rounded-full bg-[#f4f8ff] p-1.5 text-[#0F63FF] transition duration-200 group-open:rotate-180 group-open:bg-[#e6ebf5]">
                     <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
                       <path strokeLinecap="round" strokeLinejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
                     </svg>
@@ -73,7 +73,7 @@ export default async function FaqsPage() {
         </div>
 
         {/* ── Still have questions CTA ── */}
-        <div className="mt-12 text-center rounded-2xl bg-[#101a56] px-6 py-10 shadow-lg">
+        <div className="mt-12 text-center rounded-2xl bg-[#020F3D] px-6 py-10 shadow-lg">
           <h2 className="text-xl font-bold text-white">{ctaTitle}</h2>
           <p className="mt-2 text-sm text-[#8a99d9]">
             {ctaSubtitle}
@@ -81,13 +81,13 @@ export default async function FaqsPage() {
           <div className="mt-6 flex flex-col items-center justify-center gap-3 sm:flex-row">
             <Link
               href="/contact"
-              className="inline-flex min-h-10 items-center justify-center rounded-lg bg-white px-5 py-2 text-sm font-bold text-[#101a56] transition hover:bg-slate-100"
+              className="inline-flex min-h-10 items-center justify-center rounded-lg bg-white px-5 py-2 text-sm font-bold text-[#020F3D] transition hover:bg-slate-100"
             >
               Contact Us
             </Link>
             <a
               href={`tel:${site.phoneTel}`}
-              className="inline-flex min-h-10 items-center justify-center rounded-lg border border-[#3f63ff] bg-[#101a56] px-5 py-2 text-sm font-bold text-white transition hover:bg-[#3f63ff]/20"
+              className="inline-flex min-h-10 items-center justify-center rounded-lg border border-[#0F63FF] bg-[#020F3D] px-5 py-2 text-sm font-bold text-white transition hover:bg-[#0F63FF]/20"
             >
               Call {site.phoneDisplay}
             </a>

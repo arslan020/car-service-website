@@ -1,4 +1,4 @@
-import Link from "next/link";
+﻿import Link from "next/link";
 import { site, waUrl } from "@/lib/site-config";
 import { getPageContentWithDefaults, fl } from "@/lib/page-content";
 import { BookingBar } from "@/components/booking-bar";
@@ -81,11 +81,11 @@ export default async function CarServicingPage() {
     <div className="bg-white">
       <section className="bg-gradient-to-b from-[#eefdff] via-[#f5feff] via-60% to-white px-4 pb-12 pt-16 text-center sm:pt-20">
         <div className="mx-auto max-w-2xl">
-          <p className="text-xs font-bold uppercase tracking-widest text-[#3f63ff]">{c.hero_eyebrow}</p>
-          <h1 className="mt-2 text-3xl font-extrabold leading-tight text-[#101a56] sm:text-5xl">{c.hero_title}</h1>
+          <p className="text-xs font-bold uppercase tracking-widest text-[#0F63FF]">{c.hero_eyebrow}</p>
+          <h1 className="mt-2 text-3xl font-extrabold leading-tight text-[#020F3D] sm:text-5xl">{c.hero_title}</h1>
           <p className="mt-4 text-base leading-relaxed text-slate-500 sm:text-lg">{c.hero_subtitle}</p>
           <div className="mt-7 flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
-            <Link href="/quote" className="flex w-full items-center justify-center gap-2 rounded-xl bg-[#101a56] px-6 py-3.5 text-sm font-bold text-white shadow-md transition hover:bg-[#16236e] sm:w-auto">
+            <Link href="/quote" className="flex w-full items-center justify-center gap-2 rounded-xl bg-[#020F3D] px-6 py-3.5 text-sm font-bold text-white shadow-md transition hover:bg-[#061744] sm:w-auto">
               Request a quote
               <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
@@ -109,28 +109,28 @@ export default async function CarServicingPage() {
 
       <section className="px-4 py-12 sm:py-16">
         <div className="mx-auto max-w-5xl">
-          <p className="text-xs font-bold uppercase tracking-widest text-[#3f63ff]">{c.tier_section_kicker}</p>
-          <h2 className="mt-1 text-2xl font-extrabold text-[#101a56] sm:text-3xl">{c.tier_section_title}</h2>
+          <p className="text-xs font-bold uppercase tracking-widest text-[#0F63FF]">{c.tier_section_kicker}</p>
+          <h2 className="mt-1 text-2xl font-extrabold text-[#020F3D] sm:text-3xl">{c.tier_section_title}</h2>
           <div className="mt-7 grid gap-5 lg:grid-cols-3">
             {tiers.map((tier) => (
               <div
                 key={tier.id}
-                className={`relative flex flex-col rounded-2xl border bg-white p-6 shadow-sm ${tier.popular ? "border-[#3f63ff] shadow-[0_6px_24px_rgba(63,99,255,0.15)]" : "border-[#e8effa]"}`}
+                className={`relative flex flex-col rounded-2xl border bg-white p-6 shadow-sm ${tier.popular ? "border-[#0F63FF] shadow-[0_6px_24px_rgba(15,99,255,0.15)]" : "border-[#e8effa]"}`}
               >
                 {tier.popular && (
-                  <span className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-[#3f63ff] px-4 py-1 text-[10px] font-bold uppercase tracking-widest text-white shadow">
+                  <span className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-[#0F63FF] px-4 py-1 text-[10px] font-bold uppercase tracking-widest text-white shadow">
                     {c.tier_popular_badge}
                   </span>
                 )}
                 <div>
-                  <h3 className="text-lg font-extrabold text-[#101a56]">{tier.title}</h3>
+                  <h3 className="text-lg font-extrabold text-[#020F3D]">{tier.title}</h3>
                   <p className="mt-0.5 text-xs text-slate-400">{tier.subtitle}</p>
-                  <p className="mt-3 text-2xl font-extrabold text-[#3f63ff]">{tier.price}</p>
+                  <p className="mt-3 text-2xl font-extrabold text-[#0F63FF]">{tier.price}</p>
                 </div>
                 <ul className="mt-5 flex-1 space-y-2.5">
                   {tier.includes.map((item) => (
                     <li key={item} className="flex items-start gap-2.5 text-sm text-slate-600">
-                      <svg className="mt-0.5 h-4 w-4 shrink-0 text-[#3f63ff]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                      <svg className="mt-0.5 h-4 w-4 shrink-0 text-[#0F63FF]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
                         <path strokeLinecap="round" strokeLinejoin="round" d="m4.5 12.75 6 6 9-13.5" />
                       </svg>
                       {item}
@@ -139,7 +139,7 @@ export default async function CarServicingPage() {
                 </ul>
                 <Link
                   href={`/online-booking?service=${tier.id}`}
-                  className={`mt-7 flex w-full items-center justify-center gap-2 rounded-xl py-3 text-sm font-bold transition ${tier.popular ? "bg-[#101a56] text-white shadow-md hover:bg-[#16236e]" : "border-2 border-[#101a56] text-[#101a56] hover:bg-[#101a56] hover:text-white"}`}
+                  className={`mt-7 flex w-full items-center justify-center gap-2 rounded-xl py-3 text-sm font-bold transition ${tier.popular ? "bg-[#020F3D] text-white shadow-md hover:bg-[#061744]" : "border-2 border-[#020F3D] text-[#020F3D] hover:bg-[#020F3D] hover:text-white"}`}
                 >
                   {c.tier_book_prefix} {tier.title}
                   <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
@@ -155,14 +155,14 @@ export default async function CarServicingPage() {
       <section className="bg-[#f4f8ff] px-4 py-10 sm:py-16">
         <div className="mx-auto max-w-5xl">
           <div className="text-center">
-            <p className="text-xs font-bold uppercase tracking-widest text-[#3f63ff]">{c.benefits_kicker}</p>
-            <h2 className="mt-1 text-2xl font-extrabold text-[#101a56] sm:text-3xl">{c.benefits_title}</h2>
+            <p className="text-xs font-bold uppercase tracking-widest text-[#0F63FF]">{c.benefits_kicker}</p>
+            <h2 className="mt-1 text-2xl font-extrabold text-[#020F3D] sm:text-3xl">{c.benefits_title}</h2>
           </div>
           <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {benefits.map((b) => (
               <div key={b.title} className="flex flex-col gap-3 rounded-2xl border border-[#e0ebff] bg-white p-5 shadow-sm">
                 <div className="flex items-center gap-3">
-                  <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[#eef4ff] text-[#3f63ff]">
+                  <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[#eef4ff] text-[#0F63FF]">
                     {b.icon === "shield" && (
                       <svg className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth={1.75} viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75 11.25 15 15 9.75m-3-7.036A11.959 11.959 0 0 1 3.598 6 11.99 11.99 0 0 0 3 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285Z" />
@@ -184,7 +184,7 @@ export default async function CarServicingPage() {
                       </svg>
                     )}
                   </span>
-                  <h3 className="font-bold text-[#101a56]">{b.title}</h3>
+                  <h3 className="font-bold text-[#020F3D]">{b.title}</h3>
                 </div>
                 <p className="text-sm leading-relaxed text-slate-500">{b.body}</p>
               </div>
@@ -195,14 +195,14 @@ export default async function CarServicingPage() {
 
       <section className="px-4 py-12 sm:py-16">
         <div className="mx-auto max-w-5xl">
-          <div className="overflow-hidden rounded-3xl bg-[#101a56] px-8 py-10 text-center shadow-xl sm:py-14">
-            <p className="text-xs font-bold uppercase tracking-widest text-[#6b8fff]">{c.bottom_kicker}</p>
+          <div className="overflow-hidden rounded-3xl bg-[#020F3D] px-8 py-10 text-center shadow-xl sm:py-14">
+            <p className="text-xs font-bold uppercase tracking-widest text-[#4DA3FF]">{c.bottom_kicker}</p>
             <h2 className="mt-2 text-2xl font-extrabold text-white sm:text-3xl">{c.bottom_title}</h2>
             <p className="mx-auto mt-3 max-w-md text-sm leading-relaxed text-slate-300">
               {c.bottom_body} {site.addressLines.join(", ")}.
             </p>
             <div className="mt-7 flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
-              <Link href="/online-booking?service=full" className="flex w-full items-center justify-center gap-2 rounded-xl bg-[#3f63ff] px-7 py-3.5 text-sm font-bold text-white shadow-md transition hover:bg-[#2f53ef] sm:w-auto">
+              <Link href="/online-booking?service=full" className="flex w-full items-center justify-center gap-2 rounded-xl bg-[#0F63FF] px-7 py-3.5 text-sm font-bold text-white shadow-md transition hover:bg-[#2f53ef] sm:w-auto">
                 {c.bottom_btn}
                 <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />

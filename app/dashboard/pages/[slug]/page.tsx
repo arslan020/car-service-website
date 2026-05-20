@@ -1,4 +1,4 @@
-import { notFound } from "next/navigation";
+﻿import { notFound } from "next/navigation";
 import { getPageDef, getSections, PAGES_CONFIG } from "@/lib/pages-config";
 import { getPageContent } from "@/lib/page-content";
 import { PageContentEditor } from "@/components/page-content-editor";
@@ -22,13 +22,13 @@ export default async function EditPageDashboard({ params }: Props) {
       <div className="mb-6 flex items-center justify-between">
         <div>
           <div className="flex items-center gap-2 text-sm text-slate-400">
-            <Link href="/dashboard" className="hover:text-[#3f63ff]">Dashboard</Link>
+            <Link href="/dashboard" className="hover:text-[#0F63FF]">Dashboard</Link>
             <span>/</span>
             <span className="font-medium text-slate-600">Edit Pages</span>
             <span>/</span>
-            <span className="font-medium text-[#101a56]">{pageDef.label}</span>
+            <span className="font-medium text-[#020F3D]">{pageDef.label}</span>
           </div>
-          <h1 className="mt-1 text-2xl font-extrabold text-[#101a56]">
+          <h1 className="mt-1 text-2xl font-extrabold text-[#020F3D]">
             {pageDef.icon} Edit — {pageDef.label}
           </h1>
           <p className="mt-0.5 text-sm text-slate-500">
@@ -39,7 +39,7 @@ export default async function EditPageDashboard({ params }: Props) {
           href={pageDef.publicPath ?? `/${slug}`}
           target="_blank"
           rel="noopener noreferrer"
-          className="hidden items-center gap-2 rounded-xl border border-[#e0ebff] bg-white px-4 py-2 text-sm font-semibold text-[#3f63ff] shadow-sm transition hover:border-[#3f63ff] sm:flex"
+          className="hidden items-center gap-2 rounded-xl border border-[#e0ebff] bg-white px-4 py-2 text-sm font-semibold text-[#0F63FF] shadow-sm transition hover:border-[#0F63FF] sm:flex"
         >
           View page
           <svg className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
@@ -56,8 +56,8 @@ export default async function EditPageDashboard({ params }: Props) {
             href={`/dashboard/pages/${page.slug}`}
             className={`shrink-0 rounded-full px-4 py-1.5 text-sm font-semibold transition-all ${
               page.slug === slug
-                ? "bg-[#101a56] text-white"
-                : "border border-[#d0dcea] bg-white text-slate-600 hover:border-[#101a56] hover:text-[#101a56]"
+                ? "bg-[#020F3D] text-white"
+                : "border border-[#d0dcea] bg-white text-slate-600 hover:border-[#020F3D] hover:text-[#020F3D]"
             }`}
           >
             {page.icon} {page.label}

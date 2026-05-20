@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useState } from "react";
 import type { PageDef, FieldDef } from "@/lib/pages-config";
@@ -45,7 +45,7 @@ function FieldRow({
       <div className="flex items-start justify-between gap-4">
         <div className="min-w-0 flex-1">
           <div className="flex items-center gap-2">
-            <label className="text-sm font-semibold text-[#101a56]">
+            <label className="text-sm font-semibold text-[#020F3D]">
               {field.label}
             </label>
             {isSavedToDB && (
@@ -66,14 +66,14 @@ function FieldRow({
             rows={3}
             value={value}
             onChange={(e) => { setValue(e.target.value); setStatus("idle"); }}
-            className="w-full rounded-xl border border-[#d0dcea] bg-white px-4 py-2.5 text-sm text-slate-800 outline-none focus:border-[#3f63ff] focus:ring-2 focus:ring-[#3f63ff]/15"
+            className="w-full rounded-xl border border-[#d0dcea] bg-white px-4 py-2.5 text-sm text-slate-800 outline-none focus:border-[#0F63FF] focus:ring-2 focus:ring-[#0F63FF]/15"
           />
         ) : (
           <input
             type="text"
             value={value}
             onChange={(e) => { setValue(e.target.value); setStatus("idle"); }}
-            className="w-full rounded-xl border border-[#d0dcea] bg-white px-4 py-2.5 text-sm text-slate-800 outline-none focus:border-[#3f63ff] focus:ring-2 focus:ring-[#3f63ff]/15"
+            className="w-full rounded-xl border border-[#d0dcea] bg-white px-4 py-2.5 text-sm text-slate-800 outline-none focus:border-[#0F63FF] focus:ring-2 focus:ring-[#0F63FF]/15"
           />
         )}
       </div>
@@ -87,7 +87,7 @@ function FieldRow({
               ? "bg-emerald-500 text-white"
               : status === "error"
               ? "bg-red-500 text-white"
-              : "bg-[#101a56] text-white hover:bg-[#16236e]"
+              : "bg-[#020F3D] text-white hover:bg-[#061744]"
           }`}
         >
           {status === "saving"
@@ -135,7 +135,7 @@ export function PageContentEditor({
           >
             {/* Section header */}
             <div className="border-b border-[#e0ebff] bg-[#f8faff] px-6 py-3">
-              <h2 className="text-xs font-bold uppercase tracking-widest text-[#3f63ff]">
+              <h2 className="text-xs font-bold uppercase tracking-widest text-[#0F63FF]">
                 {section}
               </h2>
             </div>
@@ -158,7 +158,7 @@ export function PageContentEditor({
       {/* Info footer */}
       <div className="rounded-2xl border border-[#e8f0fb] bg-[#f4f8ff] px-5 py-4">
         <p className="text-xs text-slate-500">
-          <span className="font-semibold text-[#101a56]">How it works:</span> Click{" "}
+          <span className="font-semibold text-[#020F3D]">How it works:</span> Click{" "}
           <strong>Save</strong> on any field to update it live on the public page.
           Click <strong>Reset to default</strong> to restore the original text.
           Fields marked <span className="font-bold text-emerald-600">Custom</span> have

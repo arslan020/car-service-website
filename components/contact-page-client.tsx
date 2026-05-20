@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
@@ -126,10 +126,10 @@ export function ContactPageClient({ content }: { content: ContentMap }) {
     <div className="bg-white">
       <section className="bg-gradient-to-b from-[#eefdff] via-[#f5feff] via-60% to-white px-4 pb-12 pt-16 text-center sm:pt-20">
         <div className="mx-auto max-w-2xl">
-          <p className="text-xs font-bold uppercase tracking-widest text-[#3f63ff]">
+          <p className="text-xs font-bold uppercase tracking-widest text-[#0F63FF]">
             {f(content, "hero_kicker", "We're here to help")}
           </p>
-          <h1 className="mt-2 text-3xl font-extrabold leading-tight text-[#101a56] sm:text-5xl">
+          <h1 className="mt-2 text-3xl font-extrabold leading-tight text-[#020F3D] sm:text-5xl">
             {f(content, "hero_title", "Get in touch")}
           </h1>
           <p className="mt-4 text-base leading-relaxed text-slate-500 sm:text-lg">{heroSubtitle}</p>
@@ -138,7 +138,7 @@ export function ContactPageClient({ content }: { content: ContentMap }) {
               <span
                 className={`h-2.5 w-2.5 animate-pulse rounded-full ${isOpen ? "bg-emerald-500" : "bg-red-400"}`}
               />
-              <span className="text-sm font-semibold text-[#101a56]">
+              <span className="text-sm font-semibold text-[#020F3D]">
                 {isOpen ? statusOpenText : f(content, "status_closed", "Currently closed")}
               </span>
             </div>
@@ -149,10 +149,10 @@ export function ContactPageClient({ content }: { content: ContentMap }) {
       <section className="px-4 py-12 sm:py-16">
         <div className="mx-auto max-w-5xl">
           <div className="mb-8">
-            <p className="text-xs font-bold uppercase tracking-widest text-[#3f63ff]">
+            <p className="text-xs font-bold uppercase tracking-widest text-[#0F63FF]">
               {f(content, "form_kicker", "Send a message")}
             </p>
-            <h2 className="mt-1 text-2xl font-extrabold text-[#101a56] sm:text-3xl">
+            <h2 className="mt-1 text-2xl font-extrabold text-[#020F3D] sm:text-3xl">
               {f(content, "form_title", "Get in touch directly")}
             </h2>
           </div>
@@ -165,7 +165,7 @@ export function ContactPageClient({ content }: { content: ContentMap }) {
                     <path strokeLinecap="round" strokeLinejoin="round" d="m4.5 12.75 6 6 9-13.5" />
                   </svg>
                 </span>
-                <h3 className="text-xl font-extrabold text-[#101a56]">{f(content, "success_title", "Message sent!")}</h3>
+                <h3 className="text-xl font-extrabold text-[#020F3D]">{f(content, "success_title", "Message sent!")}</h3>
                 <p className="max-w-sm text-sm text-slate-500">{f(content, "success_body", "")}</p>
                 <button
                   type="button"
@@ -173,7 +173,7 @@ export function ContactPageClient({ content }: { content: ContentMap }) {
                     setSubmitted(false);
                     setForm({ name: "", email: "", phone: "", service: "", message: "" });
                   }}
-                  className="mt-2 rounded-xl border-2 border-[#101a56] px-6 py-2.5 text-sm font-bold text-[#101a56] transition hover:bg-[#101a56] hover:text-white"
+                  className="mt-2 rounded-xl border-2 border-[#020F3D] px-6 py-2.5 text-sm font-bold text-[#020F3D] transition hover:bg-[#020F3D] hover:text-white"
                 >
                   {f(content, "success_again", "Send another message")}
                 </button>
@@ -189,7 +189,7 @@ export function ContactPageClient({ content }: { content: ContentMap }) {
                     placeholder={f(content, "ph_name", "John Smith")}
                     value={form.name}
                     onChange={(e) => setForm({ ...form, name: e.target.value })}
-                    className={`rounded-xl border px-4 py-3 text-sm text-[#101a56] placeholder-slate-300 outline-none transition focus:border-[#3f63ff] focus:ring-2 focus:ring-[#3f63ff]/20 ${errors.name ? "border-red-400 bg-red-50" : "border-[#e0ebff] bg-white"}`}
+                    className={`rounded-xl border px-4 py-3 text-sm text-[#020F3D] placeholder-slate-300 outline-none transition focus:border-[#0F63FF] focus:ring-2 focus:ring-[#0F63FF]/20 ${errors.name ? "border-red-400 bg-red-50" : "border-[#e0ebff] bg-white"}`}
                   />
                   {errors.name && <p className="text-xs text-red-500">{errors.name}</p>}
                 </div>
@@ -202,7 +202,7 @@ export function ContactPageClient({ content }: { content: ContentMap }) {
                     placeholder={f(content, "ph_email", "john@example.com")}
                     value={form.email}
                     onChange={(e) => setForm({ ...form, email: e.target.value })}
-                    className={`rounded-xl border px-4 py-3 text-sm text-[#101a56] placeholder-slate-300 outline-none transition focus:border-[#3f63ff] focus:ring-2 focus:ring-[#3f63ff]/20 ${errors.email ? "border-red-400 bg-red-50" : "border-[#e0ebff] bg-white"}`}
+                    className={`rounded-xl border px-4 py-3 text-sm text-[#020F3D] placeholder-slate-300 outline-none transition focus:border-[#0F63FF] focus:ring-2 focus:ring-[#0F63FF]/20 ${errors.email ? "border-red-400 bg-red-50" : "border-[#e0ebff] bg-white"}`}
                   />
                   {errors.email && <p className="text-xs text-red-500">{errors.email}</p>}
                 </div>
@@ -215,7 +215,7 @@ export function ContactPageClient({ content }: { content: ContentMap }) {
                     placeholder={f(content, "ph_phone", "07700 900000")}
                     value={form.phone}
                     onChange={(e) => setForm({ ...form, phone: e.target.value })}
-                    className="rounded-xl border border-[#e0ebff] bg-white px-4 py-3 text-sm text-[#101a56] placeholder-slate-300 outline-none transition focus:border-[#3f63ff] focus:ring-2 focus:ring-[#3f63ff]/20"
+                    className="rounded-xl border border-[#e0ebff] bg-white px-4 py-3 text-sm text-[#020F3D] placeholder-slate-300 outline-none transition focus:border-[#0F63FF] focus:ring-2 focus:ring-[#0F63FF]/20"
                   />
                 </div>
                 <div className="flex flex-col gap-1.5">
@@ -225,7 +225,7 @@ export function ContactPageClient({ content }: { content: ContentMap }) {
                   <select
                     value={form.service}
                     onChange={(e) => setForm({ ...form, service: e.target.value })}
-                    className="rounded-xl border border-[#e0ebff] bg-white px-4 py-3 text-sm text-[#101a56] outline-none transition focus:border-[#3f63ff] focus:ring-2 focus:ring-[#3f63ff]/20"
+                    className="rounded-xl border border-[#e0ebff] bg-white px-4 py-3 text-sm text-[#020F3D] outline-none transition focus:border-[#0F63FF] focus:ring-2 focus:ring-[#0F63FF]/20"
                   >
                     <option value="">{f(content, "service_select_placeholder", "Select a service...")}</option>
                     {serviceOptions.map((s) => (
@@ -248,7 +248,7 @@ export function ContactPageClient({ content }: { content: ContentMap }) {
                     )}
                     value={form.message}
                     onChange={(e) => setForm({ ...form, message: e.target.value })}
-                    className={`resize-none rounded-xl border px-4 py-3 text-sm text-[#101a56] placeholder-slate-300 outline-none transition focus:border-[#3f63ff] focus:ring-2 focus:ring-[#3f63ff]/20 ${errors.message ? "border-red-400 bg-red-50" : "border-[#e0ebff] bg-white"}`}
+                    className={`resize-none rounded-xl border px-4 py-3 text-sm text-[#020F3D] placeholder-slate-300 outline-none transition focus:border-[#0F63FF] focus:ring-2 focus:ring-[#0F63FF]/20 ${errors.message ? "border-red-400 bg-red-50" : "border-[#e0ebff] bg-white"}`}
                   />
                   {errors.message && <p className="text-xs text-red-500">{errors.message}</p>}
                 </div>
@@ -264,7 +264,7 @@ export function ContactPageClient({ content }: { content: ContentMap }) {
                   <button
                     type="submit"
                     disabled={submitting}
-                    className="flex w-full items-center justify-center gap-2 rounded-xl bg-[#101a56] px-8 py-3.5 text-sm font-bold text-white shadow-md transition hover:bg-[#16236e] disabled:cursor-not-allowed disabled:opacity-60 sm:w-auto"
+                    className="flex w-full items-center justify-center gap-2 rounded-xl bg-[#020F3D] px-8 py-3.5 text-sm font-bold text-white shadow-md transition hover:bg-[#061744] disabled:cursor-not-allowed disabled:opacity-60 sm:w-auto"
                   >
                     {submitting ? (
                       <>
@@ -297,10 +297,10 @@ export function ContactPageClient({ content }: { content: ContentMap }) {
       <section className="px-4 pb-12 sm:pb-16">
         <div className="mx-auto max-w-5xl">
           <div className="mb-8">
-            <p className="text-xs font-bold uppercase tracking-widest text-[#3f63ff]">
+            <p className="text-xs font-bold uppercase tracking-widest text-[#0F63FF]">
               {f(content, "reach_kicker", "Contact us")}
             </p>
-            <h2 className="mt-1 text-2xl font-extrabold text-[#101a56] sm:text-3xl">
+            <h2 className="mt-1 text-2xl font-extrabold text-[#020F3D] sm:text-3xl">
               {f(content, "reach_title", "How to reach us")}
             </h2>
           </div>
@@ -309,9 +309,9 @@ export function ContactPageClient({ content }: { content: ContentMap }) {
             <div className="grid grid-cols-2 gap-3 content-start">
               <a
                 href={`tel:${site.phoneTel}`}
-                className="group flex flex-col items-center justify-center gap-3 rounded-2xl border border-[#e8effa] bg-white p-6 shadow-sm transition-all hover:-translate-y-0.5 hover:border-[#3f63ff]/30 hover:shadow-[0_6px_24px_rgba(63,99,255,0.1)]"
+                className="group flex flex-col items-center justify-center gap-3 rounded-2xl border border-[#e8effa] bg-white p-6 shadow-sm transition-all hover:-translate-y-0.5 hover:border-[#0F63FF]/30 hover:shadow-[0_6px_24px_rgba(15,99,255,0.1)]"
               >
-                <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-[#eef4ff] text-[#3f63ff] transition-all group-hover:bg-[#3f63ff] group-hover:text-white">
+                <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-[#eef4ff] text-[#0F63FF] transition-all group-hover:bg-[#0F63FF] group-hover:text-white">
                   <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                     <path
                       strokeLinecap="round"
@@ -320,7 +320,7 @@ export function ContactPageClient({ content }: { content: ContentMap }) {
                     />
                   </svg>
                 </span>
-                <p className="text-xs font-bold uppercase tracking-widest text-slate-500 group-hover:text-[#3f63ff]">
+                <p className="text-xs font-bold uppercase tracking-widest text-slate-500 group-hover:text-[#0F63FF]">
                   {f(content, "card_phone", "Phone")}
                 </p>
               </a>
@@ -331,7 +331,7 @@ export function ContactPageClient({ content }: { content: ContentMap }) {
                 rel="noopener noreferrer"
                 className="group flex flex-col items-center justify-center gap-3 rounded-2xl border border-[#e8effa] bg-white p-6 shadow-sm transition-all hover:-translate-y-0.5 hover:border-[#25D366]/40 hover:shadow-[0_6px_24px_rgba(37,211,102,0.1)]"
               >
-                <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-[#eef4ff] text-[#3f63ff] transition-all group-hover:bg-[#25D366] group-hover:text-white">
+                <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-[#eef4ff] text-[#0F63FF] transition-all group-hover:bg-[#25D366] group-hover:text-white">
                   <svg className="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
                     <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z" />
                   </svg>
@@ -343,9 +343,9 @@ export function ContactPageClient({ content }: { content: ContentMap }) {
 
               <a
                 href={`mailto:${site.email}`}
-                className="group flex flex-col items-center justify-center gap-3 rounded-2xl border border-[#e8effa] bg-white p-6 shadow-sm transition-all hover:-translate-y-0.5 hover:border-[#3f63ff]/30 hover:shadow-[0_6px_24px_rgba(63,99,255,0.1)]"
+                className="group flex flex-col items-center justify-center gap-3 rounded-2xl border border-[#e8effa] bg-white p-6 shadow-sm transition-all hover:-translate-y-0.5 hover:border-[#0F63FF]/30 hover:shadow-[0_6px_24px_rgba(15,99,255,0.1)]"
               >
-                <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-[#eef4ff] text-[#3f63ff] transition-all group-hover:bg-[#3f63ff] group-hover:text-white">
+                <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-[#eef4ff] text-[#0F63FF] transition-all group-hover:bg-[#0F63FF] group-hover:text-white">
                   <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                     <path
                       strokeLinecap="round"
@@ -354,7 +354,7 @@ export function ContactPageClient({ content }: { content: ContentMap }) {
                     />
                   </svg>
                 </span>
-                <p className="text-xs font-bold uppercase tracking-widest text-slate-500 group-hover:text-[#3f63ff]">
+                <p className="text-xs font-bold uppercase tracking-widest text-slate-500 group-hover:text-[#0F63FF]">
                   {f(content, "card_email", "Email")}
                 </p>
               </a>
@@ -363,15 +363,15 @@ export function ContactPageClient({ content }: { content: ContentMap }) {
                 href={addressMapsUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group flex flex-col items-center justify-center gap-3 rounded-2xl border border-[#e8effa] bg-white p-6 shadow-sm transition-all hover:-translate-y-0.5 hover:border-[#3f63ff]/30 hover:shadow-[0_6px_24px_rgba(63,99,255,0.1)]"
+                className="group flex flex-col items-center justify-center gap-3 rounded-2xl border border-[#e8effa] bg-white p-6 shadow-sm transition-all hover:-translate-y-0.5 hover:border-[#0F63FF]/30 hover:shadow-[0_6px_24px_rgba(15,99,255,0.1)]"
               >
-                <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-[#eef4ff] text-[#3f63ff] transition-all group-hover:bg-[#3f63ff] group-hover:text-white">
+                <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-[#eef4ff] text-[#0F63FF] transition-all group-hover:bg-[#0F63FF] group-hover:text-white">
                   <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                     <path strokeLinecap="round" strokeLinejoin="round" d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
                     <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z" />
                   </svg>
                 </span>
-                <p className="text-xs font-bold uppercase tracking-widest text-slate-500 group-hover:text-[#3f63ff]">
+                <p className="text-xs font-bold uppercase tracking-widest text-slate-500 group-hover:text-[#0F63FF]">
                   {f(content, "card_address", "Address")}
                 </p>
               </a>
@@ -379,7 +379,7 @@ export function ContactPageClient({ content }: { content: ContentMap }) {
 
             <div className="flex flex-col gap-5">
               <div className="rounded-2xl border border-[#e8effa] bg-white p-6 shadow-sm">
-                <p className="text-xs font-bold uppercase tracking-widest text-[#3f63ff]">
+                <p className="text-xs font-bold uppercase tracking-widest text-[#0F63FF]">
                   {f(content, "hours_kicker", "Opening hours")}
                 </p>
                 <ul className="mt-5 space-y-4">
@@ -398,7 +398,7 @@ export function ContactPageClient({ content }: { content: ContentMap }) {
                 <div className="flex flex-col gap-3">
                   <Link
                     href="/online-booking"
-                    className="flex w-full items-center justify-center gap-2 rounded-xl bg-[#101a56] py-3.5 text-sm font-bold text-white shadow-md transition hover:bg-[#16236e]"
+                    className="flex w-full items-center justify-center gap-2 rounded-xl bg-[#020F3D] py-3.5 text-sm font-bold text-white shadow-md transition hover:bg-[#061744]"
                   >
                     {f(content, "btn_book", "Book online now")}
                     <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
@@ -407,7 +407,7 @@ export function ContactPageClient({ content }: { content: ContentMap }) {
                   </Link>
                   <a
                     href={`tel:${site.phoneTel}`}
-                    className="flex w-full items-center justify-center gap-2 rounded-xl border-2 border-[#101a56] py-3.5 text-sm font-bold text-[#101a56] transition hover:bg-[#101a56] hover:text-white"
+                    className="flex w-full items-center justify-center gap-2 rounded-xl border-2 border-[#020F3D] py-3.5 text-sm font-bold text-[#020F3D] transition hover:bg-[#020F3D] hover:text-white"
                   >
                     <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                       <path
@@ -425,7 +425,7 @@ export function ContactPageClient({ content }: { content: ContentMap }) {
 
           <div className="mt-6 rounded-2xl border border-[#e0ebff] bg-[#f4f8ff] p-6">
             <div className="flex items-start gap-4">
-              <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[#eef4ff] text-[#3f63ff]">
+              <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[#eef4ff] text-[#0F63FF]">
                 <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                   <path
                     strokeLinecap="round"
@@ -435,7 +435,7 @@ export function ContactPageClient({ content }: { content: ContentMap }) {
                 </svg>
               </span>
               <div>
-                <p className="text-xs font-bold uppercase tracking-widest text-[#3f63ff]">
+                <p className="text-xs font-bold uppercase tracking-widest text-[#0F63FF]">
                   {f(content, "collection_kicker", "Collection service")}
                 </p>
                 <p className="mt-1 text-sm leading-relaxed text-slate-600">{f(content, "collection_body", "")}</p>
@@ -447,7 +447,7 @@ export function ContactPageClient({ content }: { content: ContentMap }) {
 
       <section className="px-4 pb-16 sm:pb-20">
         <div className="mx-auto max-w-5xl">
-          <p className="mb-4 text-xs font-bold uppercase tracking-widest text-[#3f63ff]">
+          <p className="mb-4 text-xs font-bold uppercase tracking-widest text-[#0F63FF]">
             {f(content, "map_kicker", "Find us")}
           </p>
           <div className="overflow-hidden rounded-2xl border border-[#e8effa] shadow-sm">
@@ -475,7 +475,7 @@ export function ContactPageClient({ content }: { content: ContentMap }) {
               )}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 rounded-lg border border-[#e0ebff] bg-white px-4 py-2 text-sm font-semibold text-[#3f63ff] shadow-sm transition hover:bg-[#eef4ff]"
+              className="inline-flex items-center gap-1.5 rounded-lg border border-[#e0ebff] bg-white px-4 py-2 text-sm font-semibold text-[#0F63FF] shadow-sm transition hover:bg-[#eef4ff]"
             >
               <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />

@@ -1,11 +1,11 @@
-import Link from "next/link";
+﻿import Link from "next/link";
 
 export function BookingBar(_props?: { defaultService?: string; category?: string }) {
   return (
     <div className="mt-5 flex justify-center">
       <Link
         href="/online-booking"
-        className="inline-flex items-center gap-2 rounded-xl bg-[#101a56] px-6 py-2.5 text-sm font-bold text-white shadow-md transition hover:bg-[#16236e]"
+        className="inline-flex items-center gap-2 rounded-xl bg-[#020F3D] px-6 py-2.5 text-sm font-bold text-white shadow-md transition hover:bg-[#061744]"
       >
         Book now
         <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>

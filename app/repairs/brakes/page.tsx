@@ -1,4 +1,4 @@
-import Link from "next/link";
+﻿import Link from "next/link";
 import { site, waUrl } from "@/lib/site-config";
 import { getPageContent, f } from "@/lib/page-content";
 
@@ -51,11 +51,11 @@ export default async function BrakesPage() {
         <div className="mx-auto max-w-5xl">
           <div className="grid items-center gap-10 lg:grid-cols-2">
             <div>
-              <p className="text-xs font-bold uppercase tracking-widest text-[#3f63ff]">Safety First</p>
-              <h1 className="mt-2 text-3xl font-extrabold leading-tight text-[#101a56] sm:text-5xl">{title}</h1>
+              <p className="text-xs font-bold uppercase tracking-widest text-[#0F63FF]">Safety First</p>
+              <h1 className="mt-2 text-3xl font-extrabold leading-tight text-[#020F3D] sm:text-5xl">{title}</h1>
               <p className="mt-4 text-base leading-relaxed text-slate-500 sm:text-lg">{subtitle}</p>
               <div className="mt-7 flex flex-col gap-3 sm:flex-row">
-                <Link href="/online-booking?service=brakes" className="flex items-center justify-center gap-2 rounded-xl bg-[#101a56] px-6 py-3.5 text-sm font-bold text-white shadow-md transition hover:bg-[#16236e]">
+                <Link href="/online-booking?service=brakes" className="flex items-center justify-center gap-2 rounded-xl bg-[#020F3D] px-6 py-3.5 text-sm font-bold text-white shadow-md transition hover:bg-[#061744]">
                   Book Brake Repair
                   <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}><path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" /></svg>
                 </Link>
@@ -73,7 +73,7 @@ export default async function BrakesPage() {
                 { stat: "Free tyre check", label: "Depth & pressure checked every visit" },
               ].map((s) => (
                 <div key={s.label} className="flex h-full flex-col justify-center rounded-2xl border border-[#e8effa] bg-white p-5 text-center shadow-sm">
-                  <p className="text-2xl font-extrabold capitalize text-[#3f63ff]">{s.stat}</p>
+                  <p className="text-2xl font-extrabold capitalize text-[#0F63FF]">{s.stat}</p>
                   <p className="mt-1 text-xs text-slate-500">{s.label}</p>
                 </div>
               ))}
@@ -84,12 +84,12 @@ export default async function BrakesPage() {
 
       <section className="px-4 py-12 sm:py-16">
         <div className="mx-auto max-w-5xl">
-          <p className="text-xs font-bold uppercase tracking-widest text-[#3f63ff]">What we cover</p>
-          <h2 className="mt-1 text-2xl font-extrabold text-[#101a56] sm:text-3xl">Full brake repair service</h2>
+          <p className="text-xs font-bold uppercase tracking-widest text-[#0F63FF]">What we cover</p>
+          <h2 className="mt-1 text-2xl font-extrabold text-[#020F3D] sm:text-3xl">Full brake repair service</h2>
           <ul className="mt-6 grid gap-3 sm:grid-cols-2">
             {SERVICES.map((item) => (
               <li key={item} className="flex items-start gap-3 text-sm text-slate-600">
-                <svg className="mt-0.5 h-5 w-5 shrink-0 text-[#3f63ff]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                <svg className="mt-0.5 h-5 w-5 shrink-0 text-[#0F63FF]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="m4.5 12.75 6 6 9-13.5" />
                 </svg>
                 {item}
@@ -103,18 +103,18 @@ export default async function BrakesPage() {
         <div className="mx-auto max-w-5xl">
           <div className="text-center">
             <p className="text-xs font-bold uppercase tracking-widest text-red-500">Warning signs</p>
-            <h2 className="mt-1 text-2xl font-extrabold text-[#101a56] sm:text-3xl">Signs your brakes need attention</h2>
+            <h2 className="mt-1 text-2xl font-extrabold text-[#020F3D] sm:text-3xl">Signs your brakes need attention</h2>
           </div>
           <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {SIGNS.map((s) => (
               <div key={s.title} className="flex flex-col gap-3 rounded-2xl border border-[#e0ebff] bg-white p-5 shadow-sm">
                 <div className="flex items-center gap-3">
-                  <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[#eef4ff] text-[#3f63ff]">
+                  <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[#eef4ff] text-[#0F63FF]">
                     <svg className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth={1.75} viewBox="0 0 24 24">
                       <circle cx="12" cy="12" r="9" /><circle cx="12" cy="12" r="3" /><path strokeLinecap="round" d="M12 3v2M12 19v2M3 12h2M19 12h2" />
                     </svg>
                   </span>
-                  <h3 className="font-bold text-[#101a56]">{s.title}</h3>
+                  <h3 className="font-bold text-[#020F3D]">{s.title}</h3>
                 </div>
                 <p className="text-sm leading-relaxed text-slate-500">{s.body}</p>
               </div>
@@ -126,13 +126,13 @@ export default async function BrakesPage() {
       <section className="px-4 py-12 sm:py-16">
         <div className="mx-auto max-w-3xl">
           <div className="text-center">
-            <p className="text-xs font-bold uppercase tracking-widest text-[#3f63ff]">Common questions</p>
-            <h2 className="mt-1 text-2xl font-extrabold text-[#101a56] sm:text-3xl">Frequently asked questions</h2>
+            <p className="text-xs font-bold uppercase tracking-widest text-[#0F63FF]">Common questions</p>
+            <h2 className="mt-1 text-2xl font-extrabold text-[#020F3D] sm:text-3xl">Frequently asked questions</h2>
           </div>
           <div className="mt-8 space-y-4">
             {FAQS.map((faq) => (
               <div key={faq.q} className="rounded-2xl border border-[#e8effa] bg-white p-5 shadow-sm">
-                <h3 className="font-bold text-[#101a56]">{faq.q}</h3>
+                <h3 className="font-bold text-[#020F3D]">{faq.q}</h3>
                 <p className="mt-2 text-sm leading-relaxed text-slate-500">{faq.a}</p>
               </div>
             ))}
@@ -142,12 +142,12 @@ export default async function BrakesPage() {
 
       <section className="px-4 py-12 sm:py-16">
         <div className="mx-auto max-w-5xl">
-          <div className="overflow-hidden rounded-3xl bg-[#101a56] px-8 py-10 text-center shadow-xl sm:py-14">
-            <p className="text-xs font-bold uppercase tracking-widest text-[#6b8fff]">Don&apos;t delay</p>
+          <div className="overflow-hidden rounded-3xl bg-[#020F3D] px-8 py-10 text-center shadow-xl sm:py-14">
+            <p className="text-xs font-bold uppercase tracking-widest text-[#4DA3FF]">Don&apos;t delay</p>
             <h2 className="mt-2 text-2xl font-extrabold text-white sm:text-3xl">Get your brakes checked today</h2>
             <p className="mx-auto mt-3 max-w-md text-sm leading-relaxed text-slate-300">We quote before we start — no obligation. {site.addressLines.join(", ")}.</p>
             <div className="mt-7 flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
-              <Link href="/online-booking?service=brakes" className="flex w-full items-center justify-center gap-2 rounded-xl bg-[#3f63ff] px-7 py-3.5 text-sm font-bold text-white shadow-md transition hover:bg-[#2f53ef] sm:w-auto">
+              <Link href="/online-booking?service=brakes" className="flex w-full items-center justify-center gap-2 rounded-xl bg-[#0F63FF] px-7 py-3.5 text-sm font-bold text-white shadow-md transition hover:bg-[#2f53ef] sm:w-auto">
                 Book brake check
                 <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}><path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" /></svg>
               </Link>

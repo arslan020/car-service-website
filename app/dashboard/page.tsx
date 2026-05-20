@@ -1,8 +1,8 @@
-export default function DashboardPage() {
+﻿export default function DashboardPage() {
   return (
     <div>
       <div className="mb-6">
-        <h1 className="text-2xl font-extrabold text-[#101a56]">Overview</h1>
+        <h1 className="text-2xl font-extrabold text-[#020F3D]">Overview</h1>
         <p className="mt-0.5 text-sm text-slate-500">Welcome back — manage your website content below.</p>
       </div>
 

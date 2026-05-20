@@ -1,4 +1,4 @@
-import { site } from "@/lib/site-config";
+﻿import { site } from "@/lib/site-config";
 
 export const metadata = {
   title: `Privacy Policy | ${site.name}`,
@@ -54,8 +54,8 @@ export default function PrivacyPage() {
 
       <section className="bg-gradient-to-b from-[#eef4ff] via-[#f5f8ff] via-60% to-white px-4 pb-12 pt-16 text-center sm:pt-20">
         <div className="mx-auto max-w-2xl">
-          <p className="text-xs font-bold uppercase tracking-widest text-[#3f63ff]">Legal</p>
-          <h1 className="mt-2 text-3xl font-extrabold leading-tight text-[#101a56] sm:text-5xl">Privacy Policy</h1>
+          <p className="text-xs font-bold uppercase tracking-widest text-[#0F63FF]">Legal</p>
+          <h1 className="mt-2 text-3xl font-extrabold leading-tight text-[#020F3D] sm:text-5xl">Privacy Policy</h1>
           <p className="mt-4 text-base leading-relaxed text-slate-500">
             Last updated: May 2026. This policy explains how {site.name} collects, uses, and protects your personal information.
           </p>
@@ -66,7 +66,7 @@ export default function PrivacyPage() {
         <div className="mx-auto max-w-3xl space-y-8">
           {SECTIONS.map((s) => (
             <div key={s.title}>
-              <h2 className="text-lg font-bold text-[#101a56]">{s.title}</h2>
+              <h2 className="text-lg font-bold text-[#020F3D]">{s.title}</h2>
               <p className="mt-2 text-sm leading-relaxed text-slate-600">{s.body}</p>
             </div>
           ))}

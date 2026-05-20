@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useState } from "react";
 import Link from "next/link";
@@ -47,14 +47,14 @@ export default function QuotePage() {
 
       <section className="bg-gradient-to-b from-[#eef4ff] via-[#f5f8ff] via-60% to-white px-4 pb-12 pt-16 text-center sm:pt-20">
         <div className="mx-auto max-w-2xl">
-          <p className="text-xs font-bold uppercase tracking-widest text-[#3f63ff]">Quote request</p>
-          <h1 className="mt-2 text-3xl font-extrabold leading-tight text-[#101a56] sm:text-5xl">
+          <p className="text-xs font-bold uppercase tracking-widest text-[#0F63FF]">Quote request</p>
+          <h1 className="mt-2 text-3xl font-extrabold leading-tight text-[#020F3D] sm:text-5xl">
             Describe the Problem
           </h1>
           <p className="mt-4 text-base leading-relaxed text-slate-500">
             For non-standard jobs — noises, warning lights, damage — send details and we&apos;ll come back with next steps.
             For routine servicing, use the{" "}
-            <Link href="/online-booking" className="font-semibold text-[#3f63ff] underline-offset-2 hover:text-[#101a56] hover:underline">
+            <Link href="/online-booking" className="font-semibold text-[#0F63FF] underline-offset-2 hover:text-[#020F3D] hover:underline">
               booking form
             </Link>.
           </p>
@@ -71,7 +71,7 @@ export default function QuotePage() {
                     <path strokeLinecap="round" strokeLinejoin="round" d="m4.5 12.75 6 6 9-13.5" />
                   </svg>
                 </span>
-                <h3 className="text-xl font-extrabold text-[#101a56]">Request Sent!</h3>
+                <h3 className="text-xl font-extrabold text-[#020F3D]">Request Sent!</h3>
                 <p className="max-w-sm text-sm text-slate-500">
                   We&apos;ve received your quote request and will get back to you as soon as possible — usually within a few hours during opening times.
                 </p>
@@ -79,7 +79,7 @@ export default function QuotePage() {
                   <button
                     type="button"
                     onClick={() => { setSubmitted(false); setForm({ name: "", phone: "", email: "", reg: "", description: "" }); }}
-                    className="rounded-xl border-2 border-[#101a56] px-6 py-2.5 text-sm font-bold text-[#101a56] transition hover:bg-[#101a56] hover:text-white"
+                    className="rounded-xl border-2 border-[#020F3D] px-6 py-2.5 text-sm font-bold text-[#020F3D] transition hover:bg-[#020F3D] hover:text-white"
                   >
                     Send another request
                   </button>
@@ -112,7 +112,7 @@ export default function QuotePage() {
                       maxLength={8}
                       value={form.reg}
                       onChange={(e) => setForm({ ...form, reg: e.target.value.toUpperCase() })}
-                      className="min-w-0 flex-1 bg-[#F5C518] py-3 pr-3 text-center text-base font-extrabold uppercase tracking-widest text-[#101a56] placeholder-[#8b7200] focus:outline-none"
+                      className="min-w-0 flex-1 bg-[#F5C518] py-3 pr-3 text-center text-base font-extrabold uppercase tracking-widest text-[#020F3D] placeholder-[#8b7200] focus:outline-none"
                     />
                   </div>
                 </div>
@@ -126,7 +126,7 @@ export default function QuotePage() {
                     placeholder="Describe the problem, noise, warning light, or damage in as much detail as possible..."
                     value={form.description}
                     onChange={(e) => setForm({ ...form, description: e.target.value })}
-                    className={`resize-none rounded-xl border px-4 py-3 text-sm text-[#101a56] placeholder-slate-300 outline-none transition focus:border-[#3f63ff] focus:ring-2 focus:ring-[#3f63ff]/20 ${errors.description ? "border-red-400 bg-red-50" : "border-[#e0ebff] bg-white"}`}
+                    className={`resize-none rounded-xl border px-4 py-3 text-sm text-[#020F3D] placeholder-slate-300 outline-none transition focus:border-[#0F63FF] focus:ring-2 focus:ring-[#0F63FF]/20 ${errors.description ? "border-red-400 bg-red-50" : "border-[#e0ebff] bg-white"}`}
                   />
                   {errors.description && <p className="text-xs text-red-500">{errors.description}</p>}
                 </div>
@@ -141,7 +141,7 @@ export default function QuotePage() {
                       placeholder="John Smith"
                       value={form.name}
                       onChange={(e) => setForm({ ...form, name: e.target.value })}
-                      className={`rounded-xl border px-4 py-3 text-sm text-[#101a56] placeholder-slate-300 outline-none transition focus:border-[#3f63ff] focus:ring-2 focus:ring-[#3f63ff]/20 ${errors.name ? "border-red-400 bg-red-50" : "border-[#e0ebff] bg-white"}`}
+                      className={`rounded-xl border px-4 py-3 text-sm text-[#020F3D] placeholder-slate-300 outline-none transition focus:border-[#0F63FF] focus:ring-2 focus:ring-[#0F63FF]/20 ${errors.name ? "border-red-400 bg-red-50" : "border-[#e0ebff] bg-white"}`}
                     />
                     {errors.name && <p className="text-xs text-red-500">{errors.name}</p>}
                   </div>
@@ -154,7 +154,7 @@ export default function QuotePage() {
                       placeholder="07700 900000"
                       value={form.phone}
                       onChange={(e) => setForm({ ...form, phone: e.target.value })}
-                      className={`rounded-xl border px-4 py-3 text-sm text-[#101a56] placeholder-slate-300 outline-none transition focus:border-[#3f63ff] focus:ring-2 focus:ring-[#3f63ff]/20 ${errors.phone ? "border-red-400 bg-red-50" : "border-[#e0ebff] bg-white"}`}
+                      className={`rounded-xl border px-4 py-3 text-sm text-[#020F3D] placeholder-slate-300 outline-none transition focus:border-[#0F63FF] focus:ring-2 focus:ring-[#0F63FF]/20 ${errors.phone ? "border-red-400 bg-red-50" : "border-[#e0ebff] bg-white"}`}
                     />
                     {errors.phone && <p className="text-xs text-red-500">{errors.phone}</p>}
                   </div>
@@ -167,7 +167,7 @@ export default function QuotePage() {
                     placeholder="john@example.com"
                     value={form.email}
                     onChange={(e) => setForm({ ...form, email: e.target.value })}
-                    className="rounded-xl border border-[#e0ebff] bg-white px-4 py-3 text-sm text-[#101a56] placeholder-slate-300 outline-none transition focus:border-[#3f63ff] focus:ring-2 focus:ring-[#3f63ff]/20"
+                    className="rounded-xl border border-[#e0ebff] bg-white px-4 py-3 text-sm text-[#020F3D] placeholder-slate-300 outline-none transition focus:border-[#0F63FF] focus:ring-2 focus:ring-[#0F63FF]/20"
                   />
                 </div>
 
@@ -180,7 +180,7 @@ export default function QuotePage() {
                   <button
                     type="submit"
                     disabled={submitting}
-                    className="flex items-center justify-center gap-2 rounded-xl bg-[#101a56] px-8 py-3.5 text-sm font-bold text-white shadow-md transition hover:bg-[#16236e] disabled:opacity-60 disabled:cursor-not-allowed w-full sm:w-auto"
+                    className="flex items-center justify-center gap-2 rounded-xl bg-[#020F3D] px-8 py-3.5 text-sm font-bold text-white shadow-md transition hover:bg-[#061744] disabled:opacity-60 disabled:cursor-not-allowed w-full sm:w-auto"
                   >
                     {submitting ? (
                       <><svg className="h-4 w-4 animate-spin" fill="none" viewBox="0 0 24 24"><circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth={4} /><path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" /></svg>Sending...</>
@@ -197,7 +197,7 @@ export default function QuotePage() {
           <div className="mt-6 rounded-2xl border border-[#e0ebff] bg-[#f4f8ff] p-5">
             <p className="text-sm text-slate-500 text-center">
               Prefer to talk? Call us on{" "}
-              <a href={`tel:${site.phoneTel}`} className="font-bold text-[#101a56] hover:text-[#3f63ff]">{site.phoneDisplay}</a>
+              <a href={`tel:${site.phoneTel}`} className="font-bold text-[#020F3D] hover:text-[#0F63FF]">{site.phoneDisplay}</a>
               {" "}or{" "}
               <a href={waUrl("Hi, I'd like to get a quote please.")} target="_blank" rel="noopener noreferrer" className="font-bold text-[#25D366] hover:text-[#1ebe5d]">WhatsApp us</a>.
             </p>

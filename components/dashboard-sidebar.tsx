@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import Link from "next/link";
 import Image from "next/image";
@@ -96,8 +96,8 @@ export function DashboardSidebar({ adminName }: { adminName: string }) {
                     onClick={() => setOpen(false)}
                     className={`flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium transition-colors ${
                       active
-                        ? "bg-[#101a56] text-white"
-                        : "text-slate-600 hover:bg-[#eef4ff] hover:text-[#101a56]"
+                        ? "bg-[#020F3D] text-white"
+                        : "text-slate-600 hover:bg-[#eef4ff] hover:text-[#020F3D]"
                     }`}
                   >
                     {item.icon}
@@ -114,8 +114,8 @@ export function DashboardSidebar({ adminName }: { adminName: string }) {
                 onClick={() => setPagesOpen((v) => !v)}
                 className={`flex w-full items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium transition-colors ${
                   isOnPagesRoute
-                    ? "bg-[#eef4ff] text-[#101a56]"
-                    : "text-slate-600 hover:bg-[#eef4ff] hover:text-[#101a56]"
+                    ? "bg-[#eef4ff] text-[#020F3D]"
+                    : "text-slate-600 hover:bg-[#eef4ff] hover:text-[#020F3D]"
                 }`}
               >
                 {/* Pages icon */}
@@ -147,8 +147,8 @@ export function DashboardSidebar({ adminName }: { adminName: string }) {
                           onClick={() => setOpen(false)}
                           className={`flex items-center gap-2 rounded-lg px-3 py-2 text-sm transition-colors ${
                             activeSubItem
-                              ? "bg-[#101a56] font-semibold text-white"
-                              : "text-slate-600 hover:bg-[#eef4ff] hover:text-[#101a56]"
+                              ? "bg-[#020F3D] font-semibold text-white"
+                              : "text-slate-600 hover:bg-[#eef4ff] hover:text-[#020F3D]"
                           }`}
                         >
                           <span>{page.icon}</span>
@@ -166,11 +166,11 @@ export function DashboardSidebar({ adminName }: { adminName: string }) {
         {/* Bottom: user + sign out */}
         <div className="border-t border-[#e0ebff] px-3 py-4">
           <div className="mb-3 flex items-center gap-3 rounded-xl bg-[#f4f8ff] px-3 py-2.5">
-            <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[#101a56] text-xs font-bold text-white">
+            <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[#020F3D] text-xs font-bold text-white">
               {adminName.charAt(0).toUpperCase()}
             </span>
             <div className="min-w-0">
-              <p className="truncate text-sm font-semibold text-[#101a56]">{adminName}</p>
+              <p className="truncate text-sm font-semibold text-[#020F3D]">{adminName}</p>
               <p className="text-[10px] text-slate-400">Admin</p>
             </div>
           </div>
