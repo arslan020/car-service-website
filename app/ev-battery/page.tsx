@@ -72,7 +72,7 @@ export default async function EvBatteryPage() {
             <div className="grid grid-cols-2 gap-4">
               {[
                 { stat: "BEV & PHEV", label: "All EV & Hybrid Types" },
-                { stat: "~45 min", label: "Full Diagnostic" },
+                { stat: "~25 min", label: "Full Diagnostic" },
                 { stat: "SoH Report", label: "Written Health Certificate" },
                 { stat: "Same Day", label: "Results & Advice" },
               ].map((s) => (
