@@ -130,8 +130,9 @@ const WHY_ICONS = [
   ),
   (
     <svg className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth={1.75} viewBox="0 0 24 24">
-      <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v12" />
-      <path strokeLinecap="round" strokeLinejoin="round" d="M15.5 9.5c0-1.38-1.567-2.5-3.5-2.5S8.5 8.12 8.5 9.5 10.067 12 12 12s3.5 1.12 3.5 2.5S13.933 17 12 17s-3.5-1.12-3.5-2.5" />
+      <path strokeLinecap="round" strokeLinejoin="round" d="M15 10a3 3 0 0 0-6 0v7" />
+      <path strokeLinecap="round" strokeLinejoin="round" d="M7.5 14h7" />
+      <path strokeLinecap="round" strokeLinejoin="round" d="M6.5 18h11" />
     </svg>
   ),
   (
