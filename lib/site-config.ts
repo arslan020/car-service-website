@@ -5,7 +5,7 @@ export const site = {
     "MOT, interim and full servicing, repairs, diagnostics, tyres, and brakes — DVSA approved garage in Hayes, UB4 with transparent pricing.",
   phoneDisplay: "0208 564 8030",
   phoneTel: "+442085648030",
-  email: "enquiries@hestonautomotive.com",
+  email: "hello@mariestonservicecentre.co.uk",
   addressLines: ["235 Yeading Ln", "Hayes", "UB4 9AD"] as const,
   hours: "Mon–Sat 9:00–18:00 • Closed Sun",
   /** WhatsApp number without + for wa.me */
