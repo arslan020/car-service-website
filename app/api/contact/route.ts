@@ -26,7 +26,7 @@ export async function POST(req: NextRequest) {
         <div style="font-family:Arial,sans-serif;max-width:600px;margin:0 auto;background:#f4f8ff;padding:24px;border-radius:12px;">
           <div style="background:#101a56;padding:20px 24px;border-radius:8px 8px 0 0;">
             <h2 style="color:#ffffff;margin:0;font-size:18px;">New Contact Enquiry</h2>
-            <p style="color:#8a99d9;margin:4px 0 0;font-size:13px;">Heston Automotive Website</p>
+            <p style="color:#8a99d9;margin:4px 0 0;font-size:13px;">Marieston Service Centre Website</p>
           </div>
           <div style="background:#ffffff;padding:24px;border-radius:0 0 8px 8px;border:1px solid #e0ebff;border-top:none;">
             <table style="width:100%;border-collapse:collapse;">
