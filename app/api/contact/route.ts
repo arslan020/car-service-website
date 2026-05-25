@@ -18,7 +18,7 @@ export async function POST(req: NextRequest) {
     }
 
     await resend.emails.send({
-      from: "Heston Automotive <enquiries@hestonautomotive.com>",
+      from: "Marieston Service Centre <hello@mariestonservicecentre.co.uk>",
       to: process.env.CONTACT_TO!,
       replyTo: email,
       subject: `New Contact Enquiry from ${name}${service ? ` — ${service}` : ""}`,
