@@ -1,6 +1,13 @@
-﻿import Link from "next/link";
+﻿import type { Metadata } from "next";
+import Link from "next/link";
 import { site, waUrl } from "@/lib/site-config";
 import { getPageContent, f } from "@/lib/page-content";
+
+export const metadata: Metadata = {
+  title: "Full Car Service Hayes UB4 | Annual Service | Marieston",
+  description: "Full annual car service in Hayes. Comprehensive 50-point inspection, oil, filters & safety checks. Transparent pricing and qualified mechanics. Book online.",
+  alternates: { canonical: "https://www.mariestonservicecentre.co.uk/car-servicing/full" },
+};
 
 const INCLUDES = [
   "Everything in the Interim Service",

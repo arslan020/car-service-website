@@ -1,6 +1,13 @@
-﻿import Link from "next/link";
+﻿import type { Metadata } from "next";
+import Link from "next/link";
 import { site, waUrl } from "@/lib/site-config";
 import { getPageContent, f } from "@/lib/page-content";
+
+export const metadata: Metadata = {
+  title: "Exhaust & Emissions Repair Hayes UB4 | Marieston",
+  description: "Exhaust repair and emissions testing in Hayes. Catalytic converters, DPF cleaning, silencers & pipework. Competitive prices and same-day service available.",
+  alternates: { canonical: "https://www.mariestonservicecentre.co.uk/repairs/exhaust-emissions" },
+};
 
 const SERVICES = [
   "Exhaust pipe, centre section & back box replacement",

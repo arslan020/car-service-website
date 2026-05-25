@@ -1,6 +1,13 @@
-﻿import Link from "next/link";
+﻿import type { Metadata } from "next";
+import Link from "next/link";
 import { site, waUrl } from "@/lib/site-config";
 import { getPageContent, f } from "@/lib/page-content";
+
+export const metadata: Metadata = {
+  title: "Clutch & Gearbox Repair Hayes UB4 | Marieston Service Centre",
+  description: "Clutch and gearbox repair in Hayes UB4. Experienced mechanics, quality parts, accurate diagnosis. Get a free quote or book online today.",
+  alternates: { canonical: "https://www.mariestonservicecentre.co.uk/repairs/clutch-gearbox" },
+};
 
 const SERVICES = [
   "Clutch plate, pressure plate & release bearing",

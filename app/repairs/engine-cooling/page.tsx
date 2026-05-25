@@ -1,6 +1,13 @@
-﻿import Link from "next/link";
+﻿import type { Metadata } from "next";
+import Link from "next/link";
 import { site, waUrl } from "@/lib/site-config";
 import { getPageContent, f } from "@/lib/page-content";
+
+export const metadata: Metadata = {
+  title: "Engine & Cooling System Repair Hayes UB4 | Marieston",
+  description: "Engine and cooling system repair in Hayes UB4. Head gaskets, thermostats, radiators & coolant leaks. Experienced mechanics and transparent pricing.",
+  alternates: { canonical: "https://www.mariestonservicecentre.co.uk/repairs/engine-cooling" },
+};
 
 const SERVICES = [
   "Coolant system pressure test & leak trace",

@@ -1,6 +1,13 @@
-﻿import Link from "next/link";
+﻿import type { Metadata } from "next";
+import Link from "next/link";
 import { site, waUrl } from "@/lib/site-config";
 import { getPageContent, f } from "@/lib/page-content";
+
+export const metadata: Metadata = {
+  title: "Car Battery Check & Replacement Hayes UB4 | Marieston",
+  description: "Free battery health check and battery replacement in Hayes UB4. All makes and models. Book online or call 0208 564 8030.",
+  alternates: { canonical: "https://www.mariestonservicecentre.co.uk/battery-check" },
+};
 
 const CHECKS = [
   "Battery voltage & state-of-charge test",

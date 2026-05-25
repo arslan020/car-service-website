@@ -1,6 +1,13 @@
-﻿import Link from "next/link";
+﻿import type { Metadata } from "next";
+import Link from "next/link";
 import { site, waUrl } from "@/lib/site-config";
 import { getPageContent, f } from "@/lib/page-content";
+
+export const metadata: Metadata = {
+  title: "EV Battery Health Check Hayes UB4 | Electric Car | Marieston",
+  description: "Electric vehicle battery health check in Hayes UB4. Know the true capacity of your EV battery before buying or selling. Book online today.",
+  alternates: { canonical: "https://www.mariestonservicecentre.co.uk/ev-battery" },
+};
 
 const CHECKS = [
   "State of Health (SoH) percentage reading",

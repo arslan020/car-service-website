@@ -1,5 +1,12 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { PageIntro } from "@/components/page-intro";
+
+export const metadata: Metadata = {
+  title: "Customer Reviews | Marieston Service Centre Hayes UB4",
+  description: "Read what our customers say about Marieston Service Centre in Hayes UB4. Real reviews from real drivers. Trusted local garage.",
+  alternates: { canonical: "https://www.mariestonservicecentre.co.uk/reviews" },
+};
 
 export default function ReviewsPage() {
   return (

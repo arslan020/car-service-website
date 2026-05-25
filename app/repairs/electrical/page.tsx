@@ -1,6 +1,13 @@
-﻿import Link from "next/link";
+﻿import type { Metadata } from "next";
+import Link from "next/link";
 import { site, waUrl } from "@/lib/site-config";
 import { getPageContent, f } from "@/lib/page-content";
+
+export const metadata: Metadata = {
+  title: "Car Electrical Repair Hayes UB4 | Diagnostics & Faults | Marieston",
+  description: "Car electrical diagnostics and repair in Hayes. Battery, alternator, starter motor & fault code clearing. Book a diagnostic check online today.",
+  alternates: { canonical: "https://www.mariestonservicecentre.co.uk/repairs/electrical" },
+};
 
 const SERVICES = [
   "Battery testing, charging & replacement",

@@ -1,6 +1,13 @@
-﻿import Link from "next/link";
+﻿import type { Metadata } from "next";
+import Link from "next/link";
 import { site, waUrl } from "@/lib/site-config";
 import { getPageContent, f } from "@/lib/page-content";
+
+export const metadata: Metadata = {
+  title: "Suspension & Steering Repair Hayes UB4 | Marieston",
+  description: "Suspension and steering repair in Hayes UB4. Springs, shock absorbers, bushes & wheel alignment. Book online for a fast, reliable fix.",
+  alternates: { canonical: "https://www.mariestonservicecentre.co.uk/repairs/suspension-steering" },
+};
 
 const SERVICES = [
   "Shock absorber & strut replacement",

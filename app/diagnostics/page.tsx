@@ -1,6 +1,13 @@
-﻿import Link from "next/link";
+﻿import type { Metadata } from "next";
+import Link from "next/link";
 import { site, waUrl } from "@/lib/site-config";
 import { getPageContentWithDefaults, fl } from "@/lib/page-content";
+
+export const metadata: Metadata = {
+  title: "Car Diagnostics Hayes UB4 | Engine Light & Fault Codes | Marieston",
+  description: "Professional car diagnostics in Hayes. Engine management light investigation, fault code reading & full system checks. Fast, accurate results. Book online.",
+  alternates: { canonical: "https://www.mariestonservicecentre.co.uk/diagnostics" },
+};
 
 const COVER_FALLBACK = [
   "OBD-II / serial diagnostics — all makes & models",

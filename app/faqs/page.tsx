@@ -2,10 +2,12 @@
 import Link from "next/link";
 import { Metadata } from "next";
 import { getPageContentWithDefaults } from "@/lib/page-content";
+import { JsonLd } from "@/components/json-ld";
 
 export const metadata: Metadata = {
   title: `Frequently Asked Questions | ${site.name}`,
   description: "Find answers to commonly asked questions about our car servicing, MOT testing, repairs, and our online booking process.",
+  alternates: { canonical: "https://www.mariestonservicecentre.co.uk/faqs" },
 };
 
 export default async function FaqsPage() {
@@ -32,7 +34,19 @@ export default async function FaqsPage() {
     { q: content.faq_12_q, a: content.faq_12_a },
   ];
 
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: FAQS.filter((f) => f.q && f.a).map((faq) => ({
+      "@type": "Question",
+      name: faq.q,
+      acceptedAnswer: { "@type": "Answer", text: faq.a },
+    })),
+  };
+
   return (
+    <>
+      <JsonLd data={faqSchema} />
     <div className="bg-[#f4f8ff] min-h-screen pb-16">
       {/* ── Page Header ── */}
       <section className="bg-white px-4 py-16 sm:py-20 border-b border-[#e0ebff]">
@@ -95,5 +109,6 @@ export default async function FaqsPage() {
         </div>
       </section>
     </div>
+    </>
   );
 }

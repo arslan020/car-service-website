@@ -1,7 +1,15 @@
-﻿import Link from "next/link";
+﻿import type { Metadata } from "next";
+import Link from "next/link";
 import { site, waUrl } from "@/lib/site-config";
 import { getPageContentWithDefaults, fl } from "@/lib/page-content";
 import { BookingBar } from "@/components/booking-bar";
+import { JsonLd } from "@/components/json-ld";
+
+export const metadata: Metadata = {
+  title: "Car Servicing Hayes UB4 | Interim, Full & Major Service | Marieston",
+  description: "Expert car servicing in Hayes, Middlesex. Choose from interim, full or major service packages. Genuine parts, qualified mechanics, transparent pricing.",
+  alternates: { canonical: "https://www.mariestonservicecentre.co.uk/car-servicing" },
+};
 
 const INTERIM_FALLBACK = [
   "Engine oil & filter change",
@@ -77,7 +85,32 @@ export default async function CarServicingPage() {
     { title: c.ben_4_title, body: c.ben_4_body, icon: "chart" as const },
   ];
 
+  const servicingSchema = {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    name: "Car Servicing",
+    provider: {
+      "@type": "AutoRepair",
+      name: site.name,
+      url: "https://www.mariestonservicecentre.co.uk",
+    },
+    areaServed: { "@type": "Place", name: "Hayes, UB4" },
+    description: "Interim, full and major car servicing in Hayes UB4 by qualified mechanics.",
+    url: "https://www.mariestonservicecentre.co.uk/car-servicing",
+    hasOfferCatalog: {
+      "@type": "OfferCatalog",
+      name: "Car Servicing Packages",
+      itemListElement: [
+        { "@type": "Offer", itemOffered: { "@type": "Service", name: "Interim Service" } },
+        { "@type": "Offer", itemOffered: { "@type": "Service", name: "Full Service" } },
+        { "@type": "Offer", itemOffered: { "@type": "Service", name: "Major Service" } },
+      ],
+    },
+  };
+
   return (
+    <>
+      <JsonLd data={servicingSchema} />
     <div className="bg-white">
       <section className="bg-gradient-to-b from-[#eefdff] via-[#f5feff] via-60% to-white px-4 pb-12 pt-16 text-center sm:pt-20">
         <div className="mx-auto max-w-2xl">
@@ -216,5 +249,6 @@ export default async function CarServicingPage() {
         </div>
       </section>
     </div>
+    </>
   );
 }

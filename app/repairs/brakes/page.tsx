@@ -1,6 +1,13 @@
-﻿import Link from "next/link";
+﻿import type { Metadata } from "next";
+import Link from "next/link";
 import { site, waUrl } from "@/lib/site-config";
 import { getPageContent, f } from "@/lib/page-content";
+
+export const metadata: Metadata = {
+  title: "Brake Repair & Replacement Hayes UB4 | Marieston Service Centre",
+  description: "Expert brake repair and replacement in Hayes. Pads, discs, callipers & brake fluid. Fast turnaround and competitive prices. Book online today.",
+  alternates: { canonical: "https://www.mariestonservicecentre.co.uk/repairs/brakes" },
+};
 
 const SERVICES = [
   "Brake pad replacement (front & rear)",

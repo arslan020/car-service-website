@@ -1,7 +1,15 @@
-﻿import Link from "next/link";
+﻿import type { Metadata } from "next";
+import Link from "next/link";
 import { site, waUrl } from "@/lib/site-config";
 import { getPageContentWithDefaults, fl } from "@/lib/page-content";
 import { BookingBar } from "@/components/booking-bar";
+import { JsonLd } from "@/components/json-ld";
+
+export const metadata: Metadata = {
+  title: "Car Repairs Hayes UB4 | Brakes, Clutch & More | Marieston",
+  description: "Reliable car repairs in Hayes. Expert mechanics for brakes, clutch, suspension, exhaust, engine & electrical faults. Transparent pricing. Get a quote online.",
+  alternates: { canonical: "https://www.mariestonservicecentre.co.uk/repairs" },
+};
 
 const BRAKES_ITEMS = ["Brake pads & discs", "Callipers & cylinders", "Brake lines & hoses", "ABS sensor faults"] as const;
 const CLUTCH_ITEMS = ["Clutch plate & pressure", "Flywheel replacement", "Gear linkage", "Automatic transmission service"] as const;
@@ -97,7 +105,23 @@ export default async function RepairsPage() {
     { n: 4, title: c.proc_4_title, body: c.proc_4_body },
   ];
 
+  const repairsSchema = {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    name: "Car Repairs",
+    provider: {
+      "@type": "AutoRepair",
+      name: site.name,
+      url: "https://www.mariestonservicecentre.co.uk",
+    },
+    areaServed: { "@type": "Place", name: "Hayes, UB4" },
+    description: "Expert car repairs in Hayes UB4 — brakes, clutch, suspension, exhaust, engine and electrical.",
+    url: "https://www.mariestonservicecentre.co.uk/repairs",
+  };
+
   return (
+    <>
+      <JsonLd data={repairsSchema} />
     <div className="bg-white">
       <section className="bg-gradient-to-b from-[#eefdff] via-[#f5feff] via-60% to-white px-4 pb-12 pt-16 text-center sm:pt-20">
         <div className="mx-auto max-w-2xl">
@@ -209,6 +233,7 @@ export default async function RepairsPage() {
         </div>
       </section>
     </div>
+    </>
   );
 }
 

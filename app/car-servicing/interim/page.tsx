@@ -1,6 +1,13 @@
-﻿import Link from "next/link";
+﻿import type { Metadata } from "next";
+import Link from "next/link";
 import { site, waUrl } from "@/lib/site-config";
 import { getPageContent, f } from "@/lib/page-content";
+
+export const metadata: Metadata = {
+  title: "Interim Car Service Hayes UB4 | 6-Month Service | Marieston",
+  description: "Interim car service in Hayes UB4. Oil change, filter replacement & 30-point safety check. Book your 6-month service online today.",
+  alternates: { canonical: "https://www.mariestonservicecentre.co.uk/car-servicing/interim" },
+};
 
 const INCLUDES = [
   "Engine oil drain & refill with correct-grade oil",

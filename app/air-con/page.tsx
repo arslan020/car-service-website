@@ -1,6 +1,13 @@
-﻿import Link from "next/link";
+﻿import type { Metadata } from "next";
+import Link from "next/link";
 import { site, waUrl } from "@/lib/site-config";
 import { getPageContent, f } from "@/lib/page-content";
+
+export const metadata: Metadata = {
+  title: "Air Con Recharge & Repair Hayes UB4 | Marieston",
+  description: "Air conditioning recharge and repair in Hayes UB4. Refrigerant regas, leak detection & compressor checks. Stay cool. Book online today.",
+  alternates: { canonical: "https://www.mariestonservicecentre.co.uk/air-con" },
+};
 
 const INCLUDES = [
   "Recover and recycle existing refrigerant",

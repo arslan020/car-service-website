@@ -1,6 +1,14 @@
-﻿import Link from "next/link";
+﻿import type { Metadata } from "next";
+import Link from "next/link";
 import { site, waUrl } from "@/lib/site-config";
 import { getPageContentWithDefaults, fl } from "@/lib/page-content";
+import { JsonLd } from "@/components/json-ld";
+
+export const metadata: Metadata = {
+  title: "MOT Test Hayes UB4 | DVSA Approved | Marieston Service Centre",
+  description: "Book an MOT test at our DVSA-approved garage in Hayes UB4. Official MOT testing from £29.99, same-day results. Book online or call 0208 564 8030.",
+  alternates: { canonical: "https://www.mariestonservicecentre.co.uk/mot" },
+};
 
 const CHECKS_FALLBACK = [
   "Lights, reflectors & electrical equipment",
@@ -42,7 +50,23 @@ export default async function MotPage() {
     { stat: c.stat_4_value, label: c.stat_4_label },
   ];
 
+  const motServiceSchema = {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    name: "MOT Test",
+    provider: {
+      "@type": "AutoRepair",
+      name: site.name,
+      url: "https://www.mariestonservicecentre.co.uk",
+    },
+    areaServed: { "@type": "Place", name: "Hayes, UB4" },
+    description: "DVSA-approved MOT testing for cars and light vehicles in Hayes UB4.",
+    url: "https://www.mariestonservicecentre.co.uk/mot",
+  };
+
   return (
+    <>
+      <JsonLd data={motServiceSchema} />
     <div className="bg-white">
       <section className="bg-gradient-to-b from-[#eefdff] via-[#f5feff] via-60% to-white px-4 pb-12 pt-16 sm:pt-20">
         <div className="mx-auto max-w-5xl">
@@ -166,5 +190,6 @@ export default async function MotPage() {
         </div>
       </section>
     </div>
+    </>
   );
 }

@@ -1,7 +1,14 @@
-﻿import Link from "next/link";
+﻿import type { Metadata } from "next";
+import Link from "next/link";
 import { site, waUrl } from "@/lib/site-config";
 import { getPageContentWithDefaults } from "@/lib/page-content";
 import { BookingBar } from "@/components/booking-bar";
+
+export const metadata: Metadata = {
+  title: "Our Services | MOT, Servicing & Repairs Hayes UB4 | Marieston",
+  description: "Full range of car services at Marieston Service Centre in Hayes UB4. MOT, servicing, repairs, diagnostics, oil change, air con and EV battery checks.",
+  alternates: { canonical: "https://www.mariestonservicecentre.co.uk/services" },
+};
 
 const SERVICES = [
   {

@@ -1,6 +1,13 @@
-﻿import Link from "next/link";
+﻿import type { Metadata } from "next";
+import Link from "next/link";
 import { site, waUrl } from "@/lib/site-config";
 import { getPageContent, f } from "@/lib/page-content";
+
+export const metadata: Metadata = {
+  title: "Oil Change Service Hayes UB4 | Same Day | Marieston",
+  description: "Quick oil and filter change service in Hayes UB4. Correct oil spec for your car, same-day slots available. Book online or call 0208 564 8030.",
+  alternates: { canonical: "https://www.mariestonservicecentre.co.uk/oil-change" },
+};
 
 const INCLUDES = [
   "Drain old engine oil completely",
