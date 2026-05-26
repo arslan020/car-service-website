@@ -47,9 +47,9 @@ export default async function FaqsPage() {
   return (
     <>
       <JsonLd data={faqSchema} />
-    <div className="bg-[#f4f8ff] min-h-screen pb-16">
+    <div className="bg-white">
       {/* ── Page Header ── */}
-      <section className="bg-white px-4 py-16 sm:py-20 border-b border-[#e0ebff]">
+      <section className="bg-gradient-to-b from-[#eefdff] via-[#f5feff] via-60% to-white px-4 py-16 sm:py-20">
         <div className="mx-auto max-w-3xl text-center">
           <p className="mb-3 text-[11px] font-bold uppercase tracking-widest text-[#0F63FF]">{pageKicker}</p>
           <h1 className="text-3xl font-extrabold tracking-tight text-[#020F3D] sm:text-5xl">
