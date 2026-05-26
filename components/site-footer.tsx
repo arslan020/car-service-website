@@ -14,7 +14,7 @@ export function SiteFooter() {
 
           {/* Col 1 — Brand */}
           <div className="lg:col-span-1">
-            <Link href="/" className="inline-block w-[160px] -ml-3">
+            <Link href="/" className="inline-block w-[160px]">
               <Image
                 src="/updated-logo.png"
                 alt={site.name}
