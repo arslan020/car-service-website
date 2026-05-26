@@ -16,13 +16,13 @@ export function SiteFooter() {
           <div className="lg:col-span-1">
             <Link href="/" className="inline-block w-[160px] -ml-3">
               <Image
-                src="/main-logo-removebg.png"
+                src="/updated-logo.png"
                 alt={site.name}
                 width={160}
                 height={48}
                 className="h-auto w-full object-contain brightness-0 invert"
                 loading="eager"
-                sizes="160px"
+                unoptimized
               />
             </Link>
             <p className="mt-4 text-sm leading-relaxed text-slate-400">

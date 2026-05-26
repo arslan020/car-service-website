@@ -105,14 +105,14 @@ export function SiteHeader() {
           onClick={() => setOpen(false)}
         >
           <Image
-            src="/main-logo-removebg.png"
+            src="/updated-logo.png"
             alt={site.name}
             width={180}
             height={54}
             className="h-auto w-full object-contain"
             priority
             fetchPriority="high"
-            sizes="(min-width: 1280px) 180px, (min-width: 640px) 160px, 132px"
+            unoptimized
           />
         </Link>
 

@@ -25,16 +25,16 @@ export default function LoginPage() {
 
         {/* Logo */}
         <div className="mb-8 flex justify-center">
-          <div className="w-36">
+          <div className="w-52">
             <Image
-              src="/business-logo.png"
+              src="/updated-logo.png"
               alt={site.name}
-              width={144}
-              height={43}
+              width={208}
+              height={61}
               className="h-auto w-full object-contain"
               priority
               fetchPriority="high"
-              sizes="144px"
+              unoptimized
             />
           </div>
         </div>
