@@ -301,6 +301,11 @@ export function HomePageClient({ content }: { content: ContentMap }) {
           {/* ── CTA buttons ── */}
           <BookingBar defaultService="mot" />
 
+          {/* Areas served — SEO signal */}
+          <p className="mt-3 text-xs text-slate-400">
+            Serving <Link href="/areas" className="underline underline-offset-2 hover:text-[#0F63FF] transition-colors">Hayes, Southall, Uxbridge, Slough, Hounslow, Ealing, Harrow & 70+ areas</Link> across West London
+          </p>
+
           {/* Car image with bottom fade */}
           <div className="relative mt-6">
             {/* eslint-disable-next-line @next/next/no-img-element */}

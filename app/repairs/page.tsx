@@ -114,8 +114,13 @@ export default async function RepairsPage() {
       name: site.name,
       url: "https://www.mariestonservicecentre.co.uk",
     },
-    areaServed: { "@type": "Place", name: "Hayes, UB4" },
-    description: "Expert car repairs in Hayes UB4 — brakes, clutch, suspension, exhaust, engine and electrical.",
+    areaServed: [
+      "Hayes", "Southall", "Uxbridge", "Slough", "Hounslow", "Ealing", "Greenford",
+      "Northolt", "Harrow", "Wembley", "Richmond", "Twickenham", "Windsor", "Feltham",
+      "Isleworth", "Ruislip", "Acton", "Chiswick", "Brentford", "Hanwell",
+      "West Drayton", "Hillingdon", "Watford", "Kingston upon Thames", "Staines-upon-Thames",
+    ].map((name) => ({ "@type": "Place", name })),
+    description: "Expert car repairs in Hayes UB4 — brakes, clutch, suspension, exhaust, engine and electrical. Serving West London and surrounding areas.",
     url: "https://www.mariestonservicecentre.co.uk/repairs",
   };
 

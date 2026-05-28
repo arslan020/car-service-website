@@ -94,8 +94,13 @@ export default async function CarServicingPage() {
       name: site.name,
       url: "https://www.mariestonservicecentre.co.uk",
     },
-    areaServed: { "@type": "Place", name: "Hayes, UB4" },
-    description: "Interim, full and major car servicing in Hayes UB4 by qualified mechanics.",
+    areaServed: [
+      "Hayes", "Southall", "Uxbridge", "Slough", "Hounslow", "Ealing", "Greenford",
+      "Northolt", "Harrow", "Wembley", "Richmond", "Twickenham", "Windsor", "Feltham",
+      "Isleworth", "Ruislip", "Acton", "Chiswick", "Brentford", "Hanwell",
+      "West Drayton", "Hillingdon", "Watford", "Kingston upon Thames", "Staines-upon-Thames",
+    ].map((name) => ({ "@type": "Place", name })),
+    description: "Interim, full and major car servicing in Hayes UB4 by qualified mechanics — serving West London and surrounding areas.",
     url: "https://www.mariestonservicecentre.co.uk/car-servicing",
     hasOfferCatalog: {
       "@type": "OfferCatalog",

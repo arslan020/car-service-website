@@ -59,8 +59,13 @@ export default async function MotPage() {
       name: site.name,
       url: "https://www.mariestonservicecentre.co.uk",
     },
-    areaServed: { "@type": "Place", name: "Hayes, UB4" },
-    description: "DVSA-approved MOT testing for cars and light vehicles in Hayes UB4.",
+    areaServed: [
+      "Hayes", "Southall", "Uxbridge", "Slough", "Hounslow", "Ealing", "Greenford",
+      "Northolt", "Harrow", "Wembley", "Richmond", "Twickenham", "Windsor", "Feltham",
+      "Isleworth", "Ruislip", "Acton", "Chiswick", "Brentford", "Hanwell",
+      "West Drayton", "Hillingdon", "Watford", "Kingston upon Thames", "Staines-upon-Thames",
+    ].map((name) => ({ "@type": "Place", name })),
+    description: "DVSA-approved MOT testing for cars and light vehicles in Hayes UB4, serving West London and surrounding areas.",
     url: "https://www.mariestonservicecentre.co.uk/mot",
   };
 
