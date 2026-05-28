@@ -10,7 +10,7 @@ export function SiteFooter() {
 
       {/* ── Main columns ── */}
       <div className="mx-auto max-w-7xl px-4 pt-14 pb-10 sm:px-6 lg:px-8">
-        <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-5">
 
           {/* Col 1 — Brand */}
           <div className="lg:col-span-1">
@@ -108,7 +108,31 @@ export function SiteFooter() {
             </ul>
           </div>
 
-          {/* Col 4 — Contact & Visit */}
+          {/* Col 4 — Areas We Serve */}
+          <div>
+            <p className="text-xs font-bold uppercase tracking-widest text-white">Areas We Serve</p>
+            <ul className="mt-4 space-y-2.5">
+              {[
+                "Southall",
+                "Uxbridge",
+                "West Drayton",
+                "Northolt",
+                "Greenford",
+                "Hounslow",
+              ].map((area) => (
+                <li key={area} className="text-sm text-slate-400">
+                  {area}
+                </li>
+              ))}
+              <li>
+                <Link href="/areas" className="text-sm font-semibold text-[#4DA3FF] transition hover:text-white">
+                  View all areas →
+                </Link>
+              </li>
+            </ul>
+          </div>
+
+          {/* Col 5 — Contact & Visit */}
           <div>
             <p className="text-xs font-bold uppercase tracking-widest text-white">Contact</p>
             <ul className="mt-4 space-y-3">
