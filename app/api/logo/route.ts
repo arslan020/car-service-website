@@ -8,10 +8,8 @@ const SLUG_OVERRIDES: Record<string, { carlogos: string; clearbit: string }> = {
   mini:      { carlogos: "mini",            clearbit: "mini.com"             },
   skoda:     { carlogos: "skoda",           clearbit: "skoda-auto.com"       },
   // New brands
-  ds:        { carlogos: "ds-automobiles",  clearbit: "dsautomobiles.com"    },
   mg:        { carlogos: "mg",              clearbit: "mg.co.uk"             },
   byd:       { carlogos: "byd",             clearbit: "byd.com"              },
-  cupra:     { carlogos: "cupra",           clearbit: "cupraofficial.com"    },
   genesis:   { carlogos: "genesis",         clearbit: "genesis.com"          },
   infiniti:  { carlogos: "infiniti",        clearbit: "infiniti.com"         },
   gwm:       { carlogos: "great-wall",      clearbit: "gwm.com"              },
