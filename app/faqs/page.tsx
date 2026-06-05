@@ -3,6 +3,7 @@ import Link from "next/link";
 import { Metadata } from "next";
 import { getPageContentWithDefaults } from "@/lib/page-content";
 import { JsonLd } from "@/components/json-ld";
+import { BreadcrumbJsonLd } from "@/components/breadcrumb-json-ld";
 
 export const metadata: Metadata = {
   title: `Frequently Asked Questions | ${site.name}`,
@@ -47,6 +48,10 @@ export default async function FaqsPage() {
   return (
     <>
       <JsonLd data={faqSchema} />
+      <BreadcrumbJsonLd items={[
+        { name: "Home", url: "https://www.mariestonservicecentre.co.uk" },
+        { name: "FAQs", url: "https://www.mariestonservicecentre.co.uk/faqs" },
+      ]} />
     <div className="bg-white">
       {/* ── Page Header ── */}
       <section className="bg-gradient-to-b from-[#eefdff] via-[#f5feff] via-60% to-white px-4 py-16 sm:py-20">

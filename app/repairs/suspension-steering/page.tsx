@@ -2,6 +2,25 @@
 import Link from "next/link";
 import { site, waUrl } from "@/lib/site-config";
 import { getPageContent, f } from "@/lib/page-content";
+import { JsonLd } from "@/components/json-ld";
+import { BreadcrumbJsonLd } from "@/components/breadcrumb-json-ld";
+
+const AREA_SERVED = [
+  "Hayes","Southall","Uxbridge","Slough","Hounslow","Ealing","Greenford",
+  "Northolt","Harrow","Wembley","Richmond","Twickenham","Windsor","Feltham",
+  "Isleworth","Ruislip","Acton","Chiswick","Brentford","Hanwell",
+  "West Drayton","Hillingdon","Watford","Kingston upon Thames","Staines-upon-Thames",
+].map((name) => ({ "@type": "Place", name }));
+
+const serviceSchema = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  name: "Suspension & Steering Repair",
+  provider: { "@type": "AutoRepair", name: site.name, url: "https://www.mariestonservicecentre.co.uk" },
+  areaServed: AREA_SERVED,
+  description: "Suspension and steering repair in Hayes UB4. Shock absorbers, springs, ball joints, bushes and wheel alignment.",
+  url: "https://www.mariestonservicecentre.co.uk/repairs/suspension-steering",
+};
 
 export const metadata: Metadata = {
   title: "Suspension & Steering Repair Hayes UB4 | Marieston",
@@ -52,6 +71,13 @@ export default async function SuspensionSteeringPage() {
   const subtitle = f(content, "hero_subtitle", "Knocking, pulling, or vague steering — we inspect, diagnose, and repair. Wheel alignment included after every relevant repair.");
 
   return (
+    <>
+      <JsonLd data={serviceSchema} />
+      <BreadcrumbJsonLd items={[
+        { name: "Home", url: "https://www.mariestonservicecentre.co.uk" },
+        { name: "Repairs", url: "https://www.mariestonservicecentre.co.uk/repairs" },
+        { name: "Suspension & Steering", url: "https://www.mariestonservicecentre.co.uk/repairs/suspension-steering" },
+      ]} />
     <div className="bg-white">
 
       <section className="bg-gradient-to-b from-[#eefdff] via-[#f5feff] via-60% to-white px-4 pb-12 pt-16 sm:pt-20">
@@ -163,6 +189,7 @@ export default async function SuspensionSteeringPage() {
       </section>
 
     </div>
+    </>
   );
 }
 

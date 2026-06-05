@@ -4,6 +4,7 @@ import { site, waUrl } from "@/lib/site-config";
 import { getPageContentWithDefaults, fl } from "@/lib/page-content";
 import { BookingBar } from "@/components/booking-bar";
 import { JsonLd } from "@/components/json-ld";
+import { BreadcrumbJsonLd } from "@/components/breadcrumb-json-ld";
 
 export const metadata: Metadata = {
   title: "Car Repairs Hayes UB4 | Brakes, Clutch & More | Marieston",
@@ -127,6 +128,10 @@ export default async function RepairsPage() {
   return (
     <>
       <JsonLd data={repairsSchema} />
+      <BreadcrumbJsonLd items={[
+        { name: "Home", url: "https://www.mariestonservicecentre.co.uk" },
+        { name: "Repairs", url: "https://www.mariestonservicecentre.co.uk/repairs" },
+      ]} />
     <div className="bg-white">
       <section className="bg-gradient-to-b from-[#eefdff] via-[#f5feff] via-60% to-white px-4 pb-12 pt-16 text-center sm:pt-20">
         <div className="mx-auto max-w-2xl">

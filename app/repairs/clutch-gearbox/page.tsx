@@ -2,6 +2,25 @@
 import Link from "next/link";
 import { site, waUrl } from "@/lib/site-config";
 import { getPageContent, f } from "@/lib/page-content";
+import { JsonLd } from "@/components/json-ld";
+import { BreadcrumbJsonLd } from "@/components/breadcrumb-json-ld";
+
+const AREA_SERVED = [
+  "Hayes","Southall","Uxbridge","Slough","Hounslow","Ealing","Greenford",
+  "Northolt","Harrow","Wembley","Richmond","Twickenham","Windsor","Feltham",
+  "Isleworth","Ruislip","Acton","Chiswick","Brentford","Hanwell",
+  "West Drayton","Hillingdon","Watford","Kingston upon Thames","Staines-upon-Thames",
+].map((name) => ({ "@type": "Place", name }));
+
+const serviceSchema = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  name: "Clutch & Gearbox Repair",
+  provider: { "@type": "AutoRepair", name: site.name, url: "https://www.mariestonservicecentre.co.uk" },
+  areaServed: AREA_SERVED,
+  description: "Clutch plate, pressure plate, flywheel and gearbox repair in Hayes UB4. Accurate diagnosis and quality parts.",
+  url: "https://www.mariestonservicecentre.co.uk/repairs/clutch-gearbox",
+};
 
 export const metadata: Metadata = {
   title: "Clutch & Gearbox Repair Hayes UB4 | Marieston Service Centre",
@@ -51,6 +70,13 @@ export default async function ClutchGearboxPage() {
   const subtitle = f(content, "hero_subtitle", "Slipping clutch, stiff biting point, or grinding gears — we diagnose the root cause and give you a clear quote before any work starts.");
 
   return (
+    <>
+      <JsonLd data={serviceSchema} />
+      <BreadcrumbJsonLd items={[
+        { name: "Home", url: "https://www.mariestonservicecentre.co.uk" },
+        { name: "Repairs", url: "https://www.mariestonservicecentre.co.uk/repairs" },
+        { name: "Clutch & Gearbox", url: "https://www.mariestonservicecentre.co.uk/repairs/clutch-gearbox" },
+      ]} />
     <div className="bg-white">
 
       <section className="bg-gradient-to-b from-[#eefdff] via-[#f5feff] via-60% to-white px-4 pb-12 pt-16 sm:pt-20">
@@ -162,6 +188,7 @@ export default async function ClutchGearboxPage() {
       </section>
 
     </div>
+    </>
   );
 }
 

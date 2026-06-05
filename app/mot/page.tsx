@@ -3,6 +3,7 @@ import Link from "next/link";
 import { site, waUrl } from "@/lib/site-config";
 import { getPageContentWithDefaults, fl } from "@/lib/page-content";
 import { JsonLd } from "@/components/json-ld";
+import { BreadcrumbJsonLd } from "@/components/breadcrumb-json-ld";
 
 export const metadata: Metadata = {
   title: "MOT Test Hayes UB4 | DVSA Approved | Marieston Service Centre",
@@ -72,6 +73,10 @@ export default async function MotPage() {
   return (
     <>
       <JsonLd data={motServiceSchema} />
+      <BreadcrumbJsonLd items={[
+        { name: "Home", url: "https://www.mariestonservicecentre.co.uk" },
+        { name: "MOT Test", url: "https://www.mariestonservicecentre.co.uk/mot" },
+      ]} />
     <div className="bg-white">
       <section className="bg-gradient-to-b from-[#eefdff] via-[#f5feff] via-60% to-white px-4 pb-12 pt-16 sm:pt-20">
         <div className="mx-auto max-w-5xl">

@@ -10,7 +10,7 @@ export function SiteFooter() {
 
       {/* ── Main columns ── */}
       <div className="mx-auto max-w-7xl px-4 pt-14 pb-10 sm:px-6 lg:px-8">
-        <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-5">
+        <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-6">
 
           {/* Col 1 — Brand */}
           <div className="lg:col-span-1">
@@ -66,7 +66,26 @@ export function SiteFooter() {
             </div>
           </div>
 
-          {/* Col 2 — Services */}
+          {/* Col 2 — Company */}
+          <div>
+            <p className="text-xs font-bold uppercase tracking-widest text-white">Company</p>
+            <ul className="mt-4 space-y-2.5">
+              {[
+                { label: "About Us",    href: "/about" },
+                { label: "Areas We Serve", href: "/areas" },
+                { label: "FAQs",        href: "/faqs" },
+                { label: "Contact",     href: "/contact" },
+              ].map((l) => (
+                <li key={l.href}>
+                  <Link href={l.href} className="text-sm text-slate-400 transition hover:text-white">
+                    {l.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Col 3 — Services */}
           <div>
             <p className="text-xs font-bold uppercase tracking-widest text-white">Services</p>
             <ul className="mt-4 space-y-2.5">

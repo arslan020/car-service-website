@@ -2,6 +2,25 @@
 import Link from "next/link";
 import { site, waUrl } from "@/lib/site-config";
 import { getPageContent, f } from "@/lib/page-content";
+import { JsonLd } from "@/components/json-ld";
+import { BreadcrumbJsonLd } from "@/components/breadcrumb-json-ld";
+
+const AREA_SERVED = [
+  "Hayes","Southall","Uxbridge","Slough","Hounslow","Ealing","Greenford",
+  "Northolt","Harrow","Wembley","Richmond","Twickenham","Windsor","Feltham",
+  "Isleworth","Ruislip","Acton","Chiswick","Brentford","Hanwell",
+  "West Drayton","Hillingdon","Watford","Kingston upon Thames","Staines-upon-Thames",
+].map((name) => ({ "@type": "Place", name }));
+
+const serviceSchema = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  name: "Engine & Cooling System Repair",
+  provider: { "@type": "AutoRepair", name: site.name, url: "https://www.mariestonservicecentre.co.uk" },
+  areaServed: AREA_SERVED,
+  description: "Engine and cooling system repair in Hayes UB4. Head gaskets, thermostats, radiators and coolant leak diagnosis and repair.",
+  url: "https://www.mariestonservicecentre.co.uk/repairs/engine-cooling",
+};
 
 export const metadata: Metadata = {
   title: "Engine & Cooling System Repair Hayes UB4 | Marieston",
@@ -52,6 +71,13 @@ export default async function EngineCoolingPage() {
   const subtitle = f(content, "hero_subtitle", "Overheating, oil leaks, warning lights — we trace the root cause with diagnostics before quoting. No guesswork, no unnecessary parts.");
 
   return (
+    <>
+      <JsonLd data={serviceSchema} />
+      <BreadcrumbJsonLd items={[
+        { name: "Home", url: "https://www.mariestonservicecentre.co.uk" },
+        { name: "Repairs", url: "https://www.mariestonservicecentre.co.uk/repairs" },
+        { name: "Engine & Cooling", url: "https://www.mariestonservicecentre.co.uk/repairs/engine-cooling" },
+      ]} />
     <div className="bg-white">
 
       <section className="bg-gradient-to-b from-[#eefdff] via-[#f5feff] via-60% to-white px-4 pb-12 pt-16 sm:pt-20">
@@ -163,6 +189,7 @@ export default async function EngineCoolingPage() {
       </section>
 
     </div>
+    </>
   );
 }
 

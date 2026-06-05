@@ -119,6 +119,10 @@ export function SiteHeader() {
         {/* ── Desktop nav ── */}
         <nav className="hidden xl:flex flex-1 items-center gap-1 px-1">
 
+          <Link href="/about" className="whitespace-nowrap rounded-md px-3 py-2 text-sm font-medium text-slate-600 transition hover:bg-[#eef4ff] hover:text-[#020F3D]">
+            About
+          </Link>
+
           <Link href="/mot" className="whitespace-nowrap rounded-md px-3 py-2 text-sm font-medium text-slate-600 transition hover:bg-[#eef4ff] hover:text-[#020F3D]">
             MOT
           </Link>
@@ -464,6 +468,11 @@ export function SiteHeader() {
 
             {/* Other links */}
             <div className="overflow-hidden rounded-2xl border border-[#edf2f8] bg-white shadow-sm divide-y divide-[#f0f4fa]">
+              <Link href="/about" onClick={() => setOpen(false)}
+                className="flex items-center justify-between px-4 py-3.5 text-sm font-medium text-slate-700 transition hover:bg-[#f4f8ff]">
+                About Us
+                <svg className="h-4 w-4 text-slate-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}><path strokeLinecap="round" strokeLinejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5"/></svg>
+              </Link>
               <Link href="/contact" onClick={() => setOpen(false)}
                 className="flex items-center justify-between px-4 py-3.5 text-sm font-medium text-slate-700 transition hover:bg-[#f4f8ff]">
                 Contact

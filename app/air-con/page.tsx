@@ -2,11 +2,26 @@
 import Link from "next/link";
 import { site, waUrl } from "@/lib/site-config";
 import { getPageContent, f } from "@/lib/page-content";
+import { JsonLd } from "@/components/json-ld";
+import { BreadcrumbJsonLd } from "@/components/breadcrumb-json-ld";
 
 export const metadata: Metadata = {
   title: "Air Con Recharge & Repair Hayes UB4 | Marieston",
   description: "Air conditioning recharge and repair in Hayes UB4. Refrigerant regas, leak detection & compressor checks. Stay cool. Book online today.",
   alternates: { canonical: "https://www.mariestonservicecentre.co.uk/air-con" },
+  openGraph: {
+    title: "Air Con Recharge & Repair Hayes UB4 | Marieston Service Centre",
+    description: "Air conditioning recharge and repair in Hayes UB4. Refrigerant regas, leak detection & compressor checks. Stay cool. Book online today.",
+    url: "https://www.mariestonservicecentre.co.uk/air-con",
+    siteName: site.name,
+    locale: "en_GB",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Air Con Recharge & Repair Hayes UB4 | Marieston Service Centre",
+    description: "Air conditioning recharge and repair in Hayes UB4. Refrigerant regas, leak detection & compressor checks. Stay cool. Book online today.",
+  },
 };
 
 const INCLUDES = [
@@ -44,12 +59,37 @@ const FAQS = [
   },
 ] as const;
 
+const airConSchema = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  name: "Air Conditioning Recharge & Repair",
+  provider: {
+    "@type": "AutoRepair",
+    name: site.name,
+    url: "https://www.mariestonservicecentre.co.uk",
+  },
+  areaServed: [
+    "Hayes", "Southall", "Uxbridge", "Slough", "Hounslow", "Ealing", "Greenford",
+    "Northolt", "Harrow", "Wembley", "Richmond", "Twickenham", "Windsor", "Feltham",
+    "Isleworth", "Ruislip", "Acton", "Chiswick", "Brentford", "Hanwell",
+    "West Drayton", "Hillingdon", "Watford", "Kingston upon Thames", "Staines-upon-Thames",
+  ].map((name) => ({ "@type": "Place", name })),
+  description: "Air conditioning recharge and repair in Hayes UB4. Refrigerant regas (R134a & R1234yf), leak detection, compressor checks and antibacterial treatment.",
+  url: "https://www.mariestonservicecentre.co.uk/air-con",
+};
+
 export default async function AirConPage() {
   const content = await getPageContent("air-con");
   const title = f(content, "hero_title", "Air Con Regas & Service");
   const subtitle = f(content, "hero_subtitle", "Full air conditioning regas and system health check. Get your cabin cool and fresh again — recommended every 2 years.");
 
   return (
+    <>
+      <JsonLd data={airConSchema} />
+      <BreadcrumbJsonLd items={[
+        { name: "Home", url: "https://www.mariestonservicecentre.co.uk" },
+        { name: "Air Con Regas & Repair", url: "https://www.mariestonservicecentre.co.uk/air-con" },
+      ]} />
     <div className="bg-white">
 
       <section className="bg-gradient-to-b from-[#eefdff] via-[#f5feff] via-60% to-white px-4 pb-12 pt-16 sm:pt-20">
@@ -165,5 +205,6 @@ export default async function AirConPage() {
       </section>
 
     </div>
+    </>
   );
 }
