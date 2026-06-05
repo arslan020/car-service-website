@@ -14,10 +14,7 @@ const SLUG_OVERRIDES: Record<string, { carlogos: string; clearbit: string }> = {
   cupra:     { carlogos: "cupra",           clearbit: "cupraofficial.com"    },
   genesis:   { carlogos: "genesis",         clearbit: "genesis.com"          },
   infiniti:  { carlogos: "infiniti",        clearbit: "infiniti.com"         },
-  kgm:       { carlogos: "ssangyong",       clearbit: "kgmmobility.com"      },
   gwm:       { carlogos: "great-wall",      clearbit: "gwm.com"              },
-  omoda:     { carlogos: "omoda",           clearbit: "omoda.com"            },
-  ora:       { carlogos: "ora",             clearbit: "oraev.com"            },
 };
 
 async function tryFetch(url: string): Promise<Response | null> {
