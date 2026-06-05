@@ -1,18 +1,29 @@
 import { NextRequest, NextResponse } from "next/server";
 
-// Brands where the auto-generated slug doesn't match the real carlogos/clearbit slug
-const SLUG_OVERRIDES: Record<string, { carlogos: string; clearbit: string }> = {
-  mercedes:  { carlogos: "mercedes-benz",   clearbit: "mercedes-benz.com"    },
-  landrover: { carlogos: "land-rover",      clearbit: "landrover.com"        },
-  alfaromeo: { carlogos: "alfa-romeo",      clearbit: "alfaromeo.com"        },
-  mini:      { carlogos: "mini",            clearbit: "mini.com"             },
-  skoda:     { carlogos: "skoda",           clearbit: "skoda-auto.com"       },
-  // New brands
-  mg:        { carlogos: "mg",              clearbit: "mg.co.uk"             },
-  byd:       { carlogos: "byd",             clearbit: "byd.com"              },
-  genesis:   { carlogos: "genesis",         clearbit: "genesis.com"          },
-  infiniti:  { carlogos: "infiniti",        clearbit: "infiniti.com"         },
-  gwm:       { carlogos: "great-wall",      clearbit: "gwm.com"              },
+const SLUG_OVERRIDES: Record<string, { carlogos: string; clearbit: string; direct?: string }> = {
+  mercedes:    { carlogos: "mercedes-benz",  clearbit: "mercedes-benz.com"    },
+  landrover:   { carlogos: "land-rover",     clearbit: "landrover.com"        },
+  alfaromeo:   { carlogos: "alfa-romeo",     clearbit: "alfaromeo.com"        },
+  mini:        { carlogos: "mini",           clearbit: "mini.com"             },
+  skoda:       { carlogos: "skoda",          clearbit: "skoda-auto.com"       },
+  mg:          { carlogos: "mg",             clearbit: "mg.co.uk"             },
+  byd:         { carlogos: "byd",            clearbit: "byd.com"              },
+  genesis:     { carlogos: "genesis",        clearbit: "genesis.com"          },
+  infiniti:    { carlogos: "infiniti",       clearbit: "infiniti.com"         },
+  gwm:         { carlogos: "great-wall",     clearbit: "gwm.com"              },
+  bentley:     { carlogos: "bentley",        clearbit: "bentleymotors.com"    },
+  maserati:    { carlogos: "maserati",       clearbit: "maserati.com"         },
+  polestar:    { carlogos: "polestar",       clearbit: "polestar.com"         },
+  astonmartin: {
+    carlogos: "aston-martin",
+    clearbit: "astonmartin.com",
+    direct: "https://upload.wikimedia.org/wikipedia/en/thumb/2/2e/Aston_Martin_logo.svg/320px-Aston_Martin_logo.svg.png",
+  },
+  rollsroyce: {
+    carlogos: "rolls-royce",
+    clearbit: "rolls-roycemotorcars.com",
+    direct: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/35/Rolls-Royce_Motor_Cars_logo.svg/320px-Rolls-Royce_Motor_Cars_logo.svg.png",
+  },
 };
 
 async function tryFetch(url: string): Promise<Response | null> {
@@ -41,19 +52,16 @@ export async function GET(req: NextRequest) {
     return new NextResponse(null, { status: 404 });
   }
 
-  // Same slug logic as car dealer software vehicle overview
-  // vehapi uses dashes:  "Land Rover" → "land-rover"
   const dashedSlug = label
     .normalize("NFD")
-    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/[̀-ͯ]/g, "")
     .toLowerCase()
     .replace(/\s+/g, "-")
     .replace(/[^a-z0-9-]/g, "");
 
-  // carlogos / clearbit use no separator: "Land Rover" → "landrover"
   const plainSlug = label
     .normalize("NFD")
-    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/[̀-ͯ]/g, "")
     .toLowerCase()
     .replace(/\s+/g, "")
     .replace(/[^a-z0-9]/g, "");
@@ -63,11 +71,10 @@ export async function GET(req: NextRequest) {
   const clearbitDomain = overrides?.clearbit ?? `${plainSlug}.com`;
 
   const sources: string[] = [
-    // 1st — vehapi.com
+    // direct URL first (for brands with known working URLs)
+    ...(overrides?.direct ? [overrides.direct] : []),
     `https://vehapi.com/apis/logo-api/img/logo/${dashedSlug}.png`,
-    // 2nd — carlogos.org
     `https://www.carlogos.org/car-logos/${carlogosSlug}-logo.png`,
-    // 3rd — clearbit
     `https://logo.clearbit.com/${clearbitDomain}`,
   ];
 
