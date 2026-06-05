@@ -30,26 +30,39 @@ const SERVICE_OPTIONS: readonly { id: string; label: string }[] = [
 ] as const;
 
 const BRANDS = [
+  { key: "abarth", label: "Abarth" },
   { key: "alfaromeo", label: "Alfa Romeo" },
   { key: "audi", label: "Audi" },
   { key: "bmw", label: "BMW" },
+  { key: "byd", label: "BYD" },
   { key: "chevrolet", label: "Chevrolet" },
   { key: "citroen", label: "Citroën" },
+  { key: "cupra", label: "Cupra" },
   { key: "dacia", label: "Dacia" },
+  { key: "daihatsu", label: "Daihatsu" },
+  { key: "ds", label: "DS" },
   { key: "fiat", label: "Fiat" },
   { key: "ford", label: "Ford" },
+  { key: "genesis", label: "Genesis" },
+  { key: "gwm", label: "GWM" },
   { key: "honda", label: "Honda" },
   { key: "hyundai", label: "Hyundai" },
+  { key: "infiniti", label: "Infiniti" },
+  { key: "isuzu", label: "Isuzu" },
   { key: "jaguar", label: "Jaguar" },
   { key: "jeep", label: "Jeep" },
   { key: "kia", label: "Kia" },
+  { key: "kgm", label: "KGM" },
   { key: "landrover", label: "Land Rover" },
   { key: "lexus", label: "Lexus" },
   { key: "mazda", label: "Mazda" },
   { key: "mercedes", label: "Mercedes-Benz" },
+  { key: "mg", label: "MG" },
   { key: "mini", label: "MINI" },
   { key: "mitsubishi", label: "Mitsubishi" },
   { key: "nissan", label: "Nissan" },
+  { key: "omoda", label: "Omoda" },
+  { key: "ora", label: "Ora" },
   { key: "peugeot", label: "Peugeot" },
   { key: "porsche", label: "Porsche" },
   { key: "renault", label: "Renault" },
@@ -429,7 +442,7 @@ export function HomePageClient({ content }: { content: ContentMap }) {
           <div className="pointer-events-none absolute right-0 top-0 z-10 hidden h-full w-32 bg-gradient-to-l from-white to-transparent sm:block" />
 
           {/* Scrolling track */}
-          <div className="flex w-max animate-marquee items-center gap-10 pr-10 hover:animation-play-state-paused">
+          <div className="flex w-max animate-marquee items-center gap-10 hover:animation-play-state-paused">
             {BRANDS.map((brand) => (
               <img
                 key={`a-${brand.key}`}

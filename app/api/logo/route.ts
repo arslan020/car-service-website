@@ -2,11 +2,22 @@ import { NextRequest, NextResponse } from "next/server";
 
 // Brands where the auto-generated slug doesn't match the real carlogos/clearbit slug
 const SLUG_OVERRIDES: Record<string, { carlogos: string; clearbit: string }> = {
-  mercedes:  { carlogos: "mercedes-benz", clearbit: "mercedes-benz.com" },
-  landrover: { carlogos: "land-rover",    clearbit: "landrover.com"     },
-  alfaromeo: { carlogos: "alfa-romeo",    clearbit: "alfaromeo.com"     },
-  mini:      { carlogos: "mini",          clearbit: "mini.com"          },
-  skoda:     { carlogos: "skoda",         clearbit: "skoda-auto.com"    },
+  mercedes:  { carlogos: "mercedes-benz",   clearbit: "mercedes-benz.com"    },
+  landrover: { carlogos: "land-rover",      clearbit: "landrover.com"        },
+  alfaromeo: { carlogos: "alfa-romeo",      clearbit: "alfaromeo.com"        },
+  mini:      { carlogos: "mini",            clearbit: "mini.com"             },
+  skoda:     { carlogos: "skoda",           clearbit: "skoda-auto.com"       },
+  // New brands
+  ds:        { carlogos: "ds-automobiles",  clearbit: "dsautomobiles.com"    },
+  mg:        { carlogos: "mg",              clearbit: "mg.co.uk"             },
+  byd:       { carlogos: "byd",             clearbit: "byd.com"              },
+  cupra:     { carlogos: "cupra",           clearbit: "cupraofficial.com"    },
+  genesis:   { carlogos: "genesis",         clearbit: "genesis.com"          },
+  infiniti:  { carlogos: "infiniti",        clearbit: "infiniti.com"         },
+  kgm:       { carlogos: "ssangyong",       clearbit: "kgmmobility.com"      },
+  gwm:       { carlogos: "great-wall",      clearbit: "gwm.com"              },
+  omoda:     { carlogos: "omoda",           clearbit: "omoda.com"            },
+  ora:       { carlogos: "ora",             clearbit: "oraev.com"            },
 };
 
 async function tryFetch(url: string): Promise<Response | null> {
