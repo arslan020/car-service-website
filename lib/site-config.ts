@@ -3,10 +3,10 @@ export const site = {
   tagline: "Professional garage care for every car",
   description:
     "MOT, interim and full servicing, repairs, diagnostics, tyres, and brakes — DVSA approved garage in Hayes, UB4 with transparent pricing.",
-  phoneDisplay: "0208 564 8030",
-  phoneTel: "+442085648030",
+  phoneDisplay: "020 8178 8031",
+  phoneTel: "+442081788031",
   email: "hello@mariestonservicecentre.co.uk",
-  addressLines: ["235 Yeading Ln", "Hayes", "UB4 9AD"] as const,
+  addressLines: ["235 Yeading Lane", "Hayes", "UB4 9AD"] as const,
   hours: "Mon–Sat 9:00–18:00 • Closed Sun",
   /** WhatsApp number without + for wa.me */
   whatsappE164: "447487694578",

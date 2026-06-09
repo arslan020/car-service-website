@@ -5,7 +5,7 @@ import { getPageContent, f } from "@/lib/page-content";
 
 export const metadata: Metadata = {
   title: "Car Battery Check & Replacement Hayes UB4 | Marieston",
-  description: "Free battery health check and battery replacement in Hayes UB4. All makes and models. Book online or call 0208 564 8030.",
+  description: "Free battery health check and battery replacement in Hayes UB4. All makes and models. Book online or call 020 8178 8031.",
   alternates: { canonical: "https://www.mariestonservicecentre.co.uk/battery-check" },
 };
 

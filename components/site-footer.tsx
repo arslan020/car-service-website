@@ -182,7 +182,7 @@ export function SiteFooter() {
                   rel="noopener noreferrer"
                   className="text-sm text-slate-400 transition hover:text-white"
                 >
-                  235 Yeading Ln, Hayes, UB4 9AD
+                  235 Yeading Lane, Hayes, UB4 9AD
                 </a>
               </li>
               <li className="flex items-start gap-2.5">
@@ -202,25 +202,14 @@ export function SiteFooter() {
 
       {/* ── Bottom bar ── */}
       <div className="mx-auto max-w-7xl px-4 py-4 sm:px-6 lg:px-8">
-        <div className="flex flex-col items-center gap-3 sm:flex-row sm:justify-between">
-          <p className="text-xs text-slate-500">
-            &copy; {year} {site.name}. All rights reserved.
-          </p>
+        <div className="flex flex-col items-center gap-3">
           <ul className="flex flex-wrap items-center gap-4 text-xs text-slate-500">
             <li><Link href="/privacy" className="transition hover:text-slate-300">Privacy Policy</Link></li>
             <li><Link href="/terms" className="transition hover:text-slate-300">Terms of Use</Link></li>
-            <li>
-              <Link
-                href="/login"
-                className="flex items-center gap-1 transition hover:text-slate-300"
-              >
-                <svg className="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0 0 13.5 3h-6a2.25 2.25 0 0 0-2.25 2.25v13.5A2.25 2.25 0 0 0 7.5 21h6a2.25 2.25 0 0 0 2.25-2.25V15m3 0 3-3m0 0-3-3m3 3H9" />
-                </svg>
-                Admin Login
-              </Link>
-            </li>
           </ul>
+          <p className="text-xs text-slate-500 text-center">
+            &copy; {year} {site.name}. All rights reserved.
+          </p>
         </div>
       </div>
 

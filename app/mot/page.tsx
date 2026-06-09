@@ -7,7 +7,7 @@ import { BreadcrumbJsonLd } from "@/components/breadcrumb-json-ld";
 
 export const metadata: Metadata = {
   title: "MOT Test Hayes UB4 | DVSA Approved | Marieston Service Centre",
-  description: "Book an MOT test at our DVSA-approved garage in Hayes UB4. Official MOT testing from £29.99, same-day results. Book online or call 0208 564 8030.",
+  description: "Book an MOT test at our DVSA-approved garage in Hayes UB4. Official MOT testing from £29.99, same-day results. Book online or call 020 8178 8031.",
   alternates: { canonical: "https://www.mariestonservicecentre.co.uk/mot" },
 };
 
@@ -78,6 +78,23 @@ export default async function MotPage() {
         { name: "MOT Test", url: "https://www.mariestonservicecentre.co.uk/mot" },
       ]} />
     <div className="bg-white">
+
+      {/* Coming Soon banner */}
+      <div className="bg-red-600 px-4 py-5 text-center shadow-md">
+        <div className="mx-auto max-w-2xl">
+          <p className="text-xl font-extrabold uppercase tracking-wide text-white sm:text-2xl">
+            🚧 MOT Testing — Coming Soon
+          </p>
+          <p className="mt-1.5 text-sm font-medium text-white/90">
+            We are not yet open for MOT bookings. Call us on{" "}
+            <a href={`tel:${site.phoneTel}`} className="font-bold underline underline-offset-2 hover:opacity-70 transition">
+              {site.phoneDisplay}
+            </a>{" "}
+            to get on our early booking list.
+          </p>
+        </div>
+      </div>
+
       <section className="bg-gradient-to-b from-[#eefdff] via-[#f5feff] via-60% to-white px-4 pb-12 pt-16 sm:pt-20">
         <div className="mx-auto max-w-5xl">
           <div className="grid items-center gap-10 lg:grid-cols-2">
@@ -90,12 +107,9 @@ export default async function MotPage() {
                 <span className="text-sm text-slate-500">{c.hero_price_suffix}</span>
               </div>
               <div className="mt-7 flex flex-col gap-3 sm:flex-row">
-                <Link href="/online-booking?service=mot" className="flex items-center justify-center gap-2 rounded-xl bg-[#020F3D] px-6 py-3.5 text-sm font-bold text-white shadow-md transition hover:bg-[#061744]">
-                  {c.btn_book_mot}
-                  <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
-                  </svg>
-                </Link>
+                <span className="flex cursor-not-allowed items-center justify-center gap-2 rounded-xl bg-slate-400 px-6 py-3.5 text-sm font-bold text-white shadow-md opacity-75">
+                  🚧 Booking Coming Soon
+                </span>
                 <a
                   href={waUrl("Hi, I'd like to book an MOT please.")}
                   target="_blank"
@@ -186,12 +200,9 @@ export default async function MotPage() {
               {c.bottom_body} {site.phoneDisplay}.
             </p>
             <div className="mt-7 flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
-              <Link href="/online-booking?service=mot" className="flex w-full items-center justify-center gap-2 rounded-xl bg-[#0F63FF] px-7 py-3.5 text-sm font-bold text-white shadow-md transition hover:bg-[#2f53ef] sm:w-auto">
-                {c.bottom_btn_book}
-                <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
-                </svg>
-              </Link>
+              <span className="flex w-full cursor-not-allowed items-center justify-center gap-2 rounded-xl bg-slate-400 px-7 py-3.5 text-sm font-bold text-white shadow-md opacity-75 sm:w-auto">
+                🚧 Booking Coming Soon
+              </span>
               <a href={`tel:${site.phoneTel}`} className="flex w-full items-center justify-center gap-2 rounded-xl border-2 border-white/20 px-7 py-3.5 text-sm font-bold text-white transition hover:bg-white/10 sm:w-auto">
                 Call {site.phoneDisplay}
               </a>

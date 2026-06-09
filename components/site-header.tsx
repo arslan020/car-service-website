@@ -101,14 +101,14 @@ export function SiteHeader() {
       <div className="mx-auto flex max-w-7xl items-center justify-between gap-2 px-3 py-3 sm:gap-4 sm:px-4">
         <Link
           href="/"
-          className="block w-[160px] shrink-0 sm:w-[190px] lg:w-[220px]"
+          className="block w-[200px] shrink-0 sm:w-[240px] lg:w-[280px]"
           onClick={() => setOpen(false)}
         >
           <Image
             src="/updated-logo.png"
             alt={site.name}
-            width={180}
-            height={54}
+            width={796}
+            height={220}
             className="h-auto w-full object-contain"
             priority
             fetchPriority="high"
