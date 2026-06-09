@@ -79,28 +79,21 @@ export default async function MotPage() {
       ]} />
     <div className="bg-white">
 
-      {/* Coming Soon banner */}
-      <div className="bg-red-600 px-4 py-5 text-center shadow-md">
-        <div className="mx-auto max-w-2xl">
-          <p className="text-xl font-extrabold uppercase tracking-wide text-white sm:text-2xl">
-            🚧 MOT Testing — Coming Soon
-          </p>
-          <p className="mt-1.5 text-sm font-medium text-white/90">
-            We are not yet open for MOT bookings. Call us on{" "}
-            <a href={`tel:${site.phoneTel}`} className="font-bold underline underline-offset-2 hover:opacity-70 transition">
-              {site.phoneDisplay}
-            </a>{" "}
-            to get on our early booking list.
-          </p>
-        </div>
-      </div>
+      <section className="relative bg-gradient-to-b from-[#eefdff] via-[#f5feff] via-60% to-white px-4 pb-12 pt-16 sm:pt-20">
 
-      <section className="bg-gradient-to-b from-[#eefdff] via-[#f5feff] via-60% to-white px-4 pb-12 pt-16 sm:pt-20">
         <div className="mx-auto max-w-5xl">
           <div className="grid items-center gap-10 lg:grid-cols-2">
             <div>
               <p className="text-xs font-bold uppercase tracking-widest text-[#0F63FF]">{c.hero_eyebrow}</p>
-              <h1 className="mt-2 text-3xl font-extrabold leading-tight text-[#020F3D] sm:text-5xl">{c.hero_title}</h1>
+              <div className="mt-2 flex items-center gap-4">
+                <h1 className="text-3xl font-extrabold leading-tight text-[#020F3D] sm:text-5xl">{c.hero_title}</h1>
+                {/* Coming Soon sticker */}
+                <div className="flex h-20 w-20 shrink-0 rotate-12 items-center justify-center rounded-full bg-[#020F3D] shadow-xl sm:h-24 sm:w-24">
+                  <p className="text-center text-[10px] font-extrabold uppercase leading-tight tracking-wide text-white sm:text-[11px]">
+                    🚧 Coming<br />Soon
+                  </p>
+                </div>
+              </div>
               <p className="mt-4 text-base leading-relaxed text-slate-500 sm:text-lg">{c.hero_subtitle}</p>
               <div className="mt-3 inline-flex items-center gap-2 rounded-full border border-[#e0ebff] bg-white px-4 py-2 shadow-sm">
                 <span className="text-2xl font-extrabold text-[#020F3D]">{c.hero_price}</span>

@@ -84,6 +84,8 @@ const FEATURED_SERVICES = [
     titleKey: "svc_1_title",
     descKey: "svc_1_desc",
     priceKey: "svc_1_price",
+    comingSoon: true,
+    noFromLabel: true,
     icon: (
       <svg className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth={1.75} viewBox="0 0 24 24">
         <circle cx="12" cy="12" r="9" />
@@ -387,8 +389,15 @@ export function HomePageClient({ content }: { content: ContentMap }) {
               <Link
                 key={svc.href}
                 href={svc.href}
-                className="group flex flex-col rounded-2xl border border-[#e8effa] bg-white p-5 shadow-sm transition-all hover:-translate-y-0.5 hover:border-[#0F63FF]/30 hover:shadow-[0_6px_24px_rgba(15,99,255,0.1)]"
+                className="group relative flex flex-col rounded-2xl border border-[#e8effa] bg-white p-5 shadow-sm transition-all hover:-translate-y-0.5 hover:border-[#0F63FF]/30 hover:shadow-[0_6px_24px_rgba(15,99,255,0.1)]"
               >
+                {"comingSoon" in svc && svc.comingSoon && (
+                  <span className="absolute -right-2 -top-2 flex h-14 w-14 rotate-12 items-center justify-center rounded-full bg-[#020F3D] shadow-lg">
+                    <span className="text-center text-[7px] font-extrabold uppercase leading-tight tracking-wide text-white">
+                      🚧 Coming<br />Soon
+                    </span>
+                  </span>
+                )}
                 <span className="flex flex-1 flex-col gap-3">
                   <span className="flex items-center gap-3">
                     <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[#eef4ff] text-[#0F63FF] transition-all group-hover:bg-[#0F63FF] group-hover:text-white">
@@ -403,7 +412,7 @@ export function HomePageClient({ content }: { content: ContentMap }) {
                   </span>
                 </span>
                 <span className="mt-4 flex items-center justify-between border-t border-[#eef4ff] pt-4">
-                  <span className="text-xs font-medium text-slate-400">{content.svc_block_from_label}</span>
+                  <span className="text-xs font-medium text-slate-400">{"noFromLabel" in svc && svc.noFromLabel ? "Price" : content.svc_block_from_label}</span>
                   <span className="text-xl font-extrabold text-[#020F3D]">
                     {!price || price === "£???" ? "£???" : price}
                   </span>

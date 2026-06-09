@@ -281,7 +281,7 @@ export const PAGES_CONFIG: PageDef[] = [
       T("stat_3_value", "Stat tile 3 — value", "Same Day", "Stat tiles"),
       T("stat_3_label", "Stat tile 3 — label", "Slots Often Available", "Stat tiles"),
       T("stat_4_value", "Stat tile 4 — value", "Free", "Stat tiles"),
-      T("stat_4_label", "Stat tile 4 — label", "Partial Retest if We Do Repairs", "Stat tiles"),
+      T("stat_4_label", "Stat tile 4 — label", "Free Retest if We Do Repairs", "Stat tiles"),
       T("checks_kicker", "Inspection — kicker", "The inspection", "What we check"),
       T("checks_title", "Inspection — heading", "What we check", "What we check"),
       A(
