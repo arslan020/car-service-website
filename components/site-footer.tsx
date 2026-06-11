@@ -71,10 +71,11 @@ export function SiteFooter() {
             <p className="text-xs font-bold uppercase tracking-widest text-white">Company</p>
             <ul className="mt-4 space-y-2.5">
               {[
-                { label: "About Us",    href: "/about" },
+                { label: "About Us",      href: "/about" },
                 { label: "Areas We Serve", href: "/areas" },
-                { label: "FAQs",        href: "/faqs" },
-                { label: "Contact",     href: "/contact" },
+                { label: "FAQs",          href: "/faqs" },
+                { label: "Contact",       href: "/contact" },
+                { label: "Request a Quote", href: "/quote" },
               ].map((l) => (
                 <li key={l.href}>
                   <Link href={l.href} className="text-sm text-slate-400 transition hover:text-white">

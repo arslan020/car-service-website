@@ -13,7 +13,7 @@ export async function POST(req: NextRequest) {
     }
 
     await resend.emails.send({
-      from: "Marieston Service Centre <hello@mariestonservicecentre.co.uk>",
+      from: "New Quote <notifications@mariestonservicecentre.co.uk>",
       to: process.env.CONTACT_TO!,
       replyTo: email || undefined,
       subject: `New Quote Request from ${name}${reg ? ` — ${reg.toUpperCase()}` : ""}`,

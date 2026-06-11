@@ -280,20 +280,20 @@ export function SiteHeader() {
             WhatsApp
           </a>
           <Link
-            href="/online-booking"
+            href="/quote"
             className="inline-flex min-h-10 items-center justify-center rounded-lg bg-[#0F63FF] px-4 py-2 text-sm font-bold text-white shadow-md transition hover:bg-[#1E6BFF]"
           >
-            Book now
+            Request a Quote
           </Link>
         </div>
 
         {/* ── Mobile hamburger ── */}
         <div className="flex items-center gap-2 xl:hidden">
           <Link
-            href="/online-booking"
+            href="/quote"
             className="inline-flex min-h-11 items-center justify-center rounded-lg bg-[#0F63FF] px-3 py-2 text-xs font-bold text-white shadow-md transition hover:bg-[#1E6BFF] sm:px-4 sm:text-sm"
           >
-            Book now
+            Request a Quote
           </Link>
           <button
             type="button"
