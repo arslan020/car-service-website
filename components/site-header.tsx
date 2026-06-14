@@ -290,10 +290,10 @@ export function SiteHeader() {
         {/* ── Mobile hamburger ── */}
         <div className="flex items-center gap-2 xl:hidden">
           <Link
-            href="/quote"
-            className="inline-flex min-h-11 items-center justify-center rounded-lg bg-[#0F63FF] px-3 py-2 text-xs font-bold text-white shadow-md transition hover:bg-[#1E6BFF] sm:px-4 sm:text-sm"
+            href="/online-booking"
+            className="inline-flex min-h-11 items-center justify-center rounded-lg bg-[#020F3D] px-3 py-2 text-xs font-bold text-white shadow-md transition hover:bg-[#0F63FF] sm:px-4 sm:text-sm"
           >
-            Request a Quote
+            Book now
           </Link>
           <button
             type="button"
