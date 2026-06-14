@@ -316,10 +316,6 @@ export function HomePageClient({ content }: { content: ContentMap }) {
           {/* ── CTA buttons ── */}
           <BookingBar defaultService="mot" />
 
-          {/* Areas served — SEO signal */}
-          <p className="mt-3 text-xs text-slate-400">
-            Serving <Link href="/areas" className="underline underline-offset-2 hover:text-[#0F63FF] transition-colors">Hayes, Southall, Uxbridge, Slough, Hounslow, Ealing, Harrow & 70+ areas</Link> across West London
-          </p>
 
           {/* Car image with bottom fade */}
           <div className="relative mt-6">
@@ -346,6 +342,7 @@ export function HomePageClient({ content }: { content: ContentMap }) {
             <p className="text-xs font-bold uppercase tracking-widest text-[#0F63FF]">{content.why_kicker}</p>
             <h2 className="mt-1 text-2xl font-extrabold text-[#020F3D] sm:text-3xl">{content.why_title}</h2>
             <p className="mx-auto mt-3 max-w-2xl text-sm leading-relaxed text-slate-500 sm:text-base">{content.why_intro}</p>
+            <p className="mt-2 text-xs text-slate-400 sm:text-sm">Serving Hayes, Southall, Uxbridge, Slough, Hounslow, Ealing, Harrow &amp; 70+ areas across West London</p>
           </div>
 
           <div className="mt-8 grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
