@@ -19,7 +19,7 @@ export function SiteFooter() {
                 src="/updated-logo.png"
                 alt={site.name}
                 width={160}
-                height={48}
+                height={44}
                 className="h-auto w-full object-contain brightness-0 invert"
                 loading="eager"
                 unoptimized

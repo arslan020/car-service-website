@@ -108,7 +108,7 @@ export function SiteHeader() {
           <Image
             src="/updated-logo.png"
             alt={site.name}
-            width={796}
+            width={800}
             height={220}
             className="h-auto w-full object-contain"
             priority
