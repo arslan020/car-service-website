@@ -87,6 +87,12 @@ export default async function BrakesPage() {
               <p className="text-xs font-bold uppercase tracking-widest text-[#0F63FF]">Safety First</p>
               <h1 className="mt-2 text-3xl font-extrabold leading-tight text-[#020F3D] sm:text-5xl">{title}</h1>
               <p className="mt-4 text-base leading-relaxed text-slate-500 sm:text-lg">{subtitle}</p>
+              <div className="mt-3 inline-flex items-center gap-2 rounded-full border border-[#e0ebff] bg-white px-4 py-2 shadow-sm">
+                <svg className="h-4 w-4 text-[#0F63FF]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                </svg>
+                <span className="text-sm font-semibold text-[#020F3D]">Walk-in service available</span>
+              </div>
               <div className="mt-7 flex flex-col gap-3 sm:flex-row">
                 <Link href="/online-booking?service=brakes" className="flex items-center justify-center gap-2 rounded-xl bg-[#020F3D] px-6 py-3.5 text-sm font-bold text-white shadow-md transition hover:bg-[#061744]">
                   Book Brake Repair
@@ -101,7 +107,7 @@ export default async function BrakesPage() {
             <div className="grid grid-cols-2 gap-4">
               {[
                 { stat: "Only replace what's worn", label: "We show you the evidence first" },
-                { stat: "Brembo & TRW parts", label: "OEM-grade, not budget brands" },
+                { stat: "Quality OE Standard", label: "Original equipment quality" },
                 { stat: "Brake test drive", label: "Road tested before you collect" },
                 { stat: "Free tyre check", label: "Depth & pressure checked every visit" },
               ].map((s) => (

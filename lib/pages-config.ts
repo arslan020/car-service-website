@@ -87,16 +87,16 @@ const HOME_FIELDS: FieldDef[] = [
   T("svc_block_view_all", "Our services — view all button", "View all services", "Our services"),
   T("svc_1_title", "Featured 1 — title", "MOT Testing", "Our services"),
   A("svc_1_desc", "Featured 1 — description", "DVSA approved, same-day slots available", "Our services"),
-  T("svc_1_price", "Featured 1 — price display", "£54", "Our services"),
+  T("svc_1_price", "Featured 1 — price display", "£49", "Our services"),
   T("svc_2_title", "Featured 2 — title", "Full Service", "Our services"),
   A("svc_2_desc", "Featured 2 — description", "Oil, filters & comprehensive 60-point check", "Our services"),
-  T("svc_2_price", "Featured 2 — price (or £???)", "£???", "Our services"),
+  T("svc_2_price", "Featured 2 — price (or £???)", "£239.99", "Our services"),
   T("svc_3_title", "Featured 3 — title", "Oil Change", "Our services"),
   A("svc_3_desc", "Featured 3 — description", "Premium oil and filter replacement", "Our services"),
-  T("svc_3_price", "Featured 3 — price", "£???", "Our services"),
+  T("svc_3_price", "Featured 3 — price", "£139", "Our services"),
   T("svc_4_title", "Featured 4 — title", "Battery Check", "Our services"),
   A("svc_4_desc", "Featured 4 — description", "Testing, charging, and replacement", "Our services"),
-  T("svc_4_price", "Featured 4 — price", "£???", "Our services"),
+  T("svc_4_price", "Featured 4 — price", "Free", "Our services"),
   T("brands_title", "Brands row — heading", "Brands We Service", "Brands"),
   T("hiw_kicker", "How it works — kicker", "Simple process", "How it works"),
   T("hiw_title", "How it works — heading", "How It Works", "How it works"),
@@ -149,11 +149,11 @@ export const PAGES_CONFIG: PageDef[] = [
       T("svc_mot_eyebrow", "Card MOT — eyebrow tag", "DVSA Approved", "Service grid"),
       T("svc_mot_title", "Card MOT — title", "MOT Testing", "Service grid"),
       A("svc_mot_desc", "Card MOT — description", "Annual MOT inspections to keep your car legal and safe. Same-day slots available. If it fails, we explain every advisory clearly and can quote for repair work on the spot.", "Service grid"),
-      T("svc_mot_price", "Card MOT — price", "From £54", "Service grid"),
+      T("svc_mot_price", "Card MOT — price", "From £49", "Service grid"),
       T("svc_cs_eyebrow", "Card Car Servicing — eyebrow", "Scheduled", "Service grid"),
       T("svc_cs_title", "Card Car Servicing — title", "Car Servicing", "Service grid"),
       A("svc_cs_desc", "Card Car Servicing — description", "Oil, full, and major servicing tailored to your make and model. Manufacturer-scheduled checks keep your warranty valid and your car running smoothly.", "Service grid"),
-      T("svc_cs_price", "Card Car Servicing — price", "from £X", "Service grid"),
+      T("svc_cs_price", "Card Car Servicing — price", "from £139", "Service grid"),
       T("svc_rep_eyebrow", "Card Repairs — eyebrow", "All Makes", "Service grid"),
       T("svc_rep_title", "Card Repairs — title", "Repairs", "Service grid"),
       A("svc_rep_desc", "Card Repairs — description", "Brakes, clutch, exhausts, suspension, steering and more. We diagnose first, give you a clear quote, and only proceed with your approval — no surprises.", "Service grid"),
@@ -161,15 +161,15 @@ export const PAGES_CONFIG: PageDef[] = [
       T("svc_diag_eyebrow", "Card Diagnostics — eyebrow", "OBD & Live Data", "Service grid"),
       T("svc_diag_title", "Card Diagnostics — title", "Diagnostics", "Service grid"),
       A("svc_diag_desc", "Card Diagnostics — description", "Engine warning lights, fault codes, and intermittent issues. We use professional-grade diagnostic equipment to trace the root cause — not just clear the light.", "Service grid"),
-      T("svc_diag_price", "Card Diagnostics — price", "from £X", "Service grid"),
+      T("svc_diag_price", "Card Diagnostics — price", "from £54.99", "Service grid"),
       T("svc_oil_eyebrow", "Card Oil — eyebrow", "Premium Oil", "Service grid"),
       T("svc_oil_title", "Card Oil — title", "Oil Change", "Service grid"),
       A("svc_oil_desc", "Card Oil — description", "Right-spec oil and filter for your engine. Fast turnaround — often while you wait. Helps fuel economy and protects against premature wear.", "Service grid"),
-      T("svc_oil_price", "Card Oil — price", "from £X", "Service grid"),
+      T("svc_oil_price", "Card Oil — price", "from £139", "Service grid"),
       T("svc_brakes_eyebrow", "Card Brakes — eyebrow", "Safety First", "Service grid"),
       T("svc_brakes_title", "Card Brakes — title", "Brakes & Tyres", "Service grid"),
       A("svc_brakes_desc", "Card Brakes — description", "Brake pads, discs, callipers, and tyre fitting or replacement. We check tread depth and brake performance and advise only when action is genuinely needed.", "Service grid"),
-      T("svc_brakes_price", "Card Brakes — price", "from £X", "Service grid"),
+      T("svc_brakes_price", "Card Brakes — price", "Free check / walk-in", "Service grid"),
       T("why_kicker", "Why us — kicker", "Why Marieston Service Centre", "Why us"),
       T("why_title", "Why us — heading", "The difference you'll notice", "Why us"),
       T("why_1_title", "Why card 1 — title", "Transparent pricing", "Why us"),
@@ -207,9 +207,9 @@ export const PAGES_CONFIG: PageDef[] = [
       },
       {
         key: "hero_price",
-        label: "Price Badge (e.g. \"from £54\")",
+        label: "Price Badge (e.g. \"from £49\")",
         type: "text",
-        default: "From £54",
+        default: "From £49",
         section: "Hero",
       },
       {
@@ -224,7 +224,7 @@ export const PAGES_CONFIG: PageDef[] = [
         label: "FAQ 1 — Answer",
         type: "textarea",
         default:
-          "Our MOT starts from £54 — the government maximum fee. We never charge more than the legal cap.",
+          "Our MOT is a fixed £49 — no hidden extras, no surprises.",
         section: "FAQs",
       },
       {
@@ -350,14 +350,14 @@ Driver's view of the road`,
         key: "tier_full_price",
         label: "Full Service — Price",
         type: "text",
-        default: "from £X",
+        default: "from £239.99",
         section: "Service Tier Prices",
       },
       {
         key: "tier_major_price",
         label: "Major Service — Price",
         type: "text",
-        default: "from £X",
+        default: "from £269.99",
         section: "Service Tier Prices",
       },
       T("hero_eyebrow", "Hero — kicker", "Scheduled servicing", "Hero"),
@@ -371,14 +371,12 @@ Driver's view of the road`,
       A(
         "tier_interim_includes",
         "Oil — bullet lines (one per line)",
-        `Engine oil & filter change
-Air filter inspection
-Brake fluid level check
-Coolant level check
-Battery check
-Tyre condition & pressure
-Lights & electrics check
-Wiper blade inspection`,
+        `Premium Engine Oil Flush & Refill
+OEM-Quality Oil Filter Replacement
+Sump Plug Washer Replacement
+Essential Fluids Top-Up
+Reset Service Light & Digital History
+Under-Bonnet Visual Health Check`,
         "Service tiers",
       ),
       T("tier_full_title", "Full — card title", "Full Service", "Service tiers"),

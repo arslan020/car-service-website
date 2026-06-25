@@ -120,6 +120,7 @@ const FEATURED_SERVICES = [
     titleKey: "svc_4_title",
     descKey: "svc_4_desc",
     priceKey: "svc_4_price",
+    noFromLabel: true,
     icon: (
       <svg className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth={1.75} viewBox="0 0 24 24">
         <path strokeLinecap="round" strokeLinejoin="round" d="m3.75 13.5 10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75Z" />

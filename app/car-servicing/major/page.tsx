@@ -10,19 +10,38 @@ export const metadata: Metadata = {
 };
 
 const INCLUDES = [
-  "Everything in the Full Service",
-  "Spark plugs replacement (petrol engines)",
-  "Glow plugs inspection (diesel engines)",
-  "Timing belt visual inspection (replacement quoted separately if due)",
-  "Gearbox oil level check & top-up",
-  "Differential oil check (where applicable)",
-  "Brake fluid flush & replacement (DOT spec)",
-  "Coolant flush & replacement (if due per manufacturer schedule)",
-  "Fuel filter replacement",
-  "Throttle body & idle control inspection",
-  "Full road test with written report",
-  "Manufacturer schedule check — advise on anything due",
-  "Stamped service record & digital history update",
+  {
+    title: "Everything in the Full Service",
+    desc: "Every check and replacement from our Full Service, included as standard.",
+  },
+  {
+    title: "Spark Plugs / Glow Plugs",
+    desc: "Spark plugs replaced (petrol) or glow plugs inspected (diesel) to manufacturer spec.",
+  },
+  {
+    title: "Timing Belt Inspection",
+    desc: "Checked against your manufacturer's replacement interval — avoids costly engine damage if due.",
+  },
+  {
+    title: "Gearbox & Differential Oil Check",
+    desc: "Levels and condition checked, topped up where needed.",
+  },
+  {
+    title: "Brake Fluid Flush",
+    desc: "Full fluid replacement to maintain braking performance and safety.",
+  },
+  {
+    title: "Coolant Flush",
+    desc: "Old coolant replaced where due, protecting against overheating and corrosion.",
+  },
+  {
+    title: "Fuel Filter Replacement",
+    desc: "Fitted fresh to maintain fuel flow and engine performance.",
+  },
+  {
+    title: "Full Road Test & Report",
+    desc: "Test driven and a full written report provided before collection.",
+  },
 ];
 
 export default async function MajorServicePage() {
@@ -86,13 +105,15 @@ export default async function MajorServicePage() {
             <div>
               <p className="text-xs font-bold uppercase tracking-widest text-[#0F63FF]">What&apos;s included</p>
               <h2 className="mt-1 text-2xl font-extrabold text-[#020F3D] sm:text-3xl">Major Service checklist</h2>
-              <ul className="mt-6 space-y-3">
+              <ul className="mt-6 space-y-4">
                 {INCLUDES.map((item) => (
-                  <li key={item} className="flex items-start gap-3 text-sm text-slate-600">
+                  <li key={item.title} className="flex items-start gap-3 text-sm text-slate-600">
                     <svg className="mt-0.5 h-5 w-5 shrink-0 text-[#0F63FF]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
                       <path strokeLinecap="round" strokeLinejoin="round" d="m4.5 12.75 6 6 9-13.5" />
                     </svg>
-                    {item}
+                    <span>
+                      <span className="font-semibold text-[#020F3D]">{item.title}:</span> {item.desc}
+                    </span>
                   </li>
                 ))}
               </ul>

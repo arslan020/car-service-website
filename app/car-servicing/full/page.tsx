@@ -10,18 +10,38 @@ export const metadata: Metadata = {
 };
 
 const INCLUDES = [
-  "Everything in the Oil Service",
-  "Engine oil & filter replacement (correct grade for your engine)",
-  "Air filter replacement",
-  "Pollen / cabin filter inspection & replacement if needed",
-  "Fuel filter inspection",
-  "Brake pad thickness measurement (front & rear)",
-  "Brake disc condition & measurement",
-  "Suspension & steering component check",
-  "Exhaust system visual inspection",
-  "Coolant concentration & freeze-point check",
-  "60-point vehicle health check",
-  "Stamped service record & digital update where supported",
+  {
+    title: "Everything in the Oil Service",
+    desc: "Every check and replacement from our Oil Service, included as standard.",
+  },
+  {
+    title: "Engine Oil & Filter Replacement",
+    desc: "Correct-grade oil and a fresh filter, fitted to manufacturer specification.",
+  },
+  {
+    title: "Air Filter Replacement",
+    desc: "Fresh air filter fitted to protect engine performance and fuel economy.",
+  },
+  {
+    title: "Pollen / Cabin Filter Replacement",
+    desc: "Replaced where needed — keeps cabin air clean from London traffic pollution.",
+  },
+  {
+    title: "Brake Pad & Disc Measurement",
+    desc: "Front and rear pads and discs measured against minimum safe limits.",
+  },
+  {
+    title: "Suspension & Steering Check",
+    desc: "Shock absorbers, bushes and steering components inspected for wear.",
+  },
+  {
+    title: "Exhaust System Inspection",
+    desc: "Checked for leaks, corrosion and secure mounting.",
+  },
+  {
+    title: "60-Point Vehicle Health Check",
+    desc: "A full inspection of safety and mechanical systems, with a written report.",
+  },
 ];
 
 export default async function FullServicePage() {
@@ -86,13 +106,15 @@ export default async function FullServicePage() {
             <div>
               <p className="text-xs font-bold uppercase tracking-widest text-[#0F63FF]">What&apos;s included</p>
               <h2 className="mt-1 text-2xl font-extrabold text-[#020F3D] sm:text-3xl">Full Service checklist</h2>
-              <ul className="mt-6 space-y-3">
+              <ul className="mt-6 space-y-4">
                 {INCLUDES.map((item) => (
-                  <li key={item} className="flex items-start gap-3 text-sm text-slate-600">
+                  <li key={item.title} className="flex items-start gap-3 text-sm text-slate-600">
                     <svg className="mt-0.5 h-5 w-5 shrink-0 text-[#0F63FF]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
                       <path strokeLinecap="round" strokeLinejoin="round" d="m4.5 12.75 6 6 9-13.5" />
                     </svg>
-                    {item}
+                    <span>
+                      <span className="font-semibold text-[#020F3D]">{item.title}:</span> {item.desc}
+                    </span>
                   </li>
                 ))}
               </ul>

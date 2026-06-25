@@ -10,17 +10,30 @@ export const metadata: Metadata = {
 };
 
 const INCLUDES = [
-  "Engine oil drain & refill with correct-grade oil",
-  "Oil filter replacement",
-  "Air filter visual inspection",
-  "Brake fluid level check & top-up",
-  "Coolant & antifreeze level check",
-  "Battery health check (voltage & charge)",
-  "Tyre condition, tread depth & pressure check",
-  "Lights & indicators check (all round)",
-  "Wiper blade condition & washer fluid top-up",
-  "Visual check of belts, hoses & fluid leaks",
-  "Stamped service record provided",
+  {
+    title: "Premium Engine Oil Flush & Refill",
+    desc: "Full oil flush and refill using high-quality fully synthetic oil, correctly graded for your engine — built for West London's stop-start traffic.",
+  },
+  {
+    title: "OEM-Quality Oil Filter Replacement",
+    desc: "Old filter replaced with a genuine, OEM-quality filter to keep contaminants out of the engine.",
+  },
+  {
+    title: "Sump Plug Washer Replacement",
+    desc: "Sump plug washer replaced every time to prevent oil leaks.",
+  },
+  {
+    title: "Essential Fluids Top-Up",
+    desc: "Screenwash and coolant topped up — not just checked.",
+  },
+  {
+    title: "Reset Service Light & Digital History",
+    desc: "Service reminder light reset on your dashboard and your digital service history updated.",
+  },
+  {
+    title: "Under-Bonnet Visual Health Check",
+    desc: "Hoses and belts inspected so you're not caught out on the road.",
+  },
 ];
 
 export default async function InterimServicePage() {
@@ -83,13 +96,15 @@ export default async function InterimServicePage() {
             <div>
               <p className="text-xs font-bold uppercase tracking-widest text-[#0F63FF]">What&apos;s included</p>
               <h2 className="mt-1 text-2xl font-extrabold text-[#020F3D] sm:text-3xl">Oil Service checklist</h2>
-              <ul className="mt-6 space-y-3">
+              <ul className="mt-6 space-y-4">
                 {INCLUDES.map((item) => (
-                  <li key={item} className="flex items-start gap-3 text-sm text-slate-600">
+                  <li key={item.title} className="flex items-start gap-3 text-sm text-slate-600">
                     <svg className="mt-0.5 h-5 w-5 shrink-0 text-[#0F63FF]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
                       <path strokeLinecap="round" strokeLinejoin="round" d="m4.5 12.75 6 6 9-13.5" />
                     </svg>
-                    {item}
+                    <span>
+                      <span className="font-semibold text-[#020F3D]">{item.title}:</span> {item.desc}
+                    </span>
                   </li>
                 ))}
               </ul>
