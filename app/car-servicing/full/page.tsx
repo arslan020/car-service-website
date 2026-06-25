@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 };
 
 const INCLUDES = [
-  "Everything in the Interim Service",
+  "Everything in the Oil Service",
   "Engine oil & filter replacement (correct grade for your engine)",
   "Air filter replacement",
   "Pollen / cabin filter inspection & replacement if needed",
@@ -102,11 +102,11 @@ export default async function FullServicePage() {
                 <p className="text-xs font-bold uppercase tracking-widest text-[#0F63FF]">High mileage?</p>
                 <p className="mt-2 text-sm text-slate-600 leading-relaxed">
                   If you cover more than 12,000 miles a year, pair your annual Full Service with an
-                  <strong className="text-[#020F3D]"> Interim Service</strong> at the 6-month mark to keep oil fresh and catch issues early.
+                  <strong className="text-[#020F3D]"> Oil Service</strong> at the 6-month mark to keep oil fresh and catch issues early.
                 </p>
                 <div className="mt-3 flex gap-3">
                   <Link href="/car-servicing/interim" className="inline-flex items-center gap-1 text-sm font-semibold text-[#0F63FF] hover:text-[#020F3D]">
-                    Interim Service
+                    Oil Service
                     <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}><path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" /></svg>
                   </Link>
                   <Link href="/car-servicing/major" className="inline-flex items-center gap-1 text-sm font-semibold text-slate-400 hover:text-[#020F3D]">

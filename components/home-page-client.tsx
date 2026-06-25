@@ -14,7 +14,7 @@ function isValidUKReg(value: string): boolean {
 const SERVICE_OPTIONS: readonly { id: string; label: string }[] = [
   { id: "mot", label: "MOT Test" },
   { id: "full", label: "Full Service" },
-  { id: "interim", label: "Interim Service" },
+  { id: "interim", label: "Oil Service" },
   { id: "major", label: "Major Service" },
   { id: "oil", label: "Oil Change" },
   { id: "brakes", label: "Brakes" },

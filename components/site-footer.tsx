@@ -93,7 +93,7 @@ export function SiteFooter() {
               {[
                 { label: "MOT Test",        href: "/mot" },
                 { label: "Full Service",    href: "/car-servicing/full" },
-                { label: "Interim Service", href: "/car-servicing/interim" },
+                { label: "Oil Service",     href: "/car-servicing/interim" },
                 { label: "Oil Change",      href: "/oil-change" },
                 { label: "Air Conditioning",href: "/air-con" },
                 { label: "Brakes & Tyres",  href: "/repairs/brakes" },

@@ -27,7 +27,7 @@ const AREAS = [
   { name: "Iver",                 postcode: "SL0",              drive: "~14 min", desc: "Iver is a quiet village just off the M25 — easy drive in for MOT, service or repair." },
 
   // ── West London Hubs (15–30 min) ──
-  { name: "Ealing",               postcode: "W5 / W13",         drive: "~20 min", desc: "Quick drive down the A40 — diagnostics, brakes and interim services for Ealing drivers." },
+  { name: "Ealing",               postcode: "W5 / W13",         drive: "~20 min", desc: "Quick drive down the A40 — diagnostics, brakes and oil services for Ealing drivers." },
   { name: "Acton",                postcode: "W3",               drive: "~25 min", desc: "A straightforward drive from Acton brings you to our fully equipped Hayes workshop." },
   { name: "Hanwell",              postcode: "W7",               drive: "~20 min", desc: "Oil changes to major services and engine diagnostics — we cover it all for Hanwell motorists." },
   { name: "Brentford",            postcode: "TW8",              drive: "~25 min", desc: "Brentford drivers trust us for transparent pricing and quality workmanship on all makes." },
@@ -98,7 +98,7 @@ const AREAS = [
 const SERVICES = [
   { label: "MOT Test", href: "/mot" },
   { label: "Full Service", href: "/car-servicing/full" },
-  { label: "Interim Service", href: "/car-servicing/interim" },
+  { label: "Oil Service", href: "/car-servicing/interim" },
   { label: "Oil Change", href: "/oil-change" },
   { label: "Brakes", href: "/repairs/brakes" },
   { label: "Diagnostics", href: "/diagnostics" },

@@ -8,7 +8,7 @@ import { f, fl, type ContentMap } from "@/lib/page-content";
 const SERVICE_OPTIONS_FALLBACK = [
   "MOT Test",
   "Full Service",
-  "Interim Service",
+  "Oil Service",
   "Major Service",
   "Oil Change",
   "Diagnostics",

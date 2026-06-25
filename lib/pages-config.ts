@@ -29,7 +29,7 @@ function A(key: string, label: string, default_: string, section: string): Field
 
 const BOOKING_TABS_DEFAULT = `mot|MOT Test
 full|Full Service
-interim|Interim Service
+interim|Oil Service
 major|Major Service
 oil|Oil Change
 brakes|Brakes
@@ -45,7 +45,7 @@ battery|Battery Check`;
 
 const CONTACT_SERVICE_OPTIONS_DEFAULT = `MOT Test
 Full Service
-Interim Service
+Oil Service
 Major Service
 Oil Change
 Diagnostics
@@ -341,9 +341,9 @@ Driver's view of the road`,
       },
       {
         key: "tier_interim_price",
-        label: "Interim Service — Price",
+        label: "Oil Service — Price",
         type: "text",
-        default: "from £X",
+        default: "from £139",
         section: "Service Tier Prices",
       },
       {
@@ -366,11 +366,11 @@ Driver's view of the road`,
       T("tier_section_kicker", "Tiers section — kicker", "Service levels", "Service tiers"),
       T("tier_section_title", "Tiers section — heading", "Choose your service", "Service tiers"),
       T("tier_popular_badge", "“Most popular” badge text", "Most popular", "Service tiers"),
-      T("tier_interim_title", "Interim — card title", "Interim Service", "Service tiers"),
-      T("tier_interim_subtitle", "Interim — subtitle", "Every 6 months or 6,000 miles", "Service tiers"),
+      T("tier_interim_title", "Oil — card title", "Oil Service", "Service tiers"),
+      T("tier_interim_subtitle", "Oil — subtitle", "Every 6 months or 6,000 miles", "Service tiers"),
       A(
         "tier_interim_includes",
-        "Interim — bullet lines (one per line)",
+        "Oil — bullet lines (one per line)",
         `Engine oil & filter change
 Air filter inspection
 Brake fluid level check
@@ -386,7 +386,7 @@ Wiper blade inspection`,
       A(
         "tier_full_includes",
         "Full — bullet lines (one per line)",
-        `Everything in Interim Service
+        `Everything in Oil Service
 Air filter replacement
 Pollen / cabin filter check
 Fuel filter inspection
@@ -708,13 +708,13 @@ Pre-purchase inspection & health check`,
   },
   {
     slug: "car-servicing-interim",
-    label: "Interim Service",
+    label: "Oil Service",
     icon: "🔧",
     publicPath: "/car-servicing/interim",
     fields: [
-      { key: "hero_title", label: "Page Title", type: "text", default: "Interim Service", section: "Hero" },
+      { key: "hero_title", label: "Page Title", type: "text", default: "Oil Service", section: "Hero" },
       { key: "hero_subtitle", label: "Subtitle", type: "textarea", default: "A thorough mid-year health check to keep oil fresh, fluids topped up, and potential problems caught early — ideal for high-mileage drivers.", section: "Hero" },
-      { key: "faq_1_q", label: "FAQ 1 — Question", type: "text", default: "Who is an interim service for?", section: "FAQs" },
+      { key: "faq_1_q", label: "FAQ 1 — Question", type: "text", default: "Who is an oil service for?", section: "FAQs" },
       { key: "faq_1_a", label: "FAQ 1 — Answer", type: "textarea", default: "Drivers covering more than 12,000 miles a year benefit most — the extra oil change keeps the engine protected between annual full services.", section: "FAQs" },
       { key: "faq_2_q", label: "FAQ 2 — Question", type: "text", default: "Does it protect my warranty?", section: "FAQs" },
       { key: "faq_2_a", label: "FAQ 2 — Answer", type: "textarea", default: "Yes. UK law (Block Exemption Regulation) means manufacturer warranties remain valid when serviced at an independent garage using the correct oil grade and parts.", section: "FAQs" },
@@ -733,9 +733,9 @@ Pre-purchase inspection & health check`,
       { key: "hero_title", label: "Page Title", type: "text", default: "Full Service", section: "Hero" },
       { key: "hero_subtitle", label: "Subtitle", type: "textarea", default: "The UK standard annual service — comprehensive, warranty-safe, and stamped. Covers everything from oil and filters to a full 60-point vehicle health check.", section: "Hero" },
       { key: "faq_1_q", label: "FAQ 1 — Question", type: "text", default: "What is a Full Service?", section: "FAQs" },
-      { key: "faq_1_a", label: "FAQ 1 — Answer", type: "textarea", default: "A Full Service is the UK standard annual car service covering all the checks an Interim does, plus filter replacements, brake measurements, and a comprehensive 60-point health check of your vehicle.", section: "FAQs" },
+      { key: "faq_1_a", label: "FAQ 1 — Answer", type: "textarea", default: "A Full Service is the UK standard annual car service covering all the checks an Oil Service does, plus filter replacements, brake measurements, and a comprehensive 60-point health check of your vehicle.", section: "FAQs" },
       { key: "faq_2_q", label: "FAQ 2 — Question", type: "text", default: "How often should I have a Full Service?", section: "FAQs" },
-      { key: "faq_2_a", label: "FAQ 2 — Answer", type: "textarea", default: "Every 12 months or 12,000 miles — whichever comes first. If you do high mileage, combine it with an Interim at 6 months.", section: "FAQs" },
+      { key: "faq_2_a", label: "FAQ 2 — Answer", type: "textarea", default: "Every 12 months or 12,000 miles — whichever comes first. If you do high mileage, combine it with an Oil Service at 6 months.", section: "FAQs" },
       { key: "faq_3_q", label: "FAQ 3 — Question", type: "text", default: "Will it keep my manufacturer warranty valid?", section: "FAQs" },
       { key: "faq_3_a", label: "FAQ 3 — Answer", type: "textarea", default: "Yes. Under the UK Block Exemption Regulation, having your car serviced at an independent garage using the manufacturer-specified oil and parts does not void your warranty.", section: "FAQs" },
       { key: "faq_4_q", label: "FAQ 4 — Question", type: "text", default: "Do I get a service stamp?", section: "FAQs" },

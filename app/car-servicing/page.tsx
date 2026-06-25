@@ -7,8 +7,8 @@ import { JsonLd } from "@/components/json-ld";
 import { BreadcrumbJsonLd } from "@/components/breadcrumb-json-ld";
 
 export const metadata: Metadata = {
-  title: "Car Servicing Hayes UB4 | Interim, Full & Major Service | Marieston",
-  description: "Expert car servicing in Hayes, Middlesex. Choose from interim, full or major service packages. Genuine parts, qualified mechanics, transparent pricing.",
+  title: "Car Servicing Hayes UB4 | Oil, Full & Major Service | Marieston",
+  description: "Expert car servicing in Hayes, Middlesex. Choose from oil, full or major service packages. Genuine parts, qualified mechanics, transparent pricing.",
   alternates: { canonical: "https://www.mariestonservicecentre.co.uk/car-servicing" },
 };
 
@@ -24,7 +24,7 @@ const INTERIM_FALLBACK = [
 ] as const;
 
 const FULL_FALLBACK = [
-  "Everything in Interim Service",
+  "Everything in Oil Service",
   "Air filter replacement",
   "Pollen / cabin filter check",
   "Fuel filter inspection",
@@ -101,13 +101,13 @@ export default async function CarServicingPage() {
       "Isleworth", "Ruislip", "Acton", "Chiswick", "Brentford", "Hanwell",
       "West Drayton", "Hillingdon", "Watford", "Kingston upon Thames", "Staines-upon-Thames",
     ].map((name) => ({ "@type": "Place", name })),
-    description: "Interim, full and major car servicing in Hayes UB4 by qualified mechanics — serving West London and surrounding areas.",
+    description: "Oil, full and major car servicing in Hayes UB4 by qualified mechanics — serving West London and surrounding areas.",
     url: "https://www.mariestonservicecentre.co.uk/car-servicing",
     hasOfferCatalog: {
       "@type": "OfferCatalog",
       name: "Car Servicing Packages",
       itemListElement: [
-        { "@type": "Offer", itemOffered: { "@type": "Service", name: "Interim Service" } },
+        { "@type": "Offer", itemOffered: { "@type": "Service", name: "Oil Service" } },
         { "@type": "Offer", itemOffered: { "@type": "Service", name: "Full Service" } },
         { "@type": "Offer", itemOffered: { "@type": "Service", name: "Major Service" } },
       ],
