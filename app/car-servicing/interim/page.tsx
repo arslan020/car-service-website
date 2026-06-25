@@ -31,7 +31,7 @@ export default async function InterimServicePage() {
   const FAQS = [
     { q: f(content, "faq_1_q", "Who is an oil service for?"), a: f(content, "faq_1_a", "Drivers covering more than 12,000 miles a year benefit most — the extra oil change keeps the engine protected between annual full services.") },
     { q: f(content, "faq_2_q", "Does it protect my warranty?"), a: f(content, "faq_2_a", "Yes. UK law (Block Exemption Regulation) means manufacturer warranties remain valid when serviced at an independent garage using the correct oil grade and parts.") },
-    { q: f(content, "faq_3_q", "How long does it take?"), a: f(content, "faq_3_a", "Usually 1–1.5 hours. Many customers drop off and collect the same morning.") },
+    { q: f(content, "faq_3_q", "How long does it take?"), a: f(content, "faq_3_a", "Usually 1.5–2 hours. Many customers drop off and collect the same morning.") },
     { q: f(content, "faq_4_q", "Will I get a service stamp?"), a: f(content, "faq_4_a", "Yes — we provide a stamped service record for your handbook and can update digital service records where supported.") },
   ];
 
@@ -62,7 +62,7 @@ export default async function InterimServicePage() {
             </div>
             <div className="grid grid-cols-2 gap-4">
               {[
-                { stat: "~1–1.5 hrs", label: "Typical duration" },
+                { stat: "~1.5–2 hrs", label: "Typical duration" },
                 { stat: "Same day", label: "Drop-off & collect" },
                 { stat: "All makes", label: "Petrol, diesel & hybrid" },
                 { stat: "Warranty safe", label: "Block exemption compliant" },
@@ -134,7 +134,7 @@ export default async function InterimServicePage() {
             <p className="text-xs font-bold uppercase tracking-widest text-[#4DA3FF]">Book today</p>
             <h2 className="mt-2 text-2xl font-extrabold text-white sm:text-3xl">Ready to book your Oil Service?</h2>
             <p className="mx-auto mt-3 max-w-md text-sm leading-relaxed text-slate-300">
-              Most customers are back on the road within 1.5 hours. {site.addressLines.join(", ")}.
+              Most customers are back on the road within 2 hours. {site.addressLines.join(", ")}.
             </p>
             <div className="mt-7 flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
               <Link href="/online-booking?service=interim" className="flex w-full items-center justify-center gap-2 rounded-xl bg-[#0F63FF] px-7 py-3.5 text-sm font-bold text-white shadow-md transition hover:bg-[#2f53ef] sm:w-auto">
