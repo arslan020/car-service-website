@@ -26,7 +26,7 @@ export function SiteFooter() {
               />
             </Link>
             <p className="mt-4 text-sm leading-relaxed text-slate-400">
-              MOT, interim and full servicing, repairs, diagnostics, tyres and brakes — DVSA approved garage in Hayes, UB4.
+              MOT, oil and full servicing, repairs, diagnostics, tyres and brakes — DVSA approved garage in Hayes, UB4.
             </p>
 
             {/* Social icons */}

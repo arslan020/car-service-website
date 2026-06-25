@@ -2,7 +2,7 @@ export const site = {
   name: "Marieston Service Centre",
   tagline: "Professional garage care for every car",
   description:
-    "MOT, interim and full servicing, repairs, diagnostics, tyres, and brakes — DVSA approved garage in Hayes, UB4 with transparent pricing.",
+    "MOT, oil and full servicing, repairs, diagnostics, tyres, and brakes — DVSA approved garage in Hayes, UB4 with transparent pricing.",
   phoneDisplay: "020 8178 8031",
   phoneTel: "+442081788031",
   email: "hello@mariestonservicecentre.co.uk",

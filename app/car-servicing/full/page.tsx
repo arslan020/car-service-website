@@ -30,8 +30,8 @@ export default async function FullServicePage() {
   const subtitle = f(content, "hero_subtitle", "The UK standard annual service — comprehensive, warranty-safe, and stamped. Covers everything from oil and filters to a full 60-point vehicle health check.");
 
   const FAQS = [
-    { q: f(content, "faq_1_q", "What is a Full Service?"), a: f(content, "faq_1_a", "A Full Service is the UK standard annual car service covering all the checks an Interim does, plus filter replacements, brake measurements, and a comprehensive 60-point health check of your vehicle.") },
-    { q: f(content, "faq_2_q", "How often should I have a Full Service?"), a: f(content, "faq_2_a", "Every 12 months or 12,000 miles — whichever comes first. If you do high mileage, combine it with an Interim at 6 months.") },
+    { q: f(content, "faq_1_q", "What is a Full Service?"), a: f(content, "faq_1_a", "A Full Service is the UK standard annual car service covering all the checks an Oil Service does, plus filter replacements, brake measurements, and a comprehensive 60-point health check of your vehicle.") },
+    { q: f(content, "faq_2_q", "How often should I have a Full Service?"), a: f(content, "faq_2_a", "Every 12 months or 12,000 miles — whichever comes first. If you do high mileage, combine it with an Oil Service at 6 months.") },
     { q: f(content, "faq_3_q", "Will it keep my manufacturer warranty valid?"), a: f(content, "faq_3_a", "Yes. Under the UK Block Exemption Regulation, having your car serviced at an independent garage using the manufacturer-specified oil and parts does not void your warranty.") },
     { q: f(content, "faq_4_q", "Do I get a service stamp?"), a: f(content, "faq_4_a", "Yes — we stamp your service book and can update digital service histories (Volkswagen Group, Ford, BMW etc.) where the system allows.") },
     { q: f(content, "faq_5_q", "How long does a Full Service take?"), a: f(content, "faq_5_a", "Typically 2–3 hours. We text you when your car is ready for collection.") },
