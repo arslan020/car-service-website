@@ -41,6 +41,7 @@ const SERVICES = [
     titleKey: "svc_rep_title",
     descKey: "svc_rep_desc",
     priceKey: "svc_rep_price",
+    noPrice: true,
     icon: (
       <svg className="h-6 w-6" fill="none" stroke="currentColor" strokeWidth={1.75} viewBox="0 0 24 24">
         <path strokeLinecap="round" strokeLinejoin="round" d="M21.75 6.75a4.5 4.5 0 0 1-4.884 4.484c-1.076-.091-2.264.071-2.95.904l-7.152 8.684a2.548 2.548 0 1 1-3.586-3.585l8.684-7.152c.833-.686.995-1.874.904-2.95a4.5 4.5 0 0 1 6.336-4.486l-3.276 3.276a3.004 3.004 0 0 0 2.25 2.25l3.276-3.276c.256.565.398 1.192.398 1.852Z"/>
@@ -78,6 +79,7 @@ const SERVICES = [
     titleKey: "svc_brakes_title",
     descKey: "svc_brakes_desc",
     priceKey: "svc_brakes_price",
+    noPrice: true,
     icon: (
       <svg className="h-6 w-6" fill="none" stroke="currentColor" strokeWidth={1.75} viewBox="0 0 24 24">
         <circle cx="12" cy="12" r="9" />
@@ -167,8 +169,10 @@ export default async function ServicesPage() {
                     <span className="mt-3 inline-block rounded-full bg-[#f4f8ff] px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-[#0F63FF]">{c[svc.eyebrowKey]}</span>
                   </div>
                 </div>
-                <div className="mt-4 flex items-center justify-between border-t border-[#eef4ff] pt-4">
-                  <span className="text-xs font-medium text-slate-400">{c.card_price_label}</span>
+                <div className={`mt-4 flex items-center border-t border-[#eef4ff] pt-4 ${"noPrice" in svc && svc.noPrice ? "justify-end" : "justify-between"}`}>
+                  {!("noPrice" in svc && svc.noPrice) && (
+                    <span className="text-xs font-medium text-slate-400">{c.card_price_label}</span>
+                  )}
                   <span className="font-extrabold text-[#020F3D]">{c[svc.priceKey]}</span>
                 </div>
               </Link>
