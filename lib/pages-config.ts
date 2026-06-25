@@ -713,7 +713,7 @@ Pre-purchase inspection & health check`,
     publicPath: "/car-servicing/interim",
     fields: [
       { key: "hero_title", label: "Page Title", type: "text", default: "Oil Service", section: "Hero" },
-      { key: "hero_subtitle", label: "Subtitle", type: "textarea", default: "A thorough mid-year health check to keep oil fresh, fluids topped up, and potential problems caught early — ideal for high-mileage drivers.", section: "Hero" },
+      { key: "hero_subtitle", label: "Subtitle", type: "textarea", default: "Fresh engine oil and filter, plus a full multi-point safety check — keeps your engine protected and your warranty intact between full services. Ideal for high-mileage drivers.", section: "Hero" },
       { key: "faq_1_q", label: "FAQ 1 — Question", type: "text", default: "Who is an oil service for?", section: "FAQs" },
       { key: "faq_1_a", label: "FAQ 1 — Answer", type: "textarea", default: "Drivers covering more than 12,000 miles a year benefit most — the extra oil change keeps the engine protected between annual full services.", section: "FAQs" },
       { key: "faq_2_q", label: "FAQ 2 — Question", type: "text", default: "Does it protect my warranty?", section: "FAQs" },

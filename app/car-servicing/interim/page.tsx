@@ -26,7 +26,7 @@ const INCLUDES = [
 export default async function InterimServicePage() {
   const content = await getPageContent("car-servicing-interim");
   const title = f(content, "hero_title", "Oil Service");
-  const subtitle = f(content, "hero_subtitle", "A thorough mid-year health check to keep oil fresh, fluids topped up, and potential problems caught early — ideal for high-mileage drivers.");
+  const subtitle = f(content, "hero_subtitle", "Fresh engine oil and filter, plus a full multi-point safety check — keeps your engine protected and your warranty intact between full services. Ideal for high-mileage drivers.");
 
   const FAQS = [
     { q: f(content, "faq_1_q", "Who is an oil service for?"), a: f(content, "faq_1_a", "Drivers covering more than 12,000 miles a year benefit most — the extra oil change keeps the engine protected between annual full services.") },
