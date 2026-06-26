@@ -26,7 +26,6 @@ const INTERIM_FALLBACK = [
 const FULL_FALLBACK = [
   "Everything in Oil Service",
   "Air filter replacement",
-  "Pollen / cabin filter check",
   "Fuel filter inspection",
   "Brake pad & disc measurement",
   "Suspension & steering inspection",
@@ -38,10 +37,8 @@ const MAJOR_FALLBACK = [
   "Everything in Full Service",
   "Spark plugs replacement",
   "Timing belt inspection (if due)",
-  "Gearbox oil check",
-  "Differential oil check",
-  "Brake fluid flush",
   "Coolant flush (if due)",
+  "Comprehensive multi-point check",
   "Full road test & report",
 ] as const;
 

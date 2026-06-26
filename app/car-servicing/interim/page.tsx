@@ -30,10 +30,6 @@ const INCLUDES = [
     title: "Reset Service Light & Digital History",
     desc: "Service reminder light reset on your dashboard and your digital service history updated.",
   },
-  {
-    title: "Under-Bonnet Visual Health Check",
-    desc: "Hoses and belts inspected so you're not caught out on the road.",
-  },
 ];
 
 export default async function InterimServicePage() {

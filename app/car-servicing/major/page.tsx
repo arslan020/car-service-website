@@ -23,20 +23,16 @@ const INCLUDES = [
     desc: "Checked against your manufacturer's replacement interval — avoids costly engine damage if due.",
   },
   {
-    title: "Gearbox & Differential Oil Check",
-    desc: "Levels and condition checked, topped up where needed.",
-  },
-  {
-    title: "Brake Fluid Flush",
-    desc: "Full fluid replacement to maintain braking performance and safety.",
-  },
-  {
     title: "Coolant Flush",
     desc: "Old coolant replaced where due, protecting against overheating and corrosion.",
   },
   {
     title: "Fuel Filter Replacement",
     desc: "Fitted fresh to maintain fuel flow and engine performance.",
+  },
+  {
+    title: "Comprehensive Multi-Point Check",
+    desc: "A thorough inspection of the engine, drivetrain and underbody to catch issues early.",
   },
   {
     title: "Full Road Test & Report",
@@ -47,10 +43,10 @@ const INCLUDES = [
 export default async function MajorServicePage() {
   const content = await getPageContent("car-servicing-major");
   const title = f(content, "hero_title", "Major Service");
-  const subtitle = f(content, "hero_subtitle", "The most comprehensive service — everything in a Full Service plus spark plugs, brake fluid flush, coolant change, and a full road test.");
+  const subtitle = f(content, "hero_subtitle", "The most comprehensive service — everything in a Full Service plus spark plugs, coolant change, a multi-point check, and a full road test.");
 
   const FAQS = [
-    { q: f(content, "faq_1_q", "What is a Major Service?"), a: f(content, "faq_1_a", "A Major Service is the most comprehensive annual service, following your car's manufacturer schedule. It includes everything in a Full Service plus spark plugs, brake fluid flush, coolant change, and a full road test — typically due every 2 years or 24,000 miles.") },
+    { q: f(content, "faq_1_q", "What is a Major Service?"), a: f(content, "faq_1_a", "A Major Service is the most comprehensive annual service, following your car's manufacturer schedule. It includes everything in a Full Service plus spark plugs, coolant change, a comprehensive multi-point check, and a full road test — typically due every 2 years or 24,000 miles.") },
     { q: f(content, "faq_2_q", "How is it different from a Full Service?"), a: f(content, "faq_2_a", "A Full Service covers the standard 12-month checks. A Major Service adds component replacements that are due on a longer cycle — spark plugs, fluids that degrade over time, and a manufacturer-schedule compliance check.") },
     { q: f(content, "faq_3_q", "Does this protect my manufacturer warranty?"), a: f(content, "faq_3_a", "Yes. UK Block Exemption Regulation law means using a qualified independent garage with correct spec parts and oils keeps your warranty fully valid.") },
     { q: f(content, "faq_4_q", "How long does a Major Service take?"), a: f(content, "faq_4_a", "Typically 3–4 hours depending on the vehicle. We will always confirm timing when you book and text you when the car is ready.") },

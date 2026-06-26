@@ -9,7 +9,7 @@ export const site = {
   addressLines: ["235 Yeading Lane", "Hayes", "UB4 9AD"] as const,
   hours: "Mon–Sat 9:00–18:00 • Closed Sun",
   /** WhatsApp number without + for wa.me */
-  whatsappE164: "447487694578",
+  whatsappE164: "442081788031",
 } as const;
 
 export function waUrl(message?: string) {

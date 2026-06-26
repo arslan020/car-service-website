@@ -7,16 +7,6 @@ import { site, waUrl } from "@/lib/site-config";
 
 const SERVICES_MENU = [
   {
-    href: "/oil-change",
-    label: "Oil Change",
-    desc: "Premium oil & filter replacement",
-    icon: (
-      <svg className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth={1.75} viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" d="M15.362 5.214A8.252 8.252 0 0 1 12 21 8.25 8.25 0 0 1 6.038 7.047 8.287 8.287 0 0 0 9 9.601a8.983 8.983 0 0 1 3.361-6.867 8.21 8.21 0 0 0 3 2.48Z" />
-      </svg>
-    ),
-  },
-  {
     href: "/diagnostics",
     label: "Diagnostics",
     desc: "Engine lights & fault codes",
@@ -28,11 +18,21 @@ const SERVICES_MENU = [
   },
   {
     href: "/repairs/brakes",
-    label: "Brakes & Tyres",
-    desc: "Pads, discs & tyre fitting",
+    label: "Brakes",
+    desc: "Pads, discs & callipers",
     icon: (
       <svg className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth={1.75} viewBox="0 0 24 24">
         <circle cx="12" cy="12" r="9" /><circle cx="12" cy="12" r="3" /><path strokeLinecap="round" d="M12 3v2M12 19v2M3 12h2M19 12h2" />
+      </svg>
+    ),
+  },
+  {
+    href: "/repairs/tyres",
+    label: "Tyres",
+    desc: "Fitting, balancing & repairs",
+    icon: (
+      <svg className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth={1.75} viewBox="0 0 24 24">
+        <circle cx="12" cy="12" r="9" /><circle cx="12" cy="12" r="4" /><path strokeLinecap="round" d="M12 3v2M12 19v2M3 12h2M19 12h2M5.5 5.5l1.5 1.5M17 17l1.5 1.5M5.5 18.5l1.5-1.5M17 7l1.5-1.5" />
       </svg>
     ),
   },
@@ -76,6 +76,7 @@ const SERVICING_MENU = [
 
 const REPAIRS_MENU = [
   { href: "/repairs/brakes", label: "Brakes", desc: "Pads, discs & callipers" },
+  { href: "/repairs/tyres", label: "Tyres", desc: "Fitting, balancing & repairs" },
   { href: "/repairs/clutch-gearbox", label: "Clutch & Gearbox", desc: "Slipping clutch, gear faults" },
   { href: "/repairs/suspension-steering", label: "Suspension & Steering", desc: "Shock absorbers, ball joints" },
   { href: "/repairs/exhaust-emissions", label: "Exhaust & Emissions", desc: "Silencer, DPF, catalytic converter" },
@@ -128,47 +129,6 @@ export function SiteHeader() {
             MOT
           </Link>
 
-          {/* Services dropdown */}
-          <div className="group/nav relative">
-            <Link
-              href="/services"
-              className="flex items-center gap-1 whitespace-nowrap rounded-md px-3 py-2 text-sm font-medium text-slate-600 transition hover:bg-[#eef4ff] hover:text-[#020F3D]"
-            >
-              Services
-              <ChevronDown />
-            </Link>
-            {/* invisible bridge so dropdown doesn't close when moving mouse */}
-            <div className="absolute left-0 top-full h-2 w-full" />
-            <div className="pointer-events-none absolute left-0 top-[calc(100%+8px)] w-[520px] opacity-0 transition-all duration-150 group-hover/nav:pointer-events-auto group-hover/nav:opacity-100">
-              <div className="rounded-2xl border border-[#e8effa] bg-white p-4 shadow-[0_16px_48px_rgba(2,15,61,0.12)]">
-                <p className="mb-3 px-1 text-[10px] font-bold uppercase tracking-widest text-slate-400">Our Services</p>
-                <div className="grid grid-cols-2 gap-1">
-                  {SERVICES_MENU.map((item) => (
-                    <Link
-                      key={item.label}
-                      href={item.href}
-                      className="group/item flex items-start gap-3 rounded-xl p-3 transition hover:bg-[#eef4ff]"
-                    >
-                      <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-[#f4f8ff] text-[#0F63FF] transition group-hover/item:bg-[#0F63FF] group-hover/item:text-white">
-                        {item.icon}
-                      </span>
-                      <span>
-                        <span className="block text-sm font-semibold text-[#020F3D] group-hover/item:text-[#0F63FF]">{item.label}</span>
-                        <span className="block text-xs text-slate-400">{item.desc}</span>
-                      </span>
-                    </Link>
-                  ))}
-                </div>
-                <div className="mt-3 border-t border-[#eef4ff] pt-3">
-                  <Link href="/services" className="flex items-center gap-1 px-1 text-xs font-semibold text-[#0F63FF] hover:text-[#020F3D]">
-                    View all services
-                    <svg className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}><path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" /></svg>
-                  </Link>
-                </div>
-              </div>
-            </div>
-          </div>
-
           {/* Car servicing dropdown */}
           <div className="group/nav relative">
             <Link
@@ -205,6 +165,47 @@ export function SiteHeader() {
                 <div className="mt-3 border-t border-[#eef4ff] pt-3">
                   <Link href="/car-servicing" className="flex items-center gap-1 px-1 text-xs font-semibold text-[#0F63FF] hover:text-[#020F3D]">
                     View all servicing options
+                    <svg className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}><path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" /></svg>
+                  </Link>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Additional Services dropdown */}
+          <div className="group/nav relative">
+            <Link
+              href="/services"
+              className="flex items-center gap-1 whitespace-nowrap rounded-md px-3 py-2 text-sm font-medium text-slate-600 transition hover:bg-[#eef4ff] hover:text-[#020F3D]"
+            >
+              Additional Services
+              <ChevronDown />
+            </Link>
+            {/* invisible bridge so dropdown doesn't close when moving mouse */}
+            <div className="absolute left-0 top-full h-2 w-full" />
+            <div className="pointer-events-none absolute left-0 top-[calc(100%+8px)] w-[520px] opacity-0 transition-all duration-150 group-hover/nav:pointer-events-auto group-hover/nav:opacity-100">
+              <div className="rounded-2xl border border-[#e8effa] bg-white p-4 shadow-[0_16px_48px_rgba(2,15,61,0.12)]">
+                <p className="mb-3 px-1 text-[10px] font-bold uppercase tracking-widest text-slate-400">Our Services</p>
+                <div className="grid grid-cols-2 gap-1">
+                  {SERVICES_MENU.map((item) => (
+                    <Link
+                      key={item.label}
+                      href={item.href}
+                      className="group/item flex items-start gap-3 rounded-xl p-3 transition hover:bg-[#eef4ff]"
+                    >
+                      <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-[#f4f8ff] text-[#0F63FF] transition group-hover/item:bg-[#0F63FF] group-hover/item:text-white">
+                        {item.icon}
+                      </span>
+                      <span>
+                        <span className="block text-sm font-semibold text-[#020F3D] group-hover/item:text-[#0F63FF]">{item.label}</span>
+                        <span className="block text-xs text-slate-400">{item.desc}</span>
+                      </span>
+                    </Link>
+                  ))}
+                </div>
+                <div className="mt-3 border-t border-[#eef4ff] pt-3">
+                  <Link href="/services" className="flex items-center gap-1 px-1 text-xs font-semibold text-[#0F63FF] hover:text-[#020F3D]">
+                    View all services
                     <svg className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}><path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" /></svg>
                   </Link>
                 </div>

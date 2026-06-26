@@ -375,8 +375,7 @@ Driver's view of the road`,
 OEM-Quality Oil Filter Replacement
 Sump Plug Washer Replacement
 Essential Fluids Top-Up
-Reset Service Light & Digital History
-Under-Bonnet Visual Health Check`,
+Reset Service Light & Digital History`,
         "Service tiers",
       ),
       T("tier_full_title", "Full — card title", "Full Service", "Service tiers"),
@@ -386,7 +385,6 @@ Under-Bonnet Visual Health Check`,
         "Full — bullet lines (one per line)",
         `Everything in Oil Service
 Air filter replacement
-Pollen / cabin filter check
 Fuel filter inspection
 Brake pad & disc measurement
 Suspension & steering inspection
@@ -402,10 +400,8 @@ Exhaust system check
         `Everything in Full Service
 Spark plugs replacement
 Timing belt inspection (if due)
-Gearbox oil check
-Differential oil check
-Brake fluid flush
 Coolant flush (if due)
+Comprehensive multi-point check
 Full road test & report`,
         "Service tiers",
       ),
@@ -749,9 +745,9 @@ Pre-purchase inspection & health check`,
     publicPath: "/car-servicing/major",
     fields: [
       { key: "hero_title", label: "Page Title", type: "text", default: "Major Service", section: "Hero" },
-      { key: "hero_subtitle", label: "Subtitle", type: "textarea", default: "The most comprehensive service — everything in a Full Service plus spark plugs, brake fluid flush, coolant change, and a full road test.", section: "Hero" },
+      { key: "hero_subtitle", label: "Subtitle", type: "textarea", default: "The most comprehensive service — everything in a Full Service plus spark plugs, coolant change, a multi-point check, and a full road test.", section: "Hero" },
       { key: "faq_1_q", label: "FAQ 1 — Question", type: "text", default: "What is a Major Service?", section: "FAQs" },
-      { key: "faq_1_a", label: "FAQ 1 — Answer", type: "textarea", default: "A Major Service is the most comprehensive annual service, following your car's manufacturer schedule. It includes everything in a Full Service plus spark plugs, brake fluid flush, coolant change, and a full road test — typically due every 2 years or 24,000 miles.", section: "FAQs" },
+      { key: "faq_1_a", label: "FAQ 1 — Answer", type: "textarea", default: "A Major Service is the most comprehensive annual service, following your car's manufacturer schedule. It includes everything in a Full Service plus spark plugs, coolant change, a comprehensive multi-point check, and a full road test — typically due every 2 years or 24,000 miles.", section: "FAQs" },
       { key: "faq_2_q", label: "FAQ 2 — Question", type: "text", default: "How is it different from a Full Service?", section: "FAQs" },
       { key: "faq_2_a", label: "FAQ 2 — Answer", type: "textarea", default: "A Full Service covers the standard 12-month checks. A Major Service adds component replacements that are due on a longer cycle — spark plugs, fluids that degrade over time, and a manufacturer-schedule compliance check.", section: "FAQs" },
       { key: "faq_3_q", label: "FAQ 3 — Question", type: "text", default: "Does this protect my manufacturer warranty?", section: "FAQs" },
@@ -768,8 +764,18 @@ Pre-purchase inspection & health check`,
     icon: "🛑",
     publicPath: "/repairs/brakes",
     fields: [
-      { key: "hero_title", label: "Page Title", type: "text", default: "Brakes & Tyres", section: "Hero" },
+      { key: "hero_title", label: "Page Title", type: "text", default: "Brakes", section: "Hero" },
       { key: "hero_subtitle", label: "Subtitle", type: "textarea", default: "Brakes are your car's most important safety system. We diagnose, quote clearly, and only replace what genuinely needs doing — no upselling.", section: "Hero" },
+    ],
+  },
+  {
+    slug: "repairs-tyres",
+    label: "Tyres",
+    icon: "🛞",
+    publicPath: "/repairs/tyres",
+    fields: [
+      { key: "hero_title", label: "Page Title", type: "text", default: "Tyres", section: "Hero" },
+      { key: "hero_subtitle", label: "Subtitle", type: "textarea", default: "New tyre fitting, balancing and puncture repair for all makes — plus a free tread and pressure check every time you visit.", section: "Hero" },
     ],
   },
   {

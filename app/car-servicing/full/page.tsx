@@ -23,10 +23,6 @@ const INCLUDES = [
     desc: "Fresh air filter fitted to protect engine performance and fuel economy.",
   },
   {
-    title: "Pollen / Cabin Filter Replacement",
-    desc: "Replaced where needed — keeps cabin air clean from London traffic pollution.",
-  },
-  {
     title: "Brake Pad & Disc Measurement",
     desc: "Front and rear pads and discs measured against minimum safe limits.",
   },
