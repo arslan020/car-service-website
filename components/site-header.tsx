@@ -66,6 +66,16 @@ const SERVICES_MENU = [
       </svg>
     ),
   },
+  {
+    href: "/brake-fluid",
+    label: "Brake Fluid Service",
+    desc: "Flush & replacement, £99 fixed",
+    icon: (
+      <svg className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth={1.75} viewBox="0 0 24 24">
+        <path strokeLinecap="round" strokeLinejoin="round" d="M12 21.75c4.142 0 7.5-3.358 7.5-7.5 0-3.5-4.5-9-7.5-12-3 3-7.5 8.5-7.5 12 0 4.142 3.358 7.5 7.5 7.5Z" />
+      </svg>
+    ),
+  },
 ] as const;
 
 const SERVICING_MENU = [
@@ -98,10 +108,10 @@ export function SiteHeader() {
   return (
     <>
     <header className="sticky top-0 z-50 bg-white/98 shadow-[0_6px_18px_rgba(2,15,61,0.05)] backdrop-blur">
-      <div className="mx-auto flex max-w-7xl items-center justify-between gap-2 px-3 py-3 sm:gap-4 sm:px-4">
+      <div className="mx-auto flex max-w-[1800px] items-center justify-between gap-2 px-3 py-3 sm:gap-4 sm:px-6 lg:px-8 xl:px-10">
         <Link
           href="/"
-          className="block w-[200px] shrink-0 sm:w-[240px] lg:w-[280px] xl:w-[220px] 2xl:w-[280px]"
+          className="block w-[170px] shrink-0 sm:w-[240px] lg:w-[280px] xl:w-[220px] 2xl:w-[280px]"
           onClick={() => setOpen(false)}
         >
           <Image
@@ -117,7 +127,7 @@ export function SiteHeader() {
         </Link>
 
         {/* ── Desktop nav ── */}
-        <nav className="hidden xl:flex flex-1 items-center gap-0.5 px-1 2xl:gap-1">
+        <nav className="hidden xl:flex flex-1 items-center justify-center gap-0.5 px-1 2xl:gap-1">
 
           <Link href="/about" className="whitespace-nowrap rounded-md px-2.5 py-2 text-sm font-medium text-slate-600 transition hover:bg-[#eef4ff] hover:text-[#020F3D]">
             About
@@ -292,11 +302,11 @@ export function SiteHeader() {
         </div>
 
         {/* ── Mobile hamburger ── */}
-        <div className="flex flex-1 items-center justify-end gap-2 xl:hidden">
+        <div className="flex flex-1 items-center justify-end gap-1.5 xl:hidden sm:gap-2">
           <a
             href={`tel:${site.phoneTel}`}
             aria-label="Call us"
-            className="inline-flex h-11 w-11 items-center justify-center rounded-lg bg-[#020F3D] text-white transition hover:bg-[#0F63FF]"
+            className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-[#020F3D] text-white transition hover:bg-[#0F63FF] sm:h-11 sm:w-11"
           >
             <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 0 0 2.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 0 1-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 0 0-1.091-.852H4.5A2.25 2.25 0 0 0 2.25 4.5v2.25Z" />
@@ -307,7 +317,7 @@ export function SiteHeader() {
             target="_blank"
             rel="noopener noreferrer"
             aria-label="WhatsApp"
-            className="inline-flex h-11 w-11 items-center justify-center rounded-lg bg-[#25D366] text-white transition hover:bg-[#20b958]"
+            className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-[#25D366] text-white transition hover:bg-[#20b958] sm:h-11 sm:w-11"
           >
             <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
               <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z" />
@@ -316,7 +326,7 @@ export function SiteHeader() {
           <button
             type="button"
             onClick={() => setOpen(!open)}
-            className="inline-flex h-11 w-11 items-center justify-center rounded-lg border border-[color:var(--border)] bg-white text-slate-600 transition hover:bg-[#eef4ff]"
+            className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-[color:var(--border)] bg-white text-slate-600 transition hover:bg-[#eef4ff] sm:h-11 sm:w-11"
             aria-label="Toggle menu"
           >
             {open ? (
@@ -469,6 +479,14 @@ export function SiteHeader() {
                   <svg className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth={1.75} viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M12 3v2.25m6.364.386-1.591 1.591M21 12h-2.25m-.386 6.364-1.591-1.591M12 18.75V21m-4.773-4.227-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z"/></svg>
                 </span>
                 <span className="text-sm font-semibold text-[#020F3D]">Air Con</span>
+              </Link>
+
+              {/* Brake Fluid Service */}
+              <Link href="/brake-fluid" onClick={() => setOpen(false)} className="flex items-center gap-3 px-5 py-4 hover:bg-slate-50">
+                <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-slate-100 text-[#0F63FF]">
+                  <svg className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth={1.75} viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M12 21.75c4.142 0 7.5-3.358 7.5-7.5 0-3.5-4.5-9-7.5-12-3 3-7.5 8.5-7.5 12 0 4.142 3.358 7.5 7.5 7.5Z"/></svg>
+                </span>
+                <span className="text-sm font-semibold text-[#020F3D]">Brake Fluid Service</span>
               </Link>
 
               {/* Contact */}

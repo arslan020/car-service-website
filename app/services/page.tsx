@@ -91,6 +91,18 @@ const SERVICES = [
       </svg>
     ),
   },
+  {
+    href: "/brake-fluid",
+    eyebrowKey: "svc_bf_eyebrow",
+    titleKey: "svc_bf_title",
+    descKey: "svc_bf_desc",
+    priceKey: "svc_bf_price",
+    icon: (
+      <svg className="h-6 w-6" fill="none" stroke="currentColor" strokeWidth={1.75} viewBox="0 0 24 24">
+        <path strokeLinecap="round" strokeLinejoin="round" d="M12 21.75c4.142 0 7.5-3.358 7.5-7.5 0-3.5-4.5-9-7.5-12-3 3-7.5 8.5-7.5 12 0 4.142 3.358 7.5 7.5 7.5Z" />
+      </svg>
+    ),
+  },
 ];
 
 const REASON_ICONS = [

@@ -33,6 +33,7 @@ module.exports = {
       '/oil-change':              { priority: 0.8, changefreq: 'weekly' },
       '/battery-check':           { priority: 0.8, changefreq: 'weekly' },
       '/ev-battery':              { priority: 0.8, changefreq: 'weekly' },
+      '/brake-fluid':             { priority: 0.8, changefreq: 'weekly' },
       '/car-servicing/interim':   { priority: 0.8, changefreq: 'weekly' },
       '/car-servicing/full':      { priority: 0.8, changefreq: 'weekly' },
       '/car-servicing/major':     { priority: 0.8, changefreq: 'weekly' },
