@@ -143,7 +143,7 @@ export function SiteHeader() {
               href="/car-servicing"
               className="flex items-center gap-1 whitespace-nowrap rounded-md px-2.5 py-2 text-sm font-medium text-slate-600 transition hover:bg-[#eef4ff] hover:text-[#020F3D]"
             >
-              Car Servicing
+              Servicing
               <ChevronDown />
             </Link>
             <div className="absolute left-0 top-full h-2 w-full" />
@@ -397,7 +397,7 @@ export function SiteHeader() {
                   <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-slate-100 text-[#0F63FF]">
                     <svg className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth={1.75} viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2M9 5a2 2 0 0 0 2 2h2a2 2 0 0 0 2-2M9 5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2m-6 7 2 2 4-4m-6 5h4"/></svg>
                   </span>
-                  <span className="flex-1 text-left text-sm font-semibold text-[#020F3D]">Car Servicing</span>
+                  <span className="flex-1 text-left text-sm font-semibold text-[#020F3D]">Servicing</span>
                   <svg className={`h-4 w-4 text-slate-400 transition-transform ${mobileServicing ? "rotate-180" : ""}`} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}><path strokeLinecap="round" strokeLinejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5"/></svg>
                 </button>
                 {mobileServicing && (
