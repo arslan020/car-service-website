@@ -91,12 +91,10 @@ export function SiteFooter() {
             <p className="text-xs font-bold uppercase tracking-widest text-white">Services</p>
             <ul className="mt-4 space-y-2.5">
               {[
-                { label: "MOT Test",        href: "/mot" },
-                { label: "Full Service",    href: "/car-servicing/full" },
-                { label: "Oil Service",     href: "/car-servicing/interim" },
-                { label: "Oil Change",      href: "/oil-change" },
-                { label: "Air Conditioning",href: "/air-con" },
-                { label: "Brakes & Tyres",  href: "/repairs/brakes" },
+                { label: "MOT",            href: "/mot" },
+                { label: "Oil Service",    href: "/car-servicing/interim" },
+                { label: "Full Service",   href: "/car-servicing/full" },
+                { label: "Major Service",  href: "/car-servicing/major" },
               ].map((l) => (
                 <li key={l.href}>
                   <Link href={l.href} className="text-sm text-slate-400 transition hover:text-white">
@@ -104,6 +102,11 @@ export function SiteFooter() {
                   </Link>
                 </li>
               ))}
+              <li>
+                <Link href="/services" className="text-sm font-semibold text-[#4DA3FF] transition hover:text-white">
+                  See more →
+                </Link>
+              </li>
             </ul>
           </div>
 
@@ -113,7 +116,6 @@ export function SiteFooter() {
             <ul className="mt-4 space-y-2.5">
               {[
                 { label: "Engine & Cooling",    href: "/repairs/engine-cooling" },
-                { label: "Brakes",              href: "/repairs/brakes" },
                 { label: "Suspension",          href: "/repairs/suspension-steering" },
                 { label: "Clutch & Gearbox",   href: "/repairs/clutch-gearbox" },
                 { label: "Electrical",          href: "/repairs/electrical" },

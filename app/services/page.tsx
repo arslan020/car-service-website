@@ -24,18 +24,6 @@ const SERVICES = [
     ),
   },
   {
-    href: "/car-servicing",
-    eyebrowKey: "svc_cs_eyebrow",
-    titleKey: "svc_cs_title",
-    descKey: "svc_cs_desc",
-    priceKey: "svc_cs_price",
-    icon: (
-      <svg className="h-6 w-6" fill="none" stroke="currentColor" strokeWidth={1.75} viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2M9 5a2 2 0 0 0 2 2h2a2 2 0 0 0 2-2M9 5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2m-6 7 2 2 4-4m-6 5h4"/>
-      </svg>
-    ),
-  },
-  {
     href: "/repairs",
     eyebrowKey: "svc_rep_eyebrow",
     titleKey: "svc_rep_title",
@@ -85,6 +73,21 @@ const SERVICES = [
         <circle cx="12" cy="12" r="9" />
         <circle cx="12" cy="12" r="3" />
         <path strokeLinecap="round" d="M12 3v2M12 19v2M3 12h2M19 12h2" />
+      </svg>
+    ),
+  },
+  {
+    href: "/repairs/tyres",
+    eyebrowKey: "svc_tyres_eyebrow",
+    titleKey: "svc_tyres_title",
+    descKey: "svc_tyres_desc",
+    priceKey: "svc_tyres_price",
+    noPrice: true,
+    icon: (
+      <svg className="h-6 w-6" fill="none" stroke="currentColor" strokeWidth={1.75} viewBox="0 0 24 24">
+        <circle cx="12" cy="12" r="9" />
+        <circle cx="12" cy="12" r="4" />
+        <path strokeLinecap="round" d="M12 3v2M12 19v2M3 12h2M19 12h2M5.5 5.5l1.5 1.5M17 17l1.5 1.5M5.5 18.5l1.5-1.5M17 7l1.5-1.5" />
       </svg>
     ),
   },

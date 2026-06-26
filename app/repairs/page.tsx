@@ -12,7 +12,6 @@ export const metadata: Metadata = {
   alternates: { canonical: "https://www.mariestonservicecentre.co.uk/repairs" },
 };
 
-const BRAKES_ITEMS = ["Brake pads & discs", "Callipers & cylinders", "Brake lines & hoses", "ABS sensor faults"] as const;
 const CLUTCH_ITEMS = ["Clutch plate & pressure", "Flywheel replacement", "Gear linkage", "Automatic transmission service"] as const;
 const SUS_ITEMS = ["Shock absorbers & struts", "Wishbones & ball joints", "Track rod ends", "Power steering faults"] as const;
 const EXH_ITEMS = ["Exhaust pipe & silencer", "Catalytic converter", "DPF cleaning & replacement", "Lambda / O2 sensors"] as const;
@@ -20,20 +19,6 @@ const ENG_ITEMS = ["Coolant system leaks", "Thermostat replacement", "Water pump
 const ELEC_ITEMS = ["Battery testing & replacement", "Alternator & starter motor", "Bulb & light unit replacement", "Central locking & windows"] as const;
 
 const REPAIR_CATEGORIES = [
-  {
-    href: "/repairs/brakes",
-    titleKey: "cat_brakes_title",
-    descKey: "cat_brakes_desc",
-    itemsKey: "cat_brakes_items",
-    itemsFb: BRAKES_ITEMS,
-    icon: (
-      <svg className="h-6 w-6" fill="none" stroke="currentColor" strokeWidth={1.75} viewBox="0 0 24 24">
-        <circle cx="12" cy="12" r="9" />
-        <circle cx="12" cy="12" r="3" />
-        <path strokeLinecap="round" d="M12 3v2M12 19v2M3 12h2M19 12h2" />
-      </svg>
-    ),
-  },
   {
     href: "/repairs/clutch-gearbox",
     titleKey: "cat_clutch_title",
@@ -157,7 +142,7 @@ export default async function RepairsPage() {
               {c.btn_whatsapp}
             </a>
           </div>
-          <BookingBar defaultService="brakes" category="repairs" />
+          <BookingBar defaultService="clutch" category="repairs" />
         </div>
       </section>
 

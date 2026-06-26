@@ -7,7 +7,7 @@ import { BreadcrumbJsonLd } from "@/components/breadcrumb-json-ld";
 
 export const metadata: Metadata = {
   title: "MOT Test Hayes UB4 | DVSA Approved | Marieston Service Centre",
-  description: "Book an MOT test at our DVSA-approved garage in Hayes UB4. Official MOT testing from £29.99, same-day results. Book online or call 020 8178 8031.",
+  description: "Book an MOT test at our DVSA-approved garage in Hayes UB4. Official MOT testing from £29, same-day results. Book online or call 020 8178 8031.",
   alternates: { canonical: "https://www.mariestonservicecentre.co.uk/mot" },
 };
 

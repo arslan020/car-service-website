@@ -103,7 +103,7 @@ export default async function AirConPage() {
                 <svg className="h-4 w-4 text-[#0F63FF]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
                 </svg>
-                <span className="text-sm font-semibold text-[#020F3D]">Walk-in service available</span>
+                <span className="text-sm font-semibold text-[#020F3D]">Walk-in service available — no need to book</span>
               </div>
               <div className="mt-7 flex flex-col gap-3 sm:flex-row">
                 <Link href="/online-booking?service=ac" className="flex items-center justify-center gap-2 rounded-xl bg-[#020F3D] px-6 py-3.5 text-sm font-bold text-white shadow-md transition hover:bg-[#061744]">
@@ -118,8 +118,8 @@ export default async function AirConPage() {
             </div>
             <div className="grid grid-cols-2 gap-4">
               {[
-                { stat: "from £79.99", label: "R134a Regas" },
-                { stat: "from £149.99", label: "R1234yf Regas" },
+                { stat: "from £79", label: "R134a Regas" },
+                { stat: "from £149", label: "R1234yf Regas" },
                 { stat: "Every 2 yrs", label: "Recommended Interval" },
                 { stat: "~1 hr", label: "Typical Service Time" },
               ].map((s) => (
