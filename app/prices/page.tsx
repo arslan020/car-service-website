@@ -28,7 +28,8 @@ const CAR_SERVICING: PriceRow[] = [
 // Additional Services — same value shown under each engine-size column
 const ADDITIONAL_SERVICES: PriceRow[] = [
   { service: "Diagnostics", prices: ["£54", "£54", "£54"] },
-  { service: "Brakes & Tyres", prices: ["Free check / walk-in", "Free check / walk-in", "Free check / walk-in"] },
+  { service: "Brakes", prices: ["Free check / walk-in", "Free check / walk-in", "Free check / walk-in"] },
+  { service: "Tyres", prices: ["Free check / walk-in", "Free check / walk-in", "Free check / walk-in"] },
   { service: "Battery Check", prices: ["Free check / walk-in", "Free check / walk-in", "Free check / walk-in"] },
   { service: "Air Con Re-gas (R134a)", prices: ["£79", "£79", "£79"] },
   { service: "Air Con Re-gas (R1234yf)", prices: ["£149", "£149", "£149"] },
@@ -176,7 +177,7 @@ export default function PricesPage() {
       {/* ── Tables ── */}
       <section className="px-4 pb-16">
         <div className="mx-auto max-w-5xl space-y-8">
-          <PriceTable title="Car Servicing" cols={CAR_SERVICING_COLS} rows={CAR_SERVICING} serviceColWidth={24} />
+          <PriceTable title="Servicing" cols={CAR_SERVICING_COLS} rows={CAR_SERVICING} serviceColWidth={24} />
           <PriceTable title="Additional Services" cols={ENGINE_COLS} rows={ADDITIONAL_SERVICES} />
           <PriceTable title="Repairs" cols={REPAIRS_COLS} rows={REPAIRS} />
 
