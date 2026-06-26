@@ -166,6 +166,7 @@ export default async function CarServicingPage() {
                   <h3 className="text-lg font-extrabold text-[#020F3D]">{tier.title}</h3>
                   <p className="mt-0.5 text-xs text-slate-400">{tier.subtitle}</p>
                   <p className="mt-3 text-2xl font-extrabold text-[#0F63FF]">{tier.price}</p>
+                  <p className="mt-1.5 text-xs font-semibold text-[#0F63FF]">+ Add MOT for £35 (save £14)</p>
                 </div>
                 <ul className="mt-5 flex-1 space-y-2.5">
                   {tier.includes.map((item) => (
