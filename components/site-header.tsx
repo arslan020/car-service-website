@@ -66,22 +66,13 @@ const SERVICES_MENU = [
       </svg>
     ),
   },
-  {
-    href: "/brake-fluid",
-    label: "Brake Fluid Service",
-    desc: "Flush & replacement, £99 fixed",
-    icon: (
-      <svg className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth={1.75} viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" d="M12 21.75c4.142 0 7.5-3.358 7.5-7.5 0-3.5-4.5-9-7.5-12-3 3-7.5 8.5-7.5 12 0 4.142 3.358 7.5 7.5 7.5Z" />
-      </svg>
-    ),
-  },
 ] as const;
 
 const SERVICING_MENU = [
   { href: "/car-servicing/interim", label: "Oil Service", desc: "Every 6 months or 6,000 miles" },
   { href: "/car-servicing/full",    label: "Full Service",    desc: "Every 12 months or 12,000 miles", popular: true },
   { href: "/car-servicing/major",   label: "Major Service",  desc: "As per manufacturer schedule" },
+  { href: "/brake-fluid",           label: "Brake Fluid Service", desc: "Flush & replacement, £99 fixed" },
 ] as const;
 
 const REPAIRS_MENU = [
@@ -479,14 +470,6 @@ export function SiteHeader() {
                   <svg className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth={1.75} viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M12 3v2.25m6.364.386-1.591 1.591M21 12h-2.25m-.386 6.364-1.591-1.591M12 18.75V21m-4.773-4.227-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z"/></svg>
                 </span>
                 <span className="text-sm font-semibold text-[#020F3D]">Air Con</span>
-              </Link>
-
-              {/* Brake Fluid Service */}
-              <Link href="/brake-fluid" onClick={() => setOpen(false)} className="flex items-center gap-3 px-5 py-4 hover:bg-slate-50">
-                <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-slate-100 text-[#0F63FF]">
-                  <svg className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth={1.75} viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M12 21.75c4.142 0 7.5-3.358 7.5-7.5 0-3.5-4.5-9-7.5-12-3 3-7.5 8.5-7.5 12 0 4.142 3.358 7.5 7.5 7.5Z"/></svg>
-                </span>
-                <span className="text-sm font-semibold text-[#020F3D]">Brake Fluid Service</span>
               </Link>
 
               {/* Contact */}

@@ -368,6 +368,13 @@ Driver's view of the road`,
         default: "from £269",
         section: "Service Tier Prices",
       },
+      {
+        key: "tier_bf_price",
+        label: "Brake Fluid Service — Price",
+        type: "text",
+        default: "£99",
+        section: "Service Tier Prices",
+      },
       T("hero_eyebrow", "Hero — kicker", "Scheduled servicing", "Hero"),
       T("btn_book", "Hero — book button", "Book a service", "Hero"),
       T("btn_whatsapp", "Hero — WhatsApp button", "WhatsApp us", "Hero"),
@@ -411,6 +418,19 @@ Timing belt inspection (if due)
 Coolant flush (if due)
 Comprehensive multi-point check
 Full road test & report`,
+        "Service tiers",
+      ),
+      T("tier_bf_title", "Brake Fluid — card title", "Brake Fluid Service", "Service tiers"),
+      T("tier_bf_subtitle", "Brake Fluid — subtitle", "Flush & replacement, fixed price", "Service tiers"),
+      A(
+        "tier_bf_includes",
+        "Brake Fluid — bullet lines (one per line)",
+        `Drain old, contaminated brake fluid
+Refill with correct DOT-spec brake fluid
+Bleed all four brake lines to remove air
+Check brake pedal feel & response
+Visual inspection of lines, hoses & callipers
+Written report on brake system condition`,
         "Service tiers",
       ),
       T("tier_book_prefix", "Tier cards — book button prefix", "Book", "Service tiers"),

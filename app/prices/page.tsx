@@ -23,6 +23,7 @@ const CAR_SERVICING: PriceRow[] = [
   { service: "Oil Service", prices: ["£139", "£179", "£219", QUOTE] },
   { service: "Full Service", prices: ["£239", "£319", "£369", QUOTE] },
   { service: "Major Service", prices: ["£269", "£349", "£399", QUOTE] },
+  { service: "Brake Fluid Service", prices: ["£99", "£99", "£99", "£99"] },
 ];
 
 // Additional Services — same value shown under each engine-size column
@@ -34,7 +35,6 @@ const ADDITIONAL_SERVICES: PriceRow[] = [
   { service: "Air Con Re-gas (R134a)", prices: ["£79", "£79", "£79"] },
   { service: "Air Con Re-gas (R1234yf)", prices: ["£149", "£149", "£149"] },
   { service: "EV Battery Health", prices: ["£79"], flat: true },
-  { service: "Brake Fluid Service", prices: ["£99", "£99", "£99"] },
 ];
 
 // Repairs — diagnosis-led. Empty cells keep the grid aligned with the table above;
