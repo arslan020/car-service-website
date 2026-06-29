@@ -109,6 +109,7 @@ const FEATURED_SERVICES = [
     descKey: "svc_3_desc",
     priceKey: "svc_3_price",
     noFromLabel: true,
+    noPriceLabel: true,
     icon: (
       <svg className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth={1.75} viewBox="0 0 24 24">
         <circle cx="12" cy="12" r="9" />
@@ -123,6 +124,7 @@ const FEATURED_SERVICES = [
     descKey: "svc_4_desc",
     priceKey: "svc_4_price",
     noFromLabel: true,
+    noPriceLabel: true,
     icon: (
       <svg className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth={1.75} viewBox="0 0 24 24">
         <circle cx="12" cy="12" r="9" />
@@ -411,8 +413,10 @@ export function HomePageClient({ content }: { content: ContentMap }) {
                     {desc}
                   </span>
                 </span>
-                <span className="mt-4 flex items-center justify-between border-t border-[#eef4ff] pt-4">
-                  <span className="text-xs font-medium text-slate-400">{"noFromLabel" in svc && svc.noFromLabel ? "Price" : content.svc_block_from_label}</span>
+                <span className={`mt-4 flex items-center border-t border-[#eef4ff] pt-4 ${"noPriceLabel" in svc && svc.noPriceLabel ? "justify-end" : "justify-between"}`}>
+                  {!("noPriceLabel" in svc && svc.noPriceLabel) && (
+                    <span className="text-xs font-medium text-slate-400">{"noFromLabel" in svc && svc.noFromLabel ? "Price" : content.svc_block_from_label}</span>
+                  )}
                   <span className="text-xl font-extrabold text-[#020F3D]">
                     {!price || price === "£???" ? "£???" : price}
                   </span>
