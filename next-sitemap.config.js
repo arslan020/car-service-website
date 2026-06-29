@@ -30,7 +30,6 @@ module.exports = {
       '/online-booking':          { priority: 0.9, changefreq: 'weekly' },
       '/air-con':                 { priority: 0.8, changefreq: 'weekly' },
       '/diagnostics':             { priority: 0.8, changefreq: 'weekly' },
-      '/oil-change':              { priority: 0.8, changefreq: 'weekly' },
       '/battery-check':           { priority: 0.8, changefreq: 'weekly' },
       '/ev-battery':              { priority: 0.8, changefreq: 'weekly' },
       '/brake-fluid':             { priority: 0.8, changefreq: 'weekly' },

@@ -31,7 +31,6 @@ const BOOKING_TABS_DEFAULT = `mot|MOT Test
 full|Full Service
 interim|Oil Service
 major|Major Service
-oil|Oil Change
 brakes|Brakes
 clutch|Clutch & Gearbox
 suspension|Suspension & Steering
@@ -47,7 +46,6 @@ const CONTACT_SERVICE_OPTIONS_DEFAULT = `MOT Test
 Full Service
 Oil Service
 Major Service
-Oil Change
 Diagnostics
 Brakes & Tyres
 Air Conditioning
@@ -88,15 +86,15 @@ const HOME_FIELDS: FieldDef[] = [
   T("svc_1_title", "Featured 1 — title", "MOT Testing", "Our services"),
   A("svc_1_desc", "Featured 1 — description", "DVSA approved, same-day slots available", "Our services"),
   T("svc_1_price", "Featured 1 — price display", "£49", "Our services"),
-  T("svc_2_title", "Featured 2 — title", "Full Service", "Our services"),
-  A("svc_2_desc", "Featured 2 — description", "Oil, filters & comprehensive 60-point check", "Our services"),
-  T("svc_2_price", "Featured 2 — price (or £???)", "£239", "Our services"),
-  T("svc_3_title", "Featured 3 — title", "Oil Change", "Our services"),
-  A("svc_3_desc", "Featured 3 — description", "Premium oil and filter replacement", "Our services"),
-  T("svc_3_price", "Featured 3 — price", "£139", "Our services"),
-  T("svc_4_title", "Featured 4 — title", "Battery Check", "Our services"),
-  A("svc_4_desc", "Featured 4 — description", "Testing, charging, and replacement", "Our services"),
-  T("svc_4_price", "Featured 4 — price", "Free", "Our services"),
+  T("svc_2_title", "Featured 2 — title", "Diagnostics", "Our services"),
+  A("svc_2_desc", "Featured 2 — description", "Engine warning lights & fault code diagnosis", "Our services"),
+  T("svc_2_price", "Featured 2 — price (or £???)", "£54", "Our services"),
+  T("svc_3_title", "Featured 3 — title", "Tyres", "Our services"),
+  A("svc_3_desc", "Featured 3 — description", "Fitting, balancing & puncture repair for all makes", "Our services"),
+  T("svc_3_price", "Featured 3 — price", "Free check", "Our services"),
+  T("svc_4_title", "Featured 4 — title", "Brakes", "Our services"),
+  A("svc_4_desc", "Featured 4 — description", "Pads, discs, callipers & handbrake cables checked", "Our services"),
+  T("svc_4_price", "Featured 4 — price", "Free check", "Our services"),
   T("brands_title", "Brands row — heading", "Brands We Service", "Brands"),
   T("hiw_kicker", "How it works — kicker", "Simple process", "How it works"),
   T("hiw_title", "How it works — heading", "How It Works", "How it works"),
@@ -163,17 +161,25 @@ export const PAGES_CONFIG: PageDef[] = [
       A("svc_diag_desc", "Card Diagnostics — description", "Engine warning lights, fault codes, and intermittent issues. We use professional-grade diagnostic equipment to trace the root cause — not just clear the light.", "Service grid"),
       T("svc_diag_price", "Card Diagnostics — price", "£54", "Service grid"),
       T("svc_oil_eyebrow", "Card Oil — eyebrow", "Premium Oil", "Service grid"),
-      T("svc_oil_title", "Card Oil — title", "Oil Change", "Service grid"),
+      T("svc_oil_title", "Card Oil — title", "Oil Service", "Service grid"),
       A("svc_oil_desc", "Card Oil — description", "Right-spec oil and filter for your engine. Fast turnaround — often while you wait. Helps fuel economy and protects against premature wear.", "Service grid"),
       T("svc_oil_price", "Card Oil — price", "£139", "Service grid"),
+      T("svc_full_eyebrow", "Card Full Service — eyebrow", "Most Popular", "Service grid"),
+      T("svc_full_title", "Card Full Service — title", "Full Service", "Service grid"),
+      A("svc_full_desc", "Card Full Service — description", "The UK standard annual service — oil, filters and a full 60-point health check. Keeps your manufacturer warranty valid.", "Service grid"),
+      T("svc_full_price", "Card Full Service — price", "£239", "Service grid"),
+      T("svc_major_eyebrow", "Card Major Service — eyebrow", "Manufacturer Schedule", "Service grid"),
+      T("svc_major_title", "Card Major Service — title", "Major Service", "Service grid"),
+      A("svc_major_desc", "Card Major Service — description", "Everything in a Full Service plus spark plugs, coolant change and a full road test — due every 2 years or 24,000 miles.", "Service grid"),
+      T("svc_major_price", "Card Major Service — price", "£269", "Service grid"),
       T("svc_brakes_eyebrow", "Card Brakes — eyebrow", "Safety First", "Service grid"),
       T("svc_brakes_title", "Card Brakes — title", "Brakes", "Service grid"),
       A("svc_brakes_desc", "Card Brakes — description", "Brake pads, discs, callipers and handbrake cables. We check wear and brake performance and advise only when action is genuinely needed.", "Service grid"),
-      T("svc_brakes_price", "Card Brakes — price", "Free check / walk-in", "Service grid"),
+      T("svc_brakes_price", "Card Brakes — price", "Free check", "Service grid"),
       T("svc_tyres_eyebrow", "Card Tyres — eyebrow", "Safety First", "Service grid"),
       T("svc_tyres_title", "Card Tyres — title", "Tyres", "Service grid"),
       A("svc_tyres_desc", "Card Tyres — description", "New tyre fitting, balancing and puncture repair for all makes. We check tread depth and pressure and advise only when action is genuinely needed.", "Service grid"),
-      T("svc_tyres_price", "Card Tyres — price", "Free check / walk-in", "Service grid"),
+      T("svc_tyres_price", "Card Tyres — price", "Free check", "Service grid"),
       T("svc_bf_eyebrow", "Card Brake Fluid — eyebrow", "Safety Critical", "Service grid"),
       T("svc_bf_title", "Card Brake Fluid — title", "Brake Fluid Service", "Service grid"),
       A("svc_bf_desc", "Card Brake Fluid — description", "Old brake fluid absorbs moisture and reduces braking performance. We flush and replace it with fresh, correct-spec fluid.", "Service grid"),
@@ -717,15 +723,6 @@ Pre-purchase inspection & health check`,
     fields: [
       { key: "hero_title", label: "Page Title", type: "text", default: "Battery Check", section: "Hero" },
       { key: "hero_subtitle", label: "Subtitle", type: "textarea", default: "A full battery and charging system test using professional diagnostic equipment. Know your battery's health before it leaves you stranded.", section: "Hero" },
-    ],
-  },
-  {
-    slug: "oil-change",
-    label: "Oil Change",
-    icon: "🛢️",
-    fields: [
-      { key: "hero_title", label: "Page Title", type: "text", default: "Oil Change", section: "Hero" },
-      { key: "hero_subtitle", label: "Subtitle", type: "textarea", default: "Right-spec oil and filter for your engine. Fast turnaround — often while you wait. Helps fuel economy and protects against premature wear.", section: "Hero" },
     ],
   },
   {

@@ -10,7 +10,6 @@ const SERVICE_OPTIONS_FALLBACK = [
   "Full Service",
   "Oil Service",
   "Major Service",
-  "Oil Change",
   "Diagnostics",
   "Brakes & Tyres",
   "Air Conditioning",

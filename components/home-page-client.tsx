@@ -16,7 +16,6 @@ const SERVICE_OPTIONS: readonly { id: string; label: string }[] = [
   { id: "full", label: "Full Service" },
   { id: "interim", label: "Oil Service" },
   { id: "major", label: "Major Service" },
-  { id: "oil", label: "Oil Change" },
   { id: "brakes", label: "Brakes" },
   { id: "clutch", label: "Clutch & Gearbox" },
   { id: "suspension", label: "Suspension & Steering" },
@@ -93,37 +92,42 @@ const FEATURED_SERVICES = [
     ),
   },
   {
-    href: "/car-servicing",
+    href: "/diagnostics",
     titleKey: "svc_2_title",
     descKey: "svc_2_desc",
     priceKey: "svc_2_price",
+    noFromLabel: true,
     icon: (
       <svg className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth={1.75} viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2M9 5a2 2 0 0 0 2 2h2a2 2 0 0 0 2-2M9 5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2m-6 7 2 2 4-4m-6 5h4"/>
+        <path strokeLinecap="round" strokeLinejoin="round" d="M3 7a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7zM1 19h22M7 11h1.5l1.5-2 2 4 1.5-2H17"/>
       </svg>
     ),
   },
   {
-    href: "/oil-change",
+    href: "/repairs/tyres",
     titleKey: "svc_3_title",
     descKey: "svc_3_desc",
     priceKey: "svc_3_price",
+    noFromLabel: true,
     icon: (
       <svg className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth={1.75} viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" d="M15.362 5.214A8.252 8.252 0 0 1 12 21 8.25 8.25 0 0 1 6.038 7.047 8.287 8.287 0 0 0 9 9.601a8.983 8.983 0 0 1 3.361-6.867 8.21 8.21 0 0 0 3 2.48Z" />
-        <path strokeLinecap="round" strokeLinejoin="round" d="M12 18a3.75 3.75 0 0 0 .495-7.468 5.99 5.99 0 0 0-1.925 3.547 5.975 5.975 0 0 1-2.133-1.001A3.75 3.75 0 0 0 12 18Z" />
+        <circle cx="12" cy="12" r="9" />
+        <circle cx="12" cy="12" r="4" />
+        <path strokeLinecap="round" d="M12 3v2M12 19v2M3 12h2M19 12h2M5.5 5.5l1.5 1.5M17 17l1.5 1.5M5.5 18.5l1.5-1.5M17 7l1.5-1.5" />
       </svg>
     ),
   },
   {
-    href: "/battery-check",
+    href: "/repairs/brakes",
     titleKey: "svc_4_title",
     descKey: "svc_4_desc",
     priceKey: "svc_4_price",
     noFromLabel: true,
     icon: (
       <svg className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth={1.75} viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" d="m3.75 13.5 10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75Z" />
+        <circle cx="12" cy="12" r="9" />
+        <circle cx="12" cy="12" r="3" />
+        <path strokeLinecap="round" d="M12 3v2M12 19v2M3 12h2M19 12h2" />
       </svg>
     ),
   },

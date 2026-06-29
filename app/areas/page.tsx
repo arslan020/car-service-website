@@ -99,7 +99,6 @@ const SERVICES = [
   { label: "MOT Test", href: "/mot" },
   { label: "Full Service", href: "/car-servicing/full" },
   { label: "Oil Service", href: "/car-servicing/interim" },
-  { label: "Oil Change", href: "/oil-change" },
   { label: "Brakes", href: "/repairs/brakes" },
   { label: "Diagnostics", href: "/diagnostics" },
 ];
