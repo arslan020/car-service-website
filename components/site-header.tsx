@@ -440,14 +440,6 @@ export function SiteHeader() {
                 <span className="text-sm font-semibold text-[#020F3D]">Diagnostics</span>
               </Link>
 
-              {/* Oil Change */}
-              <Link href="/oil-change" onClick={() => setOpen(false)} className="flex items-center gap-3 px-5 py-4 hover:bg-slate-50">
-                <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-slate-100 text-[#0F63FF]">
-                  <svg className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth={1.75} viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M15.362 5.214A8.252 8.252 0 0 1 12 21 8.25 8.25 0 0 1 6.038 7.047 8.287 8.287 0 0 0 9 9.601a8.983 8.983 0 0 1 3.361-6.867 8.21 8.21 0 0 0 3 2.48Z"/></svg>
-                </span>
-                <span className="text-sm font-semibold text-[#020F3D]">Oil Change</span>
-              </Link>
-
               {/* Battery Check */}
               <Link href="/battery-check" onClick={() => setOpen(false)} className="flex items-center gap-3 px-5 py-4 hover:bg-slate-50">
                 <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-slate-100 text-[#0F63FF]">
