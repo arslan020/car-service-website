@@ -121,7 +121,7 @@ export function SiteHeader() {
         <nav className="hidden xl:flex flex-1 items-center justify-center gap-0.5 px-1 2xl:gap-1">
 
           <Link href="/about" className="whitespace-nowrap rounded-md px-2.5 py-2 text-sm font-medium text-slate-600 transition hover:bg-[#eef4ff] hover:text-[#020F3D]">
-            About
+            About Us
           </Link>
 
           <Link href="/mot" className="whitespace-nowrap rounded-md px-2.5 py-2 text-sm font-medium text-slate-600 transition hover:bg-[#eef4ff] hover:text-[#020F3D]">
