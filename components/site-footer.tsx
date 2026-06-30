@@ -71,7 +71,7 @@ export function SiteFooter() {
             <p className="text-xs font-bold uppercase tracking-widest text-white">Company</p>
             <ul className="mt-4 space-y-2.5">
               {[
-                { label: "About Us",      href: "/about" },
+                { label: "About Us",      href: "/about-us" },
                 { label: "Areas We Serve", href: "/areas" },
                 { label: "FAQs",          href: "/faqs" },
                 { label: "Contact",       href: "/contact" },

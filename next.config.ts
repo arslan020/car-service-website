@@ -12,6 +12,11 @@ const nextConfig: NextConfig = {
         destination: "/online-booking",
         permanent: true,
       },
+      {
+        source: "/about",
+        destination: "/about-us",
+        permanent: true,
+      },
     ];
   },
 };

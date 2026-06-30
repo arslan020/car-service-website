@@ -7,11 +7,11 @@ import { BreadcrumbJsonLd } from "@/components/breadcrumb-json-ld";
 export const metadata: Metadata = {
   title: "About Us | Marieston Service Centre Hayes UB4",
   description: "DVSA-approved garage in Hayes UB4 serving West London. Meet the team behind Marieston Service Centre — honest, expert car care you can trust.",
-  alternates: { canonical: "https://www.mariestonservicecentre.co.uk/about" },
+  alternates: { canonical: "https://www.mariestonservicecentre.co.uk/about-us" },
   openGraph: {
     title: "About Us | Marieston Service Centre Hayes UB4",
     description: "DVSA-approved garage in Hayes UB4 serving West London. Honest, expert car care you can trust.",
-    url: "https://www.mariestonservicecentre.co.uk/about",
+    url: "https://www.mariestonservicecentre.co.uk/about-us",
     siteName: site.name,
     locale: "en_GB",
     type: "website",
@@ -27,7 +27,7 @@ const aboutSchema = {
   "@context": "https://schema.org",
   "@type": "AboutPage",
   name: "About Marieston Service Centre",
-  url: "https://www.mariestonservicecentre.co.uk/about",
+  url: "https://www.mariestonservicecentre.co.uk/about-us",
   description: "DVSA-approved garage in Hayes UB4 serving West London.",
   mainEntity: {
     "@type": "AutoRepair",
@@ -120,7 +120,7 @@ export default function AboutPage() {
       <JsonLd data={aboutSchema} />
       <BreadcrumbJsonLd items={[
         { name: "Home", url: "https://www.mariestonservicecentre.co.uk" },
-        { name: "About Us", url: "https://www.mariestonservicecentre.co.uk/about" },
+        { name: "About Us", url: "https://www.mariestonservicecentre.co.uk/about-us" },
       ]} />
       <div className="bg-white">
 
