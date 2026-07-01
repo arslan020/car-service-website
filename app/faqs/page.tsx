@@ -111,7 +111,7 @@ export default async function FaqsPage() {
           <div className="mt-6 flex flex-col items-center justify-center gap-3 sm:flex-row">
             <Link
               href="/contact"
-              className="inline-flex min-h-10 items-center justify-center rounded-lg bg-white px-5 py-2 text-sm font-bold text-[#020F3D] transition hover:bg-slate-100"
+              className="inline-flex min-h-10 items-center justify-center rounded-lg bg-[#0F63FF] px-5 py-2 text-sm font-bold text-white shadow-md transition hover:bg-[#1E6BFF]"
             >
               Contact Us
             </Link>

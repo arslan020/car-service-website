@@ -31,7 +31,7 @@ function WayAvailableBadge() {
         className="ml-1.5 inline-flex cursor-pointer items-center gap-1 rounded-full bg-[#0F63FF] px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide text-white"
       >
         <span className="h-1.5 w-1.5 rounded-full bg-white/80" />
-        Way Available
+        Wherever Possible
       </span>
       {mounted && pos && createPortal(
         <div

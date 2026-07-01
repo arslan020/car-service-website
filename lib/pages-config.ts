@@ -155,7 +155,7 @@ export const PAGES_CONFIG: PageDef[] = [
       T("svc_rep_eyebrow", "Card Repairs — eyebrow", "All Makes", "Service grid"),
       T("svc_rep_title", "Card Repairs — title", "Repairs", "Service grid"),
       A("svc_rep_desc", "Card Repairs — description", "Brakes, clutch, exhausts, suspension, steering and more. We diagnose first, give you a clear quote, and only proceed with your approval — no surprises.", "Service grid"),
-      T("svc_rep_price", "Card Repairs — price", "Quote provided", "Service grid"),
+      T("svc_rep_price", "Card Repairs — price", "Get a Quote", "Service grid"),
       T("svc_diag_eyebrow", "Card Diagnostics — eyebrow", "OBD & Live Data", "Service grid"),
       T("svc_diag_title", "Card Diagnostics — title", "Diagnostics", "Service grid"),
       A("svc_diag_desc", "Card Diagnostics — description", "Engine warning lights, fault codes, and intermittent issues. We use professional-grade diagnostic equipment to trace the root cause — not just clear the light.", "Service grid"),
@@ -410,7 +410,8 @@ Fuel filter inspection
 Brake pad & disc measurement
 Suspension & steering inspection
 Exhaust system check
-60-point vehicle health check`,
+60-point vehicle health check
+Reset Service Light & Digital History`,
         "Service tiers",
       ),
       T("tier_major_title", "Major — card title", "Major Service", "Service tiers"),
@@ -423,7 +424,8 @@ Spark plugs replacement
 Timing belt inspection (if due)
 Coolant flush (if due)
 Comprehensive multi-point check
-Full road test & report`,
+Full road test & report
+Reset Service Light & Digital History`,
         "Service tiers",
       ),
       T("tier_bf_title", "Brake Fluid — card title", "Brake Fluid Service", "Service tiers"),

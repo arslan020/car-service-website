@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+﻿import type { Metadata } from "next";
 import Link from "next/link";
 import { site, waUrl } from "@/lib/site-config";
 import { JsonLd } from "@/components/json-ld";
@@ -6,7 +6,7 @@ import { BreadcrumbJsonLd } from "@/components/breadcrumb-json-ld";
 
 export const metadata: Metadata = {
   title: "About Us | Marieston Service Centre Hayes UB4",
-  description: "DVSA-approved garage in Hayes UB4 serving West London. Meet the team behind Marieston Service Centre — honest, expert car care you can trust.",
+  description: "DVSA-approved garage in Hayes UB4 serving West London. Meet the team behind Marieston Service Centre â€” honest, expert car care you can trust.",
   alternates: { canonical: "https://www.mariestonservicecentre.co.uk/about-us" },
   openGraph: {
     title: "About Us | Marieston Service Centre Hayes UB4",
@@ -81,7 +81,7 @@ const VALUES = [
       </svg>
     ),
     title: "Competitive Pricing",
-    body: "Main-dealer quality at independent garage prices. You get the best of both worlds — expertise without the premium.",
+    body: "Main-dealer quality at independent garage prices. You get the best of both worlds â€” expertise without the premium.",
   },
   {
     icon: (
@@ -134,7 +134,7 @@ export default function AboutPage() {
                   Your Local Garage in Hayes, West London
                 </h1>
                 <p className="mt-4 text-base leading-relaxed text-slate-500 sm:text-lg">
-                  Marieston Service Centre is a DVSA-approved independent garage on Yeading Lane, Hayes. We keep West London cars roadworthy — with honest advice, qualified mechanics, and prices that won&apos;t leave you guessing.
+                  Marieston Service Centre is a DVSA-approved independent garage on Yeading Lane, Hayes. We keep West London cars roadworthy â€” with honest advice, qualified mechanics, and prices that won&apos;t leave you guessing.
                 </p>
                 <div className="mt-7 flex flex-col gap-3 sm:flex-row">
                   <Link
@@ -164,7 +164,7 @@ export default function AboutPage() {
                   { stat: "West London", label: "Serving" },
                   { stat: "DVSA", label: "Approved MOT Station" },
                   { stat: "All Makes", label: "Cars & Light Vans" },
-                  { stat: "5★", label: "Customer Rating" },
+                  { stat: "5â˜…", label: "Customer Rating" },
                 ].map((s) => (
                   <div key={s.label} className="rounded-2xl border border-[#e8effa] bg-white p-5 text-center shadow-sm">
                     <p className="text-xl font-extrabold text-[#0F63FF] sm:text-2xl">{s.stat}</p>
@@ -187,13 +187,13 @@ export default function AboutPage() {
                 </h2>
                 <div className="mt-4 space-y-4 text-sm leading-relaxed text-slate-500 sm:text-base">
                   <p>
-                    Marieston Service Centre opened its doors on Yeading Lane with one simple goal: to give drivers in Hayes and West London a garage they could actually trust. No upselling, no mystery faults, no inflated bills — just straightforward, professional car care.
+                    Marieston Service Centre opened its doors on Yeading Lane with one simple goal: to give drivers in Hayes and West London a garage they could actually trust. No upselling, no mystery faults, no inflated bills â€” just straightforward, professional car care.
                   </p>
                   <p>
                     Over the years we&apos;ve grown into a fully equipped, DVSA-approved workshop. We handle everything from routine oil changes and MOT tests to complex engine diagnostics and EV battery health checks. Whatever your car needs, our team has the tools and training to sort it.
                   </p>
                   <p>
-                    Our customers keep coming back — and they send their family and friends too. That word-of-mouth reputation is something we work hard to earn every single day.
+                    Our customers keep coming back â€” and they send their family and friends too. That word-of-mouth reputation is something we work hard to earn every single day.
                   </p>
                 </div>
               </div>
@@ -291,7 +291,7 @@ export default function AboutPage() {
                 Get Your Car Booked In Today
               </h2>
               <p className="mx-auto mt-3 max-w-md text-sm leading-relaxed text-slate-300">
-                Book online in minutes or give us a call. We&apos;re open Mon–Sat, 9:00–18:00.
+                Book online in minutes or give us a call. We&apos;re open Monâ€“Sat, 9:00â€“18:00.
               </p>
               <div className="mt-7 flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
                 <Link
@@ -316,7 +316,7 @@ export default function AboutPage() {
                 </a>
                 <a
                   href={`tel:${site.phoneTel}`}
-                  className="flex w-full items-center justify-center gap-2 rounded-xl border-2 border-white/20 px-7 py-3.5 text-sm font-bold text-white transition hover:bg-white/10 sm:w-auto"
+                  className="flex w-full items-center justify-center gap-2 rounded-xl bg-[#0F63FF] px-7 py-3.5 text-sm font-bold text-white shadow-md transition hover:bg-[#1E6BFF] sm:w-auto"
                 >
                   Call {site.phoneDisplay}
                 </a>
