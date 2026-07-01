@@ -1,11 +1,11 @@
-﻿import type { Metadata } from "next";
+﻿﻿import type { Metadata } from "next";
 import Link from "next/link";
 import { site, waUrl } from "@/lib/site-config";
 import { getPageContent, f } from "@/lib/page-content";
 
 export const metadata: Metadata = {
-  title: "Brake Fluid Service Hayes UB4 | Â£99 Fixed Price | Marieston",
-  description: "Brake fluid flush and replacement in Hayes UB4. Fixed price Â£99, all makes and models. Book online or call 020 8178 8031.",
+  title: "Brake Fluid Service Hayes UB4 | £99 Fixed Price | Marieston",
+  description: "Brake fluid flush and replacement in Hayes UB4. Fixed price £99, all makes and models. Book online or call 020 8178 8031.",
   alternates: { canonical: "https://www.mariestonservicecentre.co.uk/brake-fluid" },
 };
 
@@ -59,8 +59,8 @@ export default async function BrakeFluidPage() {
               <p className="text-xs font-bold uppercase tracking-widest text-[#0F63FF]">Safety Critical</p>
               <h1 className="mt-2 text-3xl font-extrabold leading-tight text-[#020F3D] sm:text-5xl">{title}</h1>
               <p className="mt-4 text-base leading-relaxed text-slate-500 sm:text-lg">{subtitle}</p>
-              <p className="mt-3 text-3xl font-extrabold text-[#0F63FF]">Â£99</p>
-              <p className="mt-1 text-sm font-semibold text-slate-500">Fixed price â€” all makes & engine sizes</p>
+              <p className="mt-3 text-3xl font-extrabold text-[#0F63FF]">£99</p>
+              <p className="mt-1 text-sm font-semibold text-slate-500">Fixed price — all makes &amp; engine sizes</p>
               <div className="mt-7 flex flex-col gap-3 sm:flex-row">
                 <Link href="/online-booking?service=brake-fluid" className="flex items-center justify-center gap-2 rounded-xl bg-[#020F3D] px-6 py-3.5 text-sm font-bold text-white shadow-md transition hover:bg-[#061744]">
                   Book Brake Fluid Service
@@ -74,7 +74,7 @@ export default async function BrakeFluidPage() {
             </div>
             <div className="grid grid-cols-2 gap-4">
               {[
-                { stat: "Â£99", label: "Fixed Price" },
+                { stat: "£99", label: "Fixed Price" },
                 { stat: "~30 min", label: "Quick Turnaround" },
                 { stat: "All makes", label: "Cars & Light Vans" },
                 { stat: "DOT spec", label: "Correct Fluid Grade" },
