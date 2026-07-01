@@ -39,13 +39,13 @@ const ADDITIONAL_SERVICES: PriceRow[] = [
 
 // Repairs — diagnosis-led. Empty cells keep the grid aligned with the table above;
 // the "Book Diagnostic" button sits under the rightmost column.
-const REPAIRS_COLS = ["", "", "Price"];
+const REPAIRS_COLS = ["", "Price"];
 const REPAIRS: PriceRow[] = [
-  { service: "Engine & Cooling", prices: ["", "", DIAGNOSTIC] },
-  { service: "Suspension & Steering", prices: ["", "", DIAGNOSTIC] },
-  { service: "Clutch & Gearbox", prices: ["", "", DIAGNOSTIC] },
-  { service: "Electrical", prices: ["", "", DIAGNOSTIC] },
-  { service: "Exhaust & Emissions", prices: ["", "", DIAGNOSTIC] },
+  { service: "Engine & Cooling", prices: ["Exact price confirmed after diagnostic", DIAGNOSTIC] },
+  { service: "Suspension & Steering", prices: ["Exact price confirmed after diagnostic", DIAGNOSTIC] },
+  { service: "Clutch & Gearbox", prices: ["Exact price confirmed after diagnostic", DIAGNOSTIC] },
+  { service: "Electrical", prices: ["Exact price confirmed after diagnostic", DIAGNOSTIC] },
+  { service: "Exhaust & Emissions", prices: ["Exact price confirmed after diagnostic", DIAGNOSTIC] },
 ];
 
 function QuoteButton({ message }: { message: string }) {
@@ -179,7 +179,7 @@ export default function PricesPage() {
         <div className="mx-auto max-w-5xl space-y-8">
           <PriceTable title="Servicing" cols={CAR_SERVICING_COLS} rows={CAR_SERVICING} serviceColWidth={24} />
           <PriceTable title="Additional Services" cols={ENGINE_COLS} rows={ADDITIONAL_SERVICES} />
-          <PriceTable title="Repairs" cols={REPAIRS_COLS} rows={REPAIRS} />
+          <PriceTable title="Repairs" cols={REPAIRS_COLS} rows={REPAIRS} serviceColWidth={30} />
 
           <p className="text-center text-xs text-slate-400">
             All prices include VAT. Final price confirmed once we&apos;ve identified your exact vehicle.
