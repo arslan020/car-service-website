@@ -347,7 +347,7 @@ export function HomePageClient({ content }: { content: ContentMap }) {
             <p className="text-xs font-bold uppercase tracking-widest text-[#0F63FF]">{content.why_kicker}</p>
             <h2 className="mt-1 text-2xl font-extrabold text-[#020F3D] sm:text-3xl">{content.why_title}</h2>
             <p className="mx-auto mt-3 max-w-2xl text-sm leading-relaxed text-slate-500 sm:text-base">{content.why_intro}</p>
-            <p className="mt-2 text-xs text-slate-400 sm:text-sm">Serving Hayes, Southall, Uxbridge, Slough, Hounslow, Ealing, Harrow &amp; 70+ areas across West London</p>
+            <Link href="/areas" className="mt-2 inline-block text-xs text-slate-400 underline underline-offset-2 transition hover:text-[#0F63FF] sm:text-sm">Serving Hayes, Southall, Uxbridge, Slough, Hounslow, Ealing, Harrow &amp; 70+ areas across West London</Link>
           </div>
 
           <div className="mt-8 grid gap-4 sm:grid-cols-2 xl:grid-cols-4">

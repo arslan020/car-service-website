@@ -22,6 +22,10 @@ export default async function FaqsPage() {
 
   const FAQS = [
     { q: content.faq_1_q, a: content.faq_1_a },
+    {
+      q: "Can you update my service record electronically on the manufacturer's database?",
+      a: "Yes — for many vehicles we can update your service record directly on the manufacturer's official digital database, exactly as a main dealer would. This keeps your full service history electronically recorded and helps protect your car's resale value. Supported makes include Mercedes, Audi, BMW, Volvo, SEAT, Porsche, Toyota, Lexus, Volkswagen (VW), and Skoda. Not sure if your vehicle is covered? Just ask us when you book and we'll confirm.",
+    },
     { q: content.faq_2_q, a: content.faq_2_a },
     { q: content.faq_3_q, a: content.faq_3_a },
     { q: content.faq_4_q, a: content.faq_4_a },

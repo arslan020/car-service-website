@@ -208,7 +208,7 @@ export function SiteFooter() {
         <div className="flex flex-col items-center gap-3">
           <ul className="flex flex-wrap items-center gap-4 text-xs text-slate-500">
             <li><Link href="/privacy" className="transition hover:text-slate-300">Privacy Policy</Link></li>
-            <li><Link href="/terms" className="transition hover:text-slate-300">Terms of Use</Link></li>
+            <li><Link href="/terms-and-conditions" className="transition hover:text-slate-300">Terms &amp; Conditions</Link></li>
           </ul>
           <p className="text-xs text-slate-500 text-center">
             &copy; {year} {site.name}. All rights reserved.

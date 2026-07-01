@@ -2,6 +2,59 @@
 
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
+import { createPortal } from "react-dom";
+
+const WAY_AVAILABLE_MAKES = [
+  "Mercedes", "Audi", "BMW", "Volvo", "SEAT",
+  "Porsche", "Toyota", "Lexus", "Volkswagen (VW)", "Skoda",
+];
+
+function WayAvailableBadge() {
+  const [pos, setPos] = useState<{ top: number; left: number } | null>(null);
+  const badgeRef = useRef<HTMLSpanElement>(null);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => { setMounted(true); }, []);
+
+  function show() {
+    if (!badgeRef.current) return;
+    const r = badgeRef.current.getBoundingClientRect();
+    setPos({ top: r.bottom + 8, left: r.left });
+  }
+
+  return (
+    <>
+      <span
+        ref={badgeRef}
+        onMouseEnter={show}
+        onMouseLeave={() => setPos(null)}
+        className="ml-1.5 inline-flex cursor-pointer items-center gap-1 rounded-full bg-[#0F63FF] px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide text-white"
+      >
+        <span className="h-1.5 w-1.5 rounded-full bg-white/80" />
+        Way Available
+      </span>
+      {mounted && pos && createPortal(
+        <div
+          style={{ position: "fixed", top: pos.top, left: pos.left, zIndex: 9999 }}
+          className="w-52 rounded-xl border border-[#e0ebff] bg-white p-3 shadow-2xl"
+          onMouseEnter={() => {}}
+          onMouseLeave={() => setPos(null)}
+        >
+          <p className="mb-2 text-[10px] font-bold uppercase tracking-widest text-[#0F63FF]">Digital History Supported</p>
+          <ul className="grid grid-cols-2 gap-x-2 gap-y-1">
+            {WAY_AVAILABLE_MAKES.map((make) => (
+              <li key={make} className="flex items-center gap-1 text-xs text-slate-600">
+                <span className="h-1 w-1 shrink-0 rounded-full bg-[#0F63FF]" />
+                {make}
+              </li>
+            ))}
+          </ul>
+        </div>,
+        document.body
+      )}
+    </>
+  );
+}
 
 type Tier = {
   id: string;
@@ -133,14 +186,20 @@ export function ServicingTiersCarousel({
                       )}
                     </div>
                     <ul className="mt-5 flex-1 space-y-2.5">
-                      {tier.includes.map((item) => (
-                        <li key={item} className="flex items-start gap-2.5 text-sm text-slate-600">
-                          <svg className="mt-0.5 h-4 w-4 shrink-0 text-[#0F63FF]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-                            <path strokeLinecap="round" strokeLinejoin="round" d="m4.5 12.75 6 6 9-13.5" />
-                          </svg>
-                          {item}
-                        </li>
-                      ))}
+                      {tier.includes.map((item) => {
+                        const isWayAvailable = item.includes("Reset Service Light");
+                        return (
+                          <li key={item} className="flex items-start gap-2.5 text-sm text-slate-600">
+                            <svg className="mt-0.5 h-4 w-4 shrink-0 text-[#0F63FF]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                              <path strokeLinecap="round" strokeLinejoin="round" d="m4.5 12.75 6 6 9-13.5" />
+                            </svg>
+                            <span>
+                              {item}
+                              {isWayAvailable && <WayAvailableBadge />}
+                            </span>
+                          </li>
+                        );
+                      })}
                     </ul>
                     <Link
                       href={`/online-booking?service=${tier.id}`}

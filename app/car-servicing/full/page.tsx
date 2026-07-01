@@ -63,6 +63,8 @@ export default async function FullServicePage() {
               <p className="text-xs font-bold uppercase tracking-widest text-[#0F63FF]">Car Servicing</p>
               <h1 className="mt-2 text-3xl font-extrabold leading-tight text-[#020F3D] sm:text-5xl">{title}</h1>
               <p className="mt-4 text-base leading-relaxed text-slate-500 sm:text-lg">{subtitle}</p>
+              <p className="mt-3 text-3xl font-extrabold text-[#0F63FF]">from £239</p>
+              <p className="mt-1 text-sm font-semibold text-[#0F63FF]">+ Add MOT for £35</p>
               <div className="mt-3 inline-flex items-center gap-2 rounded-full border border-[#0F63FF]/30 bg-[#eef4ff] px-4 py-2 shadow-sm">
                 <span className="h-2 w-2 rounded-full bg-[#0F63FF]" />
                 <span className="text-sm font-semibold text-[#0F63FF]">Most popular</span>

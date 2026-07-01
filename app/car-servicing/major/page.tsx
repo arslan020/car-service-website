@@ -63,6 +63,8 @@ export default async function MajorServicePage() {
               <p className="text-xs font-bold uppercase tracking-widest text-[#0F63FF]">Car Servicing</p>
               <h1 className="mt-2 text-3xl font-extrabold leading-tight text-[#020F3D] sm:text-5xl">{title}</h1>
               <p className="mt-4 text-base leading-relaxed text-slate-500 sm:text-lg">{subtitle}</p>
+              <p className="mt-3 text-3xl font-extrabold text-[#0F63FF]">from £269</p>
+              <p className="mt-1 text-sm font-semibold text-[#0F63FF]">+ Add MOT for £35</p>
               <div className="mt-3 inline-flex items-center gap-2 rounded-full border border-[#e0ebff] bg-white px-4 py-2 shadow-sm">
                 <svg className="h-4 w-4 text-[#0F63FF]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><circle cx="12" cy="12" r="9"/><path strokeLinecap="round" d="M12 7v5l3 3"/></svg>
                 <span className="text-sm text-slate-500">Every <strong className="text-[#020F3D]">2 years</strong> or <strong className="text-[#020F3D]">24,000 miles</strong></span>

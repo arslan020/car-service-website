@@ -59,6 +59,8 @@ export default async function BrakeFluidPage() {
               <p className="text-xs font-bold uppercase tracking-widest text-[#0F63FF]">Safety Critical</p>
               <h1 className="mt-2 text-3xl font-extrabold leading-tight text-[#020F3D] sm:text-5xl">{title}</h1>
               <p className="mt-4 text-base leading-relaxed text-slate-500 sm:text-lg">{subtitle}</p>
+              <p className="mt-3 text-3xl font-extrabold text-[#0F63FF]">£99</p>
+              <p className="mt-1 text-sm font-semibold text-slate-500">Fixed price — all makes & engine sizes</p>
               <div className="mt-7 flex flex-col gap-3 sm:flex-row">
                 <Link href="/online-booking?service=brake-fluid" className="flex items-center justify-center gap-2 rounded-xl bg-[#020F3D] px-6 py-3.5 text-sm font-bold text-white shadow-md transition hover:bg-[#061744]">
                   Book Brake Fluid Service

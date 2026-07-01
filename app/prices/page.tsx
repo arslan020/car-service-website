@@ -35,6 +35,7 @@ const ADDITIONAL_SERVICES: PriceRow[] = [
   { service: "Air Con Re-gas (R134a)", prices: ["£79", "£79", "£79"] },
   { service: "Air Con Re-gas (R1234yf)", prices: ["£149", "£149", "£149"] },
   { service: "EV Battery Health", prices: ["£79"], flat: true },
+  { service: "Gearbox Service", prices: [QUOTE], flat: true },
 ];
 
 // Repairs — diagnosis-led. Empty cells keep the grid aligned with the table above;
@@ -51,6 +52,7 @@ const REPAIRS: PriceRow[] = [
 function QuoteButton({ message }: { message: string }) {
   return (
     <span className="inline-flex items-center justify-center gap-1.5">
+      <span className="mr-1 text-xs font-semibold text-slate-500">Get a Quote</span>
       <a
         href={`tel:${site.phoneTel}`}
         aria-label="Call us"
