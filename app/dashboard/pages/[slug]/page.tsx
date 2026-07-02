@@ -4,16 +4,7 @@ import { getPageContent } from "@/lib/page-content";
 import { PageContentEditor } from "@/components/page-content-editor";
 import Link from "next/link";
 
-const VISUAL_EDITOR_SLUGS = new Set([
-  "home",
-  "car-servicing",
-  "services",
-  "mot",
-  "faqs",
-  "diagnostics",
-  "repairs",
-  "contact",
-]);
+const VISUAL_EDITOR_SLUGS = new Set(PAGES_CONFIG.map((p) => p.slug));
 
 interface Props {
   params: Promise<{ slug: string }>;

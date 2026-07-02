@@ -11,6 +11,19 @@ import { FaqsPageClient } from "@/components/faqs-page-client";
 import { DiagnosticsPageClient } from "@/components/diagnostics-page-client";
 import { RepairsPageClient } from "@/components/repairs-page-client";
 import { ContactPageClient } from "@/components/contact-page-client";
+import { AirConPageClient } from "@/components/air-con-page-client";
+import { EvBatteryPageClient } from "@/components/ev-battery-page-client";
+import { BatteryCheckPageClient } from "@/components/battery-check-page-client";
+import { CarServicingInterimPageClient } from "@/components/car-servicing-interim-page-client";
+import { CarServicingFullPageClient } from "@/components/car-servicing-full-page-client";
+import { CarServicingMajorPageClient } from "@/components/car-servicing-major-page-client";
+import { RepairsBrakesPageClient } from "@/components/repairs-brakes-page-client";
+import { RepairsTyresPageClient } from "@/components/repairs-tyres-page-client";
+import { RepairsClutchGearboxPageClient } from "@/components/repairs-clutch-gearbox-page-client";
+import { RepairsSuspensionSteeringPageClient } from "@/components/repairs-suspension-steering-page-client";
+import { RepairsExhaustEmissionsPageClient } from "@/components/repairs-exhaust-emissions-page-client";
+import { RepairsEngineCoolingPageClient } from "@/components/repairs-engine-cooling-page-client";
+import { RepairsElectricalPageClient } from "@/components/repairs-electrical-page-client";
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -55,6 +68,45 @@ export default async function VisualEditorPage({ params }: Props) {
       break;
     case "contact":
       body = <ContactPageClient content={content} editable />;
+      break;
+    case "air-con":
+      body = <AirConPageClient content={content} editable />;
+      break;
+    case "ev-battery":
+      body = <EvBatteryPageClient content={content} editable />;
+      break;
+    case "battery-check":
+      body = <BatteryCheckPageClient content={content} editable />;
+      break;
+    case "car-servicing-interim":
+      body = <CarServicingInterimPageClient content={content} editable />;
+      break;
+    case "car-servicing-full":
+      body = <CarServicingFullPageClient content={content} editable />;
+      break;
+    case "car-servicing-major":
+      body = <CarServicingMajorPageClient content={content} editable />;
+      break;
+    case "repairs-brakes":
+      body = <RepairsBrakesPageClient content={content} editable />;
+      break;
+    case "repairs-tyres":
+      body = <RepairsTyresPageClient content={content} editable />;
+      break;
+    case "repairs-clutch-gearbox":
+      body = <RepairsClutchGearboxPageClient content={content} editable />;
+      break;
+    case "repairs-suspension-steering":
+      body = <RepairsSuspensionSteeringPageClient content={content} editable />;
+      break;
+    case "repairs-exhaust-emissions":
+      body = <RepairsExhaustEmissionsPageClient content={content} editable />;
+      break;
+    case "repairs-engine-cooling":
+      body = <RepairsEngineCoolingPageClient content={content} editable />;
+      break;
+    case "repairs-electrical":
+      body = <RepairsElectricalPageClient content={content} editable />;
       break;
     default:
       notFound();
