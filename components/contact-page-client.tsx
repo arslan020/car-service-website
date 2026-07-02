@@ -1,9 +1,10 @@
-﻿"use client";
+"use client";
 
 import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
 import { site, waUrl } from "@/lib/site-config";
 import { f, fl, type ContentMap } from "@/lib/page-content";
+import { EditableText } from "@/components/editable-text";
 
 const SERVICE_OPTIONS_FALLBACK = [
   "MOT Test",
@@ -37,7 +38,7 @@ function parseHoursGrid(raw: string): { day: string; hours: string; closed: bool
     .filter((row) => row.day && row.hours);
 }
 
-export function ContactPageClient({ content }: { content: ContentMap }) {
+export function ContactPageClient({ content, editable = false }: { content: ContentMap; editable?: boolean }) {
   const [isOpen, setIsOpen] = useState<boolean | null>(null);
   const [closingTime, setClosingTime] = useState("");
   const [form, setForm] = useState({ name: "", email: "", phone: "", service: "", message: "" });
@@ -68,16 +69,23 @@ export function ContactPageClient({ content }: { content: ContentMap }) {
     }
   }, [defaultClosing]);
 
-  const heroSubtitle = f(
+  // Raw value (with the literal {{address}} token intact) — this is what must be
+  // fed into EditableText so saving an edit never bakes in a stale address.
+  const rawHeroSubtitle = f(
     content,
     "hero_subtitle",
     "Call us, WhatsApp, or book online. Visit us at {{address}}. We respond as soon as we're off the ramp."
-  ).replace(/\{\{address\}\}/g, site.addressLines.join(", "));
-
-  const statusOpenText = f(content, "status_open_template", "Open now · closes {time}").replace(
-    "{time}",
-    closingTime
   );
+  // Display-only version with the address substituted in — used on the public
+  // (non-editable) route so visible output is unchanged from before.
+  const heroSubtitle = rawHeroSubtitle.replace(/\{\{address\}\}/g, site.addressLines.join(", "));
+
+  // Raw value (with the literal {time} token intact) — fed into EditableText so
+  // saving an edit never bakes in a stale closing time.
+  const rawStatusOpenText = f(content, "status_open_template", "Open now · closes {time}");
+  // Display-only version with the time substituted in — used on the public
+  // (non-editable) route so visible output is unchanged from before.
+  const statusOpenText = rawStatusOpenText.replace("{time}", closingTime);
 
   function validate() {
     const e: Record<string, string> = {};
@@ -126,19 +134,33 @@ export function ContactPageClient({ content }: { content: ContentMap }) {
       <section className="bg-gradient-to-b from-[#eefdff] via-[#f5feff] via-60% to-white px-4 pb-12 pt-16 text-center sm:pt-20">
         <div className="mx-auto max-w-2xl">
           <p className="text-xs font-bold uppercase tracking-widest text-[#0F63FF]">
-            {f(content, "hero_kicker", "We're here to help")}
+            <EditableText pageKey="contact" fieldKey="hero_kicker" value={f(content, "hero_kicker", "We're here to help")} editable={editable} />
           </p>
           <h1 className="mt-2 text-3xl font-extrabold leading-tight text-[#020F3D] sm:text-5xl">
-            {f(content, "hero_title", "Get in touch")}
+            <EditableText pageKey="contact" fieldKey="hero_title" value={f(content, "hero_title", "Get in touch")} editable={editable} />
           </h1>
-          <p className="mt-4 text-base leading-relaxed text-slate-500 sm:text-lg">{heroSubtitle}</p>
+          <p className="mt-4 text-base leading-relaxed text-slate-500 sm:text-lg">
+            {editable ? (
+              <EditableText pageKey="contact" fieldKey="hero_subtitle" value={rawHeroSubtitle} type="textarea" editable />
+            ) : (
+              heroSubtitle
+            )}
+          </p>
           {isOpen !== null && (
             <div className="mt-5 inline-flex items-center gap-2 rounded-full border border-[#e0ebff] bg-white px-4 py-2 shadow-sm">
               <span
                 className={`h-2.5 w-2.5 animate-pulse rounded-full ${isOpen ? "bg-emerald-500" : "bg-red-400"}`}
               />
               <span className="text-sm font-semibold text-[#020F3D]">
-                {isOpen ? statusOpenText : f(content, "status_closed", "Currently closed")}
+                {isOpen ? (
+                  editable ? (
+                    <EditableText pageKey="contact" fieldKey="status_open_template" value={rawStatusOpenText} editable />
+                  ) : (
+                    statusOpenText
+                  )
+                ) : (
+                  <EditableText pageKey="contact" fieldKey="status_closed" value={f(content, "status_closed", "Currently closed")} editable={editable} />
+                )}
               </span>
             </div>
           )}
@@ -149,10 +171,10 @@ export function ContactPageClient({ content }: { content: ContentMap }) {
         <div className="mx-auto max-w-5xl">
           <div className="mb-8">
             <p className="text-xs font-bold uppercase tracking-widest text-[#0F63FF]">
-              {f(content, "form_kicker", "Send a message")}
+              <EditableText pageKey="contact" fieldKey="form_kicker" value={f(content, "form_kicker", "Send a message")} editable={editable} />
             </p>
             <h2 className="mt-1 text-2xl font-extrabold text-[#020F3D] sm:text-3xl">
-              {f(content, "form_title", "Get in touch directly")}
+              <EditableText pageKey="contact" fieldKey="form_title" value={f(content, "form_title", "Get in touch directly")} editable={editable} />
             </h2>
           </div>
 
@@ -164,8 +186,12 @@ export function ContactPageClient({ content }: { content: ContentMap }) {
                     <path strokeLinecap="round" strokeLinejoin="round" d="m4.5 12.75 6 6 9-13.5" />
                   </svg>
                 </span>
-                <h3 className="text-xl font-extrabold text-[#020F3D]">{f(content, "success_title", "Message sent!")}</h3>
-                <p className="max-w-sm text-sm text-slate-500">{f(content, "success_body", "")}</p>
+                <h3 className="text-xl font-extrabold text-[#020F3D]">
+                  <EditableText pageKey="contact" fieldKey="success_title" value={f(content, "success_title", "Message sent!")} editable={editable} />
+                </h3>
+                <p className="max-w-sm text-sm text-slate-500">
+                  <EditableText pageKey="contact" fieldKey="success_body" value={f(content, "success_body", "")} type="textarea" editable={editable} />
+                </p>
                 <button
                   type="button"
                   onClick={() => {
@@ -174,14 +200,14 @@ export function ContactPageClient({ content }: { content: ContentMap }) {
                   }}
                   className="mt-2 rounded-xl border-2 border-[#020F3D] px-6 py-2.5 text-sm font-bold text-[#020F3D] transition hover:bg-[#020F3D] hover:text-white"
                 >
-                  {f(content, "success_again", "Send another message")}
+                  <EditableText pageKey="contact" fieldKey="success_again" value={f(content, "success_again", "Send another message")} editable={editable} />
                 </button>
               </div>
             ) : (
               <form onSubmit={handleSubmit} noValidate className="grid gap-5 sm:grid-cols-2">
                 <div className="flex flex-col gap-1.5">
                   <label className="text-xs font-bold uppercase tracking-widest text-slate-500">
-                    {f(content, "label_name", "Full Name")} <span className="text-red-500">*</span>
+                    <EditableText pageKey="contact" fieldKey="label_name" value={f(content, "label_name", "Full Name")} editable={editable} /> <span className="text-red-500">*</span>
                   </label>
                   <input
                     type="text"
@@ -194,7 +220,7 @@ export function ContactPageClient({ content }: { content: ContentMap }) {
                 </div>
                 <div className="flex flex-col gap-1.5">
                   <label className="text-xs font-bold uppercase tracking-widest text-slate-500">
-                    {f(content, "label_email", "Email Address")} <span className="text-red-500">*</span>
+                    <EditableText pageKey="contact" fieldKey="label_email" value={f(content, "label_email", "Email Address")} editable={editable} /> <span className="text-red-500">*</span>
                   </label>
                   <input
                     type="email"
@@ -207,7 +233,7 @@ export function ContactPageClient({ content }: { content: ContentMap }) {
                 </div>
                 <div className="flex flex-col gap-1.5">
                   <label className="text-xs font-bold uppercase tracking-widest text-slate-500">
-                    {f(content, "label_phone", "Phone Number")}
+                    <EditableText pageKey="contact" fieldKey="label_phone" value={f(content, "label_phone", "Phone Number")} editable={editable} />
                   </label>
                   <input
                     type="tel"
@@ -219,7 +245,7 @@ export function ContactPageClient({ content }: { content: ContentMap }) {
                 </div>
                 <div className="flex flex-col gap-1.5">
                   <label className="text-xs font-bold uppercase tracking-widest text-slate-500">
-                    {f(content, "label_service", "Service Required")}
+                    <EditableText pageKey="contact" fieldKey="label_service" value={f(content, "label_service", "Service Required")} editable={editable} />
                   </label>
                   <select
                     value={form.service}
@@ -236,7 +262,7 @@ export function ContactPageClient({ content }: { content: ContentMap }) {
                 </div>
                 <div className="flex flex-col gap-1.5 sm:col-span-2">
                   <label className="text-xs font-bold uppercase tracking-widest text-slate-500">
-                    {f(content, "label_message", "Message")} <span className="text-red-500">*</span>
+                    <EditableText pageKey="contact" fieldKey="label_message" value={f(content, "label_message", "Message")} editable={editable} /> <span className="text-red-500">*</span>
                   </label>
                   <textarea
                     rows={5}
@@ -258,7 +284,7 @@ export function ContactPageClient({ content }: { content: ContentMap }) {
                 )}
                 <div className="flex w-full flex-col gap-3 sm:col-span-2 sm:flex-row sm:items-center sm:justify-between">
                   <p className="text-xs text-slate-400">
-                    <span className="text-red-500">*</span> {f(content, "required_suffix", "Required fields")}
+                    <span className="text-red-500">*</span> <EditableText pageKey="contact" fieldKey="required_suffix" value={f(content, "required_suffix", "Required fields")} editable={editable} />
                   </p>
                   <button
                     type="submit"
@@ -275,11 +301,11 @@ export function ContactPageClient({ content }: { content: ContentMap }) {
                             d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"
                           />
                         </svg>
-                        {f(content, "btn_sending", "Sending...")}
+                        <EditableText pageKey="contact" fieldKey="btn_sending" value={f(content, "btn_sending", "Sending...")} editable={editable} />
                       </>
                     ) : (
                       <>
-                        {f(content, "btn_send", "Send message")}
+                        <EditableText pageKey="contact" fieldKey="btn_send" value={f(content, "btn_send", "Send message")} editable={editable} />
                         <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
                           <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
                         </svg>
@@ -297,10 +323,10 @@ export function ContactPageClient({ content }: { content: ContentMap }) {
         <div className="mx-auto max-w-5xl">
           <div className="mb-8">
             <p className="text-xs font-bold uppercase tracking-widest text-[#0F63FF]">
-              {f(content, "reach_kicker", "Contact us")}
+              <EditableText pageKey="contact" fieldKey="reach_kicker" value={f(content, "reach_kicker", "Contact us")} editable={editable} />
             </p>
             <h2 className="mt-1 text-2xl font-extrabold text-[#020F3D] sm:text-3xl">
-              {f(content, "reach_title", "How to reach us")}
+              <EditableText pageKey="contact" fieldKey="reach_title" value={f(content, "reach_title", "How to reach us")} editable={editable} />
             </h2>
           </div>
 
@@ -320,7 +346,7 @@ export function ContactPageClient({ content }: { content: ContentMap }) {
                   </svg>
                 </span>
                 <p className="text-xs font-bold uppercase tracking-widest text-slate-500 group-hover:text-[#0F63FF]">
-                  {f(content, "card_phone", "Phone")}
+                  <EditableText pageKey="contact" fieldKey="card_phone" value={f(content, "card_phone", "Phone")} editable={editable} />
                 </p>
               </a>
 
@@ -336,7 +362,7 @@ export function ContactPageClient({ content }: { content: ContentMap }) {
                   </svg>
                 </span>
                 <p className="text-xs font-bold uppercase tracking-widest text-slate-500 group-hover:text-[#25D366]">
-                  {f(content, "card_whatsapp", "WhatsApp")}
+                  <EditableText pageKey="contact" fieldKey="card_whatsapp" value={f(content, "card_whatsapp", "WhatsApp")} editable={editable} />
                 </p>
               </a>
 
@@ -354,7 +380,7 @@ export function ContactPageClient({ content }: { content: ContentMap }) {
                   </svg>
                 </span>
                 <p className="text-xs font-bold uppercase tracking-widest text-slate-500 group-hover:text-[#0F63FF]">
-                  {f(content, "card_email", "Email")}
+                  <EditableText pageKey="contact" fieldKey="card_email" value={f(content, "card_email", "Email")} editable={editable} />
                 </p>
               </a>
 
@@ -371,7 +397,7 @@ export function ContactPageClient({ content }: { content: ContentMap }) {
                   </svg>
                 </span>
                 <p className="text-xs font-bold uppercase tracking-widest text-slate-500 group-hover:text-[#0F63FF]">
-                  {f(content, "card_address", "Address")}
+                  <EditableText pageKey="contact" fieldKey="card_address" value={f(content, "card_address", "Address")} editable={editable} />
                 </p>
               </a>
             </div>
@@ -379,7 +405,7 @@ export function ContactPageClient({ content }: { content: ContentMap }) {
             <div className="flex flex-col gap-5">
               <div className="rounded-2xl border border-[#e8effa] bg-white p-6 shadow-sm">
                 <p className="text-xs font-bold uppercase tracking-widest text-[#0F63FF]">
-                  {f(content, "hours_kicker", "Opening hours")}
+                  <EditableText pageKey="contact" fieldKey="hours_kicker" value={f(content, "hours_kicker", "Opening hours")} editable={editable} />
                 </p>
                 <ul className="mt-5 space-y-4">
                   {hoursRows.map((row) => (
@@ -399,7 +425,7 @@ export function ContactPageClient({ content }: { content: ContentMap }) {
                     href="/online-booking"
                     className="flex w-full items-center justify-center gap-2 rounded-xl bg-[#020F3D] py-3.5 text-sm font-bold text-white shadow-md transition hover:bg-[#061744]"
                   >
-                    {f(content, "btn_book", "Book online now")}
+                    <EditableText pageKey="contact" fieldKey="btn_book" value={f(content, "btn_book", "Book online now")} editable={editable} />
                     <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
                       <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
                     </svg>
@@ -428,9 +454,11 @@ export function ContactPageClient({ content }: { content: ContentMap }) {
               </span>
               <div>
                 <p className="text-xs font-bold uppercase tracking-widest text-[#0F63FF]">
-                  {f(content, "collection_kicker", "Collection service")}
+                  <EditableText pageKey="contact" fieldKey="collection_kicker" value={f(content, "collection_kicker", "Collection service")} editable={editable} />
                 </p>
-                <p className="mt-1 text-sm leading-relaxed text-slate-600">{f(content, "collection_body", "")}</p>
+                <p className="mt-1 text-sm leading-relaxed text-slate-600">
+                  <EditableText pageKey="contact" fieldKey="collection_body" value={f(content, "collection_body", "")} type="textarea" editable={editable} />
+                </p>
               </div>
             </div>
           </div>
@@ -440,7 +468,7 @@ export function ContactPageClient({ content }: { content: ContentMap }) {
       <section className="px-4 pb-16 sm:pb-20">
         <div className="mx-auto max-w-5xl">
           <p className="mb-4 text-xs font-bold uppercase tracking-widest text-[#0F63FF]">
-            {f(content, "map_kicker", "Find us")}
+            <EditableText pageKey="contact" fieldKey="map_kicker" value={f(content, "map_kicker", "Find us")} editable={editable} />
           </p>
           <div className="overflow-hidden rounded-2xl border border-[#e8effa] shadow-sm">
             <div className="aspect-video w-full overflow-hidden bg-slate-100">
@@ -457,7 +485,9 @@ export function ContactPageClient({ content }: { content: ContentMap }) {
               />
             </div>
           </div>
-          <p className="mt-3 text-center text-sm text-slate-500">{f(content, "map_caption", "")}</p>
+          <p className="mt-3 text-center text-sm text-slate-500">
+            <EditableText pageKey="contact" fieldKey="map_caption" value={f(content, "map_caption", "")} editable={editable} />
+          </p>
           <div className="mt-3 flex justify-center">
             <a
               href={f(
@@ -473,7 +503,7 @@ export function ContactPageClient({ content }: { content: ContentMap }) {
                 <path strokeLinecap="round" strokeLinejoin="round" d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
                 <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z" />
               </svg>
-              {f(content, "map_open_label", "Open in Google Maps")}
+              <EditableText pageKey="contact" fieldKey="map_open_label" value={f(content, "map_open_label", "Open in Google Maps")} editable={editable} />
             </a>
           </div>
         </div>

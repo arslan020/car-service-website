@@ -4,6 +4,17 @@ import { getPageContent } from "@/lib/page-content";
 import { PageContentEditor } from "@/components/page-content-editor";
 import Link from "next/link";
 
+const VISUAL_EDITOR_SLUGS = new Set([
+  "home",
+  "car-servicing",
+  "services",
+  "mot",
+  "faqs",
+  "diagnostics",
+  "repairs",
+  "contact",
+]);
+
 interface Props {
   params: Promise<{ slug: string }>;
 }
@@ -15,7 +26,7 @@ export default async function EditPageDashboard({ params }: Props) {
 
   const saved = await getPageContent(slug);
   const sections = getSections(pageDef);
-  const hasVisualEditor = slug === "home";
+  const hasVisualEditor = VISUAL_EDITOR_SLUGS.has(slug);
 
   return (
     <div>
@@ -76,7 +87,7 @@ export default async function EditPageDashboard({ params }: Props) {
             This page is edited visually — see the real page design and click directly on the text you want to change.
           </p>
           <Link
-            href="/dashboard/pages/home/visual"
+            href={`/dashboard/pages/${slug}/visual`}
             className="mt-1 flex items-center gap-2 rounded-xl bg-[#0F63FF] px-6 py-3 text-sm font-bold text-white shadow-sm transition hover:bg-[#0a4fd6]"
           >
             ✨ Open Visual Editor
