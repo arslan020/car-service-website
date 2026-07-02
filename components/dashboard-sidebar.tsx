@@ -5,8 +5,42 @@ import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useState, useEffect } from "react";
 import { site } from "@/lib/site-config";
-import { PAGES_CONFIG } from "@/lib/pages-config";
+import { getPageDef } from "@/lib/pages-config";
 import { logoutAction } from "@/app/login/actions";
+
+// Mirrors the public site header's nav grouping (components/site-header.tsx)
+// so the dashboard's page list matches what visitors actually see.
+type PageTreeItem =
+  | { type: "link"; slug: string }
+  | { type: "group"; key: string; label: string; icon: string; slugs: string[] };
+
+const PAGE_TREE: PageTreeItem[] = [
+  { type: "link", slug: "home" },
+  { type: "link", slug: "mot" },
+  {
+    type: "group",
+    key: "servicing",
+    label: "Servicing",
+    icon: "⚙️",
+    slugs: ["car-servicing", "car-servicing-interim", "car-servicing-full", "car-servicing-major"],
+  },
+  {
+    type: "group",
+    key: "additional",
+    label: "Additional Services",
+    icon: "🔧",
+    slugs: ["services", "diagnostics", "repairs-brakes", "repairs-tyres", "battery-check", "air-con", "ev-battery"],
+  },
+  {
+    type: "group",
+    key: "repairs",
+    label: "Repairs",
+    icon: "🔩",
+    slugs: ["repairs", "repairs-clutch-gearbox", "repairs-suspension-steering", "repairs-exhaust-emissions", "repairs-engine-cooling", "repairs-electrical"],
+  },
+  { type: "link", slug: "faqs" },
+  { type: "link", slug: "contact" },
+];
 
 const NAV = [
   {
@@ -24,13 +58,32 @@ export function DashboardSidebar({ adminName }: { adminName: string }) {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
   const [pagesOpen, setPagesOpen] = useState(false);
+  const [openGroups, setOpenGroups] = useState<Set<string>>(new Set());
 
   // Auto-expand pages menu when on any /dashboard/pages/* route
   useEffect(() => {
     if (pathname.startsWith("/dashboard/pages")) {
       setPagesOpen(true);
     }
+    // Auto-expand whichever group contains the current page
+    const currentSlug = pathname.match(/^\/dashboard\/pages\/([^/]+)/)?.[1];
+    if (!currentSlug) return;
+    for (const item of PAGE_TREE) {
+      if (item.type === "group" && item.slugs.includes(currentSlug)) {
+        setOpenGroups((prev) => new Set(prev).add(item.key));
+        break;
+      }
+    }
   }, [pathname]);
+
+  function toggleGroup(key: string) {
+    setOpenGroups((prev) => {
+      const next = new Set(prev);
+      if (next.has(key)) next.delete(key);
+      else next.add(key);
+      return next;
+    });
+  }
 
   const isOnPagesRoute = pathname.startsWith("/dashboard/pages");
 
@@ -135,25 +188,80 @@ export function DashboardSidebar({ adminName }: { adminName: string }) {
                 </svg>
               </button>
 
-              {/* Sub-items */}
+              {/* Sub-items — grouped to match the public site header's nav */}
               {pagesOpen && (
                 <ul className="ml-4 mt-1 space-y-0.5 border-l-2 border-[#e8effa] pl-3">
-                  {PAGES_CONFIG.map((page) => {
-                    const activeSubItem = pathname === `/dashboard/pages/${page.slug}`;
+                  {PAGE_TREE.map((item) => {
+                    if (item.type === "link") {
+                      const page = getPageDef(item.slug);
+                      if (!page) return null;
+                      const activeSubItem = pathname === `/dashboard/pages/${page.slug}`;
+                      return (
+                        <li key={page.slug}>
+                          <Link
+                            href={`/dashboard/pages/${page.slug}`}
+                            onClick={() => setOpen(false)}
+                            className={`flex items-center gap-2 rounded-lg px-3 py-2 text-sm transition-colors ${
+                              activeSubItem
+                                ? "bg-[#020F3D] font-semibold text-white"
+                                : "text-slate-600 hover:bg-[#eef4ff] hover:text-[#020F3D]"
+                            }`}
+                          >
+                            <span>{page.icon}</span>
+                            {page.label}
+                          </Link>
+                        </li>
+                      );
+                    }
+
+                    const groupOpen = openGroups.has(item.key);
+                    const groupActive = item.slugs.includes(pathname.replace("/dashboard/pages/", ""));
+
                     return (
-                      <li key={page.slug}>
-                        <Link
-                          href={`/dashboard/pages/${page.slug}`}
-                          onClick={() => setOpen(false)}
-                          className={`flex items-center gap-2 rounded-lg px-3 py-2 text-sm transition-colors ${
-                            activeSubItem
-                              ? "bg-[#020F3D] font-semibold text-white"
+                      <li key={item.key}>
+                        <button
+                          type="button"
+                          onClick={() => toggleGroup(item.key)}
+                          className={`flex w-full items-center gap-2 rounded-lg px-3 py-2 text-sm transition-colors ${
+                            groupActive
+                              ? "font-semibold text-[#020F3D]"
                               : "text-slate-600 hover:bg-[#eef4ff] hover:text-[#020F3D]"
                           }`}
                         >
-                          <span>{page.icon}</span>
-                          {page.label}
-                        </Link>
+                          <span>{item.icon}</span>
+                          <span className="flex-1 text-left">{item.label}</span>
+                          <svg
+                            className={`h-3.5 w-3.5 shrink-0 text-slate-400 transition-transform duration-200 ${groupOpen ? "rotate-180" : ""}`}
+                            fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}
+                          >
+                            <path strokeLinecap="round" strokeLinejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+                          </svg>
+                        </button>
+                        {groupOpen && (
+                          <ul className="ml-4 mt-0.5 space-y-0.5 border-l-2 border-[#e8effa] pl-3">
+                            {item.slugs.map((slug) => {
+                              const page = getPageDef(slug);
+                              if (!page) return null;
+                              const activeSubItem = pathname === `/dashboard/pages/${slug}`;
+                              return (
+                                <li key={slug}>
+                                  <Link
+                                    href={`/dashboard/pages/${slug}`}
+                                    onClick={() => setOpen(false)}
+                                    className={`flex items-center gap-2 rounded-lg px-3 py-2 text-sm transition-colors ${
+                                      activeSubItem
+                                        ? "bg-[#020F3D] font-semibold text-white"
+                                        : "text-slate-600 hover:bg-[#eef4ff] hover:text-[#020F3D]"
+                                    }`}
+                                  >
+                                    <span>{page.icon}</span>
+                                    {page.label}
+                                  </Link>
+                                </li>
+                              );
+                            })}
+                          </ul>
+                        )}
                       </li>
                     );
                   })}
