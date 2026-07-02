@@ -220,13 +220,18 @@ export function AboutUsPageClient({ content: c, editable = false }: { content: C
             </div>
             <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
               {values.map((v) => (
-                <div key={v.titleKey} className="flex flex-col gap-3 rounded-2xl border border-[#e0ebff] bg-white p-6 shadow-sm">
-                  <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-[#eef4ff] text-[#0F63FF]">
-                    {v.icon}
-                  </span>
-                  <h3 className="font-bold text-[#020F3D]">
-                    <EditableText pageKey="about-us" fieldKey={v.titleKey} value={v.title} editable={editable} />
-                  </h3>
+                <div
+                  key={v.titleKey}
+                  className="group flex flex-col gap-3 rounded-2xl border border-[#e0ebff] bg-white p-6 shadow-sm transition-all hover:-translate-y-0.5 hover:border-[#0F63FF]/30 hover:shadow-[0_6px_24px_rgba(15,99,255,0.1)]"
+                >
+                  <div className="flex items-center gap-3">
+                    <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-[#eef4ff] text-[#0F63FF] transition-all group-hover:bg-[#0F63FF] group-hover:text-white">
+                      {v.icon}
+                    </span>
+                    <h3 className="font-bold text-[#020F3D] transition-colors group-hover:text-[#0F63FF]">
+                      <EditableText pageKey="about-us" fieldKey={v.titleKey} value={v.title} editable={editable} />
+                    </h3>
+                  </div>
                   <p className="text-sm leading-relaxed text-slate-500">
                     <EditableText pageKey="about-us" fieldKey={v.bodyKey} value={v.body} type="textarea" editable={editable} />
                   </p>
