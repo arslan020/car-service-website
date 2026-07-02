@@ -172,7 +172,7 @@ export function ServicesPageClient({ content: c, editable = false }: { content: 
               href="/online-booking"
               className="inline-flex items-center justify-center gap-2 rounded-xl bg-[#020F3D] px-8 py-3.5 text-sm font-bold text-white shadow-md transition hover:bg-[#061744]"
             >
-              Book now
+              <EditableText pageKey="services" fieldKey="cta_book" value={c.cta_book} editable={editable} />
               <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
               </svg>

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { getPageContent, f } from "@/lib/page-content";
+import { getPageContentWithDefaults } from "@/lib/page-content";
 import { EvBatteryPageClient } from "@/components/ev-battery-page-client";
 
 export const metadata: Metadata = {
@@ -9,9 +9,6 @@ export const metadata: Metadata = {
 };
 
 export default async function EvBatteryPage() {
-  const content = await getPageContent("ev-battery");
-  const title = f(content, "hero_title", "EV Battery Health Check");
-  const subtitle = f(content, "hero_subtitle", "Professional battery diagnostics for electric and hybrid vehicles. Get a full State-of-Health report, understand your true range, and catch cell degradation before it becomes a costly repair.");
-
-  return <EvBatteryPageClient content={{ hero_title: title, hero_subtitle: subtitle }} />;
+  const content = await getPageContentWithDefaults("ev-battery");
+  return <EvBatteryPageClient content={content} />;
 }

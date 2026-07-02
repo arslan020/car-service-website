@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { getPageContent, f } from "@/lib/page-content";
+import { getPageContentWithDefaults } from "@/lib/page-content";
 import { RepairsEngineCoolingPageClient } from "@/components/repairs-engine-cooling-page-client";
 
 export const metadata: Metadata = {
@@ -9,9 +9,6 @@ export const metadata: Metadata = {
 };
 
 export default async function EngineCoolingPage() {
-  const content = await getPageContent("repairs-engine-cooling");
-  const title = f(content, "hero_title", "Engine & Cooling");
-  const subtitle = f(content, "hero_subtitle", "Overheating, oil leaks, warning lights — we trace the root cause with diagnostics before quoting. No guesswork, no unnecessary parts.");
-
-  return <RepairsEngineCoolingPageClient content={{ hero_title: title, hero_subtitle: subtitle }} />;
+  const content = await getPageContentWithDefaults("repairs-engine-cooling");
+  return <RepairsEngineCoolingPageClient content={content} />;
 }

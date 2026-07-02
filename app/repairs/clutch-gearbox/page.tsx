@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { getPageContent, f } from "@/lib/page-content";
+import { getPageContentWithDefaults } from "@/lib/page-content";
 import { RepairsClutchGearboxPageClient } from "@/components/repairs-clutch-gearbox-page-client";
 
 export const metadata: Metadata = {
@@ -9,9 +9,6 @@ export const metadata: Metadata = {
 };
 
 export default async function ClutchGearboxPage() {
-  const content = await getPageContent("repairs-clutch-gearbox");
-  const title = f(content, "hero_title", "Clutch & Gearbox");
-  const subtitle = f(content, "hero_subtitle", "Slipping clutch, stiff biting point, or grinding gears — we diagnose the root cause and give you a clear quote before any work starts.");
-
-  return <RepairsClutchGearboxPageClient content={{ hero_title: title, hero_subtitle: subtitle }} />;
+  const content = await getPageContentWithDefaults("repairs-clutch-gearbox");
+  return <RepairsClutchGearboxPageClient content={content} />;
 }

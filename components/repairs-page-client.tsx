@@ -136,7 +136,7 @@ export function RepairsPageClient({ content, editable = false }: { content: Cont
                     {items.map((item) => (
                       <li key={item} className="flex items-center gap-2 text-xs text-slate-600">
                         <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-[#0F63FF]" />
-                        {item}
+                        <EditableText pageKey="repairs" fieldKey={cat.itemsKey} value={content[cat.itemsKey] ?? ""} type="textarea" editable={editable} display={item} />
                       </li>
                     ))}
                   </ul>

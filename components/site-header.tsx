@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { site, waUrl } from "@/lib/site-config";
 
 const SERVICES_MENU = [
@@ -104,7 +104,23 @@ function ChevronDown() {
 export function SiteHeader() {
   const [open, setOpen] = useState(false);
   const [mobileServicing, setMobileServicing] = useState(false);
+  const [mobileServices, setMobileServices] = useState(false);
   const [mobileRepairs, setMobileRepairs] = useState(false);
+
+  // Lock background scroll while the mobile menu is open
+  useEffect(() => {
+    document.body.style.overflow = open ? "hidden" : "";
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [open]);
+
+  const closeMenu = () => {
+    setOpen(false);
+    setMobileServicing(false);
+    setMobileServices(false);
+    setMobileRepairs(false);
+  };
 
   return (
     <>
@@ -113,7 +129,7 @@ export function SiteHeader() {
         <Link
           href="/"
           className="block w-[170px] shrink-0 sm:w-[240px] lg:w-[280px] xl:w-[220px] 2xl:w-[280px]"
-          onClick={() => setOpen(false)}
+          onClick={closeMenu}
         >
           <Image
             src="/updated-logo.png"
@@ -350,25 +366,34 @@ export function SiteHeader() {
         <div
           className="fixed inset-0 z-40 bg-black/50 xl:hidden transition-opacity duration-300"
           style={{ opacity: open ? 1 : 0, pointerEvents: open ? "auto" : "none" }}
-          onClick={() => setOpen(false)}
+          onClick={closeMenu}
         />
         <div
-          className="fixed top-0 right-0 z-50 h-full w-4/5 max-w-xs bg-white xl:hidden overflow-y-auto shadow-2xl transition-transform duration-300 ease-in-out"
-          style={{ transform: open ? "translateX(0)" : "translateX(100%)" }}
+          className="fixed top-0 left-0 z-50 h-full w-4/5 max-w-xs bg-white xl:hidden overflow-y-auto shadow-2xl transition-transform duration-300 ease-in-out"
+          style={{ transform: open ? "translateX(0)" : "translateX(-100%)" }}
         >
             {/* Header */}
             <div className="flex items-center justify-between px-5 py-4 border-b border-slate-100">
-              <span className="text-base font-bold text-[#020F3D]">Menu</span>
-              <button type="button" onClick={() => setOpen(false)} className="flex h-9 w-9 items-center justify-center rounded-full text-slate-500 hover:bg-slate-100">
+              <Link href="/" onClick={closeMenu} className="block w-[150px]">
+                <Image
+                  src="/updated-logo.png"
+                  alt={site.name}
+                  width={800}
+                  height={220}
+                  className="h-auto w-full object-contain"
+                  unoptimized
+                />
+              </Link>
+              <button type="button" onClick={closeMenu} className="flex h-9 w-9 items-center justify-center rounded-full text-slate-500 hover:bg-slate-100">
                 <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
               </button>
             </div>
 
             {/* Nav list */}
-            <nav className="divide-y divide-slate-100">
+            <nav className="flex flex-col gap-1 px-3 py-4">
 
               {/* About Us */}
-              <Link href="/about-us" onClick={() => setOpen(false)} className="flex items-center gap-3 px-5 py-4 hover:bg-slate-50">
+              <Link href="/about-us" onClick={closeMenu} className="flex items-center gap-3 rounded-xl px-3 py-3 hover:bg-slate-50">
                 <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-slate-100 text-[#0F63FF]">
                   <svg className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth={1.75} viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z"/></svg>
                 </span>
@@ -376,43 +401,68 @@ export function SiteHeader() {
               </Link>
 
               {/* MOT */}
-              <Link href="/mot" onClick={() => setOpen(false)} className="flex items-center gap-3 px-5 py-4 hover:bg-slate-50">
+              <Link href="/mot" onClick={closeMenu} className="flex items-center gap-3 rounded-xl px-3 py-3 hover:bg-slate-50">
                 <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-slate-100 text-[#0F63FF]">
                   <svg className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth={1.5} strokeLinejoin="round" viewBox="0 0 24 24"><polygon points="7.5,2 1.5,13 13.5,13"/><polygon points="16.5,2 10.5,13 22.5,13"/><polygon points="12,11.5 5,22 19,22"/></svg>
                 </span>
                 <span className="text-sm font-semibold text-[#020F3D]">MOT</span>
               </Link>
 
-              {/* Prices */}
-              <Link href="/prices" onClick={() => setOpen(false)} className="flex items-center gap-3 px-5 py-4 hover:bg-slate-50">
-                <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-slate-100 text-[#0F63FF]">
-                  <svg className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth={1.75} viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M2.25 8.25h19.5M2.25 9h19.5m-16.5 5.25h6m-6 2.25h3m-3.75 3h15a2.25 2.25 0 0 0 2.25-2.25V6.75A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25v10.5A2.25 2.25 0 0 0 4.5 19.5Z"/></svg>
-                </span>
-                <span className="text-sm font-semibold text-[#020F3D]">Prices</span>
-              </Link>
-
               {/* Car Servicing — expandable */}
               <div>
-                <button type="button" onClick={() => setMobileServicing(!mobileServicing)}
-                  className="flex w-full items-center gap-3 px-5 py-4 hover:bg-slate-50">
-                  <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-slate-100 text-[#0F63FF]">
-                    <svg className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth={1.75} viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2M9 5a2 2 0 0 0 2 2h2a2 2 0 0 0 2-2M9 5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2m-6 7 2 2 4-4m-6 5h4"/></svg>
-                  </span>
-                  <span className="flex-1 text-left text-sm font-semibold text-[#020F3D]">Servicing</span>
-                  <svg className={`h-4 w-4 text-slate-400 transition-transform ${mobileServicing ? "rotate-180" : ""}`} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}><path strokeLinecap="round" strokeLinejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5"/></svg>
-                </button>
+                <div className="flex w-full items-stretch">
+                  <Link href="/car-servicing" onClick={closeMenu}
+                    className="flex flex-1 items-center gap-3 rounded-xl px-3 py-3 hover:bg-slate-50">
+                    <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-slate-100 text-[#0F63FF]">
+                      <svg className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth={1.75} viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2M9 5a2 2 0 0 0 2 2h2a2 2 0 0 0 2-2M9 5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2m-6 7 2 2 4-4m-6 5h4"/></svg>
+                    </span>
+                    <span className="text-sm font-semibold text-[#020F3D]">Servicing</span>
+                  </Link>
+                  <button type="button" onClick={() => setMobileServicing(!mobileServicing)}
+                    aria-label="Toggle servicing menu"
+                    className="flex w-12 shrink-0 items-center justify-center rounded-xl hover:bg-slate-50">
+                    <svg className={`h-4 w-4 text-slate-400 transition-transform ${mobileServicing ? "rotate-180" : ""}`} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}><path strokeLinecap="round" strokeLinejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5"/></svg>
+                  </button>
+                </div>
                 {mobileServicing && (
-                  <div className="bg-slate-50 divide-y divide-slate-100 border-t border-slate-100">
+                  <div className="flex flex-col gap-0.5 py-1 pl-11 pr-2">
                     {SERVICING_MENU.map((item) => (
-                      <Link key={item.label} href={item.href} onClick={() => setOpen(false)}
-                        className="flex items-center justify-between pl-8 pr-5 py-3.5 hover:bg-slate-100">
-                        <span className="flex items-center gap-2 text-sm text-[#020F3D]">
+                      <Link key={item.label} href={item.href} onClick={closeMenu}
+                        className="flex items-center gap-2 rounded-lg px-3 py-2.5 hover:bg-slate-50">
+                        <span className="flex items-center gap-2 text-sm text-slate-600">
                           {item.label}
                           {"popular" in item && item.popular && (
                             <span className="rounded-full bg-[#0F63FF] px-2 py-0.5 text-[9px] font-bold uppercase tracking-wide text-white">Popular</span>
                           )}
                         </span>
-                        <svg className="h-4 w-4 text-slate-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}><path strokeLinecap="round" strokeLinejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5"/></svg>
+                      </Link>
+                    ))}
+                  </div>
+                )}
+              </div>
+
+              {/* Additional Services — expandable */}
+              <div>
+                <div className="flex w-full items-stretch">
+                  <Link href="/services" onClick={closeMenu}
+                    className="flex flex-1 items-center gap-3 rounded-xl px-3 py-3 hover:bg-slate-50">
+                    <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-slate-100 text-[#0F63FF]">
+                      <svg className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth={1.75} viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6A2.25 2.25 0 0 1 6 3.75h2.25A2.25 2.25 0 0 1 10.5 6v2.25a2.25 2.25 0 0 1-2.25 2.25H6a2.25 2.25 0 0 1-2.25-2.25V6ZM3.75 15.75A2.25 2.25 0 0 1 6 13.5h2.25a2.25 2.25 0 0 1 2.25 2.25V18a2.25 2.25 0 0 1-2.25 2.25H6A2.25 2.25 0 0 1 3.75 18v-2.25ZM13.5 6a2.25 2.25 0 0 1 2.25-2.25H18A2.25 2.25 0 0 1 20.25 6v2.25A2.25 2.25 0 0 1 18 10.5h-2.25a2.25 2.25 0 0 1-2.25-2.25V6ZM13.5 15.75a2.25 2.25 0 0 1 2.25-2.25H18a2.25 2.25 0 0 1 2.25 2.25V18A2.25 2.25 0 0 1 18 20.25h-2.25A2.25 2.25 0 0 1 13.5 18v-2.25Z"/></svg>
+                    </span>
+                    <span className="text-sm font-semibold text-[#020F3D]">Additional Services</span>
+                  </Link>
+                  <button type="button" onClick={() => setMobileServices(!mobileServices)}
+                    aria-label="Toggle additional services menu"
+                    className="flex w-12 shrink-0 items-center justify-center rounded-xl hover:bg-slate-50">
+                    <svg className={`h-4 w-4 text-slate-400 transition-transform ${mobileServices ? "rotate-180" : ""}`} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}><path strokeLinecap="round" strokeLinejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5"/></svg>
+                  </button>
+                </div>
+                {mobileServices && (
+                  <div className="flex flex-col gap-0.5 py-1 pl-11 pr-2">
+                    {SERVICES_MENU.map((item) => (
+                      <Link key={item.label} href={item.href} onClick={closeMenu}
+                        className="rounded-lg px-3 py-2.5 text-sm text-slate-600 hover:bg-slate-50">
+                        {item.label}
                       </Link>
                     ))}
                   </div>
@@ -421,69 +471,50 @@ export function SiteHeader() {
 
               {/* Repairs — expandable */}
               <div>
-                <button type="button" onClick={() => setMobileRepairs(!mobileRepairs)}
-                  className="flex w-full items-center gap-3 px-5 py-4 hover:bg-slate-50">
-                  <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-slate-100 text-[#0F63FF]">
-                    <svg className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth={1.75} viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M21.75 6.75a4.5 4.5 0 0 1-4.884 4.484c-1.076-.091-2.264.071-2.95.904l-7.152 8.684a2.548 2.548 0 1 1-3.586-3.585l8.684-7.152c.833-.686.995-1.874.904-2.95a4.5 4.5 0 0 1 6.336-4.486l-3.276 3.276a3.004 3.004 0 0 0 2.25 2.25l3.276-3.276c.256.565.398 1.192.398 1.852Z"/></svg>
-                  </span>
-                  <span className="flex-1 text-left text-sm font-semibold text-[#020F3D]">Repairs</span>
-                  <svg className={`h-4 w-4 text-slate-400 transition-transform ${mobileRepairs ? "rotate-180" : ""}`} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}><path strokeLinecap="round" strokeLinejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5"/></svg>
-                </button>
+                <div className="flex w-full items-stretch">
+                  <Link href="/repairs" onClick={closeMenu}
+                    className="flex flex-1 items-center gap-3 rounded-xl px-3 py-3 hover:bg-slate-50">
+                    <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-slate-100 text-[#0F63FF]">
+                      <svg className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth={1.75} viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M21.75 6.75a4.5 4.5 0 0 1-4.884 4.484c-1.076-.091-2.264.071-2.95.904l-7.152 8.684a2.548 2.548 0 1 1-3.586-3.585l8.684-7.152c.833-.686.995-1.874.904-2.95a4.5 4.5 0 0 1 6.336-4.486l-3.276 3.276a3.004 3.004 0 0 0 2.25 2.25l3.276-3.276c.256.565.398 1.192.398 1.852Z"/></svg>
+                    </span>
+                    <span className="text-sm font-semibold text-[#020F3D]">Repairs</span>
+                  </Link>
+                  <button type="button" onClick={() => setMobileRepairs(!mobileRepairs)}
+                    aria-label="Toggle repairs menu"
+                    className="flex w-12 shrink-0 items-center justify-center rounded-xl hover:bg-slate-50">
+                    <svg className={`h-4 w-4 text-slate-400 transition-transform ${mobileRepairs ? "rotate-180" : ""}`} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}><path strokeLinecap="round" strokeLinejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5"/></svg>
+                  </button>
+                </div>
                 {mobileRepairs && (
-                  <div className="bg-slate-50 divide-y divide-slate-100 border-t border-slate-100">
+                  <div className="flex flex-col gap-0.5 py-1 pl-11 pr-2">
                     {REPAIRS_MENU.map((item) => (
-                      <Link key={item.label} href={item.href} onClick={() => setOpen(false)}
-                        className="flex items-center justify-between pl-8 pr-5 py-3.5 hover:bg-slate-100">
-                        <span className="text-sm text-[#020F3D]">{item.label}</span>
-                        <svg className="h-4 w-4 text-slate-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}><path strokeLinecap="round" strokeLinejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5"/></svg>
+                      <Link key={item.label} href={item.href} onClick={closeMenu}
+                        className="rounded-lg px-3 py-2.5 text-sm text-slate-600 hover:bg-slate-50">
+                        {item.label}
                       </Link>
                     ))}
                   </div>
                 )}
               </div>
 
-              {/* Diagnostics */}
-              <Link href="/diagnostics" onClick={() => setOpen(false)} className="flex items-center gap-3 px-5 py-4 hover:bg-slate-50">
+              {/* Prices */}
+              <Link href="/prices" onClick={closeMenu} className="flex items-center gap-3 rounded-xl px-3 py-3 hover:bg-slate-50">
                 <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-slate-100 text-[#0F63FF]">
-                  <svg className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth={1.75} viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M3 7a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7zM1 19h22M7 11h1.5l1.5-2 2 4 1.5-2H17"/></svg>
+                  <svg className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth={1.75} viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M2.25 8.25h19.5M2.25 9h19.5m-16.5 5.25h6m-6 2.25h3m-3.75 3h15a2.25 2.25 0 0 0 2.25-2.25V6.75A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25v10.5A2.25 2.25 0 0 0 4.5 19.5Z"/></svg>
                 </span>
-                <span className="text-sm font-semibold text-[#020F3D]">Diagnostics</span>
+                <span className="text-sm font-semibold text-[#020F3D]">Prices</span>
               </Link>
 
-              {/* Battery Check */}
-              <Link href="/battery-check" onClick={() => setOpen(false)} className="flex items-center gap-3 px-5 py-4 hover:bg-slate-50">
+              {/* FAQs */}
+              <Link href="/faqs" onClick={closeMenu} className="flex items-center gap-3 rounded-xl px-3 py-3 hover:bg-slate-50">
                 <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-slate-100 text-[#0F63FF]">
-                  <svg className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth={1.75} viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="m3.75 13.5 10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75Z"/></svg>
+                  <svg className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth={1.75} viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 5.25h.008v.008H12v-.008Z"/></svg>
                 </span>
-                <span className="text-sm font-semibold text-[#020F3D]">Battery Check</span>
-              </Link>
-
-              {/* EV Battery */}
-              <Link href="/ev-battery" onClick={() => setOpen(false)} className="flex items-center gap-3 px-5 py-4 hover:bg-slate-50">
-                <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-slate-100 text-[#0F63FF]">
-                  <svg className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth={1.75} viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M21 10.5h.375c.621 0 1.125.504 1.125 1.125v2.25c0 .621-.504 1.125-1.125 1.125H21M3.75 18h15A2.25 2.25 0 0 0 21 15.75v-6a2.25 2.25 0 0 0-2.25-2.25h-15A2.25 2.25 0 0 0 1.5 9.75v6A2.25 2.25 0 0 0 3.75 18Z"/></svg>
-                </span>
-                <span className="text-sm font-semibold text-[#020F3D]">EV Battery Health</span>
-              </Link>
-
-              {/* Air Con */}
-              <Link href="/air-con" onClick={() => setOpen(false)} className="flex items-center gap-3 px-5 py-4 hover:bg-slate-50">
-                <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-slate-100 text-[#0F63FF]">
-                  <svg className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth={1.75} viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M12 3v2.25m6.364.386-1.591 1.591M21 12h-2.25m-.386 6.364-1.591-1.591M12 18.75V21m-4.773-4.227-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z"/></svg>
-                </span>
-                <span className="text-sm font-semibold text-[#020F3D]">Air Con</span>
-              </Link>
-
-              {/* Gearbox Service */}
-              <Link href="/gearbox-service" onClick={() => setOpen(false)} className="flex items-center gap-3 px-5 py-4 hover:bg-slate-50">
-                <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-slate-100 text-[#0F63FF]">
-                  <svg className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth={1.75} viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12a7.5 7.5 0 0 0 15 0m-15 0a7.5 7.5 0 1 1 15 0m-15 0H3m16.5 0H21m-1.5 0H12m-8.457 3.077 1.41-.513m14.095-5.13 1.41-.513M5.106 17.785l1.15-.964m11.49-9.642 1.149-.964M7.501 19.795l.75-1.3m7.5-12.99.75-1.3m-6.063 16.658.26-1.477m2.605-14.772.26-1.477m0 17.726-.26-1.477M10.698 4.614l-.26-1.477M16.5 19.794l-.75-1.299M7.5 4.205 12 12m6.894 5.785-1.149-.964M6.256 7.178l-1.15-.964m15.352 8.864-1.41-.513M4.954 9.435l-1.41-.514M12.002 12l-3.75 6.495"/></svg>
-                </span>
-                <span className="text-sm font-semibold text-[#020F3D]">Gearbox Service</span>
+                <span className="text-sm font-semibold text-[#020F3D]">FAQs</span>
               </Link>
 
               {/* Contact */}
-              <Link href="/contact" onClick={() => setOpen(false)} className="flex items-center gap-3 px-5 py-4 hover:bg-slate-50">
+              <Link href="/contact" onClick={closeMenu} className="flex items-center gap-3 rounded-xl px-3 py-3 hover:bg-slate-50">
                 <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-slate-100 text-[#0F63FF]">
                   <svg className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth={1.75} viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75"/></svg>
                 </span>
@@ -504,6 +535,10 @@ export function SiteHeader() {
                 <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
                 WhatsApp
               </a>
+              <Link href="/quote" onClick={closeMenu}
+                className="flex min-h-12 items-center justify-center gap-2 rounded-xl bg-[#0F63FF] px-4 py-3 text-sm font-bold text-white transition hover:bg-[#1E6BFF]">
+                Request a Quote
+              </Link>
             </div>
 
         </div>

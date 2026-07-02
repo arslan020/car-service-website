@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
+import { useRouter } from "next/navigation";
 import { savePageField } from "@/app/dashboard/pages/[slug]/actions";
 
 interface EditableTextProps {
@@ -11,6 +12,13 @@ interface EditableTextProps {
   type?: "text" | "textarea";
   editable?: boolean;
   className?: string;
+  /**
+   * Optional display content shown instead of `value`. Used for list fields:
+   * each rendered item shows its own line (`display`) while clicking it edits
+   * the full multi-line `value`. After save the route refreshes so every item
+   * re-renders from the updated list.
+   */
+  display?: React.ReactNode;
 }
 
 /**
@@ -25,7 +33,9 @@ export function EditableText({
   type = "text",
   editable = false,
   className,
+  display,
 }: EditableTextProps) {
+  const router = useRouter();
   const [current, setCurrent] = useState(value);
   const [open, setOpen] = useState(false);
   const [draft, setDraft] = useState(value);
@@ -46,7 +56,7 @@ export function EditableText({
   }, [open]);
 
   if (!editable) {
-    return <span className={className}>{current}</span>;
+    return <span className={className}>{display ?? current}</span>;
   }
 
   function openEditor(e: React.MouseEvent) {
@@ -75,6 +85,9 @@ export function EditableText({
     if (res.ok) {
       setCurrent(trimmed);
       setOpen(false);
+      // List fields render per-item displays derived from the shared value,
+      // so refresh server data to update all items after a save.
+      if (display !== undefined) router.refresh();
     } else {
       setError(true);
     }
@@ -87,7 +100,7 @@ export function EditableText({
         onClick={openEditor}
         className={`${className ?? ""} cursor-text rounded outline-dashed outline-1 outline-transparent transition-colors hover:bg-[#0f63ff17] hover:outline-[#0F63FF]`}
       >
-        {current}
+        {display ?? current}
       </span>
       {open &&
         createPortal(

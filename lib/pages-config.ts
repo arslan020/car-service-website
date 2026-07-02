@@ -1,6 +1,21 @@
 // Page content field definitions — used by both dashboard editor and public pages.
 // Keep this file client-safe (no prisma/server imports).
 
+import { EV_BATTERY_FIELDS } from "@/lib/page-fields/ev-battery";
+import { PRICES_FIELDS } from "@/lib/page-fields/prices";
+import { BATTERY_CHECK_FIELDS } from "@/lib/page-fields/battery-check";
+import { AIR_CON_FIELDS } from "@/lib/page-fields/air-con";
+import { REPAIRS_BRAKES_FIELDS } from "@/lib/page-fields/repairs-brakes";
+import { REPAIRS_TYRES_FIELDS } from "@/lib/page-fields/repairs-tyres";
+import { REPAIRS_CLUTCH_GEARBOX_FIELDS } from "@/lib/page-fields/repairs-clutch-gearbox";
+import { REPAIRS_SUSPENSION_STEERING_FIELDS } from "@/lib/page-fields/repairs-suspension-steering";
+import { REPAIRS_EXHAUST_EMISSIONS_FIELDS } from "@/lib/page-fields/repairs-exhaust-emissions";
+import { REPAIRS_ENGINE_COOLING_FIELDS } from "@/lib/page-fields/repairs-engine-cooling";
+import { REPAIRS_ELECTRICAL_FIELDS } from "@/lib/page-fields/repairs-electrical";
+import { CAR_SERVICING_INTERIM_FIELDS } from "@/lib/page-fields/car-servicing-interim";
+import { CAR_SERVICING_FULL_FIELDS } from "@/lib/page-fields/car-servicing-full";
+import { CAR_SERVICING_MAJOR_FIELDS } from "@/lib/page-fields/car-servicing-major";
+
 export type FieldType = "text" | "textarea";
 
 export interface FieldDef {
@@ -824,93 +839,40 @@ Pre-purchase inspection & health check`,
     slug: "air-con",
     label: "Air Con",
     icon: "❄️",
-    fields: [
-      { key: "hero_title", label: "Page Title", type: "text", default: "Air Con Regas & Service", section: "Hero" },
-      { key: "hero_subtitle", label: "Subtitle", type: "textarea", default: "Full air conditioning regas and system health check. Get your cabin cool and fresh again — recommended every 2 years.", section: "Hero" },
-      T("hero_eyebrow", "Hero — kicker", "Air conditioning", "Hero"),
-      T("btn_book", "Hero — book button", "Book air-con service", "Hero"),
-      T("btn_whatsapp", "Hero — WhatsApp", "WhatsApp us", "Hero"),
-      T("bottom_kicker", "Bottom CTA — kicker", "Stay comfortable", "Bottom CTA"),
-      T("bottom_title", "Bottom CTA — heading", "Book your regas or check", "Bottom CTA"),
-      A("bottom_body", "Bottom CTA — paragraph", "Keep your cabin cool and your system healthy. Book online or call us.", "Bottom CTA"),
-      T("bottom_btn", "Bottom CTA — button", "Book online", "Bottom CTA"),
-    ],
+    fields: AIR_CON_FIELDS,
   },
   {
     slug: "ev-battery",
     label: "EV Battery Health",
     icon: "⚡",
-    fields: [
-      { key: "hero_title", label: "Page Title", type: "text", default: "EV Battery Health Check", section: "Hero" },
-      { key: "hero_subtitle", label: "Subtitle", type: "textarea", default: "Professional battery diagnostics for electric and hybrid vehicles. Get a full State-of-Health report, understand your true range, and catch cell degradation before it becomes a costly repair.", section: "Hero" },
-    ],
+    fields: EV_BATTERY_FIELDS,
   },
   {
     slug: "battery-check",
     label: "Battery Check",
     icon: "🔋",
-    fields: [
-      { key: "hero_title", label: "Page Title", type: "text", default: "Battery Check", section: "Hero" },
-      { key: "hero_subtitle", label: "Subtitle", type: "textarea", default: "A full battery and charging system test using professional diagnostic equipment. Know your battery's health before it leaves you stranded.", section: "Hero" },
-    ],
+    fields: BATTERY_CHECK_FIELDS,
   },
   {
     slug: "car-servicing-interim",
     label: "Oil Service",
     icon: "🔧",
     publicPath: "/car-servicing/interim",
-    fields: [
-      { key: "hero_title", label: "Page Title", type: "text", default: "Oil Service", section: "Hero" },
-      { key: "hero_subtitle", label: "Subtitle", type: "textarea", default: "Fresh engine oil and filter, plus a full multi-point safety check — keeps your engine protected and your warranty intact between full services. Ideal for high-mileage drivers.", section: "Hero" },
-      { key: "faq_1_q", label: "FAQ 1 — Question", type: "text", default: "Who is an oil service for?", section: "FAQs" },
-      { key: "faq_1_a", label: "FAQ 1 — Answer", type: "textarea", default: "Drivers covering more than 12,000 miles a year benefit most — the extra oil change keeps the engine protected between annual full services.", section: "FAQs" },
-      { key: "faq_2_q", label: "FAQ 2 — Question", type: "text", default: "Does it protect my warranty?", section: "FAQs" },
-      { key: "faq_2_a", label: "FAQ 2 — Answer", type: "textarea", default: "Yes. UK law (Block Exemption Regulation) means manufacturer warranties remain valid when serviced at an independent garage using the correct oil grade and parts.", section: "FAQs" },
-      { key: "faq_3_q", label: "FAQ 3 — Question", type: "text", default: "How long does it take?", section: "FAQs" },
-      { key: "faq_3_a", label: "FAQ 3 — Answer", type: "textarea", default: "Usually 1.5–2 hours. Many customers drop off and collect the same morning.", section: "FAQs" },
-      { key: "faq_4_q", label: "FAQ 4 — Question", type: "text", default: "Will I get a service stamp?", section: "FAQs" },
-      { key: "faq_4_a", label: "FAQ 4 — Answer", type: "textarea", default: "Yes — we provide a stamped service record for your handbook and can update digital service records where supported.", section: "FAQs" },
-    ],
+    fields: CAR_SERVICING_INTERIM_FIELDS,
   },
   {
     slug: "car-servicing-full",
     label: "Full Service",
     icon: "⚙️",
     publicPath: "/car-servicing/full",
-    fields: [
-      { key: "hero_title", label: "Page Title", type: "text", default: "Full Service", section: "Hero" },
-      { key: "hero_subtitle", label: "Subtitle", type: "textarea", default: "The UK standard annual service — comprehensive, warranty-safe, and stamped. Covers everything from oil and filters to a full 60-point vehicle health check.", section: "Hero" },
-      { key: "faq_1_q", label: "FAQ 1 — Question", type: "text", default: "What is a Full Service?", section: "FAQs" },
-      { key: "faq_1_a", label: "FAQ 1 — Answer", type: "textarea", default: "A Full Service is the UK standard annual car service covering all the checks an Oil Service does, plus filter replacements, brake measurements, and a comprehensive 60-point health check of your vehicle.", section: "FAQs" },
-      { key: "faq_2_q", label: "FAQ 2 — Question", type: "text", default: "How often should I have a Full Service?", section: "FAQs" },
-      { key: "faq_2_a", label: "FAQ 2 — Answer", type: "textarea", default: "Every 12 months or 12,000 miles — whichever comes first. If you do high mileage, combine it with an Oil Service at 6 months.", section: "FAQs" },
-      { key: "faq_3_q", label: "FAQ 3 — Question", type: "text", default: "Will it keep my manufacturer warranty valid?", section: "FAQs" },
-      { key: "faq_3_a", label: "FAQ 3 — Answer", type: "textarea", default: "Yes. Under the UK Block Exemption Regulation, having your car serviced at an independent garage using the manufacturer-specified oil and parts does not void your warranty.", section: "FAQs" },
-      { key: "faq_4_q", label: "FAQ 4 — Question", type: "text", default: "Do I get a service stamp?", section: "FAQs" },
-      { key: "faq_4_a", label: "FAQ 4 — Answer", type: "textarea", default: "Yes — we stamp your service book and can update digital service histories (Volkswagen Group, Ford, BMW etc.) where the system allows.", section: "FAQs" },
-      { key: "faq_5_q", label: "FAQ 5 — Question", type: "text", default: "How long does a Full Service take?", section: "FAQs" },
-      { key: "faq_5_a", label: "FAQ 5 — Answer", type: "textarea", default: "Typically 2–3 hours. We text you when your car is ready for collection.", section: "FAQs" },
-    ],
+    fields: CAR_SERVICING_FULL_FIELDS,
   },
   {
     slug: "car-servicing-major",
     label: "Major Service",
     icon: "🔩",
     publicPath: "/car-servicing/major",
-    fields: [
-      { key: "hero_title", label: "Page Title", type: "text", default: "Major Service", section: "Hero" },
-      { key: "hero_subtitle", label: "Subtitle", type: "textarea", default: "The most comprehensive service — everything in a Full Service plus spark plugs, coolant change, a multi-point check, and a full road test.", section: "Hero" },
-      { key: "faq_1_q", label: "FAQ 1 — Question", type: "text", default: "What is a Major Service?", section: "FAQs" },
-      { key: "faq_1_a", label: "FAQ 1 — Answer", type: "textarea", default: "A Major Service is the most comprehensive annual service, following your car's manufacturer schedule. It includes everything in a Full Service plus spark plugs, coolant change, a comprehensive multi-point check, and a full road test — typically due every 2 years or 24,000 miles.", section: "FAQs" },
-      { key: "faq_2_q", label: "FAQ 2 — Question", type: "text", default: "How is it different from a Full Service?", section: "FAQs" },
-      { key: "faq_2_a", label: "FAQ 2 — Answer", type: "textarea", default: "A Full Service covers the standard 12-month checks. A Major Service adds component replacements that are due on a longer cycle — spark plugs, fluids that degrade over time, and a manufacturer-schedule compliance check.", section: "FAQs" },
-      { key: "faq_3_q", label: "FAQ 3 — Question", type: "text", default: "Does this protect my manufacturer warranty?", section: "FAQs" },
-      { key: "faq_3_a", label: "FAQ 3 — Answer", type: "textarea", default: "Yes. UK Block Exemption Regulation law means using a qualified independent garage with correct spec parts and oils keeps your warranty fully valid.", section: "FAQs" },
-      { key: "faq_4_q", label: "FAQ 4 — Question", type: "text", default: "How long does a Major Service take?", section: "FAQs" },
-      { key: "faq_4_a", label: "FAQ 4 — Answer", type: "textarea", default: "Typically 3–4 hours depending on the vehicle. We will always confirm timing when you book and text you when the car is ready.", section: "FAQs" },
-      { key: "faq_5_q", label: "FAQ 5 — Question", type: "text", default: "Can I combine it with an MOT?", section: "FAQs" },
-      { key: "faq_5_a", label: "FAQ 5 — Answer", type: "textarea", default: "Absolutely — many customers book both together. It saves a separate trip and we can usually fit both in one visit.", section: "FAQs" },
-    ],
+    fields: CAR_SERVICING_MAJOR_FIELDS,
   },
   {
     slug: "brake-fluid",
@@ -974,70 +936,56 @@ Written report on brake system condition`,
     label: "Brakes",
     icon: "🛑",
     publicPath: "/repairs/brakes",
-    fields: [
-      { key: "hero_title", label: "Page Title", type: "text", default: "Brakes", section: "Hero" },
-      { key: "hero_subtitle", label: "Subtitle", type: "textarea", default: "Brakes are your car's most important safety system. We diagnose, quote clearly, and only replace what genuinely needs doing — no upselling.", section: "Hero" },
-    ],
+    fields: REPAIRS_BRAKES_FIELDS,
   },
   {
     slug: "repairs-tyres",
     label: "Tyres",
     icon: "🛞",
     publicPath: "/repairs/tyres",
-    fields: [
-      { key: "hero_title", label: "Page Title", type: "text", default: "Tyres", section: "Hero" },
-      { key: "hero_subtitle", label: "Subtitle", type: "textarea", default: "New tyre fitting, balancing and puncture repair for all makes — plus a free tread and pressure check every time you visit.", section: "Hero" },
-    ],
+    fields: REPAIRS_TYRES_FIELDS,
   },
   {
     slug: "repairs-clutch-gearbox",
     label: "Clutch & Gearbox",
     icon: "⚙️",
     publicPath: "/repairs/clutch-gearbox",
-    fields: [
-      { key: "hero_title", label: "Page Title", type: "text", default: "Clutch & Gearbox", section: "Hero" },
-      { key: "hero_subtitle", label: "Subtitle", type: "textarea", default: "Slipping clutch, stiff biting point, or grinding gears — we diagnose the root cause and give you a clear quote before any work starts.", section: "Hero" },
-    ],
+    fields: REPAIRS_CLUTCH_GEARBOX_FIELDS,
   },
   {
     slug: "repairs-suspension-steering",
     label: "Suspension & Steering",
     icon: "🚗",
     publicPath: "/repairs/suspension-steering",
-    fields: [
-      { key: "hero_title", label: "Page Title", type: "text", default: "Suspension & Steering", section: "Hero" },
-      { key: "hero_subtitle", label: "Subtitle", type: "textarea", default: "Knocking, pulling, or vague steering — we inspect, diagnose, and repair. Wheel alignment included after every relevant repair.", section: "Hero" },
-    ],
+    fields: REPAIRS_SUSPENSION_STEERING_FIELDS,
   },
   {
     slug: "repairs-exhaust-emissions",
     label: "Exhaust & Emissions",
     icon: "💨",
     publicPath: "/repairs/exhaust-emissions",
-    fields: [
-      { key: "hero_title", label: "Page Title", type: "text", default: "Exhaust & Emissions", section: "Hero" },
-      { key: "hero_subtitle", label: "Subtitle", type: "textarea", default: "Blowing exhaust, DPF warning, or emissions failure — we repair or replace to get you through your MOT and running cleanly.", section: "Hero" },
-    ],
+    fields: REPAIRS_EXHAUST_EMISSIONS_FIELDS,
   },
   {
     slug: "repairs-engine-cooling",
     label: "Engine & Cooling",
     icon: "🌡️",
     publicPath: "/repairs/engine-cooling",
-    fields: [
-      { key: "hero_title", label: "Page Title", type: "text", default: "Engine & Cooling", section: "Hero" },
-      { key: "hero_subtitle", label: "Subtitle", type: "textarea", default: "Overheating, coolant leaks, timing issues — we diagnose and repair engine and cooling system faults before they become expensive.", section: "Hero" },
-    ],
+    fields: REPAIRS_ENGINE_COOLING_FIELDS,
   },
   {
     slug: "repairs-electrical",
     label: "Electrical",
     icon: "⚡",
     publicPath: "/repairs/electrical",
-    fields: [
-      { key: "hero_title", label: "Page Title", type: "text", default: "Electrical Repairs", section: "Hero" },
-      { key: "hero_subtitle", label: "Subtitle", type: "textarea", default: "From faulty sensors and warning lights to wiring faults and ECU issues — we trace and fix electrical problems properly.", section: "Hero" },
-    ],
+    fields: REPAIRS_ELECTRICAL_FIELDS,
+  },
+  {
+    slug: "prices",
+    label: "Prices",
+    icon: "💷",
+    publicPath: "/prices",
+    fields: PRICES_FIELDS,
   },
 ];
 

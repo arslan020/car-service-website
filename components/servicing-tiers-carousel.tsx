@@ -67,6 +67,8 @@ type Tier = {
   priceKey: string;
   popular: boolean;
   includes: string[];
+  includesKey: string;
+  includesRaw: string;
   showMotUpsell?: boolean;
 };
 
@@ -206,7 +208,7 @@ export function ServicingTiersCarousel({
                               <path strokeLinecap="round" strokeLinejoin="round" d="m4.5 12.75 6 6 9-13.5" />
                             </svg>
                             <span>
-                              {item}
+                              <EditableText pageKey="car-servicing" fieldKey={tier.includesKey} value={tier.includesRaw} type="textarea" editable={editable} display={item} />
                               {isWayAvailable && <WayAvailableBadge />}
                             </span>
                           </li>

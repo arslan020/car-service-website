@@ -56,6 +56,8 @@ export function buildCarServicingTiers(c: ContentMap) {
       priceKey: "tier_interim_price",
       popular: false,
       includes: interimIncludes,
+      includesKey: "tier_interim_includes",
+      includesRaw: c.tier_interim_includes ?? "",
       showMotUpsell: true,
     },
     {
@@ -68,6 +70,8 @@ export function buildCarServicingTiers(c: ContentMap) {
       priceKey: "tier_full_price",
       popular: true,
       includes: fullIncludes,
+      includesKey: "tier_full_includes",
+      includesRaw: c.tier_full_includes ?? "",
       showMotUpsell: true,
     },
     {
@@ -80,6 +84,8 @@ export function buildCarServicingTiers(c: ContentMap) {
       priceKey: "tier_major_price",
       popular: false,
       includes: majorIncludes,
+      includesKey: "tier_major_includes",
+      includesRaw: c.tier_major_includes ?? "",
       showMotUpsell: true,
     },
     {
@@ -92,6 +98,8 @@ export function buildCarServicingTiers(c: ContentMap) {
       priceKey: "tier_bf_price",
       popular: false,
       includes: brakeFluidIncludes,
+      includesKey: "tier_bf_includes",
+      includesRaw: c.tier_bf_includes ?? "",
       showMotUpsell: false,
     },
   ];

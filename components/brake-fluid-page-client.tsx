@@ -96,7 +96,7 @@ export function BrakeFluidPageClient({ content: c, editable = false }: { content
                 <svg className="mt-0.5 h-5 w-5 shrink-0 text-[#0F63FF]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="m4.5 12.75 6 6 9-13.5" />
                 </svg>
-                {item}
+                <EditableText pageKey="brake-fluid" fieldKey="includes_list" value={c.includes_list ?? ""} type="textarea" editable={editable} display={item} />
               </li>
             ))}
           </ul>

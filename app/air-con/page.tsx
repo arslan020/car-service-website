@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { site } from "@/lib/site-config";
-import { getPageContent, f } from "@/lib/page-content";
+import { getPageContentWithDefaults } from "@/lib/page-content";
 import { AirConPageClient } from "@/components/air-con-page-client";
 
 export const metadata: Metadata = {
@@ -23,9 +23,6 @@ export const metadata: Metadata = {
 };
 
 export default async function AirConPage() {
-  const content = await getPageContent("air-con");
-  const title = f(content, "hero_title", "Air Con Regas & Service");
-  const subtitle = f(content, "hero_subtitle", "Full air conditioning regas and system health check. Get your cabin cool and fresh again — recommended every 2 years.");
-
-  return <AirConPageClient content={{ hero_title: title, hero_subtitle: subtitle }} />;
+  const content = await getPageContentWithDefaults("air-con");
+  return <AirConPageClient content={content} />;
 }

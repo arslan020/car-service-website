@@ -587,8 +587,12 @@ export function HomePageClient({ content, editable = false }: { content: Content
                             : "border-[#e0ebff] bg-white text-[#020F3D]"
                         }`}
                     >
-                      <span className={`text-xs font-bold ${isToday ? "text-white" : isClosed ? "text-red-400" : "text-slate-500"}`}>{d.label}</span>
-                      <span className={`mt-1 text-[11px] font-semibold ${isToday ? "text-blue-200" : isClosed ? "text-red-400" : "text-[#0F63FF]"}`}>{d.hours}</span>
+                      <span className={`text-xs font-bold ${isToday ? "text-white" : isClosed ? "text-red-400" : "text-slate-500"}`}>
+                        <EditableText pageKey="home" fieldKey="hours_grid" value={content.hours_grid ?? ""} type="textarea" editable={editable} display={d.label} />
+                      </span>
+                      <span className={`mt-1 text-[11px] font-semibold ${isToday ? "text-blue-200" : isClosed ? "text-red-400" : "text-[#0F63FF]"}`}>
+                        <EditableText pageKey="home" fieldKey="hours_grid" value={content.hours_grid ?? ""} type="textarea" editable={editable} display={d.hours} />
+                      </span>
                     </div>
                   );
                 })}

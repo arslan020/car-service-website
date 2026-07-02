@@ -1,5 +1,4 @@
 import { notFound } from "next/navigation";
-import Link from "next/link";
 import { getPageDef } from "@/lib/pages-config";
 import { getPageContentWithDefaults } from "@/lib/page-content";
 import { buildCarServicingTiers, buildCarServicingBenefits } from "@/lib/car-servicing-content";
@@ -27,6 +26,7 @@ import { RepairsElectricalPageClient } from "@/components/repairs-electrical-pag
 import { AboutUsPageClient } from "@/components/about-us-page-client";
 import { GearboxServicePageClient } from "@/components/gearbox-service-page-client";
 import { BrakeFluidPageClient } from "@/components/brake-fluid-page-client";
+import { PricesPageClient } from "@/components/prices-page-client";
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -120,6 +120,9 @@ export default async function VisualEditorPage({ params }: Props) {
     case "brake-fluid":
       body = <BrakeFluidPageClient content={content} editable />;
       break;
+    case "prices":
+      body = <PricesPageClient content={content} editable />;
+      break;
     default:
       notFound();
   }
@@ -128,10 +131,6 @@ export default async function VisualEditorPage({ params }: Props) {
     <div className="-m-6 min-h-screen bg-white lg:-m-8">
       <div className="sticky top-0 z-40 flex flex-wrap items-center justify-between gap-3 border-b border-[#e0ebff] bg-[#020F3D] px-4 py-3 text-white">
         <div className="flex items-center gap-3">
-          <Link href={`/dashboard/pages/${slug}`} className="text-sm font-semibold text-white/70 hover:text-white">
-            ← Back to editor
-          </Link>
-          <span className="hidden text-white/30 sm:inline">|</span>
           <span className="text-sm font-bold">
             {pageDef.icon} Visual Editor — {pageDef.label}
           </span>

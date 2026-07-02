@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { getPageContent, f } from "@/lib/page-content";
+import { getPageContentWithDefaults } from "@/lib/page-content";
 import { RepairsSuspensionSteeringPageClient } from "@/components/repairs-suspension-steering-page-client";
 
 export const metadata: Metadata = {
@@ -9,9 +9,6 @@ export const metadata: Metadata = {
 };
 
 export default async function SuspensionSteeringPage() {
-  const content = await getPageContent("repairs-suspension-steering");
-  const title = f(content, "hero_title", "Suspension & Steering");
-  const subtitle = f(content, "hero_subtitle", "Knocking, pulling, or vague steering — we inspect, diagnose, and repair. Wheel alignment included after every relevant repair.");
-
-  return <RepairsSuspensionSteeringPageClient content={{ hero_title: title, hero_subtitle: subtitle }} />;
+  const content = await getPageContentWithDefaults("repairs-suspension-steering");
+  return <RepairsSuspensionSteeringPageClient content={content} />;
 }
