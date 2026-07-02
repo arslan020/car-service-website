@@ -16,20 +16,21 @@ type PageTreeItem =
 
 const PAGE_TREE: PageTreeItem[] = [
   { type: "link", slug: "home" },
+  { type: "link", slug: "about-us" },
   { type: "link", slug: "mot" },
   {
     type: "group",
     key: "servicing",
     label: "Servicing",
     icon: "⚙️",
-    slugs: ["car-servicing", "car-servicing-interim", "car-servicing-full", "car-servicing-major"],
+    slugs: ["car-servicing", "car-servicing-interim", "car-servicing-full", "car-servicing-major", "brake-fluid"],
   },
   {
     type: "group",
     key: "additional",
     label: "Additional Services",
     icon: "🔧",
-    slugs: ["services", "diagnostics", "repairs-brakes", "repairs-tyres", "battery-check", "air-con", "ev-battery"],
+    slugs: ["services", "diagnostics", "repairs-brakes", "repairs-tyres", "battery-check", "air-con", "ev-battery", "gearbox-service"],
   },
   {
     type: "group",

@@ -24,6 +24,9 @@ import { RepairsSuspensionSteeringPageClient } from "@/components/repairs-suspen
 import { RepairsExhaustEmissionsPageClient } from "@/components/repairs-exhaust-emissions-page-client";
 import { RepairsEngineCoolingPageClient } from "@/components/repairs-engine-cooling-page-client";
 import { RepairsElectricalPageClient } from "@/components/repairs-electrical-page-client";
+import { AboutUsPageClient } from "@/components/about-us-page-client";
+import { GearboxServicePageClient } from "@/components/gearbox-service-page-client";
+import { BrakeFluidPageClient } from "@/components/brake-fluid-page-client";
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -107,6 +110,15 @@ export default async function VisualEditorPage({ params }: Props) {
       break;
     case "repairs-electrical":
       body = <RepairsElectricalPageClient content={content} editable />;
+      break;
+    case "about-us":
+      body = <AboutUsPageClient content={content} editable />;
+      break;
+    case "gearbox-service":
+      body = <GearboxServicePageClient content={content} editable />;
+      break;
+    case "brake-fluid":
+      body = <BrakeFluidPageClient content={content} editable />;
       break;
     default:
       notFound();
