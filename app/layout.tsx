@@ -46,13 +46,13 @@ export const metadata: Metadata = {
     url: siteUrl,
     title: `${site.name} | Book MOT & car servicing online`,
     description: site.description,
-    images: [{ url: "/main-logo.png", alt: site.name }],
+    images: [{ url: "/updated-logo.png", alt: site.name }],
   },
   twitter: {
     card: "summary_large_image",
     title: `${site.name} | Book MOT & car servicing online`,
     description: site.description,
-    images: ["/main-logo.png"],
+    images: ["/updated-logo.png"],
   },
 };
 
@@ -84,7 +84,7 @@ const localBusinessSchema = {
     },
   ],
   priceRange: "££",
-  image: `${siteUrl}/main-logo.png`,
+  image: `${siteUrl}/updated-logo.png`,
   sameAs: [`https://wa.me/${site.whatsappE164}`],
 };
 
