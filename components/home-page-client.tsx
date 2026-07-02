@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useState, useEffect, useMemo } from "react";
 import { site } from "@/lib/site-config";
 import { BookingBar } from "@/components/booking-bar";
+import { EditableText } from "@/components/editable-text";
 import type { ContentMap } from "@/lib/page-content";
 
 function isValidUKReg(value: string): boolean {
@@ -205,7 +206,7 @@ function parseHoursRows(raw: string) {
   });
 }
 
-export function HomePageClient({ content }: { content: ContentMap }) {
+export function HomePageClient({ content, editable = false }: { content: ContentMap; editable?: boolean }) {
   const [isOpen, setIsOpen] = useState<boolean | null>(null);
   const [closingTime, setClosingTime] = useState("");
   const [today, setToday] = useState(0);
@@ -214,20 +215,20 @@ export function HomePageClient({ content }: { content: ContentMap }) {
 
   const whyCards = useMemo(
     () => [
-      { title: content.why_1_title, body: content.why_1_body, icon: WHY_ICONS[0] },
-      { title: content.why_2_title, body: content.why_2_body, icon: WHY_ICONS[1] },
-      { title: content.why_3_title, body: content.why_3_body, icon: WHY_ICONS[2] },
-      { title: content.why_4_title, body: content.why_4_body, icon: WHY_ICONS[3] },
+      { titleKey: "why_1_title", bodyKey: "why_1_body", title: content.why_1_title, body: content.why_1_body, icon: WHY_ICONS[0] },
+      { titleKey: "why_2_title", bodyKey: "why_2_body", title: content.why_2_title, body: content.why_2_body, icon: WHY_ICONS[1] },
+      { titleKey: "why_3_title", bodyKey: "why_3_body", title: content.why_3_title, body: content.why_3_body, icon: WHY_ICONS[2] },
+      { titleKey: "why_4_title", bodyKey: "why_4_body", title: content.why_4_title, body: content.why_4_body, icon: WHY_ICONS[3] },
     ],
     [content],
   );
 
   const howSteps = useMemo(
     () => [
-      { n: 1, title: content.hiw_1_title, body: content.hiw_1_body },
-      { n: 2, title: content.hiw_2_title, body: content.hiw_2_body },
-      { n: 3, title: content.hiw_3_title, body: content.hiw_3_body },
-      { n: 4, title: content.hiw_4_title, body: content.hiw_4_body },
+      { n: 1, titleKey: "hiw_1_title", bodyKey: "hiw_1_body", title: content.hiw_1_title, body: content.hiw_1_body },
+      { n: 2, titleKey: "hiw_2_title", bodyKey: "hiw_2_body", title: content.hiw_2_title, body: content.hiw_2_body },
+      { n: 3, titleKey: "hiw_3_title", bodyKey: "hiw_3_body", title: content.hiw_3_title, body: content.hiw_3_body },
+      { n: 4, titleKey: "hiw_4_title", bodyKey: "hiw_4_body", title: content.hiw_4_title, body: content.hiw_4_body },
     ],
     [content],
   );
@@ -307,15 +308,23 @@ export function HomePageClient({ content }: { content: ContentMap }) {
 
           {/* Heading */}
           <h1 className="text-3xl font-extrabold leading-[1.1] tracking-tight text-[#020F3D] sm:text-5xl lg:text-6xl">
-            {content.hero_title_line1}
+            <EditableText pageKey="home" fieldKey="hero_title_line1" value={content.hero_title_line1} editable={editable} />
             <br />
-            <span className="text-[#0F63FF]">{content.hero_title_accent}</span>
+            <span className="text-[#0F63FF]">
+              <EditableText pageKey="home" fieldKey="hero_title_accent" value={content.hero_title_accent} editable={editable} />
+            </span>
           </h1>
 
           {/* Subtitle */}
           <p className="mt-3 text-base text-slate-500 sm:mt-4 sm:text-lg">
-            {typed}
-            <span className="inline-block w-0.5 h-[1em] align-middle bg-slate-400 ml-0.5 animate-pulse" />
+            {editable ? (
+              <EditableText pageKey="home" fieldKey="hero_typewriter" value={content.hero_typewriter} type="textarea" editable />
+            ) : (
+              <>
+                {typed}
+                <span className="inline-block w-0.5 h-[1em] align-middle bg-slate-400 ml-0.5 animate-pulse" />
+              </>
+            )}
           </p>
 
           {/* ── CTA buttons ── */}
@@ -344,9 +353,9 @@ export function HomePageClient({ content }: { content: ContentMap }) {
       <section className="px-4 py-12 sm:py-16">
         <div className="mx-auto max-w-5xl">
           <div className="text-center">
-            <p className="text-xs font-bold uppercase tracking-widest text-[#0F63FF]">{content.why_kicker}</p>
-            <h2 className="mt-1 text-2xl font-extrabold text-[#020F3D] sm:text-3xl">{content.why_title}</h2>
-            <p className="mx-auto mt-3 max-w-2xl text-sm leading-relaxed text-slate-500 sm:text-base">{content.why_intro}</p>
+            <p className="text-xs font-bold uppercase tracking-widest text-[#0F63FF]"><EditableText pageKey="home" fieldKey="why_kicker" value={content.why_kicker} editable={editable} /></p>
+            <h2 className="mt-1 text-2xl font-extrabold text-[#020F3D] sm:text-3xl"><EditableText pageKey="home" fieldKey="why_title" value={content.why_title} editable={editable} /></h2>
+            <p className="mx-auto mt-3 max-w-2xl text-sm leading-relaxed text-slate-500 sm:text-base"><EditableText pageKey="home" fieldKey="why_intro" value={content.why_intro} type="textarea" editable={editable} /></p>
             <Link href="/areas" className="mt-2 inline-block text-xs text-slate-400 underline underline-offset-2 transition hover:text-[#0F63FF] sm:text-sm">Serving Hayes, Southall, Uxbridge, Slough, Hounslow, Ealing, Harrow &amp; 70+ areas across West London</Link>
           </div>
 
@@ -362,11 +371,11 @@ export function HomePageClient({ content }: { content: ContentMap }) {
                       {item.icon}
                     </span>
                     <span className="font-semibold leading-snug text-[#020F3D] transition-colors group-hover:text-[#0F63FF]">
-                      {item.title}
+                      <EditableText pageKey="home" fieldKey={item.titleKey} value={item.title} editable={editable} />
                     </span>
                   </span>
                   <span className="text-sm leading-relaxed text-slate-500">
-                    {item.body}
+                    <EditableText pageKey="home" fieldKey={item.bodyKey} value={item.body} type="textarea" editable={editable} />
                   </span>
                 </span>
               </div>
@@ -378,8 +387,8 @@ export function HomePageClient({ content }: { content: ContentMap }) {
       <section className="px-4 py-12 sm:py-16">
         <div className="mx-auto max-w-5xl">
           <div className="text-center">
-            <p className="text-xs font-bold uppercase tracking-widest text-[#0F63FF]">{content.svc_block_kicker}</p>
-            <h2 className="mt-1 text-2xl font-extrabold text-[#020F3D] sm:text-3xl">{content.svc_block_title}</h2>
+            <p className="text-xs font-bold uppercase tracking-widest text-[#0F63FF]"><EditableText pageKey="home" fieldKey="svc_block_kicker" value={content.svc_block_kicker} editable={editable} /></p>
+            <h2 className="mt-1 text-2xl font-extrabold text-[#020F3D] sm:text-3xl"><EditableText pageKey="home" fieldKey="svc_block_title" value={content.svc_block_title} editable={editable} /></h2>
           </div>
 
           <div className="mt-6 grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
@@ -406,11 +415,11 @@ export function HomePageClient({ content }: { content: ContentMap }) {
                       {svc.icon}
                     </span>
                     <span className="font-semibold text-[#020F3D] transition-colors group-hover:text-[#0F63FF]">
-                      {title}
+                      <EditableText pageKey="home" fieldKey={svc.titleKey} value={title} editable={editable} />
                     </span>
                   </span>
                   <span className="text-sm leading-relaxed text-slate-500">
-                    {desc}
+                    <EditableText pageKey="home" fieldKey={svc.descKey} value={desc} type="textarea" editable={editable} />
                   </span>
                 </span>
                 <span className={`mt-4 flex items-center border-t border-[#eef4ff] pt-4 ${"noPriceLabel" in svc && svc.noPriceLabel ? "justify-end" : "justify-between"}`}>
@@ -418,7 +427,13 @@ export function HomePageClient({ content }: { content: ContentMap }) {
                     <span className="text-xs font-medium text-slate-400">{"noFromLabel" in svc && svc.noFromLabel ? "Price" : content.svc_block_from_label}</span>
                   )}
                   <span className="text-xl font-extrabold text-[#020F3D]">
-                    {!price || price === "£???" ? "£???" : price}
+                    {editable ? (
+                      <EditableText pageKey="home" fieldKey={svc.priceKey} value={price} editable />
+                    ) : !price || price === "£???" ? (
+                      "£???"
+                    ) : (
+                      price
+                    )}
                   </span>
                 </span>
               </Link>
@@ -431,7 +446,7 @@ export function HomePageClient({ content }: { content: ContentMap }) {
               href="/services"
               className="inline-flex items-center gap-1.5 rounded-full bg-[#eef4ff] px-6 py-2.5 text-sm font-bold text-[#0F63FF] transition hover:bg-[#0F63FF] hover:text-white"
             >
-              {content.svc_block_view_all}
+              <EditableText pageKey="home" fieldKey="svc_block_view_all" value={content.svc_block_view_all} editable={editable} />
               <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
               </svg>
@@ -445,7 +460,7 @@ export function HomePageClient({ content }: { content: ContentMap }) {
       ════════════════════════════════ */}
       <section className="overflow-hidden border-y border-[#e0ebff] bg-white py-12">
         <div className="mx-auto max-w-5xl px-4 text-center">
-          <h2 className="mt-1 mb-8 text-2xl font-extrabold text-[#020F3D] sm:text-3xl">{content.brands_title}</h2>
+          <h2 className="mt-1 mb-8 text-2xl font-extrabold text-[#020F3D] sm:text-3xl"><EditableText pageKey="home" fieldKey="brands_title" value={content.brands_title} editable={editable} /></h2>
         </div>
 
         {/* Marquee container */}
@@ -490,8 +505,8 @@ export function HomePageClient({ content }: { content: ContentMap }) {
       <section className="bg-[#f4f8ff] px-4 py-10 sm:py-16">
         <div className="mx-auto max-w-5xl">
           <div className="text-center">
-            <p className="text-xs font-bold uppercase tracking-widest text-[#0F63FF]">{content.hiw_kicker}</p>
-            <h2 className="mt-1 text-2xl font-extrabold text-[#020F3D] sm:text-3xl">{content.hiw_title}</h2>
+            <p className="text-xs font-bold uppercase tracking-widest text-[#0F63FF]"><EditableText pageKey="home" fieldKey="hiw_kicker" value={content.hiw_kicker} editable={editable} /></p>
+            <h2 className="mt-1 text-2xl font-extrabold text-[#020F3D] sm:text-3xl"><EditableText pageKey="home" fieldKey="hiw_title" value={content.hiw_title} editable={editable} /></h2>
           </div>
 
           <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
@@ -504,9 +519,9 @@ export function HomePageClient({ content }: { content: ContentMap }) {
                   <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-[#0F63FF] to-[#4DA3FF] text-sm font-extrabold text-white shadow-md shadow-[#0F63FF]/25">
                     {step.n}
                   </span>
-                  <h3 className="font-bold text-[#020F3D]">{step.title}</h3>
+                  <h3 className="font-bold text-[#020F3D]"><EditableText pageKey="home" fieldKey={step.titleKey} value={step.title} editable={editable} /></h3>
                 </div>
-                <p className="text-sm leading-relaxed text-slate-500">{step.body}</p>
+                <p className="text-sm leading-relaxed text-slate-500"><EditableText pageKey="home" fieldKey={step.bodyKey} value={step.body} type="textarea" editable={editable} /></p>
               </div>
             ))}
           </div>
@@ -521,13 +536,13 @@ export function HomePageClient({ content }: { content: ContentMap }) {
 
           {/* Section heading + contact info — all centered */}
           <div className="px-6 pb-8 text-center sm:px-12">
-            <h2 className="text-3xl font-extrabold text-[#020F3D]">{content.find_title}</h2>
+            <h2 className="text-3xl font-extrabold text-[#020F3D]"><EditableText pageKey="home" fieldKey="find_title" value={content.find_title} editable={editable} /></h2>
             <p className="mt-2 flex items-center justify-center gap-2 text-sm text-slate-500">
               <svg className="h-4 w-4 shrink-0 text-[#0F63FF]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
                 <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z" />
               </svg>
-              {content.find_address_line}
+              <EditableText pageKey="home" fieldKey="find_address_line" value={content.find_address_line} type="textarea" editable={editable} />
             </p>
           </div>
 
@@ -548,7 +563,7 @@ export function HomePageClient({ content }: { content: ContentMap }) {
           <div className="bg-white border-b border-[#e0ebff]">
             <div className="px-6 py-5 sm:px-12">
               <div className="mb-3 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-                <p className="text-xs font-bold uppercase tracking-widest text-[#0F63FF]">{content.hours_kicker}</p>
+                <p className="text-xs font-bold uppercase tracking-widest text-[#0F63FF]"><EditableText pageKey="home" fieldKey="hours_kicker" value={content.hours_kicker} editable={editable} /></p>
                 {isOpen !== null && (
                   <div className="inline-flex items-center gap-2 rounded-full border border-[#e0ebff] bg-[#f4f8ff] px-4 py-1.5">
                     <span className={`h-2.5 w-2.5 animate-pulse rounded-full ${isOpen ? "bg-emerald-500" : "bg-red-400"}`} />

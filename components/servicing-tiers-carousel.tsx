@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
+import { EditableText } from "@/components/editable-text";
 
 const WAY_AVAILABLE_MAKES = [
   "Mercedes", "Audi", "BMW", "Volvo", "SEAT",
@@ -59,8 +60,11 @@ function WayAvailableBadge() {
 type Tier = {
   id: string;
   title: string;
+  titleKey: string;
   subtitle: string;
+  subtitleKey: string;
   price: string;
+  priceKey: string;
   popular: boolean;
   includes: string[];
   showMotUpsell?: boolean;
@@ -74,10 +78,12 @@ export function ServicingTiersCarousel({
   tiers,
   popularBadge,
   bookPrefix,
+  editable = false,
 }: {
   tiers: Tier[];
   popularBadge: string;
   bookPrefix: string;
+  editable?: boolean;
 }) {
   const n = tiers.length;
   const extended = [tiers[n - 1], ...tiers, tiers[0]];
@@ -174,13 +180,19 @@ export function ServicingTiersCarousel({
                   >
                     {tier.popular && (
                       <span className="absolute -top-3 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-full bg-[#0F63FF] px-4 py-1 text-[10px] font-bold uppercase tracking-widest text-white shadow">
-                        {popularBadge}
+                        <EditableText pageKey="car-servicing" fieldKey="tier_popular_badge" value={popularBadge} editable={editable} />
                       </span>
                     )}
                     <div>
-                      <h3 className="text-lg font-extrabold text-[#020F3D]">{tier.title}</h3>
-                      <p className="mt-0.5 text-xs text-slate-400">{tier.subtitle}</p>
-                      <p className="mt-3 text-2xl font-extrabold text-[#0F63FF]">{tier.price}</p>
+                      <h3 className="text-lg font-extrabold text-[#020F3D]">
+                        <EditableText pageKey="car-servicing" fieldKey={tier.titleKey} value={tier.title} editable={editable} />
+                      </h3>
+                      <p className="mt-0.5 text-xs text-slate-400">
+                        <EditableText pageKey="car-servicing" fieldKey={tier.subtitleKey} value={tier.subtitle} editable={editable} />
+                      </p>
+                      <p className="mt-3 text-2xl font-extrabold text-[#0F63FF]">
+                        <EditableText pageKey="car-servicing" fieldKey={tier.priceKey} value={tier.price} editable={editable} />
+                      </p>
                       {tier.showMotUpsell && (
                         <p className="mt-1.5 text-xs font-semibold text-[#0F63FF]">+ Add MOT for £35</p>
                       )}
@@ -209,7 +221,7 @@ export function ServicingTiersCarousel({
                           : "border-2 border-[#020F3D] text-[#020F3D] hover:bg-[#020F3D] hover:text-white"
                       }`}
                     >
-                      {bookPrefix} {tier.title}
+                      <EditableText pageKey="car-servicing" fieldKey="tier_book_prefix" value={bookPrefix} editable={editable} /> {tier.title}
                       <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
                         <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
                       </svg>
