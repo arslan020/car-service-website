@@ -11,7 +11,12 @@
       "Read(//c/Users/eesa/OneDrive/Desktop/car dealer software/src/**)",
       "Bash(npx tsc *)",
       "Bash(git add *)",
-      "Bash(git commit -m ' *)"
+      "Bash(git commit -m ' *)",
+      "Bash(git checkout *)",
+      "Bash(rm -f app/oil-change/page.tsx)",
+      "Bash(git pull *)",
+      "Bash(curl -s http://localhost:3000/prices)",
+      "Bash(curl -s http://localhost:3000/services)"
     ],
     "additionalDirectories": [
       "c:\\Users\\eesa\\OneDrive\\Desktop\\service website\\web\\app\\dashboard\\pages"

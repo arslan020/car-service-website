@@ -19,6 +19,11 @@ module.exports = {
         disallow: ['/admin', '/login', '/dashboard'],
       },
     ],
+    // Blog posts are added from the dashboard at any time, so they live in a
+    // dynamic sitemap served by the app (app/blog/sitemap.ts) — always fresh.
+    additionalSitemaps: [
+      'https://www.mariestonservicecentre.co.uk/blog/sitemap.xml',
+    ],
   },
   transform: async (config, path) => {
     // Higher priority for key pages
@@ -42,6 +47,7 @@ module.exports = {
       '/repairs/engine-cooling':  { priority: 0.8, changefreq: 'weekly' },
       '/repairs/exhaust-emissions':{ priority: 0.8, changefreq: 'weekly' },
       '/repairs/suspension-steering':{ priority: 0.8, changefreq: 'weekly' },
+      '/blog':                    { priority: 0.7, changefreq: 'weekly' },
       '/about':                   { priority: 0.7, changefreq: 'monthly' },
       '/contact':                 { priority: 0.7, changefreq: 'monthly' },
       '/areas':                   { priority: 0.7, changefreq: 'monthly' },

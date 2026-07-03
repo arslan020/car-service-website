@@ -15,6 +15,27 @@ model Admin {
   createdAt DateTime @default(now())
 }
 
+// NOTE: Blog tables were created with raw SQL (additive) because the live DB
+// has tables not tracked in this schema — do NOT run `prisma db push`.
+model BlogPost {
+  id           String   @id @default(cuid())
+  slug         String   @unique
+  title        String
+  excerpt      String   @default("") @db.Text
+  content      String   @default("") @db.Text
+  coverImageId String?  // references BlogImage.id, served via /api/blog-image/[id]
+  published    Boolean  @default(true)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
+model BlogImage {
+  id        String   @id @default(cuid())
+  mimeType  String
+  data      Bytes
+  createdAt DateTime @default(now())
+}
+
 model PageContent {
   id        String   @id @default(cuid())
   pageKey   String   // page slug e.g. "mot", "services", "car-servicing"

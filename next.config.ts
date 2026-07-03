@@ -5,6 +5,12 @@ const nextConfig: NextConfig = {
   turbopack: {
     root: path.resolve(__dirname),
   },
+  experimental: {
+    serverActions: {
+      // Blog cover images are uploaded through a server action
+      bodySizeLimit: "6mb",
+    },
+  },
   async redirects() {
     return [
       {

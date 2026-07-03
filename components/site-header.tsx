@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { site, waUrl } from "@/lib/site-config";
 
@@ -102,10 +103,43 @@ function ChevronDown() {
 }
 
 export function SiteHeader() {
+  const pathname = usePathname();
   const [open, setOpen] = useState(false);
   const [mobileServicing, setMobileServicing] = useState(false);
   const [mobileServices, setMobileServices] = useState(false);
   const [mobileRepairs, setMobileRepairs] = useState(false);
+
+  // Which top-level nav item matches the page currently open
+  const isActive = (href: string) => pathname === href || pathname.startsWith(href + "/");
+  const servicingActive = isActive("/car-servicing") || isActive("/brake-fluid");
+  const servicesActive =
+    ["/services", "/diagnostics", "/battery-check", "/air-con", "/ev-battery", "/gearbox-service"].some(isActive) ||
+    isActive("/repairs/brakes") || isActive("/repairs/tyres");
+  const repairsActive = isActive("/repairs") && !isActive("/repairs/brakes") && !isActive("/repairs/tyres");
+
+  // Shared desktop nav link styles
+  const navLink = (active: boolean) =>
+    `whitespace-nowrap rounded-md px-2.5 py-2 text-sm transition ${
+      active
+        ? "bg-[#eef4ff] font-bold text-[#0F63FF]"
+        : "font-medium text-slate-600 hover:bg-[#eef4ff] hover:text-[#020F3D]"
+    }`;
+  const navDropdownLink = (active: boolean) =>
+    `flex items-center gap-1 whitespace-nowrap rounded-md px-2.5 py-2 text-sm transition ${
+      active
+        ? "bg-[#eef4ff] font-bold text-[#0F63FF]"
+        : "font-medium text-slate-600 hover:bg-[#eef4ff] hover:text-[#020F3D]"
+    }`;
+
+  // Shared mobile menu item styles
+  const mobileRow = (active: boolean) =>
+    `flex items-center gap-3 rounded-xl px-3 py-3 transition ${active ? "bg-[#eef4ff]" : "hover:bg-[#f8fbff]"}`;
+  const mobileIcon = (active: boolean) =>
+    `flex h-9 w-9 shrink-0 items-center justify-center rounded-full ${
+      active ? "bg-[#0F63FF] text-white" : "bg-[#eef4ff] text-[#0F63FF]"
+    }`;
+  const mobileLabel = (active: boolean) =>
+    `text-sm font-semibold ${active ? "text-[#0F63FF]" : "text-[#020F3D]"}`;
 
   // Lock background scroll while the mobile menu is open
   useEffect(() => {
@@ -146,20 +180,17 @@ export function SiteHeader() {
         {/* ── Desktop nav ── */}
         <nav className="hidden lg:flex flex-1 items-center justify-center gap-0.5 px-1 xl:gap-1">
 
-          <Link href="/about-us" className="whitespace-nowrap rounded-md px-2.5 py-2 text-sm font-medium text-slate-600 transition hover:bg-[#eef4ff] hover:text-[#020F3D]">
+          <Link href="/about-us" className={navLink(isActive("/about-us"))}>
             About Us
           </Link>
 
-          <Link href="/mot" className="whitespace-nowrap rounded-md px-2.5 py-2 text-sm font-medium text-slate-600 transition hover:bg-[#eef4ff] hover:text-[#020F3D]">
+          <Link href="/mot" className={navLink(isActive("/mot"))}>
             MOT
           </Link>
 
           {/* Car servicing dropdown */}
           <div className="group/nav relative">
-            <Link
-              href="/car-servicing"
-              className="flex items-center gap-1 whitespace-nowrap rounded-md px-2.5 py-2 text-sm font-medium text-slate-600 transition hover:bg-[#eef4ff] hover:text-[#020F3D]"
-            >
+            <Link href="/car-servicing" className={navDropdownLink(servicingActive)}>
               Servicing
               <ChevronDown />
             </Link>
@@ -199,10 +230,7 @@ export function SiteHeader() {
 
           {/* Additional Services dropdown */}
           <div className="group/nav relative">
-            <Link
-              href="/services"
-              className="flex items-center gap-1 whitespace-nowrap rounded-md px-2.5 py-2 text-sm font-medium text-slate-600 transition hover:bg-[#eef4ff] hover:text-[#020F3D]"
-            >
+            <Link href="/services" className={navDropdownLink(servicesActive)}>
               <span className="lg:hidden xl:inline">Additional </span>Services
               <ChevronDown />
             </Link>
@@ -240,10 +268,7 @@ export function SiteHeader() {
 
           {/* Repairs dropdown */}
           <div className="group/nav relative">
-            <Link
-              href="/repairs"
-              className="flex items-center gap-1 whitespace-nowrap rounded-md px-2.5 py-2 text-sm font-medium text-slate-600 transition hover:bg-[#eef4ff] hover:text-[#020F3D]"
-            >
+            <Link href="/repairs" className={navDropdownLink(repairsActive)}>
               Repairs
               <ChevronDown />
             </Link>
@@ -276,14 +301,17 @@ export function SiteHeader() {
             </div>
           </div>
 
-          <Link href="/prices" className="whitespace-nowrap rounded-md px-2.5 py-2 text-sm font-medium text-slate-600 transition hover:bg-[#eef4ff] hover:text-[#020F3D]">
+          <Link href="/prices" className={navLink(isActive("/prices"))}>
             Prices
           </Link>
 
-          <Link href="/faqs" className="whitespace-nowrap rounded-md px-2.5 py-2 text-sm font-medium text-slate-600 transition hover:bg-[#eef4ff] hover:text-[#020F3D]">
+          <Link href="/faqs" className={navLink(isActive("/faqs"))}>
             FAQs
           </Link>
-          <Link href="/contact" className="whitespace-nowrap rounded-md px-2.5 py-2 text-sm font-medium text-slate-600 transition hover:bg-[#eef4ff] hover:text-[#020F3D]">
+          <Link href="/blog" className={navLink(isActive("/blog"))}>
+            Blog
+          </Link>
+          <Link href="/contact" className={navLink(isActive("/contact"))}>
             Contact
           </Link>
         </nav>
@@ -384,30 +412,30 @@ export function SiteHeader() {
             <nav className="flex-1 overflow-y-auto px-3 py-3">
 
               {/* About Us */}
-              <Link href="/about-us" onClick={closeMenu} className="flex items-center gap-3.5 rounded-xl px-3 py-2.5 transition hover:bg-[#f8fbff]">
-                <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#eef4ff] text-[#0F63FF]">
+              <Link href="/about-us" onClick={closeMenu} className={mobileRow(isActive("/about-us"))}>
+                <span className={mobileIcon(isActive("/about-us"))}>
                   <svg className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth={1.75} viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z"/></svg>
                 </span>
-                <span className="text-sm font-semibold text-[#020F3D]">About Us</span>
+                <span className={mobileLabel(isActive("/about-us"))}>About Us</span>
               </Link>
 
               {/* MOT */}
-              <Link href="/mot" onClick={closeMenu} className="flex items-center gap-3 rounded-xl px-3 py-3 hover:bg-[#f8fbff]">
-                <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#eef4ff] text-[#0F63FF]">
+              <Link href="/mot" onClick={closeMenu} className={mobileRow(isActive("/mot"))}>
+                <span className={mobileIcon(isActive("/mot"))}>
                   <svg className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth={1.5} strokeLinejoin="round" viewBox="0 0 24 24"><polygon points="7.5,2 1.5,13 13.5,13"/><polygon points="16.5,2 10.5,13 22.5,13"/><polygon points="12,11.5 5,22 19,22"/></svg>
                 </span>
-                <span className="text-sm font-semibold text-[#020F3D]">MOT</span>
+                <span className={mobileLabel(isActive("/mot"))}>MOT</span>
               </Link>
 
               {/* Car Servicing — expandable */}
               <div>
                 <div className="flex w-full items-stretch">
                   <Link href="/car-servicing" onClick={closeMenu}
-                    className="flex flex-1 items-center gap-3 rounded-xl px-3 py-3 hover:bg-[#f8fbff]">
-                    <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#eef4ff] text-[#0F63FF]">
+                    className={`flex-1 ${mobileRow(servicingActive)}`}>
+                    <span className={mobileIcon(servicingActive)}>
                       <svg className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth={1.75} viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2M9 5a2 2 0 0 0 2 2h2a2 2 0 0 0 2-2M9 5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2m-6 7 2 2 4-4m-6 5h4"/></svg>
                     </span>
-                    <span className="text-sm font-semibold text-[#020F3D]">Servicing</span>
+                    <span className={mobileLabel(servicingActive)}>Servicing</span>
                   </Link>
                   <button type="button" onClick={() => setMobileServicing(!mobileServicing)}
                     aria-label="Toggle servicing menu"
@@ -436,11 +464,11 @@ export function SiteHeader() {
               <div>
                 <div className="flex w-full items-stretch">
                   <Link href="/services" onClick={closeMenu}
-                    className="flex flex-1 items-center gap-3 rounded-xl px-3 py-3 hover:bg-[#f8fbff]">
-                    <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#eef4ff] text-[#0F63FF]">
+                    className={`flex-1 ${mobileRow(servicesActive)}`}>
+                    <span className={mobileIcon(servicesActive)}>
                       <svg className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth={1.75} viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6A2.25 2.25 0 0 1 6 3.75h2.25A2.25 2.25 0 0 1 10.5 6v2.25a2.25 2.25 0 0 1-2.25 2.25H6a2.25 2.25 0 0 1-2.25-2.25V6ZM3.75 15.75A2.25 2.25 0 0 1 6 13.5h2.25a2.25 2.25 0 0 1 2.25 2.25V18a2.25 2.25 0 0 1-2.25 2.25H6A2.25 2.25 0 0 1 3.75 18v-2.25ZM13.5 6a2.25 2.25 0 0 1 2.25-2.25H18A2.25 2.25 0 0 1 20.25 6v2.25A2.25 2.25 0 0 1 18 10.5h-2.25a2.25 2.25 0 0 1-2.25-2.25V6ZM13.5 15.75a2.25 2.25 0 0 1 2.25-2.25H18a2.25 2.25 0 0 1 2.25 2.25V18A2.25 2.25 0 0 1 18 20.25h-2.25A2.25 2.25 0 0 1 13.5 18v-2.25Z"/></svg>
                     </span>
-                    <span className="text-sm font-semibold text-[#020F3D]">Additional Services</span>
+                    <span className={mobileLabel(servicesActive)}>Additional Services</span>
                   </Link>
                   <button type="button" onClick={() => setMobileServices(!mobileServices)}
                     aria-label="Toggle additional services menu"
@@ -464,11 +492,11 @@ export function SiteHeader() {
               <div>
                 <div className="flex w-full items-stretch">
                   <Link href="/repairs" onClick={closeMenu}
-                    className="flex flex-1 items-center gap-3 rounded-xl px-3 py-3 hover:bg-[#f8fbff]">
-                    <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#eef4ff] text-[#0F63FF]">
+                    className={`flex-1 ${mobileRow(repairsActive)}`}>
+                    <span className={mobileIcon(repairsActive)}>
                       <svg className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth={1.75} viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M21.75 6.75a4.5 4.5 0 0 1-4.884 4.484c-1.076-.091-2.264.071-2.95.904l-7.152 8.684a2.548 2.548 0 1 1-3.586-3.585l8.684-7.152c.833-.686.995-1.874.904-2.95a4.5 4.5 0 0 1 6.336-4.486l-3.276 3.276a3.004 3.004 0 0 0 2.25 2.25l3.276-3.276c.256.565.398 1.192.398 1.852Z"/></svg>
                     </span>
-                    <span className="text-sm font-semibold text-[#020F3D]">Repairs</span>
+                    <span className={mobileLabel(repairsActive)}>Repairs</span>
                   </Link>
                   <button type="button" onClick={() => setMobileRepairs(!mobileRepairs)}
                     aria-label="Toggle repairs menu"
@@ -489,27 +517,35 @@ export function SiteHeader() {
               </div>
 
               {/* Prices */}
-              <Link href="/prices" onClick={closeMenu} className="flex items-center gap-3 rounded-xl px-3 py-3 hover:bg-[#f8fbff]">
-                <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#eef4ff] text-[#0F63FF]">
+              <Link href="/prices" onClick={closeMenu} className={mobileRow(isActive("/prices"))}>
+                <span className={mobileIcon(isActive("/prices"))}>
                   <svg className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth={1.75} viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M2.25 8.25h19.5M2.25 9h19.5m-16.5 5.25h6m-6 2.25h3m-3.75 3h15a2.25 2.25 0 0 0 2.25-2.25V6.75A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25v10.5A2.25 2.25 0 0 0 4.5 19.5Z"/></svg>
                 </span>
-                <span className="text-sm font-semibold text-[#020F3D]">Prices</span>
+                <span className={mobileLabel(isActive("/prices"))}>Prices</span>
               </Link>
 
               {/* FAQs */}
-              <Link href="/faqs" onClick={closeMenu} className="flex items-center gap-3 rounded-xl px-3 py-3 hover:bg-[#f8fbff]">
-                <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#eef4ff] text-[#0F63FF]">
+              <Link href="/faqs" onClick={closeMenu} className={mobileRow(isActive("/faqs"))}>
+                <span className={mobileIcon(isActive("/faqs"))}>
                   <svg className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth={1.75} viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 5.25h.008v.008H12v-.008Z"/></svg>
                 </span>
-                <span className="text-sm font-semibold text-[#020F3D]">FAQs</span>
+                <span className={mobileLabel(isActive("/faqs"))}>FAQs</span>
+              </Link>
+
+              {/* Blog */}
+              <Link href="/blog" onClick={closeMenu} className={mobileRow(isActive("/blog"))}>
+                <span className={mobileIcon(isActive("/blog"))}>
+                  <svg className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth={1.75} viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M16.862 4.487 18.549 2.8a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897l8.932-8.931Zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0 1 15.75 21H5.25A2.25 2.25 0 0 1 3 18.75V8.25A2.25 2.25 0 0 1 5.25 6H10"/></svg>
+                </span>
+                <span className={mobileLabel(isActive("/blog"))}>Blog</span>
               </Link>
 
               {/* Contact */}
-              <Link href="/contact" onClick={closeMenu} className="flex items-center gap-3 rounded-xl px-3 py-3 hover:bg-[#f8fbff]">
-                <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#eef4ff] text-[#0F63FF]">
+              <Link href="/contact" onClick={closeMenu} className={mobileRow(isActive("/contact"))}>
+                <span className={mobileIcon(isActive("/contact"))}>
                   <svg className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth={1.75} viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75"/></svg>
                 </span>
-                <span className="text-sm font-semibold text-[#020F3D]">Contact Us</span>
+                <span className={mobileLabel(isActive("/contact"))}>Contact Us</span>
               </Link>
 
             </nav>

@@ -317,6 +317,24 @@ export function DashboardSidebar({ adminName }: { adminName: string }) {
                 </ul>
               )}
             </li>
+
+            {/* ── Blog ── */}
+            <li>
+              <Link
+                href="/dashboard/blog"
+                onClick={() => setOpen(false)}
+                className={`flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium transition-colors ${
+                  pathname.startsWith("/dashboard/blog")
+                    ? "bg-[#020F3D] text-white"
+                    : "text-slate-600 hover:bg-[#eef4ff] hover:text-[#020F3D]"
+                }`}
+              >
+                <svg className="h-5 w-5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.75}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M16.862 4.487 18.549 2.8a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897l8.932-8.931Zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0 1 15.75 21H5.25A2.25 2.25 0 0 1 3 18.75V8.25A2.25 2.25 0 0 1 5.25 6H10" />
+                </svg>
+                Blog
+              </Link>
+            </li>
           </ul>
         </nav>
 
