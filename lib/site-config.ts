@@ -10,6 +10,9 @@ export const site = {
   hours: "Mon–Sat 9:00–18:00 • Closed Sun",
   /** WhatsApp number without + for wa.me */
   whatsappE164: "442081788031",
+  /** Social profile URLs — update when ready */
+  facebookUrl: "https://www.facebook.com/mariestonservicecentre/",
+  instagramUrl: "https://www.instagram.com/mariestonservicecentre/",
 } as const;
 
 export function waUrl(message?: string) {
