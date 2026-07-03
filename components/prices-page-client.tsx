@@ -88,14 +88,81 @@ export function PricesPageClient({ content, editable = false }: { content: Conte
     return Cell(rowsKey, value);
   }
 
+  function PriceCards({
+    titleKey,
+    colLabels,
+    rowsKey,
+  }: {
+    titleKey: string;
+    colLabels: string[];
+    rowsKey: string;
+  }) {
+    const rows = parseRows(c[rowsKey]);
+    const priceLabels = colLabels.filter(Boolean);
+
+    return (
+      <div className="space-y-3 md:hidden">
+        <div className="rounded-2xl bg-[#020F3D] px-5 py-4 text-sm font-bold text-white">
+          {E(titleKey)}
+        </div>
+
+        {rows.length === 0 ? (
+          <div className="rounded-2xl border border-[#e8effa] bg-white px-5 py-6 text-center text-sm text-slate-400 shadow-sm">
+            Pricing coming soon — call or WhatsApp us for a quote.
+          </div>
+        ) : (
+          rows.map((r, i) => (
+            <div
+              key={i}
+              className="rounded-2xl border border-[#e8effa] bg-white p-5 shadow-sm"
+            >
+              <p className="text-sm font-semibold text-[#020F3D]">
+                {Cell(rowsKey, r.service)}
+              </p>
+
+              <div className="mt-3 space-y-2">
+                {r.prices.length < colLabels.length ? (
+                  <div className="flex items-center justify-between gap-3 rounded-xl bg-[#f8fbff] px-4 py-3">
+                    <span className="text-xs font-semibold uppercase tracking-wide text-slate-400">
+                      {priceLabels[0] ?? "Price"}
+                    </span>
+                    <span className="text-sm font-semibold text-slate-700">
+                      {renderCell(r.prices[0] ?? "", r.service, rowsKey)}
+                    </span>
+                  </div>
+                ) : (
+                  r.prices.map((p, j) => (
+                    <div
+                      key={j}
+                      className="flex items-center justify-between gap-3 rounded-xl bg-[#f8fbff] px-4 py-3"
+                    >
+                      <span className="text-xs font-semibold uppercase tracking-wide text-slate-400">
+                        {colLabels[j] || `Option ${j + 1}`}
+                      </span>
+                      <span className="text-sm font-semibold text-slate-700">
+                        {renderCell(p, r.service, rowsKey)}
+                      </span>
+                    </div>
+                  ))
+                )}
+              </div>
+            </div>
+          ))
+        )}
+      </div>
+    );
+  }
+
   function PriceTable({
     titleKey,
     cols,
+    colLabels,
     rowsKey,
     serviceColWidth = 40,
   }: {
     titleKey: string;
     cols: React.ReactNode[];
+    colLabels: string[];
     rowsKey: string;
     serviceColWidth?: number;
   }) {
@@ -103,7 +170,10 @@ export function PricesPageClient({ content, editable = false }: { content: Conte
     const span = cols.length + 1;
     const priceColWidth = (100 - serviceColWidth) / cols.length;
     return (
-      <div className="overflow-hidden rounded-2xl border border-[#e8effa] bg-white shadow-sm">
+      <>
+        <PriceCards titleKey={titleKey} colLabels={colLabels} rowsKey={rowsKey} />
+
+        <div className="hidden overflow-hidden rounded-2xl border border-[#e8effa] bg-white shadow-sm md:block">
         <div className="overflow-x-auto">
           <table className="w-full min-w-[640px] table-fixed border-collapse text-left">
             <colgroup>
@@ -154,7 +224,8 @@ export function PricesPageClient({ content, editable = false }: { content: Conte
             </tbody>
           </table>
         </div>
-      </div>
+        </div>
+      </>
     );
   }
 
@@ -162,9 +233,12 @@ export function PricesPageClient({ content, editable = false }: { content: Conte
   const HeadCell = (fieldKey: string, display: string) => (
     <EditableText pageKey="prices" fieldKey={fieldKey} value={c[fieldKey] ?? ""} type="text" editable={editable} display={display} />
   );
-  const servicingCols = parseCols(c.servicing_cols).map((col, i) => <span key={i}>{HeadCell("servicing_cols", col)}</span>);
-  const additionalCols = parseCols(c.additional_cols).map((col, i) => <span key={i}>{HeadCell("additional_cols", col)}</span>);
+  const servicingColLabels = parseCols(c.servicing_cols);
+  const additionalColLabels = parseCols(c.additional_cols);
+  const servicingCols = servicingColLabels.map((col, i) => <span key={i}>{HeadCell("servicing_cols", col)}</span>);
+  const additionalCols = additionalColLabels.map((col, i) => <span key={i}>{HeadCell("additional_cols", col)}</span>);
   // Repairs table: empty first column keeps the grid aligned; only the "Price" heading is editable.
+  const repairsColLabels = ["", "Price"];
   const repairsCols: React.ReactNode[] = ["", E("repairs_col_price")];
 
   return (
@@ -189,9 +263,9 @@ export function PricesPageClient({ content, editable = false }: { content: Conte
       {/* ── Tables ── */}
       <section className="px-4 pb-16">
         <div className="mx-auto max-w-5xl space-y-8">
-          <PriceTable titleKey="servicing_title" cols={servicingCols} rowsKey="servicing_table" serviceColWidth={24} />
-          <PriceTable titleKey="additional_title" cols={additionalCols} rowsKey="additional_table" />
-          <PriceTable titleKey="repairs_title" cols={repairsCols} rowsKey="repairs_table" serviceColWidth={30} />
+          <PriceTable titleKey="servicing_title" cols={servicingCols} colLabels={servicingColLabels} rowsKey="servicing_table" serviceColWidth={24} />
+          <PriceTable titleKey="additional_title" cols={additionalCols} colLabels={additionalColLabels} rowsKey="additional_table" />
+          <PriceTable titleKey="repairs_title" cols={repairsCols} colLabels={repairsColLabels} rowsKey="repairs_table" serviceColWidth={30} />
 
           <p className="text-center text-xs text-slate-400">
             {E("tables_note", "textarea")}
