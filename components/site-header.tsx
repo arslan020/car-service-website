@@ -369,8 +369,8 @@ export function SiteHeader() {
           onClick={closeMenu}
         />
         <div
-          className="fixed top-0 left-0 z-50 h-full w-4/5 max-w-xs bg-white xl:hidden overflow-y-auto shadow-2xl transition-transform duration-300 ease-in-out"
-          style={{ transform: open ? "translateX(0)" : "translateX(-100%)" }}
+          className="fixed top-0 right-0 z-50 h-full w-4/5 max-w-xs bg-white xl:hidden overflow-y-auto shadow-2xl transition-transform duration-300 ease-in-out"
+          style={{ transform: open ? "translateX(0)" : "translateX(100%)" }}
         >
             {/* Header */}
             <div className="flex items-center justify-between px-5 py-4 border-b border-slate-100">
