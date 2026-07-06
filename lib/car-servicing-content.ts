@@ -23,9 +23,7 @@ const FULL_FALLBACK = [
 
 const MAJOR_FALLBACK = [
   "Everything in Full Service",
-  "Spark plugs replacement",
   "Timing belt inspection (if due)",
-  "Coolant flush (if due)",
   "Comprehensive multi-point check",
   "Full road test & report",
 ] as const;

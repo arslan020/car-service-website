@@ -229,7 +229,7 @@ export const PAGES_CONFIG: PageDef[] = [
       T("svc_full_price", "Card Full Service — price", "£239", "Service grid"),
       T("svc_major_eyebrow", "Card Major Service — eyebrow", "Manufacturer Schedule", "Service grid"),
       T("svc_major_title", "Card Major Service — title", "Major Service", "Service grid"),
-      A("svc_major_desc", "Card Major Service — description", "Everything in a Full Service plus spark plugs, coolant change and a full road test — due every 2 years or 24,000 miles.", "Service grid"),
+      A("svc_major_desc", "Card Major Service — description", "Everything in a Full Service plus a timing belt inspection, multi-point check and a full road test — due every 2 years or 24,000 miles.", "Service grid"),
       T("svc_major_price", "Card Major Service — price", "£269", "Service grid"),
       T("svc_brakes_eyebrow", "Card Brakes — eyebrow", "Safety First", "Service grid"),
       T("svc_brakes_title", "Card Brakes — title", "Brakes", "Service grid"),
@@ -667,9 +667,7 @@ Reset Service Light & Digital History`,
         "tier_major_includes",
         "Major — bullet lines (one per line)",
         `Everything in Full Service
-Spark plugs replacement
 Timing belt inspection (if due)
-Coolant flush (if due)
 Comprehensive multi-point check
 Full road test & report
 Reset Service Light & Digital History`,
