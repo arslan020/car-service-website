@@ -12,10 +12,7 @@ function A(key: string, label: string, default_: string, section: string): Field
 }
 
 const INCLUDES_DEFAULT = `Everything in the Full Service: Every check and replacement from our Full Service, included as standard.
-Spark Plugs / Glow Plugs: Spark plugs replaced (petrol) or glow plugs inspected (diesel) to manufacturer spec.
 Timing Belt Inspection: Checked against your manufacturer's replacement interval — avoids costly engine damage if due.
-Coolant Flush: Old coolant replaced where due, protecting against overheating and corrosion.
-Fuel Filter Replacement: Fitted fresh to maintain fuel flow and engine performance.
 Comprehensive Multi-Point Check: A thorough inspection of the engine, drivetrain and underbody to catch issues early.
 Full Road Test & Report: Test driven and a full written report provided before collection.`;
 
