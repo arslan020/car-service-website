@@ -25,6 +25,8 @@ import { RepairsEngineCoolingPageClient } from "@/components/repairs-engine-cool
 import { RepairsElectricalPageClient } from "@/components/repairs-electrical-page-client";
 import { AboutUsPageClient } from "@/components/about-us-page-client";
 import { GearboxServicePageClient } from "@/components/gearbox-service-page-client";
+import { ServiceDetailPageClient } from "@/components/service-detail-page-client";
+import { SPARK_PLUGS_META, FUEL_FILTER_META } from "@/lib/service-detail-meta";
 import { BrakeFluidPageClient } from "@/components/brake-fluid-page-client";
 import { PricesPageClient } from "@/components/prices-page-client";
 
@@ -116,6 +118,12 @@ export default async function VisualEditorPage({ params }: Props) {
       break;
     case "gearbox-service":
       body = <GearboxServicePageClient content={content} editable />;
+      break;
+    case "spark-plugs":
+      body = <ServiceDetailPageClient meta={SPARK_PLUGS_META} content={content} editable />;
+      break;
+    case "fuel-filter":
+      body = <ServiceDetailPageClient meta={FUEL_FILTER_META} content={content} editable />;
       break;
     case "brake-fluid":
       body = <BrakeFluidPageClient content={content} editable />;
