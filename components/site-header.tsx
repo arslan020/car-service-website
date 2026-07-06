@@ -397,7 +397,7 @@ export function SiteHeader() {
           onClick={closeMenu}
         />
         <div
-          className="fixed top-0 right-0 z-50 flex h-full w-[min(100%,20rem)] flex-col bg-white lg:hidden overflow-hidden shadow-2xl transition-transform duration-300 ease-in-out"
+          className="fixed top-0 right-0 z-50 flex h-dvh w-[min(100%,20rem)] flex-col bg-white lg:hidden overflow-hidden shadow-2xl transition-transform duration-300 ease-in-out"
           style={{ transform: open ? "translateX(0)" : "translateX(100%)" }}
         >
             {/* Header */}
@@ -551,7 +551,7 @@ export function SiteHeader() {
             </nav>
 
             {/* Footer — social & quote */}
-            <div className="shrink-0 border-t border-[#e8effa] bg-[#f8fbff] px-4 py-4">
+            <div className="shrink-0 border-t border-[#e8effa] bg-[#f8fbff] px-4 pt-4 pb-[calc(1rem+env(safe-area-inset-bottom))]">
               <p className="mb-3 text-center text-[10px] font-bold uppercase tracking-[0.2em] text-slate-400">
                 Get in touch
               </p>
