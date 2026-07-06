@@ -337,7 +337,7 @@ Written report with any recommended further work`,
   },
   {
     slug: "spark-plugs",
-    label: "Spark Plugs",
+    label: "Spark Plug",
     icon: "⚡",
     publicPath: "/spark-plugs",
     fields: [
