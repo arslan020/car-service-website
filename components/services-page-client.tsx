@@ -61,7 +61,7 @@ const SERVICES = [
     ),
   },
   {
-    href: "/car-servicing/interim",
+    href: "/car-servicing/oil",
     eyebrowKey: "svc_oil_eyebrow",
     titleKey: "svc_oil_title",
     descKey: "svc_oil_desc",

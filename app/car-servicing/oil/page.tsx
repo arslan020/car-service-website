@@ -5,10 +5,10 @@ import { CarServicingInterimPageClient } from "@/components/car-servicing-interi
 export const metadata: Metadata = {
   title: "Oil Service Hayes UB4 | 6-Month Service | Marieston",
   description: "Oil service in Hayes UB4. Oil change, filter replacement & 30-point safety check. Book your 6-month service online today.",
-  alternates: { canonical: "https://www.mariestonservicecentre.co.uk/car-servicing/interim" },
+  alternates: { canonical: "https://www.mariestonservicecentre.co.uk/car-servicing/oil" },
 };
 
-export default async function InterimServicePage() {
+export default async function OilServicePage() {
   const content = await getPageContentWithDefaults("car-servicing-interim");
   return <CarServicingInterimPageClient content={content} />;
 }

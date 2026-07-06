@@ -92,7 +92,7 @@ export function SiteFooter() {
             <ul className="mt-4 space-y-2.5">
               {[
                 { label: "MOT",            href: "/mot" },
-                { label: "Oil Service",    href: "/car-servicing/interim" },
+                { label: "Oil Service",    href: "/car-servicing/oil" },
                 { label: "Full Service",   href: "/car-servicing/full" },
                 { label: "Major Service",  href: "/car-servicing/major" },
               ].map((l) => (

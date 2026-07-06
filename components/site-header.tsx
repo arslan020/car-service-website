@@ -100,7 +100,7 @@ const SERVICES_MENU = [
 ] as const;
 
 const SERVICING_MENU = [
-  { href: "/car-servicing/interim", label: "Oil Service", desc: "Every 6 months or 6,000 miles" },
+  { href: "/car-servicing/oil", label: "Oil Service", desc: "Every 6 months or 6,000 miles" },
   { href: "/car-servicing/full",    label: "Full Service",    desc: "Every 12 months or 12,000 miles", popular: true },
   { href: "/car-servicing/major",   label: "Major Service",  desc: "As per manufacturer schedule" },
   { href: "/brake-fluid",           label: "Brake Fluid Service", desc: "Flush & replacement, £99 fixed" },

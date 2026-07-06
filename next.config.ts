@@ -23,6 +23,11 @@ const nextConfig: NextConfig = {
         destination: "/about-us",
         permanent: true,
       },
+      {
+        source: "/car-servicing/interim",
+        destination: "/car-servicing/oil",
+        permanent: true,
+      },
     ];
   },
 };

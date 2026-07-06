@@ -98,7 +98,7 @@ const AREAS = [
 const SERVICES = [
   { label: "MOT Test", href: "/mot" },
   { label: "Full Service", href: "/car-servicing/full" },
-  { label: "Oil Service", href: "/car-servicing/interim" },
+  { label: "Oil Service", href: "/car-servicing/oil" },
   { label: "Brakes", href: "/repairs/brakes" },
   { label: "Diagnostics", href: "/diagnostics" },
 ];

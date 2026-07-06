@@ -974,7 +974,7 @@ Pre-purchase inspection & health check`,
     slug: "car-servicing-interim",
     label: "Oil Service",
     icon: "🔧",
-    publicPath: "/car-servicing/interim",
+    publicPath: "/car-servicing/oil",
     fields: CAR_SERVICING_INTERIM_FIELDS,
   },
   {

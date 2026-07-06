@@ -72,7 +72,7 @@ const SERVICES = [
   { label: "Diagnostics", href: "/diagnostics" },
   { label: "Air Con Regas", href: "/air-con" },
   { label: "EV Battery Check", href: "/ev-battery" },
-  { label: "Oil Service", href: "/car-servicing/interim" },
+  { label: "Oil Service", href: "/car-servicing/oil" },
   { label: "Suspension & Steering", href: "/repairs/suspension-steering" },
 ];
 

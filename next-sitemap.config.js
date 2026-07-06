@@ -40,7 +40,7 @@ module.exports = {
       '/brake-fluid':             { priority: 0.8, changefreq: 'weekly' },
       '/spark-plugs':             { priority: 0.8, changefreq: 'weekly' },
       '/fuel-filter':             { priority: 0.8, changefreq: 'weekly' },
-      '/car-servicing/interim':   { priority: 0.8, changefreq: 'weekly' },
+      '/car-servicing/oil':       { priority: 0.8, changefreq: 'weekly' },
       '/car-servicing/full':      { priority: 0.8, changefreq: 'weekly' },
       '/car-servicing/major':     { priority: 0.8, changefreq: 'weekly' },
       '/repairs/brakes':          { priority: 0.8, changefreq: 'weekly' },
