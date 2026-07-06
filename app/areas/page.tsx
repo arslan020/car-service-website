@@ -80,7 +80,7 @@ const AREAS = [
   { name: "Old Windsor",          postcode: "SL4",              drive: "~28 min", desc: "Historic village near Windsor Castle — Old Windsor residents welcome for MOT and servicing." },
   { name: "Wraysbury",            postcode: "TW19",             drive: "~25 min", desc: "Village near the Thames and reservoirs — Wraysbury drivers trust us for reliable car care." },
   { name: "Stoke Poges",          postcode: "SL2",              drive: "~20 min", desc: "Near Slough and the M4 — Stoke Poges residents can reach our Hayes garage in under 25 minutes." },
-  { name: "Virginia Water",       postcode: "GU25",             drive: "~35 min", desc: "Posh Surrey village near the M25 — Virginia Water drivers choose us for premium car servicing." },
+  { name: "Virginia Water",       postcode: "GU25",             drive: "~35 min", desc: "Surrey village near the M25 — Virginia Water drivers choose us for premium car servicing." },
   { name: "Ascot",                postcode: "SL5",              drive: "~35 min", desc: "Famous for Royal Ascot racecourse — Ascot drivers trust Marieston for honest car servicing." },
   { name: "Sunningdale",          postcode: "SL5",              drive: "~35 min", desc: "Affluent Surrey golf village — Sunningdale residents welcome for MOT, service and repairs." },
   { name: "Bracknell",            postcode: "RG12",             drive: "~40 min", desc: "Berkshire new town — Bracknell drivers come to us for reliable MOT and car servicing." },
@@ -88,7 +88,7 @@ const AREAS = [
   // ── Central & Inner West London (40–60 min) ──
   { name: "Shepherd's Bush",      postcode: "W12",              drive: "~35 min", desc: "Westfield Shopping Centre area — Shepherd's Bush drivers trust us for MOT and servicing." },
   { name: "Hammersmith",          postcode: "W6",               drive: "~35 min", desc: "Riverside transport hub — Hammersmith customers choose us for honest, reliable car care." },
-  { name: "Kensington",           postcode: "W8 / W14",         drive: "~45 min", desc: "High-end museums area — Kensington drivers welcome for MOT, servicing and all repairs." },
+  { name: "Kensington",           postcode: "W8 / W14",         drive: "~45 min", desc: "Kensington drivers welcome for MOT, servicing and all repairs." },
   { name: "Chelsea",              postcode: "SW3 / SW10",       drive: "~50 min", desc: "King's Road area — Chelsea drivers come to Marieston for trusted quality car servicing." },
   { name: "Paddington",           postcode: "W2",               drive: "~50 min", desc: "A40 runs straight to us — Paddington customers can reach our Hayes garage with ease." },
   { name: "Marylebone",           postcode: "W1 / NW1",         drive: "~55 min", desc: "Baker Street and Madame Tussauds area — Marylebone drivers trust us for quality car care." },
