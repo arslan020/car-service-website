@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { site, waUrl } from "@/lib/site-config";
+import { BUSINESS_JSONLD } from "@/lib/business-jsonld";
 import { JsonLd } from "@/components/json-ld";
 import { BreadcrumbJsonLd } from "@/components/breadcrumb-json-ld";
 import { EditableText } from "@/components/editable-text";
@@ -11,11 +12,7 @@ const gearboxSchema = {
   "@context": "https://schema.org",
   "@type": "Service",
   name: "Gearbox Service",
-  provider: {
-    "@type": "AutoRepair",
-    name: site.name,
-    url: "https://www.mariestonservicecentre.co.uk",
-  },
+  provider: BUSINESS_JSONLD,
   areaServed: [
     "Hayes", "Southall", "Uxbridge", "Slough", "Hounslow", "Ealing", "Greenford",
     "Northolt", "Harrow", "Wembley", "Richmond", "Twickenham", "Windsor", "Feltham",

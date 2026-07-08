@@ -1,6 +1,7 @@
 "use client";
 
 import { site, waUrl } from "@/lib/site-config";
+import { BUSINESS_JSONLD } from "@/lib/business-jsonld";
 import { EditableText } from "@/components/editable-text";
 import { JsonLd } from "@/components/json-ld";
 import { BreadcrumbJsonLd } from "@/components/breadcrumb-json-ld";
@@ -52,11 +53,7 @@ export function MotPageClient({ content: c, editable = false }: { content: Conte
     "@context": "https://schema.org",
     "@type": "Service",
     name: "MOT Test",
-    provider: {
-      "@type": "AutoRepair",
-      name: site.name,
-      url: "https://www.mariestonservicecentre.co.uk",
-    },
+    provider: BUSINESS_JSONLD,
     areaServed: [
       "Hayes", "Southall", "Uxbridge", "Slough", "Hounslow", "Ealing", "Greenford",
       "Northolt", "Harrow", "Wembley", "Richmond", "Twickenham", "Windsor", "Feltham",

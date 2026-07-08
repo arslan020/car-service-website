@@ -63,6 +63,7 @@ export const viewport: Viewport = {
 const localBusinessSchema = {
   "@context": "https://schema.org",
   "@type": "AutoRepair",
+  "@id": `${siteUrl}/#business`,
   name: site.name,
   url: siteUrl,
   telephone: site.phoneTel,

@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { site, waUrl } from "@/lib/site-config";
+import { BUSINESS_JSONLD } from "@/lib/business-jsonld";
 import { EditableText } from "@/components/editable-text";
 import type { ContentMap } from "@/lib/page-content";
 import { JsonLd } from "@/components/json-ld";
@@ -18,7 +19,7 @@ const serviceSchema = {
   "@context": "https://schema.org",
   "@type": "Service",
   name: "Tyre Fitting & Repair",
-  provider: { "@type": "AutoRepair", name: site.name, url: "https://www.mariestonservicecentre.co.uk" },
+  provider: BUSINESS_JSONLD,
   areaServed: AREA_SERVED,
   description: "Tyre fitting, balancing and puncture repair in Hayes UB4. All major brands stocked, with a free tread and pressure check on every visit.",
   url: "https://www.mariestonservicecentre.co.uk/repairs/tyres",

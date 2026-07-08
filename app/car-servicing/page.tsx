@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { site } from "@/lib/site-config";
+import { BUSINESS_JSONLD } from "@/lib/business-jsonld";
 import { getPageContentWithDefaults } from "@/lib/page-content";
 import { buildCarServicingTiers, buildCarServicingBenefits } from "@/lib/car-servicing-content";
 import { JsonLd } from "@/components/json-ld";
@@ -22,11 +22,7 @@ export default async function CarServicingPage() {
     "@context": "https://schema.org",
     "@type": "Service",
     name: "Car Servicing",
-    provider: {
-      "@type": "AutoRepair",
-      name: site.name,
-      url: "https://www.mariestonservicecentre.co.uk",
-    },
+    provider: BUSINESS_JSONLD,
     areaServed: [
       "Hayes", "Southall", "Uxbridge", "Slough", "Hounslow", "Ealing", "Greenford",
       "Northolt", "Harrow", "Wembley", "Richmond", "Twickenham", "Windsor", "Feltham",

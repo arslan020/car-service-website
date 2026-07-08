@@ -6,6 +6,7 @@
 // CMS fields with identical keys per page, so one component serves many pages.
 
 import { site, waUrl } from "@/lib/site-config";
+import { BUSINESS_JSONLD } from "@/lib/business-jsonld";
 import { JsonLd } from "@/components/json-ld";
 import { BreadcrumbJsonLd } from "@/components/breadcrumb-json-ld";
 import { EditableText } from "@/components/editable-text";
@@ -51,11 +52,7 @@ export function ServiceDetailPageClient({
     "@context": "https://schema.org",
     "@type": "Service",
     name: meta.serviceName,
-    provider: {
-      "@type": "AutoRepair",
-      name: site.name,
-      url: "https://www.mariestonservicecentre.co.uk",
-    },
+    provider: BUSINESS_JSONLD,
     areaServed: AREAS_SERVED.map((name) => ({ "@type": "Place", name })),
     description: meta.schemaDescription,
     url: meta.url,

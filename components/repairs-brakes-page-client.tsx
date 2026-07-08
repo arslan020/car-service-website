@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { site, waUrl } from "@/lib/site-config";
+import { BUSINESS_JSONLD } from "@/lib/business-jsonld";
 import { EditableText } from "@/components/editable-text";
 import type { ContentMap } from "@/lib/page-content";
 import { JsonLd } from "@/components/json-ld";
@@ -18,7 +19,7 @@ const serviceSchema = {
   "@context": "https://schema.org",
   "@type": "Service",
   name: "Brake Repair & Replacement",
-  provider: { "@type": "AutoRepair", name: site.name, url: "https://www.mariestonservicecentre.co.uk" },
+  provider: BUSINESS_JSONLD,
   areaServed: AREA_SERVED,
   description: "Brake pad, disc, calliper and brake fluid replacement in Hayes UB4. Safety-critical repairs carried out by qualified mechanics.",
   url: "https://www.mariestonservicecentre.co.uk/repairs/brakes",

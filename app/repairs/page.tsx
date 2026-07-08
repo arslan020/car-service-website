@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { site } from "@/lib/site-config";
+import { BUSINESS_JSONLD } from "@/lib/business-jsonld";
 import { getPageContentWithDefaults } from "@/lib/page-content";
 import { JsonLd } from "@/components/json-ld";
 import { BreadcrumbJsonLd } from "@/components/breadcrumb-json-ld";
@@ -15,11 +15,7 @@ const repairsSchema = {
   "@context": "https://schema.org",
   "@type": "Service",
   name: "Car Repairs",
-  provider: {
-    "@type": "AutoRepair",
-    name: site.name,
-    url: "https://www.mariestonservicecentre.co.uk",
-  },
+  provider: BUSINESS_JSONLD,
   areaServed: [
     "Hayes", "Southall", "Uxbridge", "Slough", "Hounslow", "Ealing", "Greenford",
     "Northolt", "Harrow", "Wembley", "Richmond", "Twickenham", "Windsor", "Feltham",
