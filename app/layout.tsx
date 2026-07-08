@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from "next";
+import Script from "next/script";
 import { Geist, Geist_Mono } from "next/font/google";
 import { SiteChrome } from "@/components/site-chrome";
 import { JsonLd } from "@/components/json-ld";
@@ -96,6 +97,16 @@ export default function RootLayout({
   return (
     <html lang="en-GB" className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}>
       <body className="flex min-h-full flex-col bg-background text-foreground">
+        {/* Google Analytics (GA4) */}
+        <Script src="https://www.googletagmanager.com/gtag/js?id=G-PFFK3WFMGF" strategy="afterInteractive" />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-PFFK3WFMGF');
+          `}
+        </Script>
         <JsonLd data={localBusinessSchema} />
         <SiteChrome>{children}</SiteChrome>
       </body>
