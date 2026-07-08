@@ -12,9 +12,18 @@ export default function ReviewsPage() {
   return (
     <PageIntro eyebrow="Reviews" title="What Customers Say">
       <p>
-        Embed your Google reviews widget here, or paste a few testimonials with permission. Star summary and
-        before/after photos (where relevant) lift conversion on booking pages.
+        We&apos;re proud of the reputation we&apos;ve built with drivers across Hayes and West London — honest
+        advice, fair prices and work done right the first time. Don&apos;t just take our word for it: read what
+        our customers say on Google.
       </p>
+      <a
+        href="https://www.google.com/search?q=Marieston+Service+Centre+Hayes+reviews"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="inline-flex font-semibold text-[#0071CE] underline-offset-2 hover:text-[#0e1555] hover:underline"
+      >
+        Read our Google reviews →
+      </a>
       <Link href="/online-booking" className="inline-flex font-semibold text-[#0071CE] underline-offset-2 hover:text-[#0e1555] hover:underline">
         Book a service →
       </Link>

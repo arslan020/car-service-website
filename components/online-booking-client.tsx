@@ -68,7 +68,7 @@ export function OnlineBookingClient() {
   return (
     <div className="bg-white">
       <div className="border-b border-[#e0ebff] bg-[#f8fbff] px-4 py-3 text-center">
-        <p className="text-sm font-semibold text-[#020F3D]">Online booking</p>
+        <h1 className="text-sm font-semibold text-[#020F3D]">Book Your MOT or Car Service Online</h1>
         <p className="mt-0.5 text-xs text-slate-500">
           Choose your service and time slot below — secure booking powered by our workshop system.
         </p>

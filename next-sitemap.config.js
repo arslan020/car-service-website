@@ -49,15 +49,18 @@ module.exports = {
       '/repairs/engine-cooling':  { priority: 0.8, changefreq: 'weekly' },
       '/repairs/exhaust-emissions':{ priority: 0.8, changefreq: 'weekly' },
       '/repairs/suspension-steering':{ priority: 0.8, changefreq: 'weekly' },
+      '/gearbox-service':         { priority: 0.8, changefreq: 'weekly' },
       '/blog':                    { priority: 0.7, changefreq: 'weekly' },
-      '/about':                   { priority: 0.7, changefreq: 'monthly' },
+      '/about-us':                { priority: 0.7, changefreq: 'monthly' },
       '/contact':                 { priority: 0.7, changefreq: 'monthly' },
       '/areas':                   { priority: 0.7, changefreq: 'monthly' },
+      '/quote':                   { priority: 0.7, changefreq: 'monthly' },
       '/faqs':                    { priority: 0.6, changefreq: 'monthly' },
       '/reviews':                 { priority: 0.6, changefreq: 'weekly' },
       '/services':                { priority: 0.6, changefreq: 'monthly' },
+      '/prices':                  { priority: 0.8, changefreq: 'weekly' },
       '/privacy':                 { priority: 0.3, changefreq: 'yearly' },
-      '/terms':                   { priority: 0.3, changefreq: 'yearly' },
+      '/terms-and-conditions':    { priority: 0.3, changefreq: 'yearly' },
     };
 
     const custom = priorities[path] || { priority: 0.6, changefreq: 'weekly' };
