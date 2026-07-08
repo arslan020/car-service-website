@@ -94,8 +94,11 @@ export function ServicingTiersCarousel({
   const [instant, setInstant] = useState(false);
   const [paused, setPaused] = useState(false);
   const [containerWidth, setContainerWidth] = useState(0);
+  const [dragDx, setDragDx] = useState(0);
   const containerRef = useRef<HTMLDivElement>(null);
   const trackRef = useRef<HTMLDivElement>(null);
+  const dragStart = useRef<{ x: number; y: number } | null>(null);
+  const swiped = useRef(false);
 
   useEffect(() => {
     const el = containerRef.current;
@@ -133,6 +136,41 @@ export function ServicingTiersCarousel({
     setTrackIndex(realIndex + 1);
   }
 
+  function handlePointerDown(e: React.PointerEvent<HTMLDivElement>) {
+    dragStart.current = { x: e.clientX, y: e.clientY };
+    setPaused(true);
+  }
+
+  function handlePointerMove(e: React.PointerEvent<HTMLDivElement>) {
+    if (!dragStart.current) return;
+    const dx = e.clientX - dragStart.current.x;
+    const dy = e.clientY - dragStart.current.y;
+    // Only follow the finger once the gesture is clearly horizontal, so vertical page scroll stays untouched
+    if (Math.abs(dx) > 8 && Math.abs(dx) > Math.abs(dy)) {
+      setDragDx(dx);
+    }
+  }
+
+  function handlePointerEnd() {
+    if (!dragStart.current) return;
+    const dx = dragDx;
+    dragStart.current = null;
+    swiped.current = Math.abs(dx) > 10;
+    setDragDx(0);
+    const threshold = Math.min(60, cardWidth / 4);
+    if (dx <= -threshold) next();
+    else if (dx >= threshold) prev();
+  }
+
+  function handleClickCapture(e: React.MouseEvent<HTMLDivElement>) {
+    // Swallow the click that follows a swipe so links/buttons don't fire accidentally
+    if (swiped.current) {
+      e.preventDefault();
+      e.stopPropagation();
+      swiped.current = false;
+    }
+  }
+
   function handleTransitionEnd(e: React.TransitionEvent<HTMLDivElement>) {
     if (e.target !== trackRef.current || e.propertyName !== "transform") return;
     if (trackIndex === n + 1) {
@@ -151,14 +189,24 @@ export function ServicingTiersCarousel({
   return (
     <div onMouseEnter={() => setPaused(true)} onMouseLeave={() => setPaused(false)} onTouchStart={() => setPaused(true)}>
       <div className="relative px-0 sm:px-12">
-        <div ref={containerRef} className="overflow-hidden pt-4">
+        <div
+          ref={containerRef}
+          className="touch-pan-y select-none overflow-hidden pt-4"
+          onPointerDown={handlePointerDown}
+          onPointerMove={handlePointerMove}
+          onPointerUp={handlePointerEnd}
+          onPointerCancel={handlePointerEnd}
+          onPointerLeave={handlePointerEnd}
+          onClickCapture={handleClickCapture}
+          onDragStart={(e) => e.preventDefault()}
+        >
           <div
             ref={trackRef}
             className="flex items-center transition-transform ease-out"
             style={{
               gap: `${GAP}px`,
-              transform: `translateX(${-offsetPx}px)`,
-              transitionDuration: instant ? "0ms" : "500ms",
+              transform: `translateX(${-offsetPx + dragDx}px)`,
+              transitionDuration: instant || dragDx !== 0 ? "0ms" : "500ms",
             }}
             onTransitionEnd={handleTransitionEnd}
           >
