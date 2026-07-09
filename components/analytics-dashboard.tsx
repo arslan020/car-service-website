@@ -495,7 +495,7 @@ function CityList({ items }: { items: GaNameValue[] }) {
 }
 
 function formatGBP(n: number): string {
-  return n.toLocaleString("en-GB", { style: "currency", currency: "GBP", maximumFractionDigits: n >= 100 ? 0 : 2 });
+  return n.toLocaleString("en-GB", { style: "currency", currency: "GBP", minimumFractionDigits: 2, maximumFractionDigits: 2 });
 }
 
 function AdsPanel({ campaigns }: { campaigns: GaAdsCampaign[] }) {
