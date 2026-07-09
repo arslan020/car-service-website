@@ -53,6 +53,13 @@ export interface GaAdsCampaign {
   cost: number;
 }
 
+export interface GaLeadEvents {
+  phoneClicks: number;
+  whatsappClicks: number;
+  quoteSubmits: number;
+  contactSubmits: number;
+}
+
 export interface GaReport {
   totals: GaTotals;
   daily: GaDailyPoint[];
@@ -61,6 +68,8 @@ export interface GaReport {
   cities: GaNameValue[];
   /** Google Ads performance via the GA4↔Ads link; empty when no ads ran */
   adsCampaigns: GaAdsCampaign[];
+  /** Counts of the site's custom lead events (phone_click etc.) */
+  leads: GaLeadEvents;
 }
 
 const CURRENT = { startDate: "28daysAgo", endDate: "today" };
@@ -74,7 +83,7 @@ export async function fetchGaReport(): Promise<GaReport> {
   const ga = getClient();
   const property = `properties/${propertyId}`;
 
-  const [[totalsRes], [dailyRes], [pagesRes], [channelsRes], [citiesRes]] = await Promise.all([
+  const [[totalsRes], [dailyRes], [pagesRes], [channelsRes], [citiesRes], [leadsRes]] = await Promise.all([
     ga.runReport({
       property,
       dateRanges: [CURRENT, PREVIOUS],
@@ -111,6 +120,18 @@ export async function fetchGaReport(): Promise<GaReport> {
       orderBys: [{ metric: { metricName: "activeUsers" }, desc: true }],
       limit: 100,
     }),
+    ga.runReport({
+      property,
+      dateRanges: [CURRENT],
+      dimensions: [{ name: "eventName" }],
+      metrics: [{ name: "eventCount" }],
+      dimensionFilter: {
+        filter: {
+          fieldName: "eventName",
+          inListFilter: { values: ["phone_click", "whatsapp_click", "quote_submit", "contact_submit"] },
+        },
+      },
+    }),
   ]);
 
   // With two date ranges GA appends a dateRange dimension; rows arrive per range
@@ -146,8 +167,19 @@ export async function fetchGaReport(): Promise<GaReport> {
     // Ads link inactive or metrics unavailable — the panel simply hides itself
   }
 
+  const leadCounts: Record<string, number> = {};
+  for (const row of leadsRes.rows ?? []) {
+    leadCounts[row.dimensionValues?.[0]?.value ?? ""] = metricNum(row.metricValues?.[0]?.value);
+  }
+
   return {
     adsCampaigns,
+    leads: {
+      phoneClicks: leadCounts["phone_click"] ?? 0,
+      whatsappClicks: leadCounts["whatsapp_click"] ?? 0,
+      quoteSubmits: leadCounts["quote_submit"] ?? 0,
+      contactSubmits: leadCounts["contact_submit"] ?? 0,
+    },
     totals: {
       activeUsers: cur[0],
       pageViews: cur[1],
