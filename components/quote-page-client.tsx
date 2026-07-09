@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { site, waUrl } from "@/lib/site-config";
+import { trackEvent } from "@/lib/gtag";
 
 export function QuotePageClient() {
   const [form, setForm] = useState({ name: "", phone: "", email: "", reg: "", description: "" });
@@ -35,6 +36,7 @@ export function QuotePageClient() {
       const data = await res.json();
       if (!res.ok) throw new Error(data.error || "Failed to send.");
       setSubmitted(true);
+      trackEvent("quote_submit");
     } catch (err: unknown) {
       setSubmitError(err instanceof Error ? err.message : "Something went wrong. Please try again.");
     } finally {

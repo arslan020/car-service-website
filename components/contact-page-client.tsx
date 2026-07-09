@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
 import { site, waUrl } from "@/lib/site-config";
+import { trackEvent } from "@/lib/gtag";
 import { f, fl, type ContentMap } from "@/lib/page-content";
 import { EditableText } from "@/components/editable-text";
 
@@ -116,6 +117,7 @@ export function ContactPageClient({ content, editable = false }: { content: Cont
       const data = await res.json();
       if (!res.ok) throw new Error(data.error || "Failed to send.");
       setSubmitted(true);
+      trackEvent("contact_submit");
     } catch (err: unknown) {
       setSubmitError(err instanceof Error ? err.message : "Something went wrong. Please try again.");
     } finally {

@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import Script from "next/script";
 import { Geist, Geist_Mono } from "next/font/google";
 import { SiteChrome } from "@/components/site-chrome";
+import { ClickTracking } from "@/components/click-tracking";
 import { JsonLd } from "@/components/json-ld";
 import { site } from "@/lib/site-config";
 import "./globals.css";
@@ -108,6 +109,7 @@ export default function RootLayout({
           `}
         </Script>
         <JsonLd data={localBusinessSchema} />
+        <ClickTracking />
         <SiteChrome>{children}</SiteChrome>
       </body>
     </html>
