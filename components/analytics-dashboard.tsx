@@ -1,5 +1,5 @@
 import Link from "next/link";
-import type { GaDailyPoint, GaNameValue, GaReport } from "@/lib/ga";
+import type { GaAdsCampaign, GaDailyPoint, GaNameValue, GaReport } from "@/lib/ga";
 
 function formatCompact(n: number): string {
   if (n >= 1_000_000) return `${(n / 1_000_000).toFixed(1)}M`;
@@ -437,6 +437,66 @@ function CityList({ items }: { items: GaNameValue[] }) {
   );
 }
 
+function formatGBP(n: number): string {
+  return n.toLocaleString("en-GB", { style: "currency", currency: "GBP", maximumFractionDigits: n >= 100 ? 0 : 2 });
+}
+
+function AdsPanel({ campaigns }: { campaigns: GaAdsCampaign[] }) {
+  if (campaigns.length === 0) {
+    return (
+      <EmptyBlock message="No Google Ads data yet — after your ads run, spend and clicks appear here (can take up to a day)" />
+    );
+  }
+
+  const totalCost = campaigns.reduce((s, c) => s + c.cost, 0);
+  const totalClicks = campaigns.reduce((s, c) => s + c.clicks, 0);
+  const totalImpressions = campaigns.reduce((s, c) => s + c.impressions, 0);
+  const avgCpc = totalClicks > 0 ? totalCost / totalClicks : 0;
+
+  const stats = [
+    { label: "Spent", value: formatGBP(totalCost) },
+    { label: "Ad clicks", value: totalClicks.toLocaleString("en-GB") },
+    { label: "Times shown", value: formatCompact(totalImpressions) },
+    { label: "Avg cost per click", value: formatGBP(avgCpc) },
+  ];
+
+  return (
+    <div>
+      <div className="grid gap-3 sm:grid-cols-4">
+        {stats.map((s) => (
+          <div key={s.label} className="rounded-xl border border-[#eef4ff] bg-[#f8fbff] px-4 py-3">
+            <p className="text-[10px] font-bold uppercase tracking-widest text-slate-400">{s.label}</p>
+            <p className="mt-1 text-lg font-extrabold text-[#020F3D]">{s.value}</p>
+          </div>
+        ))}
+      </div>
+
+      <div className="mt-4 overflow-hidden rounded-xl ring-1 ring-[#eef4ff]">
+        <table className="w-full text-left text-sm">
+          <thead>
+            <tr className="bg-[#f8fbff] text-[10px] font-bold uppercase tracking-widest text-slate-400">
+              <th className="px-4 py-2.5 font-bold">Campaign</th>
+              <th className="px-4 py-2.5 text-right font-bold">Clicks</th>
+              <th className="hidden px-4 py-2.5 text-right font-bold sm:table-cell">Times shown</th>
+              <th className="px-4 py-2.5 text-right font-bold">Spent</th>
+            </tr>
+          </thead>
+          <tbody className="divide-y divide-[#eef4ff]">
+            {campaigns.map((c) => (
+              <tr key={c.name} className="bg-white transition hover:bg-[#f8fbff]">
+                <td className="px-4 py-3 font-semibold text-[#020F3D]">{c.name}</td>
+                <td className="px-4 py-3 text-right font-bold tabular-nums text-[#020F3D]">{c.clicks.toLocaleString("en-GB")}</td>
+                <td className="hidden px-4 py-3 text-right tabular-nums text-slate-500 sm:table-cell">{c.impressions.toLocaleString("en-GB")}</td>
+                <td className="px-4 py-3 text-right font-bold tabular-nums text-[#020F3D]">{formatGBP(c.cost)}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  );
+}
+
 function EmptyBlock({ message }: { message: string }) {
   return (
     <div className="flex flex-col items-center justify-center rounded-xl border border-dashed border-[#e0ebff] bg-[#f8fbff] py-12 text-center">
@@ -489,6 +549,10 @@ export function AnalyticsDashboard({ report }: { report: GaReport }) {
           <CityList items={report.cities} />
         </Panel>
       </div>
+
+      <Panel title="Google Ads" sub="What your ad campaigns spent and brought in — last 28 days">
+        <AdsPanel campaigns={report.adsCampaigns} />
+      </Panel>
 
       <Glossary />
     </div>

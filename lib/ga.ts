@@ -46,12 +46,21 @@ export interface GaNameValue {
   value: number;
 }
 
+export interface GaAdsCampaign {
+  name: string;
+  clicks: number;
+  impressions: number;
+  cost: number;
+}
+
 export interface GaReport {
   totals: GaTotals;
   daily: GaDailyPoint[];
   topPages: GaNameValue[];
   channels: GaNameValue[];
   cities: GaNameValue[];
+  /** Google Ads performance via the GA4↔Ads link; empty when no ads ran */
+  adsCampaigns: GaAdsCampaign[];
 }
 
 const CURRENT = { startDate: "28daysAgo", endDate: "today" };
@@ -113,7 +122,32 @@ export async function fetchGaReport(): Promise<GaReport> {
   const cur = totalsByRange["date_range_0"] ?? [0, 0, 0];
   const prev = totalsByRange["date_range_1"] ?? [0, 0, 0];
 
+  // Ads metrics come via the GA4↔Google Ads link; tolerate failure so the
+  // rest of the dashboard still renders if the link ever breaks
+  let adsCampaigns: GaAdsCampaign[] = [];
+  try {
+    const [adsRes] = await ga.runReport({
+      property,
+      dateRanges: [CURRENT],
+      dimensions: [{ name: "sessionGoogleAdsCampaignName" }],
+      metrics: [{ name: "advertiserAdClicks" }, { name: "advertiserAdImpressions" }, { name: "advertiserAdCost" }],
+      orderBys: [{ metric: { metricName: "advertiserAdCost" }, desc: true }],
+      limit: 10,
+    });
+    adsCampaigns = (adsRes.rows ?? [])
+      .map((row) => ({
+        name: row.dimensionValues?.[0]?.value ?? "",
+        clicks: metricNum(row.metricValues?.[0]?.value),
+        impressions: metricNum(row.metricValues?.[1]?.value),
+        cost: metricNum(row.metricValues?.[2]?.value),
+      }))
+      .filter((c) => c.name && c.name !== "(not set)" && (c.clicks > 0 || c.cost > 0));
+  } catch {
+    // Ads link inactive or metrics unavailable — the panel simply hides itself
+  }
+
   return {
+    adsCampaigns,
     totals: {
       activeUsers: cur[0],
       pageViews: cur[1],
