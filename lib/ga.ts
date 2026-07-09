@@ -84,7 +84,7 @@ export async function fetchGaReport(): Promise<GaReport> {
       dimensions: [{ name: "pagePath" }],
       metrics: [{ name: "screenPageViews" }],
       orderBys: [{ metric: { metricName: "screenPageViews" }, desc: true }],
-      limit: 8,
+      limit: 20,
     }),
     ga.runReport({
       property,
@@ -126,19 +126,23 @@ export async function fetchGaReport(): Promise<GaReport> {
       date: row.dimensionValues?.[0]?.value ?? "",
       users: metricNum(row.metricValues?.[0]?.value),
     })),
-    topPages: (pagesRes.rows ?? []).map((row) => ({
-      name: row.dimensionValues?.[0]?.value ?? "",
-      value: metricNum(row.metricValues?.[0]?.value),
-    })),
+    topPages: (pagesRes.rows ?? [])
+      .map((row) => ({
+        name: row.dimensionValues?.[0]?.value ?? "",
+        value: metricNum(row.metricValues?.[0]?.value),
+      }))
+      // Admin/auth pages are the owner's own visits, not customer traffic
+      .filter((p) => !p.name.startsWith("/dashboard") && !p.name.startsWith("/login") && !p.name.startsWith("/admin"))
+      .slice(0, 8),
     channels: (channelsRes.rows ?? []).map((row) => ({
       name: row.dimensionValues?.[0]?.value ?? "",
       value: metricNum(row.metricValues?.[0]?.value),
     })),
     cities: (citiesRes.rows ?? [])
-      .filter((row) => row.dimensionValues?.[0]?.value !== "(not set)")
       .map((row) => ({
         name: row.dimensionValues?.[0]?.value ?? "",
         value: metricNum(row.metricValues?.[0]?.value),
-      })),
+      }))
+      .filter((c) => c.name && c.name !== "(not set)"),
   };
 }

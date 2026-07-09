@@ -8,8 +8,8 @@ function formatCompact(n: number): string {
 }
 
 function formatDelta(current: number, previous: number): { text: string; tone: "up" | "down" | "new" | "flat" } | null {
-  if (previous === 0 && current === 0) return null;
-  if (previous === 0) return { text: "New", tone: "new" };
+  // No previous-period data yet — a badge would only confuse, so show nothing
+  if (previous === 0) return null;
   const pct = Math.round(((current - previous) / previous) * 100);
   if (pct === 0) return null;
   return { text: `${pct > 0 ? "+" : ""}${pct}%`, tone: pct > 0 ? "up" : "down" };
@@ -41,12 +41,29 @@ const CHANNEL_COLORS: Record<string, string> = {
   Referral: "#fbbf24",
   "Organic Social": "#a78bfa",
   "Paid Search": "#f87171",
+  "Cross-network": "#fb923c",
   Email: "#22d3ee",
   Unassigned: "#94a3b8",
 };
 
 function channelColor(name: string): string {
   return CHANNEL_COLORS[name] ?? "#64748b";
+}
+
+// GA's channel jargon, translated for a garage owner
+const CHANNEL_LABELS: Record<string, string> = {
+  "Organic Search": "Google search (free)",
+  "Paid Search": "Google Ads (paid)",
+  "Cross-network": "Google Ads network",
+  Direct: "Typed address / bookmark",
+  Referral: "Links on other websites",
+  "Organic Social": "Social media",
+  Email: "Email links",
+  Unassigned: "Other / unknown",
+};
+
+function channelLabel(name: string): string {
+  return CHANNEL_LABELS[name] ?? name;
 }
 
 function Icon({ d, className = "h-5 w-5" }: { d: string; className?: string }) {
@@ -177,22 +194,22 @@ function InsightStrip({ report }: { report: GaReport }) {
 
   const insights = [
     {
-      label: "Peak day",
-      value: peak && peak.users > 0 ? `${gaDateLabel(peak.date)} · ${peak.users}` : "No data yet",
+      label: "Busiest day",
+      value: peak && peak.users > 0 ? `${gaDateLabel(peak.date)} · ${peak.users} visitors` : "No data yet",
       icon: "M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 0 1 2.25-2.25h13.5A2.25 2.25 0 0 1 21 7.5v11.25m-18 0A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75m-18 0v-7.5A2.25 2.25 0 0 1 5.25 9h13.5A2.25 2.25 0 0 1 21 11.25v7.5",
     },
     {
-      label: "Pages / session",
+      label: "Pages viewed per visit",
       value: pagesPerSession,
       icon: "M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z",
     },
     {
-      label: "Top source",
-      value: topSource,
+      label: "How most people find you",
+      value: channelLabel(topSource),
       icon: "M13.19 8.688a4.5 4.5 0 0 1 1.242 7.244l-4.5 4.5a4.5 4.5 0 0 1-6.364-6.364l1.757-1.757m9.86 2.54a4.5 4.5 0 0 0-1.242-7.244l-4.5-4.5a4.5 4.5 0 0 0-6.364 6.364L4.5 12.636",
     },
     {
-      label: "Top location",
+      label: "Most visitors from",
       value: topCity,
       icon: "M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z",
     },
@@ -324,7 +341,7 @@ function DonutChart({ items }: { items: GaNameValue[] }) {
         {segments.map((s) => (
           <li key={s.name} className="flex items-center gap-2.5">
             <span className="h-2.5 w-2.5 shrink-0 rounded-full" style={{ backgroundColor: s.color }} />
-            <span className="min-w-0 flex-1 truncate text-sm font-medium text-slate-600">{s.name}</span>
+            <span className="min-w-0 flex-1 truncate text-sm font-medium text-slate-600">{channelLabel(s.name)}</span>
             <span className="shrink-0 text-xs font-bold tabular-nums text-[#020F3D]">{Math.round(s.pct)}%</span>
           </li>
         ))}
@@ -449,26 +466,48 @@ export function AnalyticsDashboard({ report }: { report: GaReport }) {
       <InsightStrip report={report} />
 
       <div className="grid gap-4 xl:grid-cols-5">
-        <Panel title="Daily visitors" sub="Unique visitors each day" className="xl:col-span-3">
+        <Panel title="Daily visitors" sub="How many people came to the site each day — hover a dot for the exact number" className="xl:col-span-3">
           {!hasTraffic || report.daily.length === 0 ? (
             <EmptyBlock message="Waiting for traffic — data usually appears within 24–48 hours" />
           ) : (
             <DailyAreaChart daily={report.daily} />
           )}
         </Panel>
-        <Panel title="Traffic sources" sub="Where sessions came from" className="xl:col-span-2">
+        <Panel title="How people found you" sub="What brought visitors to the website" className="xl:col-span-2">
           <DonutChart items={report.channels} />
         </Panel>
       </div>
 
       <div className="grid gap-4 lg:grid-cols-2">
-        <Panel title="Top pages" sub="Most viewed pages on your site">
+        <Panel title="Most popular pages" sub="What visitors looked at (your own dashboard visits are not counted)">
           <TopPagesTable items={report.topPages} totalViews={report.totals.pageViews} />
         </Panel>
-        <Panel title="Visitor locations" sub="Towns and cities">
+        <Panel title="Where visitors are" sub="Towns and cities your visitors browsed from">
           <CityList items={report.cities} />
         </Panel>
       </div>
+
+      <Glossary />
+    </div>
+  );
+}
+
+function Glossary() {
+  const terms = [
+    { word: "Visitors", meaning: "individual people — one person counts once, even if they come back" },
+    { word: "Sessions", meaning: "visits — the same person coming twice counts as 2 sessions" },
+    { word: "Page views", meaning: "total pages opened — one visitor looking at 5 pages counts as 5" },
+  ];
+  return (
+    <div className="rounded-2xl border border-[#e0ebff] bg-[#f8fbff] px-5 py-4">
+      <p className="text-[10px] font-bold uppercase tracking-widest text-slate-400">What do these words mean?</p>
+      <ul className="mt-2 space-y-1.5">
+        {terms.map((t) => (
+          <li key={t.word} className="text-xs leading-relaxed text-slate-500">
+            <span className="font-bold text-[#020F3D]">{t.word}</span> — {t.meaning}
+          </li>
+        ))}
+      </ul>
     </div>
   );
 }
