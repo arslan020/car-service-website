@@ -206,7 +206,7 @@ function InsightStrip({ report }: { report: GaReport }) {
     {
       label: "How most people find you",
       value: channelLabel(topSource),
-      icon: "M13.19 8.688a4.5 4.5 0 0 1 1.242 7.244l-4.5 4.5a4.5 4.5 0 0 1-6.364-6.364l1.757-1.757m9.86 2.54a4.5 4.5 0 0 0-1.242-7.244l-4.5-4.5a4.5 4.5 0 0 0-6.364 6.364L4.5 12.636",
+      icon: "m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z",
     },
     {
       label: "Most visitors from",
@@ -302,8 +302,11 @@ function DailyAreaChart({ daily }: { daily: GaDailyPoint[] }) {
   );
 }
 
-function DonutChart({ items }: { items: GaNameValue[] }) {
+function DonutChart({ items, totalSessions }: { items: GaNameValue[]; totalSessions?: number }) {
   const total = items.reduce((s, i) => s + i.value, 0);
+  // GA's headline session count and the per-channel sum can differ slightly
+  // (GA estimates sessions); show the headline number so the page agrees with itself
+  const displayTotal = totalSessions && totalSessions > 0 ? totalSessions : total;
   if (total === 0) {
     return (
       <div className="flex flex-col items-center justify-center py-8 text-center">
@@ -333,7 +336,7 @@ function DonutChart({ items }: { items: GaNameValue[] }) {
           aria-label="Traffic sources breakdown"
         />
         <div className="absolute inset-0 m-auto flex h-[4.5rem] w-[4.5rem] flex-col items-center justify-center rounded-full bg-white shadow-inner">
-          <span className="text-lg font-extrabold text-[#020F3D]">{formatCompact(total)}</span>
+          <span className="text-lg font-extrabold text-[#020F3D]">{formatCompact(displayTotal)}</span>
           <span className="text-[9px] font-semibold uppercase tracking-wide text-slate-400">Sessions</span>
         </div>
       </div>
@@ -474,7 +477,7 @@ export function AnalyticsDashboard({ report }: { report: GaReport }) {
           )}
         </Panel>
         <Panel title="How people found you" sub="What brought visitors to the website" className="xl:col-span-2">
-          <DonutChart items={report.channels} />
+          <DonutChart items={report.channels} totalSessions={report.totals.sessions} />
         </Panel>
       </div>
 
