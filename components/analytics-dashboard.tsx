@@ -405,7 +405,7 @@ function CityList({ items }: { items: GaNameValue[] }) {
   const max = Math.max(...items.map((i) => i.value), 1);
 
   return (
-    <ul className="space-y-2">
+    <ul className="max-h-96 space-y-2 overflow-y-auto pr-1">
       {items.map((item, i) => (
         <li
           key={item.name}

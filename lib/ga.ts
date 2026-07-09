@@ -109,7 +109,7 @@ export async function fetchGaReport(): Promise<GaReport> {
       dimensions: [{ name: "city" }],
       metrics: [{ name: "activeUsers" }],
       orderBys: [{ metric: { metricName: "activeUsers" }, desc: true }],
-      limit: 6,
+      limit: 100,
     }),
   ]);
 
