@@ -6,6 +6,91 @@ import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { site, waUrl } from "@/lib/site-config";
 
+// Responsive rules in plain CSS — the dev Tailwind pipeline misses newly added
+// variant classes, so these are shipped with the component instead.
+const HDR_CSS = `
+.hdr-bar{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+}
+@media (min-width:1280px){
+  .hdr-bar{
+    display:grid;
+    grid-template-columns:auto minmax(0,1fr) auto;
+    align-items:center;
+    gap:0.5rem;
+  }
+  .hdr-logo{grid-column:1;justify-self:start;width:160px}
+  .hdr-nav{
+    grid-column:2;
+    justify-self:center;
+    width:max-content;
+    max-width:100%;
+    min-width:0;
+    padding-left:0;
+    gap:0;
+  }
+  .hdr-nav>*{flex-shrink:0}
+  .hdr-actions{
+    grid-column:3;
+    justify-self:end;
+    flex-shrink:0;
+    flex-wrap:nowrap;
+    gap:0.375rem;
+  }
+  .hdr-nav-link{
+    white-space:nowrap;
+    padding:0.5rem 0.375rem;
+    font-size:0.8125rem;
+    line-height:1.25rem;
+  }
+  .hdr-act-btn{
+    flex-shrink:0;
+    white-space:nowrap;
+    min-height:2.5rem;
+    padding:0.5rem 0.75rem;
+    font-size:0.8125rem;
+    gap:0.375rem;
+  }
+  .hdr-act-label{display:inline}
+  .hdr-quote{display:inline-flex}
+  .hdr-svc-long{display:none}
+  .hdr-svc-wrap{white-space:nowrap}
+}
+@media (min-width:1366px){
+  .hdr-logo{width:172px}
+  .hdr-nav-link{padding:0.5rem 0.4375rem}
+}
+@media (min-width:1400px){
+  .hdr-logo{width:180px}
+  .hdr-bar{gap:0.625rem}
+  .hdr-actions{gap:0.5rem}
+}
+@media (min-width:1440px){
+  .hdr-logo{width:188px}
+  .hdr-nav-link{padding:0.5rem 0.5rem;font-size:0.84375rem}
+  .hdr-act-btn{font-size:0.84375rem}
+}
+@media (min-width:1536px){
+  .hdr-logo{width:200px}
+  .hdr-nav-link{padding:0.5rem 0.5625rem;font-size:0.875rem}
+  .hdr-act-btn{font-size:0.875rem;gap:0.5rem}
+}
+@media (min-width:1680px){
+  .hdr-logo{width:220px}
+  .hdr-svc-long{display:inline}
+  .hdr-bar{gap:0.75rem}
+}
+@media (min-width:1800px){
+  .hdr-logo{width:240px}
+  .hdr-nav-link{padding:0.5rem 0.625rem}
+}
+@media (min-width:1920px){
+  .hdr-logo{width:260px}
+}
+`;
+
 const SERVICES_MENU = [
   {
     href: "/diagnostics",
@@ -106,6 +191,12 @@ const SERVICING_MENU = [
   { href: "/brake-fluid",           label: "Brake Fluid Service", desc: "Flush & replacement, £99 fixed" },
 ] as const;
 
+const CAR_CARE_MENU = [
+  { href: "/shine-protect", label: "Shine! Protect", desc: "Cosmetic maintenance plan" },
+  { href: "/shine-protect-alloy", label: "Shine! Protect Alloy", desc: "Alloy wheel maintenance plan" },
+  { href: "/customer-protect-comprehensive", label: "Comprehensive Warranty", desc: "Cover up to 10 yrs / 100,000 miles" },
+] as const;
+
 const REPAIRS_MENU = [
   { href: "/repairs/clutch-gearbox", label: "Clutch & Gearbox", desc: "Slipping clutch, gear faults" },
   { href: "/repairs/suspension-steering", label: "Suspension & Steering", desc: "Shock absorbers, ball joints" },
@@ -128,6 +219,7 @@ export function SiteHeader() {
   const [mobileServicing, setMobileServicing] = useState(false);
   const [mobileServices, setMobileServices] = useState(false);
   const [mobileRepairs, setMobileRepairs] = useState(false);
+  const [mobileCarCare, setMobileCarCare] = useState(false);
 
   // Which top-level nav item matches the page currently open
   const isActive = (href: string) => pathname === href || pathname.startsWith(href + "/");
@@ -136,16 +228,17 @@ export function SiteHeader() {
     ["/services", "/diagnostics", "/battery-check", "/air-con", "/ev-battery", "/gearbox-service", "/spark-plugs", "/fuel-filter"].some(isActive) ||
     isActive("/repairs/brakes") || isActive("/repairs/tyres");
   const repairsActive = isActive("/repairs") && !isActive("/repairs/brakes") && !isActive("/repairs/tyres");
+  const carCareActive = CAR_CARE_MENU.some((item) => isActive(item.href));
 
   // Shared desktop nav link styles
   const navLink = (active: boolean) =>
-    `whitespace-nowrap rounded-md px-2.5 py-2 text-sm transition ${
+    `hdr-nav-link rounded-md transition ${
       active
         ? "bg-[#eef4ff] font-bold text-[#0F63FF]"
         : "font-medium text-slate-600 hover:bg-[#eef4ff] hover:text-[#020F3D]"
     }`;
   const navDropdownLink = (active: boolean) =>
-    `flex items-center gap-1 whitespace-nowrap rounded-md px-2.5 py-2 text-sm transition ${
+    `hdr-nav-link flex items-center gap-1 rounded-md transition ${
       active
         ? "bg-[#eef4ff] font-bold text-[#0F63FF]"
         : "font-medium text-slate-600 hover:bg-[#eef4ff] hover:text-[#020F3D]"
@@ -174,15 +267,17 @@ export function SiteHeader() {
     setMobileServicing(false);
     setMobileServices(false);
     setMobileRepairs(false);
+    setMobileCarCare(false);
   };
 
   return (
     <>
     <header className="sticky top-0 z-50 bg-white/98 shadow-[0_6px_18px_rgba(2,15,61,0.05)] backdrop-blur">
-      <div className="mx-auto flex max-w-[1800px] items-center justify-between gap-2 px-3 py-3 sm:gap-4 sm:px-6 lg:px-8 xl:px-10">
+      <style>{HDR_CSS}</style>
+      <div className="hdr-bar mx-auto w-full max-w-[1800px] gap-2 px-3 py-3 sm:gap-4 sm:px-6 lg:px-8 xl:px-10">
         <Link
           href="/"
-          className="block w-[170px] shrink-0 sm:w-[240px] lg:w-[200px] xl:w-[220px] 2xl:w-[280px]"
+          className="hdr-logo block w-[170px] shrink-0 sm:w-[240px]"
           onClick={closeMenu}
         >
           <Image
@@ -198,7 +293,7 @@ export function SiteHeader() {
         </Link>
 
         {/* ── Desktop nav ── */}
-        <nav className="hidden lg:flex flex-1 items-center justify-center gap-0.5 px-1 xl:gap-1">
+        <nav className="hdr-nav hidden items-center justify-center gap-0.5 xl:flex">
 
           <Link href="/about-us" className={navLink(isActive("/about-us"))}>
             About Us
@@ -251,7 +346,9 @@ export function SiteHeader() {
           {/* Additional Services dropdown */}
           <div className="group/nav relative">
             <Link href="/services" className={navDropdownLink(servicesActive)}>
-              <span className="lg:hidden xl:inline">Additional </span>Services
+              <span className="hdr-svc-wrap">
+                <span className="hdr-svc-long">Additional </span>Services
+              </span>
               <ChevronDown />
             </Link>
             {/* invisible bridge so dropdown doesn't close when moving mouse */}
@@ -321,6 +418,35 @@ export function SiteHeader() {
             </div>
           </div>
 
+          {/* Car Care dropdown */}
+          <div className="group/nav relative">
+            <button type="button" className={navDropdownLink(carCareActive)}>
+              Car Care
+              <ChevronDown />
+            </button>
+            <div className="absolute left-0 top-full h-2 w-full" />
+            <div className="pointer-events-none absolute left-0 top-[calc(100%+8px)] w-[300px] opacity-0 transition-all duration-150 group-hover/nav:pointer-events-auto group-hover/nav:opacity-100">
+              <div className="rounded-2xl border border-[#e8effa] bg-white p-4 shadow-[0_16px_48px_rgba(2,15,61,0.12)]">
+                <p className="mb-3 px-1 text-[10px] font-bold uppercase tracking-widest text-slate-400">Car Care</p>
+                <div className="flex flex-col gap-0.5">
+                  {CAR_CARE_MENU.map((item) => (
+                    <Link
+                      key={item.label}
+                      href={item.href}
+                      className="group/item flex items-center justify-between rounded-xl px-3 py-2.5 transition hover:bg-[#eef4ff]"
+                    >
+                      <span>
+                        <span className="block text-sm font-semibold text-[#020F3D] group-hover/item:text-[#0F63FF]">{item.label}</span>
+                        <span className="block text-xs text-slate-400">{item.desc}</span>
+                      </span>
+                      <svg className="h-4 w-4 shrink-0 text-slate-300 group-hover/item:text-[#0F63FF]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" /></svg>
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+
           <Link href="/prices" className={navLink(isActive("/prices"))}>
             Prices
           </Link>
@@ -337,37 +463,37 @@ export function SiteHeader() {
         </nav>
 
         {/* ── Desktop actions ── */}
-        <div className="hidden lg:flex shrink-0 items-center gap-1.5 xl:gap-2">
+        <div className="hdr-actions hidden shrink-0 items-center gap-1.5 xl:flex">
           <a
             href={`tel:${site.phoneTel}`}
-            className="inline-flex min-h-10 items-center justify-center gap-2 rounded-lg bg-[#020F3D] px-2.5 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-[#061744] xl:px-3"
+            className="hdr-act-btn inline-flex items-center justify-center rounded-lg bg-[#020F3D] font-semibold text-white shadow-sm transition hover:bg-[#061744]"
           >
             <svg className="h-4 w-4 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 0 0 2.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 0 1-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 0 0-1.091-.852H4.5A2.25 2.25 0 0 0 2.25 4.5v2.25Z" />
             </svg>
-            <span className="hidden xl:inline">Call us</span>
+            <span className="hdr-act-label">Call us</span>
           </a>
           <a
             href={waUrl()}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex min-h-10 items-center justify-center gap-2 rounded-lg bg-[#25D366] px-2.5 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-[#1ebe5d] xl:px-3"
+            className="hdr-act-btn inline-flex items-center justify-center rounded-lg bg-[#25D366] font-semibold text-white shadow-sm transition hover:bg-[#1ebe5d]"
           >
             <svg className="h-4 w-4 shrink-0" fill="currentColor" viewBox="0 0 24 24">
               <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z" />
             </svg>
-            <span className="hidden xl:inline">WhatsApp</span>
+            <span className="hdr-act-label">WhatsApp</span>
           </a>
           <Link
             href="/quote"
-            className="inline-flex min-h-10 items-center justify-center rounded-lg bg-[#0F63FF] px-4 py-2 text-sm font-bold text-white shadow-md transition hover:bg-[#1E6BFF]"
+            className="hdr-quote hdr-act-btn inline-flex items-center justify-center whitespace-nowrap rounded-lg bg-[#0F63FF] px-3.5 font-bold text-white shadow-md transition hover:bg-[#1E6BFF]"
           >
             Request a Quote
           </Link>
         </div>
 
         {/* ── Mobile hamburger ── */}
-        <div className="flex flex-1 items-center justify-end gap-1.5 lg:hidden sm:gap-2">
+        <div className="flex flex-1 items-center justify-end gap-1.5 xl:hidden sm:gap-2">
           <a
             href={`tel:${site.phoneTel}`}
             aria-label="Call us"
@@ -412,12 +538,12 @@ export function SiteHeader() {
       {/* ── Mobile menu ── */}
       <>
         <div
-          className="fixed inset-0 z-40 bg-black/50 lg:hidden transition-opacity duration-300"
+          className="fixed inset-0 z-40 bg-black/50 xl:hidden transition-opacity duration-300"
           style={{ opacity: open ? 1 : 0, pointerEvents: open ? "auto" : "none" }}
           onClick={closeMenu}
         />
         <div
-          className="fixed top-0 right-0 z-50 flex h-dvh w-[min(100%,20rem)] flex-col bg-white lg:hidden overflow-hidden shadow-2xl transition-transform duration-300 ease-in-out"
+          className="fixed top-0 right-0 z-50 flex h-dvh w-[min(100%,20rem)] flex-col bg-white xl:hidden overflow-hidden shadow-2xl transition-transform duration-300 ease-in-out"
           style={{ transform: open ? "translateX(0)" : "translateX(100%)" }}
         >
             {/* Header */}
@@ -527,6 +653,31 @@ export function SiteHeader() {
                 {mobileRepairs && (
                   <div className="flex flex-col gap-0.5 py-1 pl-11 pr-2">
                     {REPAIRS_MENU.map((item) => (
+                      <Link key={item.label} href={item.href} onClick={closeMenu}
+                        className="rounded-lg px-3 py-2.5 text-sm text-slate-600 hover:bg-[#f8fbff]">
+                        {item.label}
+                      </Link>
+                    ))}
+                  </div>
+                )}
+              </div>
+
+              {/* Car Care — expandable */}
+              <div>
+                <button
+                  type="button"
+                  onClick={() => setMobileCarCare(!mobileCarCare)}
+                  className={`w-full ${mobileRow(carCareActive)}`}
+                >
+                  <span className={mobileIcon(carCareActive)}>
+                    <svg className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth={1.75} viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M9.813 15.904 9 18.75l-.813-2.846a4.5 4.5 0 0 0-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 0 0 3.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 0 0 3.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 0 0-3.09 3.09ZM18.259 8.715 18 9.75l-.259-1.035a3.375 3.375 0 0 0-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 0 0 2.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 0 0 2.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 0 0-2.456 2.456ZM16.894 20.567 16.5 21.75l-.394-1.183a2.25 2.25 0 0 0-1.423-1.423L13.5 18.75l1.183-.394a2.25 2.25 0 0 0 1.423-1.423l.394-1.183.394 1.183a2.25 2.25 0 0 0 1.423 1.423l1.183.394-1.183.394a2.25 2.25 0 0 0-1.423 1.423Z"/></svg>
+                  </span>
+                  <span className={`flex-1 text-left ${mobileLabel(carCareActive)}`}>Car Care</span>
+                  <svg className={`h-4 w-4 text-slate-400 transition-transform ${mobileCarCare ? "rotate-180" : ""}`} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}><path strokeLinecap="round" strokeLinejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5"/></svg>
+                </button>
+                {mobileCarCare && (
+                  <div className="flex flex-col gap-0.5 py-1 pl-11 pr-2">
+                    {CAR_CARE_MENU.map((item) => (
                       <Link key={item.label} href={item.href} onClick={closeMenu}
                         className="rounded-lg px-3 py-2.5 text-sm text-slate-600 hover:bg-[#f8fbff]">
                         {item.label}

@@ -29,6 +29,9 @@ import { ServiceDetailPageClient } from "@/components/service-detail-page-client
 import { SPARK_PLUGS_META, FUEL_FILTER_META } from "@/lib/service-detail-meta";
 import { BrakeFluidPageClient } from "@/components/brake-fluid-page-client";
 import { PricesPageClient } from "@/components/prices-page-client";
+import { ShineProtectPageClient } from "@/components/shine-protect-page-client";
+import { ShineProtectAlloyPageClient } from "@/components/shine-protect-alloy-page-client";
+import { CustomerProtectComprehensivePageClient } from "@/components/customer-protect-comprehensive-page-client";
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -130,6 +133,15 @@ export default async function VisualEditorPage({ params }: Props) {
       break;
     case "prices":
       body = <PricesPageClient content={content} editable />;
+      break;
+    case "shine-protect":
+      body = <ShineProtectPageClient content={content} editable />;
+      break;
+    case "shine-protect-alloy":
+      body = <ShineProtectAlloyPageClient content={content} editable />;
+      break;
+    case "customer-protect-comprehensive":
+      body = <CustomerProtectComprehensivePageClient content={content} editable />;
       break;
     default:
       notFound();

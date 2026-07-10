@@ -15,6 +15,9 @@ import { REPAIRS_ELECTRICAL_FIELDS } from "@/lib/page-fields/repairs-electrical"
 import { CAR_SERVICING_INTERIM_FIELDS } from "@/lib/page-fields/car-servicing-interim";
 import { CAR_SERVICING_FULL_FIELDS } from "@/lib/page-fields/car-servicing-full";
 import { CAR_SERVICING_MAJOR_FIELDS } from "@/lib/page-fields/car-servicing-major";
+import { SHINE_PROTECT_FIELDS } from "@/lib/page-fields/shine-protect";
+import { SHINE_PROTECT_ALLOY_FIELDS } from "@/lib/page-fields/shine-protect-alloy";
+import { CUSTOMER_PROTECT_COMPREHENSIVE_FIELDS } from "@/lib/page-fields/customer-protect-comprehensive";
 
 export type FieldType = "text" | "textarea";
 
@@ -963,6 +966,24 @@ Pre-purchase inspection & health check`,
     label: "EV Battery Health",
     icon: "⚡",
     fields: EV_BATTERY_FIELDS,
+  },
+  {
+    slug: "shine-protect",
+    label: "Shine Protect",
+    icon: "✨",
+    fields: SHINE_PROTECT_FIELDS,
+  },
+  {
+    slug: "shine-protect-alloy",
+    label: "Shine Protect Alloy",
+    icon: "🛞",
+    fields: SHINE_PROTECT_ALLOY_FIELDS,
+  },
+  {
+    slug: "customer-protect-comprehensive",
+    label: "Comprehensive Warranty",
+    icon: "🛡️",
+    fields: CUSTOMER_PROTECT_COMPREHENSIVE_FIELDS,
   },
   {
     slug: "battery-check",
