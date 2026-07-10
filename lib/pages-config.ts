@@ -670,7 +670,8 @@ Reset Service Light & Digital History`,
         "tier_major_includes",
         "Major — bullet lines (one per line)",
         `Everything in Full Service
-Timing belt inspection (if due)
+Timing belt inspection
+Cabin filter inspection
 Comprehensive multi-point check
 Full road test & report
 Reset Service Light & Digital History`,

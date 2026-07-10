@@ -23,9 +23,11 @@ const FULL_FALLBACK = [
 
 const MAJOR_FALLBACK = [
   "Everything in Full Service",
-  "Timing belt inspection (if due)",
+  "Timing belt inspection",
+  "Cabin filter inspection",
   "Comprehensive multi-point check",
   "Full road test & report",
+  "Reset Service Light & Digital History",
 ] as const;
 
 const BRAKE_FLUID_FALLBACK = [
