@@ -230,29 +230,27 @@ export function SiteHeader() {
   const repairsActive = isActive("/repairs") && !isActive("/repairs/brakes") && !isActive("/repairs/tyres");
   const carCareActive = CAR_CARE_MENU.some((item) => isActive(item.href));
 
-  // Shared desktop nav link styles
+  // Shared desktop nav link styles — active page: bold text only, no background or underline
   const navLink = (active: boolean) =>
     `hdr-nav-link rounded-md transition ${
       active
-        ? "bg-[#eef4ff] font-bold text-[#0F63FF]"
-        : "font-medium text-slate-600 hover:bg-[#eef4ff] hover:text-[#020F3D]"
+        ? "font-bold text-[#020F3D]"
+        : "font-medium text-slate-600 hover:text-[#020F3D]"
     }`;
   const navDropdownLink = (active: boolean) =>
     `hdr-nav-link flex items-center gap-1 rounded-md transition ${
       active
-        ? "bg-[#eef4ff] font-bold text-[#0F63FF]"
-        : "font-medium text-slate-600 hover:bg-[#eef4ff] hover:text-[#020F3D]"
+        ? "font-bold text-[#020F3D]"
+        : "font-medium text-slate-600 hover:text-[#020F3D]"
     }`;
 
-  // Shared mobile menu item styles
-  const mobileRow = (active: boolean) =>
-    `flex items-center gap-3 rounded-xl px-3 py-3 transition ${active ? "bg-[#eef4ff]" : "hover:bg-[#f8fbff]"}`;
-  const mobileIcon = (active: boolean) =>
-    `flex h-9 w-9 shrink-0 items-center justify-center rounded-full ${
-      active ? "bg-[#0F63FF] text-white" : "bg-[#eef4ff] text-[#0F63FF]"
-    }`;
+  // Shared mobile menu item styles — match desktop: bold label when active
+  const mobileRow = (_active: boolean) =>
+    `flex items-center gap-3 rounded-xl px-3 py-3 transition hover:bg-[#f8fbff]`;
+  const mobileIcon = (_active: boolean) =>
+    `flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#eef4ff] text-[#0F63FF]`;
   const mobileLabel = (active: boolean) =>
-    `text-sm font-semibold ${active ? "text-[#0F63FF]" : "text-[#020F3D]"}`;
+    `text-sm ${active ? "font-bold text-[#020F3D]" : "font-semibold text-[#020F3D]"}`;
 
   // Lock background scroll while the mobile menu is open
   useEffect(() => {
