@@ -84,7 +84,7 @@ export default async function BlogPostPage({ params }: Props) {
     <article className="bg-white">
       {/* ── Hero — matches the home page gradient & centered style ── */}
       <section className="bg-gradient-to-b from-[#eefdff] via-[#f5feff] via-60% to-white px-4 pb-8 pt-10 text-center sm:pb-10 sm:pt-14">
-        <div className="mx-auto max-w-3xl">
+        <div className="mx-auto max-w-4xl">
           <Link
             href="/blog"
             className="mb-5 inline-flex items-center gap-2 rounded-full border border-[#d0dcea] bg-white px-4 py-2 shadow-sm transition hover:border-[#0F63FF]/40 hover:shadow-md"
@@ -107,7 +107,7 @@ export default async function BlogPostPage({ params }: Props) {
         </div>
       </section>
 
-      <div className="mx-auto max-w-3xl px-4 pb-14 sm:pb-16">
+      <div className="mx-auto max-w-5xl px-4 pb-14 sm:pb-16">
         {post.coverImageId && (
           <div className="mb-8 overflow-hidden rounded-2xl border border-[#e8effa] shadow-sm">
             {/* eslint-disable-next-line @next/next/no-img-element */}
