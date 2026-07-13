@@ -32,6 +32,7 @@ import { PricesPageClient } from "@/components/prices-page-client";
 import { ShineProtectPageClient } from "@/components/shine-protect-page-client";
 import { ShineProtectAlloyPageClient } from "@/components/shine-protect-alloy-page-client";
 import { CustomerProtectComprehensivePageClient } from "@/components/customer-protect-comprehensive-page-client";
+import { CeramicCoatPageClient } from "@/components/ceramic-coat-page-client";
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -142,6 +143,9 @@ export default async function VisualEditorPage({ params }: Props) {
       break;
     case "customer-protect-comprehensive":
       body = <CustomerProtectComprehensivePageClient content={content} editable />;
+      break;
+    case "ceramic-coat":
+      body = <CeramicCoatPageClient content={content} editable />;
       break;
     default:
       notFound();

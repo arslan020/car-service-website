@@ -261,7 +261,7 @@ export function CustomerProtectComprehensivePageClient({ content, editable = fal
               alt="Make a claim"
               width={526}
               height={526}
-              style={{ width: "100%", maxWidth: 263, height: "auto", objectFit: "contain", margin: "0 auto" }}
+              style={{ width: "100%", maxWidth: 300, height: "auto", objectFit: "contain", margin: "0 auto" }}
             />
           </div>
           <div className="cpc-w9">

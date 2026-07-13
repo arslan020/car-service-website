@@ -195,6 +195,7 @@ const CAR_CARE_MENU = [
   { href: "/shine-protect", label: "Shine! Protect", desc: "Cosmetic maintenance plan" },
   { href: "/shine-protect-alloy", label: "Shine! Protect Alloy", desc: "Alloy wheel maintenance plan" },
   { href: "/customer-protect-comprehensive", label: "Comprehensive Warranty", desc: "Cover up to 10 yrs / 100,000 miles" },
+  { href: "/ceramic-coat", label: "Ceramic Coat", desc: "Williams paint protection" },
 ] as const;
 
 const REPAIRS_MENU = [

@@ -18,6 +18,7 @@ import { CAR_SERVICING_MAJOR_FIELDS } from "@/lib/page-fields/car-servicing-majo
 import { SHINE_PROTECT_FIELDS } from "@/lib/page-fields/shine-protect";
 import { SHINE_PROTECT_ALLOY_FIELDS } from "@/lib/page-fields/shine-protect-alloy";
 import { CUSTOMER_PROTECT_COMPREHENSIVE_FIELDS } from "@/lib/page-fields/customer-protect-comprehensive";
+import { CERAMIC_COAT_FIELDS } from "@/lib/page-fields/ceramic-coat";
 
 export type FieldType = "text" | "textarea";
 
@@ -985,6 +986,12 @@ Pre-purchase inspection & health check`,
     label: "Comprehensive Warranty",
     icon: "🛡️",
     fields: CUSTOMER_PROTECT_COMPREHENSIVE_FIELDS,
+  },
+  {
+    slug: "ceramic-coat",
+    label: "Ceramic Coat",
+    icon: "💎",
+    fields: CERAMIC_COAT_FIELDS,
   },
   {
     slug: "battery-check",

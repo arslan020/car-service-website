@@ -53,6 +53,7 @@ module.exports = {
       '/shine-protect':           { priority: 0.8, changefreq: 'weekly' },
       '/shine-protect-alloy':     { priority: 0.8, changefreq: 'weekly' },
       '/customer-protect-comprehensive': { priority: 0.8, changefreq: 'weekly' },
+      '/ceramic-coat':            { priority: 0.8, changefreq: 'weekly' },
       '/blog':                    { priority: 0.7, changefreq: 'weekly' },
       '/about-us':                { priority: 0.7, changefreq: 'monthly' },
       '/contact':                 { priority: 0.7, changefreq: 'monthly' },
