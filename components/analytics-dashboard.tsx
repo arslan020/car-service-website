@@ -52,13 +52,13 @@ function channelColor(name: string): string {
 
 // GA's channel jargon, translated for a garage owner
 const CHANNEL_LABELS: Record<string, string> = {
-  "Organic Search": "Google search (free)",
-  "Paid Search": "Google Ads (paid)",
-  "Cross-network": "Google Ads network",
-  Direct: "Typed address / bookmark",
-  Referral: "Links on other websites",
-  "Organic Social": "Social media",
-  Email: "Email links",
+  "Organic Search": "Google search (SEO)",
+  "Paid Search": "Google search ad (paid)",
+  "Cross-network": "Social media ad",
+  Direct: "Already knew us",
+  Referral: "Other websites",
+  "Organic Social": "Social media (free)",
+  Email: "Email",
   Unassigned: "Other / unknown",
 };
 
