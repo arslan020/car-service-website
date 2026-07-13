@@ -54,7 +54,7 @@ function channelColor(name: string): string {
 const CHANNEL_LABELS: Record<string, string> = {
   "Organic Search": "Organic Google search",
   "Paid Search": "Google search ad (paid)",
-  "Cross-network": "Social media ad",
+  "Cross-network": "Google Ads network",
   Direct: "Already knew us",
   Referral: "Other websites",
   "Organic Social": "Social media (free)",
