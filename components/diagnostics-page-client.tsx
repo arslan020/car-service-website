@@ -62,6 +62,9 @@ export function DiagnosticsPageClient({ content: c, editable = false }: { conten
               <p className="text-xs font-bold uppercase tracking-widest text-[#0F63FF]"><EditableText pageKey="diagnostics" fieldKey="hero_eyebrow" value={c.hero_eyebrow} editable={editable} /></p>
               <h1 className="mt-2 text-3xl font-extrabold leading-tight text-[#020F3D] sm:text-5xl"><EditableText pageKey="diagnostics" fieldKey="hero_title" value={c.hero_title} editable={editable} /></h1>
               <p className="mt-4 text-base leading-relaxed text-slate-500 sm:text-lg"><EditableText pageKey="diagnostics" fieldKey="hero_subtitle" value={c.hero_subtitle} type="textarea" editable={editable} /></p>
+              <p className="mt-4 inline-flex items-center gap-1.5 rounded-full bg-[#0F63FF]/10 px-4 py-1.5 text-sm font-bold text-[#0F63FF]">
+                <EditableText pageKey="diagnostics" fieldKey="hero_price_badge" value={c.hero_price_badge} editable={editable} />
+              </p>
               <div className="mt-7 flex flex-col gap-3 sm:flex-row">
                 <Link href="/online-booking?service=diagnostics" className="flex items-center justify-center gap-2 rounded-xl bg-[#020F3D] px-6 py-3.5 text-sm font-bold text-white shadow-md transition hover:bg-[#061744]">
                   <EditableText pageKey="diagnostics" fieldKey="btn_book" value={c.btn_book} editable={editable} />

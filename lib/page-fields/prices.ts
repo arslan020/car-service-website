@@ -22,7 +22,8 @@ Full Service|£239|£319|£369|QUOTE
 Major Service|£269|£349|£399|QUOTE
 Brake Fluid Service|£99|£99|£99|£99`;
 
-const ADDITIONAL_TABLE_DEFAULT = `Diagnostics|£54|£54|£54
+const ADDITIONAL_TABLE_DEFAULT = `Diagnostic (up to 30 min) + Free Mini Health Check|£54|£54|£54
+Diagnostic (up to 1hr) + Free Mini Health Check|£79|£79|£79
 Brakes|Free check / walk-in|Free check / walk-in|Free check / walk-in
 Tyres|Free check / walk-in|Free check / walk-in|Free check / walk-in
 Battery Check|Free check / walk-in|Free check / walk-in|Free check / walk-in
