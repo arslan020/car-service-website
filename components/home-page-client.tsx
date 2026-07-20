@@ -97,7 +97,6 @@ const FEATURED_SERVICES = [
     titleKey: "svc_2_title",
     descKey: "svc_2_desc",
     priceKey: "svc_2_price",
-    noFromLabel: true,
     icon: (
       <svg className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth={1.75} viewBox="0 0 24 24">
         <path strokeLinecap="round" strokeLinejoin="round" d="M3 7a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7zM1 19h22M7 11h1.5l1.5-2 2 4 1.5-2H17"/>
