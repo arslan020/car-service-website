@@ -109,7 +109,7 @@ const SECTIONS = [
   {
     title: "13. Data Protection",
     clauses: [
-      "Any personal data you provide to us will be processed in accordance with the UK General Data Protection Regulation and the Data Protection Act 2018, and used solely for the purposes of providing our services to you, contacting you regarding your vehicle, and complying with our legal and regulatory obligations. We do not share your data with third parties except where necessary to deliver the service requested (for example, parts suppliers or DVSA) or where required by law. Our Privacy Policy is available on request and at www.mariestonservicecentre.co.uk.",
+      "Any personal data you provide to us will be processed in accordance with the UK General Data Protection Regulation and the Data Protection Act 2018, and used for the purposes of providing our services to you, contacting you regarding your vehicle, complying with our legal and regulatory obligations, and, where permitted, promoting our services to you as described in our Privacy Policy. We do not sell or rent your data. We may share your data with third parties where necessary to deliver the service requested (for example, parts suppliers or DVSA), with advertising partners such as Google for the purpose of showing you relevant ads and measuring their performance (you can opt out of this at any time), or where required by law. Our Privacy Policy sets out this in full and is available on request and at www.mariestonservicecentre.co.uk.",
     ],
   },
   {
