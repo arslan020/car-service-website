@@ -29,7 +29,7 @@ export const EV_BATTERY_FIELDS: FieldDef[] = [
   T("hero_btn_book", "Hero — book button", "Book EV Battery Check", "Hero"),
   T("hero_btn_whatsapp", "Hero — WhatsApp button", "WhatsApp us", "Hero"),
   // Stats
-  T("stat_1_value", "Stat 1 — value", "from £79", "Stats"),
+  T("stat_1_value", "Stat 1 — value", "From £79", "Stats"),
   T("stat_1_label", "Stat 1 — label", "Battery Health Check", "Stats"),
   T("stat_2_value", "Stat 2 — value", "BEV & PHEV", "Stats"),
   T("stat_2_label", "Stat 2 — label", "All EV & Hybrid Types", "Stats"),

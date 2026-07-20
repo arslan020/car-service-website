@@ -21,7 +21,7 @@ export const CAR_SERVICING_MAJOR_FIELDS: FieldDef[] = [
   T("hero_kicker", "Hero — kicker", "Car Servicing", "Hero"),
   T("hero_title", "Page Title", "Major Service", "Hero"),
   A("hero_subtitle", "Subtitle", "The most comprehensive service — everything in a Full Service plus a timing belt inspection, a multi-point check, and a full road test.", "Hero"),
-  T("price_display", "Hero — price", "from £269", "Hero"),
+  T("price_display", "Hero — price", "From £269", "Hero"),
   T("price_note", "Hero — price note", "+ Add MOT for £35", "Hero"),
   T("interval_prefix", "Interval badge — prefix", "Every", "Hero"),
   T("interval_time", "Interval badge — time (bold)", "2 years", "Hero"),

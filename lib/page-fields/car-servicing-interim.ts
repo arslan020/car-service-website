@@ -22,7 +22,7 @@ export const CAR_SERVICING_INTERIM_FIELDS: FieldDef[] = [
   T("hero_kicker", "Hero — kicker", "Car Servicing", "Hero"),
   T("hero_title", "Page Title", "Oil Service", "Hero"),
   A("hero_subtitle", "Subtitle", "Fresh engine oil and filter, plus a full multi-point safety check — keeps your engine protected and your warranty intact between full services. Ideal for high-mileage drivers.", "Hero"),
-  T("price_display", "Hero — price", "from £139", "Hero"),
+  T("price_display", "Hero — price", "From £139", "Hero"),
   T("price_note", "Hero — price note", "+ Add MOT for £35", "Hero"),
   T("interval_prefix", "Interval badge — prefix", "Every", "Hero"),
   T("interval_time", "Interval badge — time (bold)", "6 months", "Hero"),
