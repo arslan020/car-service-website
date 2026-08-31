@@ -41,12 +41,12 @@ const PAGE_TREE: PageTreeItem[] = [
   { type: "link", slug: "contact" },
 ];
 
-// Simple line icons (matches the Overview nav item's style) — replaces the
+// Simple line icons (matches the Overview nav item's style), replaces the
 // colorful emoji from pages-config.ts within this sidebar list specifically.
 const LINE_ICON_PATHS: Record<string, string> = {
   home: "M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6",
   "about-us": "M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z",
-  // Three-triangles MOT mark — same as the public site header's MOT icon
+  // Three-triangles MOT mark, same as the public site header's MOT icon
   mot: "M7.5 2 1.5 13h12L7.5 2ZM16.5 2l-6 11h12l-6-11ZM12 11.5 5 22h14L12 11.5Z",
   servicing: "M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2M9 5a2 2 0 0 0 2 2h2a2 2 0 0 0 2-2M9 5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2m-6 7 2 2 4-4m-6 5h4",
   "brake-fluid": "M12 2.25c-2.5 4.25-6 8.25-6 12a6 6 0 1 0 12 0c0-3.75-3.5-7.75-6-12Z",
@@ -248,7 +248,7 @@ export function DashboardSidebar({ adminName }: { adminName: string }) {
                 </svg>
               </button>
 
-              {/* Sub-items — grouped to match the public site header's nav */}
+              {/* Sub-items, grouped to match the public site header's nav */}
               {pagesOpen && (
                 <ul className="ml-4 mt-1 space-y-0.5 border-l-2 border-[#e8effa] pl-3">
                   {PAGE_TREE.map((item) => {

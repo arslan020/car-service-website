@@ -21,7 +21,7 @@ export function BlogPostEditor({ post }: { post?: EditorPost }) {
   const [error, setError] = useState<string | null>(null);
   const [saved, setSaved] = useState(false);
 
-  // Rich text content — older posts were stored as plain text, convert on load
+  // Rich text content, older posts were stored as plain text, convert on load
   const contentRef = useRef<HTMLDivElement>(null);
   const initialHtml =
     post?.content && !/<\w+[^>]*>/.test(post.content)
@@ -183,7 +183,7 @@ export function BlogPostEditor({ post }: { post?: EditorPost }) {
       <div className="rounded-2xl border border-[#e0ebff] bg-white p-5 shadow-sm">
         <label className="mb-1.5 block text-sm font-semibold text-[#020F3D]">Content</label>
         <p className="mb-3 text-xs text-slate-400">
-          Select text and use the toolbar to format it — bold, headings, lists — or insert pictures between paragraphs.
+          Select text and use the toolbar to format it, bold, headings, lists, or insert pictures between paragraphs.
         </p>
         <RichTextEditor editorRef={contentRef} initialHtml={initialHtml} />
       </div>

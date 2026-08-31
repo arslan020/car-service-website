@@ -15,7 +15,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   return {
     title: `${post.title} | ${site.name}`,
-    description: post.excerpt || `${post.title} — car care advice from ${site.name}.`,
+    description: post.excerpt || `${post.title}, car care advice from ${site.name}.`,
     alternates: { canonical: `https://www.mariestonservicecentre.co.uk/blog/${post.slug}` },
     openGraph: {
       title: post.title,
@@ -82,7 +82,7 @@ export default async function BlogPostPage({ params }: Props) {
 
   return (
     <article className="bg-white">
-      {/* ── Hero — matches the home page gradient & centered style ── */}
+      {/* ── Hero, matches the home page gradient & centered style ── */}
       <section className="bg-gradient-to-b from-[#eefdff] via-[#f5feff] via-60% to-white px-4 pb-8 pt-10 text-center sm:pb-10 sm:pt-14">
         <div className="mx-auto max-w-4xl">
           <Link
@@ -121,12 +121,12 @@ export default async function BlogPostPage({ params }: Props) {
 
         <ArticleBody content={post.content} />
 
-        {/* ── Bottom CTA — same dark navy panel used across service pages ── */}
+        {/* ── Bottom CTA, same dark navy panel used across service pages ── */}
         <div className="mt-12 overflow-hidden rounded-3xl bg-[#020F3D] px-8 py-10 text-center shadow-xl sm:py-14">
           <p className="text-xs font-bold uppercase tracking-widest text-[#4DA3FF]">Book online</p>
           <h2 className="mt-2 text-2xl font-extrabold text-white sm:text-3xl">Need help with your car?</h2>
           <p className="mx-auto mt-3 max-w-md text-sm leading-relaxed text-slate-300">
-            Book your MOT, service or repair online in minutes — or message us and we&apos;ll sort it for you.
+            Book your MOT, service or repair online in minutes, or message us and we&apos;ll sort it for you.
           </p>
           <div className="mt-7 flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
             <Link

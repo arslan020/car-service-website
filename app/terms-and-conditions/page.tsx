@@ -2,7 +2,7 @@ import { site } from "@/lib/site-config";
 
 export const metadata = {
   title: `Terms and Conditions | ${site.name}`,
-  description: "Terms and Conditions of Business for Marieston Service Centre Ltd — applicable to all quotations, estimates and invoices for workshop, servicing, repair, diagnostic and MOT testing services.",
+  description: "Terms and Conditions of Business for Marieston Service Centre Ltd, applicable to all quotations, estimates and invoices for workshop, servicing, repair, diagnostic and MOT testing services.",
   alternates: { canonical: "https://www.mariestonservicecentre.co.uk/terms-and-conditions" },
 };
 
@@ -153,7 +153,7 @@ export default function TermsPage() {
             <span className="text-slate-300">|</span>
             <span>Mon–Sat 9 am–6 pm</span>
             <span className="text-slate-300">|</span>
-            <span>Version 1.0 — July 2026</span>
+            <span>Version 1.0, July 2026</span>
           </div>
           <p className="mt-4 text-xs leading-relaxed text-slate-500">
             These Terms and Conditions (&ldquo;Terms&rdquo;) apply to all quotations, estimates, work orders and invoices issued by Marieston Service Centre Ltd (&ldquo;the Company&rdquo;, &ldquo;we&rdquo;, &ldquo;us&rdquo;) in connection with vehicle servicing, repair, diagnostic, parts and MOT testing services provided to any customer (&ldquo;you&rdquo;, &ldquo;the Customer&rdquo;). By authorising work to proceed, whether verbally, in writing, electronically or by leaving your vehicle with us, you agree to be bound by these Terms.

@@ -75,7 +75,7 @@ export default async function DashboardPage() {
     <div>
       <div className="mb-6">
         <h1 className="text-2xl font-extrabold text-[#020F3D]">Overview</h1>
-        <p className="mt-0.5 text-sm text-slate-500">Welcome back — manage your website content below.</p>
+        <p className="mt-0.5 text-sm text-slate-500">Welcome back, manage your website content below.</p>
       </div>
 
       {/* ── Stats ── */}
@@ -91,7 +91,7 @@ export default async function DashboardPage() {
               <div>
                 <p className="text-2xl font-extrabold leading-none text-[#020F3D]">{s.value}</p>
                 <p className="mt-1 text-xs text-slate-400">
-                  <span className="font-semibold text-slate-500">{s.label}</span> — {s.sub}
+                  <span className="font-semibold text-slate-500">{s.label}</span>, {s.sub}
                 </p>
               </div>
             </div>
@@ -184,7 +184,7 @@ export default async function DashboardPage() {
           <path strokeLinecap="round" strokeLinejoin="round" d="M11.25 11.25l.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z" />
         </svg>
         <p className="text-xs text-slate-500">
-          <span className="font-semibold text-slate-600">Bookings are managed through Motasoft</span> — this dashboard is for website content and the blog.
+          <span className="font-semibold text-slate-600">Bookings are managed through Motasoft</span>, this dashboard is for website content and the blog.
         </p>
       </div>
     </div>

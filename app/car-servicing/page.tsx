@@ -29,7 +29,7 @@ export default async function CarServicingPage() {
       "Isleworth", "Ruislip", "Acton", "Chiswick", "Brentford", "Hanwell",
       "West Drayton", "Hillingdon", "Watford", "Kingston upon Thames", "Staines-upon-Thames",
     ].map((name) => ({ "@type": "Place", name })),
-    description: "Oil, full and major car servicing in Hayes UB4 by qualified mechanics — serving West London and surrounding areas.",
+    description: "Oil, full and major car servicing in Hayes UB4 by qualified mechanics, serving West London and surrounding areas.",
     url: "https://www.mariestonservicecentre.co.uk/car-servicing",
     hasOfferCatalog: {
       "@type": "OfferCatalog",

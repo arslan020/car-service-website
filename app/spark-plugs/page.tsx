@@ -6,7 +6,7 @@ import { SPARK_PLUGS_META } from "@/lib/service-detail-meta";
 
 export const metadata: Metadata = {
   title: "Spark Plug Replacement Hayes UB4 | ~1 Hour Fitting | Marieston",
-  description: "Spark plug replacement in Hayes UB4 — manufacturer-spec plugs fitted in around an hour. Fixes misfires, rough idling & poor fuel economy. Serving West London.",
+  description: "Spark plug replacement in Hayes UB4, manufacturer-spec plugs fitted in around an hour. Fixes misfires, rough idling & poor fuel economy. Serving West London.",
   alternates: { canonical: "https://www.mariestonservicecentre.co.uk/spark-plugs" },
   openGraph: {
     title: "Spark Plug Replacement Hayes UB4 | Marieston Service Centre",

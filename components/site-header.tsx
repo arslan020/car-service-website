@@ -6,7 +6,7 @@ import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { site, waUrl } from "@/lib/site-config";
 
-// Responsive rules in plain CSS — the dev Tailwind pipeline misses newly added
+// Responsive rules in plain CSS, the dev Tailwind pipeline misses newly added
 // variant classes, so these are shipped with the component instead.
 const HDR_CSS = `
 .hdr-bar{
@@ -231,7 +231,7 @@ export function SiteHeader() {
   const repairsActive = isActive("/repairs") && !isActive("/repairs/brakes") && !isActive("/repairs/tyres");
   const carCareActive = CAR_CARE_MENU.some((item) => isActive(item.href));
 
-  // Shared desktop nav link styles — active page: bold text only, no background or underline
+  // Shared desktop nav link styles, active page: bold text only, no background or underline
   const navLink = (active: boolean) =>
     `hdr-nav-link rounded-md transition ${
       active
@@ -245,7 +245,7 @@ export function SiteHeader() {
         : "font-medium text-slate-600 hover:text-[#020F3D]"
     }`;
 
-  // Shared mobile menu item styles — match desktop: bold label when active
+  // Shared mobile menu item styles, match desktop: bold label when active
   const mobileRow = (_active: boolean) =>
     `flex items-center gap-3 rounded-xl px-3 py-3 transition hover:bg-[#f8fbff]`;
   const mobileIcon = (_active: boolean) =>
@@ -572,7 +572,7 @@ export function SiteHeader() {
                 <span className={mobileLabel(isActive("/mot"))}>MOT</span>
               </Link>
 
-              {/* Car Servicing — expandable */}
+              {/* Car Servicing, expandable */}
               <div>
                 <div className="flex w-full items-stretch">
                   <Link href="/car-servicing" onClick={closeMenu}
@@ -605,7 +605,7 @@ export function SiteHeader() {
                 )}
               </div>
 
-              {/* Additional Services — expandable */}
+              {/* Additional Services, expandable */}
               <div>
                 <div className="flex w-full items-stretch">
                   <Link href="/services" onClick={closeMenu}
@@ -633,7 +633,7 @@ export function SiteHeader() {
                 )}
               </div>
 
-              {/* Repairs — expandable */}
+              {/* Repairs, expandable */}
               <div>
                 <div className="flex w-full items-stretch">
                   <Link href="/repairs" onClick={closeMenu}
@@ -661,7 +661,7 @@ export function SiteHeader() {
                 )}
               </div>
 
-              {/* Car Care — expandable */}
+              {/* Car Care, expandable */}
               <div>
                 <button
                   type="button"
@@ -720,7 +720,7 @@ export function SiteHeader() {
 
             </nav>
 
-            {/* Footer — social & quote */}
+            {/* Footer, social & quote */}
             <div className="shrink-0 border-t border-[#e8effa] bg-[#f8fbff] px-4 pt-4 pb-[calc(1rem+env(safe-area-inset-bottom))]">
               <p className="mb-3 text-center text-[10px] font-bold uppercase tracking-[0.2em] text-slate-400">
                 Get in touch

@@ -7,12 +7,12 @@ import { EditableText } from "@/components/editable-text";
 import type { ContentMap } from "@/lib/page-content";
 
 const COVER_FALLBACK = [
-  "OBD-II / serial diagnostics — all makes & models",
+  "OBD-II / serial diagnostics, all makes & models",
   "Engine management & ECU fault reading",
   "ABS, airbag & traction control system faults",
   "Transmission & gearbox fault codes",
   "Emission & DPF system diagnosis",
-  "Live data analysis — sensors, injectors, MAF",
+  "Live data analysis, sensors, injectors, MAF",
   "Electrical circuit testing & short tracing",
   "Pre-purchase inspection & health check",
 ] as const;
@@ -20,7 +20,7 @@ const COVER_FALLBACK = [
 const FAQS = [
   {
     q: "What does a car diagnostic check actually do?",
-    a: "We connect professional OBD-II equipment to your car's onboard system, reading fault codes and live sensor data across the engine, ABS, airbag, transmission, and other modules — giving a precise picture of what's wrong.",
+    a: "We connect professional OBD-II equipment to your car's onboard system, reading fault codes and live sensor data across the engine, ABS, airbag, transmission, and other modules, giving a precise picture of what's wrong.",
   },
   {
     q: "Can you find a fault even if the warning light has gone off?",
@@ -28,11 +28,11 @@ const FAQS = [
   },
   {
     q: "How long does a diagnostic check take?",
-    a: "A standard scan takes 30–60 minutes. More complex faults requiring live data analysis or circuit testing may take longer — we'll advise once we've assessed the vehicle.",
+    a: "A standard scan takes 30–60 minutes. More complex faults requiring live data analysis or circuit testing may take longer, we'll advise once we've assessed the vehicle.",
   },
   {
     q: "Do you charge for the diagnostic check?",
-    a: "We charge a clearly quoted diagnostic fee upfront. If you proceed with the repair at our garage, the diagnostic cost is factored into the overall quote — ask us for details when you book.",
+    a: "We charge a clearly quoted diagnostic fee upfront. If you proceed with the repair at our garage, the diagnostic cost is factored into the overall quote, ask us for details when you book.",
   },
 ] as const;
 

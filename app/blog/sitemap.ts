@@ -7,7 +7,7 @@ const SITE_URL = "https://www.mariestonservicecentre.co.uk";
 // in the sitemap immediately, without needing a redeploy.
 export const dynamic = "force-dynamic";
 
-// Served at /blog/sitemap.xml — listed in robots.txt via next-sitemap.config.js
+// Served at /blog/sitemap.xml, listed in robots.txt via next-sitemap.config.js
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const posts = await getPublishedPosts();
 

@@ -54,7 +54,7 @@ export function QuotePageClient() {
             Describe the Problem
           </h1>
           <p className="mt-4 text-base leading-relaxed text-slate-500">
-            For non-standard jobs — noises, warning lights, damage — send details and we&apos;ll come back with next steps.
+            For non-standard jobs, noises, warning lights, damage, send details and we&apos;ll come back with next steps.
             For routine servicing, use the{" "}
             <Link href="/online-booking" className="font-semibold text-[#0F63FF] underline-offset-2 hover:text-[#020F3D] hover:underline">
               booking form
@@ -75,7 +75,7 @@ export function QuotePageClient() {
                 </span>
                 <h3 className="text-xl font-extrabold text-[#020F3D]">Request Sent!</h3>
                 <p className="max-w-sm text-sm text-slate-500">
-                  We&apos;ve received your quote request and will get back to you as soon as possible — usually within a few hours during opening times.
+                  We&apos;ve received your quote request and will get back to you as soon as possible, usually within a few hours during opening times.
                 </p>
                 <div className="mt-2 flex flex-col gap-3 sm:flex-row">
                   <button

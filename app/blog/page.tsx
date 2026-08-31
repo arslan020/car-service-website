@@ -18,7 +18,7 @@ export default async function BlogPage() {
 
   return (
     <div className="bg-white">
-      {/* ── Hero — matches the home page gradient & centered style ── */}
+      {/* ── Hero, matches the home page gradient & centered style ── */}
       <section className="bg-gradient-to-b from-[#eefdff] via-[#f5feff] via-60% to-white px-4 pb-10 pt-10 text-center sm:pb-14 sm:pt-14">
         <div className="mx-auto max-w-3xl">
           <p className="text-xs font-bold uppercase tracking-widest text-[#0F63FF]">Blog</p>
@@ -36,7 +36,7 @@ export default async function BlogPage() {
         <div className="mx-auto max-w-5xl">
           {posts.length === 0 ? (
             <div className="rounded-2xl border border-[#e8effa] bg-white p-12 text-center shadow-sm">
-              <p className="text-sm font-medium text-slate-500">No articles published yet — check back soon.</p>
+              <p className="text-sm font-medium text-slate-500">No articles published yet, check back soon.</p>
             </div>
           ) : (
             <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">

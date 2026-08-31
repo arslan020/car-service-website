@@ -22,7 +22,7 @@ const repairsSchema = {
     "Isleworth", "Ruislip", "Acton", "Chiswick", "Brentford", "Hanwell",
     "West Drayton", "Hillingdon", "Watford", "Kingston upon Thames", "Staines-upon-Thames",
   ].map((name) => ({ "@type": "Place", name })),
-  description: "Expert car repairs in Hayes UB4 — brakes, clutch, suspension, exhaust, engine and electrical. Serving West London and surrounding areas.",
+  description: "Expert car repairs in Hayes UB4, brakes, clutch, suspension, exhaust, engine and electrical. Serving West London and surrounding areas.",
   url: "https://www.mariestonservicecentre.co.uk/repairs",
 };
 

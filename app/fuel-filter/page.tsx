@@ -6,7 +6,7 @@ import { FUEL_FILTER_META } from "@/lib/service-detail-meta";
 
 export const metadata: Metadata = {
   title: "Fuel Filter Change Hayes UB4 | ~30 Minute Fitting | Marieston",
-  description: "Fuel filter change in Hayes UB4 for petrol & diesel cars — correct-spec filter fitted in about 30 minutes. Fixes poor starting & sluggish performance.",
+  description: "Fuel filter change in Hayes UB4 for petrol & diesel cars, correct-spec filter fitted in about 30 minutes. Fixes poor starting & sluggish performance.",
   alternates: { canonical: "https://www.mariestonservicecentre.co.uk/fuel-filter" },
   openGraph: {
     title: "Fuel Filter Change Hayes UB4 | Marieston Service Centre",

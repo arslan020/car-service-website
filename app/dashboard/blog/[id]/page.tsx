@@ -24,7 +24,7 @@ export default async function EditBlogPostPage({ params }: Props) {
           Back to blog
         </Link>
         <h1 className="text-2xl font-extrabold text-[#020F3D]">Edit post</h1>
-        <p className="mt-0.5 text-sm text-slate-500">Update this article — changes go live as soon as you save.</p>
+        <p className="mt-0.5 text-sm text-slate-500">Update this article, changes go live as soon as you save.</p>
       </div>
       <BlogPostEditor
         post={{

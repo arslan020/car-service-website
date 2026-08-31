@@ -2,7 +2,7 @@
 
 export const metadata = {
   title: `Privacy Policy | ${site.name}`,
-  description: `Privacy policy for ${site.name} — how we collect, use, and protect your personal information.`,
+  description: `Privacy policy for ${site.name}, how we collect, use, and protect your personal information.`,
 };
 
 type Section = {

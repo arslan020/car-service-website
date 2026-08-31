@@ -70,7 +70,7 @@ export function OnlineBookingClient() {
       <div className="border-b border-[#e0ebff] bg-[#f8fbff] px-4 py-3 text-center">
         <h1 className="text-sm font-semibold text-[#020F3D]">Book Your MOT or Car Service Online</h1>
         <p className="mt-0.5 text-xs text-slate-500">
-          Choose your service and time slot below — secure booking powered by our workshop system.
+          Choose your service and time slot below, secure booking powered by our workshop system.
         </p>
       </div>
 
@@ -83,7 +83,7 @@ export function OnlineBookingClient() {
         )}
         <iframe
           ref={iframeRef}
-          title="Online booking — Marieston Service Centre"
+          title="Online booking, Marieston Service Centre"
           className="block w-full border-none"
           style={{
             height: `${IFRAME_CONTENT_HEIGHT}px`,

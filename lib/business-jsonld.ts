@@ -2,7 +2,7 @@ import { site } from "@/lib/site-config";
 
 const siteUrl = "https://www.mariestonservicecentre.co.uk";
 
-/** Full business node for JSON-LD `provider` fields — LocalBusiness validation requires `address`. */
+/** Full business node for JSON-LD `provider` fields, LocalBusiness validation requires `address`. */
 export const BUSINESS_JSONLD = {
   "@type": "AutoRepair",
   "@id": `${siteUrl}/#business`,

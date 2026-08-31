@@ -156,7 +156,7 @@ export default async function VisualEditorPage({ params }: Props) {
       <div className="sticky top-0 z-40 flex flex-wrap items-center justify-between gap-3 border-b border-[#e0ebff] bg-[#020F3D] px-4 py-3 text-white">
         <div className="flex items-center gap-3">
           <span className="text-sm font-bold">
-            {pageDef.icon} Visual Editor — {pageDef.label}
+            {pageDef.icon} Visual Editor, {pageDef.label}
           </span>
         </div>
         <div className="flex items-center gap-3">

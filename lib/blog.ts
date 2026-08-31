@@ -15,7 +15,7 @@ export interface BlogPostRow {
   updatedAt: Date;
 }
 
-/** All posts, newest first — for the dashboard list. */
+/** All posts, newest first, for the dashboard list. */
 export async function getAllPosts(): Promise<BlogPostRow[]> {
   try {
     return await prisma.$queryRaw<BlogPostRow[]>`
@@ -28,7 +28,7 @@ export async function getAllPosts(): Promise<BlogPostRow[]> {
   }
 }
 
-/** Published posts, newest first — for the public /blog page. */
+/** Published posts, newest first, for the public /blog page. */
 export async function getPublishedPosts(): Promise<BlogPostRow[]> {
   try {
     return await prisma.$queryRaw<BlogPostRow[]>`

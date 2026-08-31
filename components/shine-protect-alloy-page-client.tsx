@@ -13,13 +13,13 @@ const shineProtectAlloySchema = {
   name: "Shine! Protect Alloy Maintenance Plan",
   provider: BUSINESS_JSONLD,
   description:
-    "Shine! Protect Alloy maintenance plan — keep your alloy wheels in showroom condition. Convenient mobile repairs to minor chips, scuffs and scratches on your alloy wheels.",
+    "Shine! Protect Alloy maintenance plan, keep your alloy wheels in showroom condition. Convenient mobile repairs to minor chips, scuffs and scratches on your alloy wheels.",
   url: "https://www.mariestonservicecentre.co.uk/shine-protect-alloy",
 };
 
 const FONT = "Lato, Tahoma, Verdana, Segoe, sans-serif";
 
-// Column layout in plain CSS — the dev Tailwind pipeline misses newly added
+// Column layout in plain CSS, the dev Tailwind pipeline misses newly added
 // fractional width classes, so these are shipped with the component instead.
 const COLS_CSS = `
 .cpc-row{display:flex;flex-direction:column}

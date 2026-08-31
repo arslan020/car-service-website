@@ -12,7 +12,7 @@ export function SiteFooter() {
       <div className="mx-auto max-w-7xl px-4 pt-14 pb-10 sm:px-6 lg:px-8">
         <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-6">
 
-          {/* Col 1 — Brand */}
+          {/* Col 1, Brand */}
           <div className="lg:col-span-1">
             <Link href="/" className="inline-block w-[160px]">
               <Image
@@ -26,7 +26,7 @@ export function SiteFooter() {
               />
             </Link>
             <p className="mt-4 text-sm leading-relaxed text-slate-400">
-              MOT, oil and full servicing, repairs, diagnostics, tyres and brakes — DVSA approved garage in Hayes, UB4.
+              MOT, oil and full servicing, repairs, diagnostics, tyres and brakes, DVSA approved garage in Hayes, UB4.
             </p>
 
             {/* Social icons */}
@@ -80,7 +80,7 @@ export function SiteFooter() {
             </div>
           </div>
 
-          {/* Col 2 — Company */}
+          {/* Col 2, Company */}
           <div>
             <p className="text-xs font-bold uppercase tracking-widest text-white">Company</p>
             <ul className="mt-4 space-y-2.5">
@@ -100,7 +100,7 @@ export function SiteFooter() {
             </ul>
           </div>
 
-          {/* Col 3 — Services */}
+          {/* Col 3, Services */}
           <div>
             <p className="text-xs font-bold uppercase tracking-widest text-white">Services</p>
             <ul className="mt-4 space-y-2.5">
@@ -124,7 +124,7 @@ export function SiteFooter() {
             </ul>
           </div>
 
-          {/* Col 3 — Repairs */}
+          {/* Col 3, Repairs */}
           <div>
             <p className="text-xs font-bold uppercase tracking-widest text-white">Repairs</p>
             <ul className="mt-4 space-y-2.5">
@@ -144,7 +144,7 @@ export function SiteFooter() {
             </ul>
           </div>
 
-          {/* Col 4 — Areas We Serve */}
+          {/* Col 4, Areas We Serve */}
           <div>
             <p className="text-xs font-bold uppercase tracking-widest text-white">Areas We Serve</p>
             <ul className="mt-4 space-y-2.5">
@@ -168,7 +168,7 @@ export function SiteFooter() {
             </ul>
           </div>
 
-          {/* Col 5 — Contact & Visit */}
+          {/* Col 5, Contact & Visit */}
           <div>
             <p className="text-xs font-bold uppercase tracking-widest text-white">Contact</p>
             <ul className="mt-4 space-y-3">

@@ -8,7 +8,7 @@ function formatCompact(n: number): string {
 }
 
 function formatDelta(current: number, previous: number): { text: string; tone: "up" | "down" | "new" | "flat" } | null {
-  // No previous-period data yet — a badge would only confuse, so show nothing
+  // No previous-period data yet, a badge would only confuse, so show nothing
   if (previous === 0) return null;
   const pct = Math.round(((current - previous) / previous) * 100);
   if (pct === 0) return null;
@@ -215,7 +215,7 @@ function AdsHeroBanner({ campaigns }: { campaigns: GaAdsCampaign[] }) {
 
       {campaigns.length === 0 ? (
         <p className="relative mt-8 rounded-2xl bg-white/10 p-4 text-sm text-emerald-50/90 ring-1 ring-white/10">
-          No ad data yet — once your campaigns run, spend and clicks appear here (can take up to a day).
+          No ad data yet, once your campaigns run, spend and clicks appear here (can take up to a day).
         </p>
       ) : (
         <div className="relative mt-5 grid gap-3 sm:grid-cols-3">
@@ -247,7 +247,7 @@ function InsightStrip({ report }: { report: GaReport }) {
   }, null);
 
   const pagesPerSession =
-    report.totals.sessions > 0 ? (report.totals.pageViews / report.totals.sessions).toFixed(1) : "—";
+    report.totals.sessions > 0 ? (report.totals.pageViews / report.totals.sessions).toFixed(1) : "N/A";
 
   const insights = [
     {
@@ -562,9 +562,9 @@ export function AnalyticsDashboard({ report }: { report: GaReport }) {
       <InsightStrip report={report} />
 
       <div className="grid gap-4 xl:grid-cols-5">
-        <Panel title="Daily visitors" sub="How many people came to the site each day — hover a dot for the exact number" className="xl:col-span-3">
+        <Panel title="Daily visitors" sub="How many people came to the site each day, hover a dot for the exact number" className="xl:col-span-3">
           {!hasTraffic || report.daily.length === 0 ? (
-            <EmptyBlock message="Waiting for traffic — data usually appears within 24–48 hours" />
+            <EmptyBlock message="Waiting for traffic, data usually appears within 24–48 hours" />
           ) : (
             <DailyAreaChart daily={report.daily} />
           )}
@@ -584,7 +584,7 @@ export function AnalyticsDashboard({ report }: { report: GaReport }) {
       </div>
 
       {report.adsCampaigns.length > 0 && (
-        <Panel title="Google Ads campaigns" sub="Spend and clicks per campaign — last 28 days">
+        <Panel title="Google Ads campaigns" sub="Spend and clicks per campaign, last 28 days">
           <AdsPanel campaigns={report.adsCampaigns} />
         </Panel>
       )}
@@ -596,9 +596,9 @@ export function AnalyticsDashboard({ report }: { report: GaReport }) {
 
 function Glossary() {
   const terms = [
-    { word: "Visitors", meaning: "individual people — one person counts once, even if they come back" },
-    { word: "Sessions", meaning: "visits — the same person coming twice counts as 2 sessions" },
-    { word: "Page views", meaning: "total pages opened — one visitor looking at 5 pages counts as 5" },
+    { word: "Visitors", meaning: "individual people, one person counts once, even if they come back" },
+    { word: "Sessions", meaning: "visits, the same person coming twice counts as 2 sessions" },
+    { word: "Page views", meaning: "total pages opened, one visitor looking at 5 pages counts as 5" },
   ];
   return (
     <div className="rounded-2xl border border-[#e0ebff] bg-[#f8fbff] px-5 py-4">
@@ -606,7 +606,7 @@ function Glossary() {
       <ul className="mt-2 space-y-1.5">
         {terms.map((t) => (
           <li key={t.word} className="text-xs leading-relaxed text-slate-500">
-            <span className="font-bold text-[#020F3D]">{t.word}</span> — {t.meaning}
+            <span className="font-bold text-[#020F3D]">{t.word}</span>, {t.meaning}
           </li>
         ))}
       </ul>

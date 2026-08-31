@@ -5,7 +5,7 @@ import { site, waUrl } from "@/lib/site-config";
 import { EditableText } from "@/components/editable-text";
 import type { ContentMap } from "@/lib/page-content";
 
-// Sentinel values in table cells — render an action button instead of a price
+// Sentinel values in table cells, render an action button instead of a price
 const QUOTE = "QUOTE";
 const DIAGNOSTIC = "DIAGNOSTIC";
 
@@ -108,7 +108,7 @@ export function PricesPageClient({ content, editable = false }: { content: Conte
 
         {rows.length === 0 ? (
           <div className="rounded-2xl border border-[#e8effa] bg-white px-5 py-6 text-center text-sm text-slate-400 shadow-sm">
-            Pricing coming soon — call or WhatsApp us for a quote.
+            Pricing coming soon, call or WhatsApp us for a quote.
           </div>
         ) : (
           rows.map((r, i) => (
@@ -197,7 +197,7 @@ export function PricesPageClient({ content, editable = false }: { content: Conte
               {rows.length === 0 ? (
                 <tr>
                   <td colSpan={span} className="px-5 py-6 text-center text-sm text-slate-400">
-                    Pricing coming soon — call or WhatsApp us for a quote.
+                    Pricing coming soon, call or WhatsApp us for a quote.
                   </td>
                 </tr>
               ) : (

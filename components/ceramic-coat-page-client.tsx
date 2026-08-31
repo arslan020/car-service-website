@@ -13,7 +13,7 @@ const ceramicCoatSchema = {
   name: "Williams Ceramic Coat Paint Protection",
   provider: BUSINESS_JSONLD,
   description:
-    "Williams Ceramic Coat — third-generation paint protection for paintwork, alloys, bumpers and glass, plus interior surfaces and fabrics. Guaranteed for as long as you own the vehicle.",
+    "Williams Ceramic Coat, third-generation paint protection for paintwork, alloys, bumpers and glass, plus interior surfaces and fabrics. Guaranteed for as long as you own the vehicle.",
   url: "https://www.mariestonservicecentre.co.uk/ceramic-coat",
 };
 
@@ -21,7 +21,7 @@ const FONT = "Lato, Tahoma, Verdana, Segoe, sans-serif";
 const NAVY = "#0e2050";
 const BLUE = "#00a0de";
 
-// Column layout in plain CSS — the dev Tailwind pipeline misses newly added
+// Column layout in plain CSS, the dev Tailwind pipeline misses newly added
 // fractional width classes, so these are shipped with the component instead.
 const COLS_CSS = `
 .cpc-row{display:flex;flex-direction:column}

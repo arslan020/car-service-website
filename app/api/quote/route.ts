@@ -16,7 +16,7 @@ export async function POST(req: NextRequest) {
       from: "New Quote <notifications@mariestonservicecentre.co.uk>",
       to: process.env.CONTACT_TO!,
       replyTo: email || undefined,
-      subject: `New Quote Request from ${name}${reg ? ` — ${reg.toUpperCase()}` : ""}`,
+      subject: `New Quote Request from ${name}${reg ? `, ${reg.toUpperCase()}` : ""}`,
       html: `
         <div style="font-family:Arial,sans-serif;max-width:600px;margin:0 auto;background:#f4f8ff;padding:24px;border-radius:12px;">
           <div style="background:#101a56;padding:20px 24px;border-radius:8px 8px 0 0;">

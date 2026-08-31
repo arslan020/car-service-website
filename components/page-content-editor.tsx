@@ -95,7 +95,7 @@ function FieldRow({
             : status === "saved"
             ? "✓ Saved"
             : status === "error"
-            ? "Failed — retry"
+            ? "Failed, retry"
             : "Save"}
         </button>
 

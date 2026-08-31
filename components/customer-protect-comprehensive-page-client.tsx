@@ -13,7 +13,7 @@ const customerProtectSchema = {
   name: "Customer Protect Comprehensive Vehicle Warranty",
   provider: BUSINESS_JSONLD,
   description:
-    "Customer Protect Comprehensive warranty — easing the impact of mechanical and electrical failures. Cover for all mechanical and electrical components on vehicles up to 10 years or 100,000 miles.",
+    "Customer Protect Comprehensive warranty, easing the impact of mechanical and electrical failures. Cover for all mechanical and electrical components on vehicles up to 10 years or 100,000 miles.",
   url: "https://www.mariestonservicecentre.co.uk/customer-protect-comprehensive",
 };
 
@@ -21,7 +21,7 @@ const FONT = "Lato, Tahoma, Verdana, Segoe, sans-serif";
 const GREEN = "#5eb132";
 const DARK = "#373935";
 
-// Column layout in plain CSS — the dev Tailwind pipeline misses newly added
+// Column layout in plain CSS, the dev Tailwind pipeline misses newly added
 // fractional width classes, so these are shipped with the component instead.
 const COLS_CSS = `
 .cpc-row{display:flex;flex-direction:column}

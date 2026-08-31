@@ -243,7 +243,7 @@ export function RichTextEditor({
         {uploadError && <span className="ml-2 text-xs font-medium text-red-500">{uploadError}</span>}
       </div>
 
-      {/* ── Editable area — contentEditable + initial HTML are applied
+      {/* ── Editable area, contentEditable + initial HTML are applied
              imperatively on mount so React never interferes with typing ── */}
       <div
         ref={editorRef}

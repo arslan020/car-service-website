@@ -10,8 +10,8 @@ import type { ContentMap } from "@/lib/page-content";
 const CHECKS_FALLBACK = [
   "Lights, reflectors & electrical equipment",
   "Steering & suspension components",
-  "Brakes — pads, discs & hydraulics",
-  "Tyres — tread depth, condition & pressure",
+  "Brakes, pads, discs & hydraulics",
+  "Tyres, tread depth, condition & pressure",
   "Seatbelts & restraint systems",
   "Windscreen, wipers & washers",
   "Horn & mirrors",

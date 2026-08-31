@@ -5,11 +5,11 @@ import { ShineProtectAlloyPageClient } from "@/components/shine-protect-alloy-pa
 
 export const metadata: Metadata = {
   title: "Shine! Protect Alloy Wheel Maintenance Plan Hayes UB4 | Marieston",
-  description: "Shine! Protect Alloy maintenance plan in Hayes UB4. Mobile repairs to minor chips, scuffs & scratches on your alloy wheels — up to 5 requests a year. Ask us today.",
+  description: "Shine! Protect Alloy maintenance plan in Hayes UB4. Mobile repairs to minor chips, scuffs & scratches on your alloy wheels, up to 5 requests a year. Ask us today.",
   alternates: { canonical: "https://www.mariestonservicecentre.co.uk/shine-protect-alloy" },
   openGraph: {
     title: "Shine! Protect Alloy Wheel Maintenance Plan | Marieston Service Centre",
-    description: "Shine! Protect Alloy maintenance plan in Hayes UB4. Mobile repairs to minor chips, scuffs & scratches on your alloy wheels — up to 5 requests a year. Ask us today.",
+    description: "Shine! Protect Alloy maintenance plan in Hayes UB4. Mobile repairs to minor chips, scuffs & scratches on your alloy wheels, up to 5 requests a year. Ask us today.",
     url: "https://www.mariestonservicecentre.co.uk/shine-protect-alloy",
     siteName: site.name,
     locale: "en_GB",
@@ -18,7 +18,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Shine! Protect Alloy Wheel Maintenance Plan | Marieston Service Centre",
-    description: "Shine! Protect Alloy maintenance plan in Hayes UB4. Mobile repairs to minor chips, scuffs & scratches on your alloy wheels — up to 5 requests a year. Ask us today.",
+    description: "Shine! Protect Alloy maintenance plan in Hayes UB4. Mobile repairs to minor chips, scuffs & scratches on your alloy wheels, up to 5 requests a year. Ask us today.",
   },
 };
 

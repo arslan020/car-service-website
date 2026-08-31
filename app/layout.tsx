@@ -21,7 +21,7 @@ const siteUrl = "https://www.mariestonservicecentre.co.uk";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
-  // No `%s | site name` template — every page already brands its own title,
+  // No `%s | site name` template, every page already brands its own title,
   // the template was doubling the name ("… | Marieston | Marieston Service Centre")
   title: `${site.name} | Book MOT & car servicing online`,
   description: site.description,

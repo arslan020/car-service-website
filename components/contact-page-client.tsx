@@ -70,21 +70,21 @@ export function ContactPageClient({ content, editable = false }: { content: Cont
     }
   }, [defaultClosing]);
 
-  // Raw value (with the literal {{address}} token intact) — this is what must be
+  // Raw value (with the literal {{address}} token intact), this is what must be
   // fed into EditableText so saving an edit never bakes in a stale address.
   const rawHeroSubtitle = f(
     content,
     "hero_subtitle",
     "Call us, WhatsApp, or book online. Visit us at {{address}}. We respond as soon as we're off the ramp."
   );
-  // Display-only version with the address substituted in — used on the public
+  // Display-only version with the address substituted in, used on the public
   // (non-editable) route so visible output is unchanged from before.
   const heroSubtitle = rawHeroSubtitle.replace(/\{\{address\}\}/g, site.addressLines.join(", "));
 
-  // Raw value (with the literal {time} token intact) — fed into EditableText so
+  // Raw value (with the literal {time} token intact), fed into EditableText so
   // saving an edit never bakes in a stale closing time.
   const rawStatusOpenText = f(content, "status_open_template", "Open now · closes {time}");
-  // Display-only version with the time substituted in — used on the public
+  // Display-only version with the time substituted in, used on the public
   // (non-editable) route so visible output is unchanged from before.
   const statusOpenText = rawStatusOpenText.replace("{time}", closingTime);
 

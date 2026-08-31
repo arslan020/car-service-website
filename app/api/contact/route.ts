@@ -21,7 +21,7 @@ export async function POST(req: NextRequest) {
       from: "New Contact <notifications@mariestonservicecentre.co.uk>",
       to: process.env.CONTACT_TO!,
       replyTo: email,
-      subject: `New Contact Enquiry from ${name}${service ? ` — ${service}` : ""}`,
+      subject: `New Contact Enquiry from ${name}${service ? `, ${service}` : ""}`,
       html: `
         <div style="font-family:Arial,sans-serif;max-width:600px;margin:0 auto;background:#f4f8ff;padding:24px;border-radius:12px;">
           <div style="background:#101a56;padding:20px 24px;border-radius:8px 8px 0 0;">

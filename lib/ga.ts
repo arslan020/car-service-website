@@ -164,7 +164,7 @@ export async function fetchGaReport(): Promise<GaReport> {
       }))
       .filter((c) => c.name && c.name !== "(not set)" && (c.clicks > 0 || c.cost > 0));
   } catch {
-    // Ads link inactive or metrics unavailable — the panel simply hides itself
+    // Ads link inactive or metrics unavailable, the panel simply hides itself
   }
 
   const leadCounts: Record<string, number> = {};

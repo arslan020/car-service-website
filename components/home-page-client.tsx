@@ -268,7 +268,7 @@ export function HomePageClient({ content, editable = false }: { content: Content
     const mins = now.getHours() * 60 + now.getMinutes();
     setToday(day);
     if (day === 0) {
-      // Sunday — closed
+      // Sunday, closed
       setIsOpen(false);
       setClosingTime("");
     } else {
@@ -282,7 +282,7 @@ export function HomePageClient({ content, editable = false }: { content: Content
     <div className="bg-white">
 
       {/* ════════════════════════════════
-          HERO — text left, car right
+          HERO, text left, car right
       ════════════════════════════════ */}
       <section className="relative overflow-hidden bg-gradient-to-b from-[#eefdff] via-[#f5feff] via-60% to-white px-4 pb-0 pt-10 text-center sm:pt-14 lg:pt-16">
         <div className="mx-auto max-w-3xl">
@@ -533,7 +533,7 @@ export function HomePageClient({ content, editable = false }: { content: Content
       <section className="py-12 sm:py-16">
         <div className="mx-auto max-w-full">
 
-          {/* Section heading + contact info — all centered */}
+          {/* Section heading + contact info, all centered */}
           <div className="px-6 pb-8 text-center sm:px-12">
             <h2 className="text-3xl font-extrabold text-[#020F3D]"><EditableText pageKey="home" fieldKey="find_title" value={content.find_title} editable={editable} /></h2>
             <p className="mt-2 flex items-center justify-center gap-2 text-sm text-slate-500">
