@@ -44,7 +44,6 @@ module.exports = {
       '/car-servicing/full':      { priority: 0.8, changefreq: 'weekly' },
       '/car-servicing/major':     { priority: 0.8, changefreq: 'weekly' },
       '/repairs/brakes':          { priority: 0.8, changefreq: 'weekly' },
-      '/repairs/clutch-gearbox':  { priority: 0.8, changefreq: 'weekly' },
       '/repairs/electrical':      { priority: 0.8, changefreq: 'weekly' },
       '/repairs/engine-cooling':  { priority: 0.8, changefreq: 'weekly' },
       '/repairs/exhaust-emissions':{ priority: 0.8, changefreq: 'weekly' },

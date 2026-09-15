@@ -5,25 +5,12 @@ import { site, waUrl } from "@/lib/site-config";
 import { fl, type ContentMap } from "@/lib/page-content";
 import { EditableText } from "@/components/editable-text";
 
-const CLUTCH_ITEMS = ["Clutch plate & pressure", "Flywheel replacement", "Gear linkage", "Automatic transmission service"] as const;
 const SUS_ITEMS = ["Shock absorbers & struts", "Wishbones & ball joints", "Track rod ends", "Power steering faults"] as const;
 const EXH_ITEMS = ["Exhaust pipe & silencer", "Catalytic converter", "DPF cleaning & replacement", "Lambda / O2 sensors"] as const;
 const ENG_ITEMS = ["Coolant system leaks", "Thermostat replacement", "Water pump", "Timing belt & chain"] as const;
 const ELEC_ITEMS = ["Battery testing & replacement", "Alternator & starter motor", "Bulb & light unit replacement", "Central locking & windows"] as const;
 
 const REPAIR_CATEGORIES = [
-  {
-    href: "/repairs/clutch-gearbox",
-    titleKey: "cat_clutch_title",
-    descKey: "cat_clutch_desc",
-    itemsKey: "cat_clutch_items",
-    itemsFb: CLUTCH_ITEMS,
-    icon: (
-      <svg className="h-6 w-6" fill="none" stroke="currentColor" strokeWidth={1.75} viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12a7.5 7.5 0 0 0 15 0m-15 0a7.5 7.5 0 1 1 15 0m-15 0H3m16.5 0H21m-1.5 0H12m-8.457 3.077 1.41-.513m14.095-5.13 1.41-.513M5.106 17.785l1.15-.964m11.49-9.642 1.149-.964M7.501 19.795l.75-1.3m7.5-12.99.75-1.3m-6.063 16.658.26-1.477m2.605-14.772.26-1.477m0 17.726-.26-1.477M10.698 4.614l-.26-1.477M16.5 19.794l-.75-1.299M7.5 4.205 6.75 2.906" />
-      </svg>
-    ),
-  },
   {
     href: "/repairs/suspension-steering",
     titleKey: "cat_sus_title",

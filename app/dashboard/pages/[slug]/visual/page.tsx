@@ -18,7 +18,6 @@ import { CarServicingFullPageClient } from "@/components/car-servicing-full-page
 import { CarServicingMajorPageClient } from "@/components/car-servicing-major-page-client";
 import { RepairsBrakesPageClient } from "@/components/repairs-brakes-page-client";
 import { RepairsTyresPageClient } from "@/components/repairs-tyres-page-client";
-import { RepairsClutchGearboxPageClient } from "@/components/repairs-clutch-gearbox-page-client";
 import { RepairsSuspensionSteeringPageClient } from "@/components/repairs-suspension-steering-page-client";
 import { RepairsExhaustEmissionsPageClient } from "@/components/repairs-exhaust-emissions-page-client";
 import { RepairsEngineCoolingPageClient } from "@/components/repairs-engine-cooling-page-client";
@@ -101,9 +100,6 @@ export default async function VisualEditorPage({ params }: Props) {
       break;
     case "repairs-tyres":
       body = <RepairsTyresPageClient content={content} editable />;
-      break;
-    case "repairs-clutch-gearbox":
-      body = <RepairsClutchGearboxPageClient content={content} editable />;
       break;
     case "repairs-suspension-steering":
       body = <RepairsSuspensionSteeringPageClient content={content} editable />;

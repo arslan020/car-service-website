@@ -34,7 +34,7 @@ const PAGE_TREE: PageTreeItem[] = [
     type: "group",
     key: "repairs",
     label: "Repairs",
-    slugs: ["repairs", "repairs-clutch-gearbox", "repairs-suspension-steering", "repairs-exhaust-emissions", "repairs-engine-cooling", "repairs-electrical"],
+    slugs: ["repairs", "repairs-suspension-steering", "repairs-exhaust-emissions", "repairs-engine-cooling", "repairs-electrical"],
   },
   { type: "link", slug: "prices" },
   { type: "link", slug: "faqs" },
@@ -70,7 +70,6 @@ LINE_ICON_PATHS["car-servicing"] = LINE_ICON_PATHS.servicing;
 LINE_ICON_PATHS["car-servicing-interim"] = LINE_ICON_PATHS.servicing;
 LINE_ICON_PATHS["car-servicing-full"] = LINE_ICON_PATHS.servicing;
 LINE_ICON_PATHS["car-servicing-major"] = LINE_ICON_PATHS.servicing;
-LINE_ICON_PATHS["repairs-clutch-gearbox"] = LINE_ICON_PATHS.repairs;
 LINE_ICON_PATHS["repairs-suspension-steering"] = LINE_ICON_PATHS.repairs;
 LINE_ICON_PATHS["repairs-exhaust-emissions"] = LINE_ICON_PATHS.repairs;
 LINE_ICON_PATHS["repairs-engine-cooling"] = LINE_ICON_PATHS.repairs;

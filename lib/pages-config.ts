@@ -7,7 +7,6 @@ import { BATTERY_CHECK_FIELDS } from "@/lib/page-fields/battery-check";
 import { AIR_CON_FIELDS } from "@/lib/page-fields/air-con";
 import { REPAIRS_BRAKES_FIELDS } from "@/lib/page-fields/repairs-brakes";
 import { REPAIRS_TYRES_FIELDS } from "@/lib/page-fields/repairs-tyres";
-import { REPAIRS_CLUTCH_GEARBOX_FIELDS } from "@/lib/page-fields/repairs-clutch-gearbox";
 import { REPAIRS_SUSPENSION_STEERING_FIELDS } from "@/lib/page-fields/repairs-suspension-steering";
 import { REPAIRS_EXHAUST_EMISSIONS_FIELDS } from "@/lib/page-fields/repairs-exhaust-emissions";
 import { REPAIRS_ENGINE_COOLING_FIELDS } from "@/lib/page-fields/repairs-engine-cooling";
@@ -1091,13 +1090,6 @@ Written report on brake system condition`,
     icon: "🛞",
     publicPath: "/repairs/tyres",
     fields: REPAIRS_TYRES_FIELDS,
-  },
-  {
-    slug: "repairs-clutch-gearbox",
-    label: "Clutch & Gearbox",
-    icon: "⚙️",
-    publicPath: "/repairs/clutch-gearbox",
-    fields: REPAIRS_CLUTCH_GEARBOX_FIELDS,
   },
   {
     slug: "repairs-suspension-steering",

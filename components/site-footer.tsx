@@ -131,7 +131,6 @@ export function SiteFooter() {
               {[
                 { label: "Engine & Cooling",    href: "/repairs/engine-cooling" },
                 { label: "Suspension",          href: "/repairs/suspension-steering" },
-                { label: "Clutch & Gearbox",   href: "/repairs/clutch-gearbox" },
                 { label: "Electrical",          href: "/repairs/electrical" },
                 { label: "Exhaust",             href: "/repairs/exhaust-emissions" },
               ].map((l) => (
