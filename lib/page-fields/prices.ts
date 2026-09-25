@@ -49,6 +49,7 @@ export const PRICES_FIELDS: FieldDef[] = [
   T("servicing_title", "Servicing, table title", "Servicing", "Servicing prices"),
   T("servicing_cols", "Servicing, column headings (separated by |)", "0cc–1400cc|1401cc–2000cc|2001cc–3000cc|Over 3000cc", "Servicing prices"),
   A("servicing_table", "Servicing, rows (one per line: Service|price|price|price|price)", SERVICING_TABLE_DEFAULT, "Servicing prices"),
+  T("servicing_mot_note", "Servicing, MOT note under table", "+ Add MOT to any service above and save £14.85", "Servicing prices"),
   // Additional services table
   T("additional_title", "Additional, table title", "Additional Services", "Additional services prices"),
   T("additional_cols", "Additional, column headings (separated by |)", "0cc–1400cc|1401cc–2000cc|2001cc–3000cc", "Additional services prices"),

@@ -263,7 +263,10 @@ export function PricesPageClient({ content, editable = false }: { content: Conte
       {/* ── Tables ── */}
       <section className="px-4 pb-16">
         <div className="mx-auto max-w-5xl space-y-8">
-          <PriceTable titleKey="servicing_title" cols={servicingCols} colLabels={servicingColLabels} rowsKey="servicing_table" serviceColWidth={24} />
+          <div>
+            <PriceTable titleKey="servicing_title" cols={servicingCols} colLabels={servicingColLabels} rowsKey="servicing_table" serviceColWidth={24} />
+            <p className="mt-2 px-1 text-xs font-semibold text-[#0F63FF]">{E("servicing_mot_note")}</p>
+          </div>
           <PriceTable titleKey="additional_title" cols={additionalCols} colLabels={additionalColLabels} rowsKey="additional_table" />
           <PriceTable titleKey="repairs_title" cols={repairsCols} colLabels={repairsColLabels} rowsKey="repairs_table" serviceColWidth={30} />
 
