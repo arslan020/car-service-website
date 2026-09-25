@@ -44,7 +44,7 @@ export const PRICES_FIELDS: FieldDef[] = [
   T("hero_title", "Hero, heading", "Clear, upfront pricing", "Hero"),
   A("hero_subtitle", "Hero, subtitle", "Prices by engine size, all inclusive of VAT, no hidden extras. Not sure which band your car falls into? Just call or WhatsApp and we'll confirm.", "Hero"),
   T("mot_badge_label", "Hero, MOT badge label", "MOT", "Hero"),
-  T("mot_badge_price", "Hero, MOT badge price", "£49 for all vehicles", "Hero"),
+  T("mot_badge_price", "Hero, MOT badge price", "£54.85 for all vehicles", "Hero"),
   // Servicing table
   T("servicing_title", "Servicing, table title", "Servicing", "Servicing prices"),
   T("servicing_cols", "Servicing, column headings (separated by |)", "0cc–1400cc|1401cc–2000cc|2001cc–3000cc|Over 3000cc", "Servicing prices"),
