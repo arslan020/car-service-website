@@ -84,6 +84,7 @@ const FEATURED_SERVICES = [
     titleKey: "svc_1_title",
     descKey: "svc_1_desc",
     priceKey: "svc_1_price",
+    comingSoon: false,
     noFromLabel: true,
     icon: (
       <svg className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth={1.5} strokeLinejoin="round" viewBox="0 0 24 24">
