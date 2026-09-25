@@ -244,7 +244,7 @@ export function ServicingTiersCarousel({
                         <EditableText pageKey="car-servicing" fieldKey={tier.priceKey} value={tier.price} editable={editable} />
                       </p>
                       {tier.showMotUpsell && (
-                        <p className="mt-1.5 text-xs font-semibold text-[#0F63FF]">Add MOT and save £14.85</p>
+                        <p className="mt-1.5 text-xs font-semibold text-[#0F63FF]">+ Add MOT and save £14.85</p>
                       )}
                     </div>
                     <ul className="mt-5 flex-1 space-y-2.5">

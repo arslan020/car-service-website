@@ -25,7 +25,7 @@ export const CAR_SERVICING_FULL_FIELDS: FieldDef[] = [
   T("hero_title", "Page Title", "Full Service", "Hero"),
   A("hero_subtitle", "Subtitle", "The UK standard annual service, comprehensive, warranty-safe, and stamped. Covers everything from oil and filters to a full 60-point vehicle health check.", "Hero"),
   T("price_display", "Hero, price", "From £239", "Hero"),
-  T("price_note", "Hero, price note", "Add MOT and save £14.85", "Hero"),
+  T("price_note", "Hero, price note", "+ Add MOT and save £14.85", "Hero"),
   T("badge_highlight", "Popular badge, highlight", "Most popular", "Hero"),
   T("badge_detail", "Popular badge, detail", "(every 12 months or 12,000 miles)", "Hero"),
   T("hero_btn_book", "Hero, book button", "Book Full Service", "Hero"),
