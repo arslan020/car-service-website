@@ -89,7 +89,7 @@ export function MotPageClient({ content: c, editable = false }: { content: Conte
                 <span className="text-sm text-slate-500"><EditableText pageKey="mot" fieldKey="hero_price_suffix" value={c.hero_price_suffix} editable={editable} /></span>
               </div>
               <div className="mt-2 inline-flex items-center gap-2 rounded-full bg-[#eef4ff] px-4 py-2">
-                <span className="text-sm font-semibold text-[#0F63FF]">Book with any service & pay just £35 for your MOT</span>
+                <span className="text-sm font-semibold text-[#0F63FF]">Book with any service & save £14.85 on your MOT</span>
               </div>
               <div className="mt-7 flex flex-col gap-3 sm:flex-row">
                 <Link
