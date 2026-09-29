@@ -208,7 +208,7 @@ export const PAGES_CONFIG: PageDef[] = [
       T("card_price_label", "Service cards, price row label", "Price", "Service grid"),
       T("svc_mot_eyebrow", "Card MOT, eyebrow tag", "DVSA Approved", "Service grid"),
       T("svc_mot_title", "Card MOT, title", "MOT Testing", "Service grid"),
-      A("svc_mot_desc", "Card MOT, description", "Annual MOT inspections to keep your car legal and safe. Same-day slots available. If it fails, we explain every advisory clearly and can quote for repair work on the spot.", "Service grid"),
+      A("svc_mot_desc", "Card MOT, description", "Annual Class 4 MOT inspections to keep your car legal and safe. Same-day slots available. If it fails, we explain every advisory clearly and can quote for repair work on the spot.", "Service grid"),
       T("svc_mot_price", "Card MOT, price", "£54.85", "Service grid"),
       T("svc_cs_eyebrow", "Card Car Servicing, eyebrow", "Scheduled", "Service grid"),
       T("svc_cs_title", "Card Car Servicing, title", "Car Servicing", "Service grid"),
@@ -466,7 +466,7 @@ Advice on fuel system health if we spot anything`,
         label: "Subtitle",
         type: "textarea",
         default:
-          "Annual MOT inspections carried out by our qualified technicians. Same-day slots available. If your vehicle fails, we explain every advisory clearly and can quote for any work needed.",
+          "Annual Class 4 MOT inspections carried out by our qualified technicians. Same-day slots available. If your vehicle fails, we explain every advisory clearly and can quote for any work needed.",
         section: "Hero",
       },
       {
