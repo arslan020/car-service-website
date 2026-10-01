@@ -3,7 +3,7 @@
 import { useEffect, useRef } from "react";
 import Script from "next/script";
 
-export type GarageHiveDataSet = "add" | "mot" | "serv";
+export type GarageHiveDataSet = "add" | "mot" | "serv" | "motserv";
 
 const GARAGEHIVE_INSTANCE = "hestonautomotive";
 const GARAGEHIVE_BASE = "https://onlinebooking.garagehive.co.uk";

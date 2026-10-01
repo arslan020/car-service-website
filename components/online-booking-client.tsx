@@ -9,6 +9,7 @@ const MOT_PARAMS = new Set(["mot"]);
 
 function tabForService(service: string | null): GarageHiveDataSet {
   if (!service) return "add";
+  if (service === "motserv") return "motserv";
   if (MOT_PARAMS.has(service)) return "mot";
   if (SERVICING_PARAMS.has(service)) return "serv";
   return "add";
@@ -17,6 +18,7 @@ function tabForService(service: string | null): GarageHiveDataSet {
 const TABS: { key: GarageHiveDataSet; label: string }[] = [
   { key: "mot", label: "MOT" },
   { key: "serv", label: "Servicing" },
+  { key: "motserv", label: "MOT + Servicing" },
   { key: "add", label: "Additional Services" },
 ];
 
