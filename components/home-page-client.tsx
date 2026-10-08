@@ -307,15 +307,15 @@ export function HomePageClient({ content, editable = false }: { content: Content
       {/* ════════════════════════════════
           HERO, text left, car right
       ════════════════════════════════ */}
-      <section className="relative overflow-hidden bg-gradient-to-b from-[#eefdff] via-[#f5feff] via-60% to-white px-4 pb-0 pt-10 text-center sm:pt-14 lg:pt-16">
-        <div className="mx-auto max-w-3xl">
+      <section className="relative flex min-h-[calc(100dvh-6.5rem)] flex-col items-center justify-center overflow-hidden bg-gradient-to-b from-[#eefdff] via-[#f5feff] via-60% to-white px-4 py-8 text-center">
+        <div className="mx-auto w-full max-w-3xl">
 
           {/* Location pill */}
           <a
             href="https://www.google.com/maps/place/Marieston+Service+Centre/@51.5268571,-0.4022969,586m/data=!3m2!1e3!4b1!4m6!3m5!1s0x48766dd076f12283:0x9b182de007f87a84!8m2!3d51.5268571!4d-0.399722!16s%2Fg%2F11njnzzcdd"
             target="_blank"
             rel="noopener noreferrer"
-            className="mb-5 inline-flex items-center gap-2 rounded-full border border-[#d0dcea] bg-white px-4 py-2 shadow-sm transition hover:border-[#0F63FF]/40 hover:shadow-md"
+            className="mb-5 inline-flex w-fit items-center gap-2 rounded-full border border-[#d0dcea] bg-white px-4 py-2 shadow-sm transition hover:border-[#0F63FF]/40 hover:shadow-md"
           >
             <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[#eef4ff]">
               <svg className="h-3.5 w-3.5 text-[#0F63FF]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
