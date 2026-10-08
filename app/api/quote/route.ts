@@ -1,22 +1,40 @@
 import { NextRequest, NextResponse } from "next/server";
 import { Resend } from "resend";
+import { escapeHtml } from "@/lib/escape-html";
+import { clientIp, rateLimit } from "@/lib/rate-limit";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
+function clip(value: unknown, max: number) {
+  return String(value ?? "").trim().slice(0, max);
+}
+
 export async function POST(req: NextRequest) {
   try {
+    if (!rateLimit(`quote:${clientIp(req.headers)}`)) {
+      return NextResponse.json({ error: "Too many requests. Please call or try again shortly." }, { status: 429 });
+    }
+
     const body = await req.json();
-    const { name, phone, email, reg, description } = body;
+    const name = clip(body.name, 120);
+    const phone = clip(body.phone, 40);
+    const email = clip(body.email, 200);
+    const reg = clip(body.reg, 12);
+    const description = clip(body.description, 4000);
 
     if (!name || !phone || !description) {
       return NextResponse.json({ error: "Required fields missing." }, { status: 400 });
+    }
+
+    if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      return NextResponse.json({ error: "Invalid email address." }, { status: 400 });
     }
 
     await resend.emails.send({
       from: "New Quote <notifications@mariestonservicecentre.co.uk>",
       to: process.env.CONTACT_TO!,
       replyTo: email || undefined,
-      subject: `New Quote Request from ${name}${reg ? `, ${reg.toUpperCase()}` : ""}`,
+      subject: `New Quote Request from ${name}${reg ? `, ${reg.toUpperCase()}` : ""}`.slice(0, 180),
       html: `
         <div style="font-family:Arial,sans-serif;max-width:600px;margin:0 auto;background:#f4f8ff;padding:24px;border-radius:12px;">
           <div style="background:#101a56;padding:20px 24px;border-radius:8px 8px 0 0;">
@@ -30,7 +48,7 @@ export async function POST(req: NextRequest) {
                   <span style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.05em;color:#94a3b8;">Name</span>
                 </td>
                 <td style="padding:10px 0;border-bottom:1px solid #f0f4fa;">
-                  <span style="font-size:14px;color:#101a56;font-weight:600;">${name}</span>
+                  <span style="font-size:14px;color:#101a56;font-weight:600;">${escapeHtml(name)}</span>
                 </td>
               </tr>
               <tr>
@@ -38,7 +56,7 @@ export async function POST(req: NextRequest) {
                   <span style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.05em;color:#94a3b8;">Phone</span>
                 </td>
                 <td style="padding:10px 0;border-bottom:1px solid #f0f4fa;">
-                  <a href="tel:${phone}" style="font-size:14px;color:#3f63ff;">${phone}</a>
+                  <a href="tel:${escapeHtml(phone)}" style="font-size:14px;color:#3f63ff;">${escapeHtml(phone)}</a>
                 </td>
               </tr>
               ${email ? `
@@ -47,7 +65,7 @@ export async function POST(req: NextRequest) {
                   <span style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.05em;color:#94a3b8;">Email</span>
                 </td>
                 <td style="padding:10px 0;border-bottom:1px solid #f0f4fa;">
-                  <a href="mailto:${email}" style="font-size:14px;color:#3f63ff;">${email}</a>
+                  <a href="mailto:${escapeHtml(email)}" style="font-size:14px;color:#3f63ff;">${escapeHtml(email)}</a>
                 </td>
               </tr>` : ""}
               ${reg ? `
@@ -56,7 +74,7 @@ export async function POST(req: NextRequest) {
                   <span style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.05em;color:#94a3b8;">Registration</span>
                 </td>
                 <td style="padding:10px 0;border-bottom:1px solid #f0f4fa;">
-                  <span style="font-size:16px;font-weight:800;color:#101a56;letter-spacing:0.1em;">${reg.toUpperCase()}</span>
+                  <span style="font-size:16px;font-weight:800;color:#101a56;letter-spacing:0.1em;">${escapeHtml(reg.toUpperCase())}</span>
                 </td>
               </tr>` : ""}
               <tr>
@@ -64,12 +82,12 @@ export async function POST(req: NextRequest) {
                   <span style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.05em;color:#94a3b8;">Description</span>
                 </td>
                 <td style="padding:10px 0;">
-                  <p style="font-size:14px;color:#475569;line-height:1.6;margin:0;white-space:pre-wrap;">${description}</p>
+                  <p style="font-size:14px;color:#475569;line-height:1.6;margin:0;white-space:pre-wrap;">${escapeHtml(description)}</p>
                 </td>
               </tr>
             </table>
             <div style="margin-top:20px;padding:12px 16px;background:#f4f8ff;border-radius:8px;border-left:3px solid #3f63ff;">
-              <p style="margin:0;font-size:12px;color:#64748b;">Reply directly to this email to respond to <strong>${name}</strong>.</p>
+              <p style="margin:0;font-size:12px;color:#64748b;">Reply directly to this email to respond to <strong>${escapeHtml(name)}</strong>.</p>
             </div>
           </div>
         </div>

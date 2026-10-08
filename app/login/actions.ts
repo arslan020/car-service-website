@@ -3,7 +3,8 @@
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import { prisma } from "@/lib/prisma";
-import { verifyPassword } from "@/lib/auth";
+import { hashPassword, isLegacyHash, verifyPassword } from "@/lib/auth";
+import { signSession, readSession } from "@/lib/session";
 
 const SESSION_COOKIE = "ha_session";
 
@@ -17,8 +18,15 @@ export async function loginAction(formData: FormData): Promise<{ error: string }
     return { error: "Invalid email or password." };
   }
 
+  if (isLegacyHash(admin.password)) {
+    await prisma.admin.update({
+      where: { id: admin.id },
+      data: { password: hashPassword(password) },
+    });
+  }
+
   const cookieStore = await cookies();
-  cookieStore.set(SESSION_COOKIE, admin.id, {
+  cookieStore.set(SESSION_COOKIE, await signSession(admin.id), {
     httpOnly: true,
     secure: process.env.NODE_ENV === "production",
     sameSite: "lax",
@@ -37,11 +45,11 @@ export async function logoutAction() {
 
 export async function getSession(): Promise<{ id: string; name: string; email: string } | null> {
   const cookieStore = await cookies();
-  const adminId = cookieStore.get(SESSION_COOKIE)?.value;
-  if (!adminId) return null;
+  const session = await readSession(cookieStore.get(SESSION_COOKIE)?.value);
+  if (!session) return null;
 
   const admin = await prisma.admin.findUnique({
-    where: { id: adminId },
+    where: { id: session.id },
     select: { id: true, name: true, email: true },
   });
 

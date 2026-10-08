@@ -208,10 +208,11 @@ export function ContactPageClient({ content, editable = false }: { content: Cont
             ) : (
               <form onSubmit={handleSubmit} noValidate className="grid gap-5 sm:grid-cols-2">
                 <div className="flex flex-col gap-1.5">
-                  <label className="text-xs font-bold uppercase tracking-widest text-slate-500">
+                  <label htmlFor="contact-name" className="text-xs font-bold uppercase tracking-widest text-slate-500">
                     <EditableText pageKey="contact" fieldKey="label_name" value={f(content, "label_name", "Full Name")} editable={editable} /> <span className="text-red-500">*</span>
                   </label>
                   <input
+                    id="contact-name"
                     type="text"
                     placeholder={f(content, "ph_name", "John Smith")}
                     value={form.name}
@@ -221,10 +222,11 @@ export function ContactPageClient({ content, editable = false }: { content: Cont
                   {errors.name && <p className="text-xs text-red-500">{errors.name}</p>}
                 </div>
                 <div className="flex flex-col gap-1.5">
-                  <label className="text-xs font-bold uppercase tracking-widest text-slate-500">
+                  <label htmlFor="contact-email" className="text-xs font-bold uppercase tracking-widest text-slate-500">
                     <EditableText pageKey="contact" fieldKey="label_email" value={f(content, "label_email", "Email Address")} editable={editable} /> <span className="text-red-500">*</span>
                   </label>
                   <input
+                    id="contact-email"
                     type="email"
                     placeholder={f(content, "ph_email", "john@example.com")}
                     value={form.email}
@@ -234,10 +236,11 @@ export function ContactPageClient({ content, editable = false }: { content: Cont
                   {errors.email && <p className="text-xs text-red-500">{errors.email}</p>}
                 </div>
                 <div className="flex flex-col gap-1.5">
-                  <label className="text-xs font-bold uppercase tracking-widest text-slate-500">
+                  <label htmlFor="contact-phone" className="text-xs font-bold uppercase tracking-widest text-slate-500">
                     <EditableText pageKey="contact" fieldKey="label_phone" value={f(content, "label_phone", "Phone Number")} editable={editable} />
                   </label>
                   <input
+                    id="contact-phone"
                     type="tel"
                     placeholder={f(content, "ph_phone", "07700 900000")}
                     value={form.phone}
@@ -246,10 +249,11 @@ export function ContactPageClient({ content, editable = false }: { content: Cont
                   />
                 </div>
                 <div className="flex flex-col gap-1.5">
-                  <label className="text-xs font-bold uppercase tracking-widest text-slate-500">
+                  <label htmlFor="contact-service" className="text-xs font-bold uppercase tracking-widest text-slate-500">
                     <EditableText pageKey="contact" fieldKey="label_service" value={f(content, "label_service", "Service Required")} editable={editable} />
                   </label>
                   <select
+                    id="contact-service"
                     value={form.service}
                     onChange={(e) => setForm({ ...form, service: e.target.value })}
                     className="rounded-xl border border-[#e0ebff] bg-white px-4 py-3 text-sm text-[#020F3D] outline-none transition focus:border-[#0F63FF] focus:ring-2 focus:ring-[#0F63FF]/20"
@@ -263,10 +267,11 @@ export function ContactPageClient({ content, editable = false }: { content: Cont
                   </select>
                 </div>
                 <div className="flex flex-col gap-1.5 sm:col-span-2">
-                  <label className="text-xs font-bold uppercase tracking-widest text-slate-500">
+                  <label htmlFor="contact-message" className="text-xs font-bold uppercase tracking-widest text-slate-500">
                     <EditableText pageKey="contact" fieldKey="label_message" value={f(content, "label_message", "Message")} editable={editable} /> <span className="text-red-500">*</span>
                   </label>
                   <textarea
+                    id="contact-message"
                     rows={5}
                     placeholder={f(
                       content,

@@ -26,6 +26,8 @@ const SLUG_OVERRIDES: Record<string, { carlogos: string; clearbit: string; direc
   },
 };
 
+const logoCache = new Map<string, { body: ArrayBuffer; contentType: string; expires: number }>();
+
 async function tryFetch(url: string): Promise<Response | null> {
   try {
     const res = await fetch(url, {
@@ -66,6 +68,16 @@ export async function GET(req: NextRequest) {
     .replace(/\s+/g, "")
     .replace(/[^a-z0-9]/g, "");
 
+  const cached = logoCache.get(brand);
+  if (cached && cached.expires > Date.now()) {
+    return new NextResponse(cached.body.slice(0), {
+      headers: {
+        "Content-Type": cached.contentType,
+        "Cache-Control": "public, max-age=604800, stale-while-revalidate=86400",
+      },
+    });
+  }
+
   const overrides = SLUG_OVERRIDES[brand];
   const carlogosSlug = overrides?.carlogos ?? plainSlug;
   const clearbitDomain = overrides?.clearbit ?? `${plainSlug}.com`;
@@ -83,7 +95,9 @@ export async function GET(req: NextRequest) {
     if (res) {
       const data = await res.arrayBuffer();
       const contentType = res.headers.get("content-type") ?? "image/png";
-      return new NextResponse(data, {
+      const body = data.slice(0);
+      logoCache.set(brand, { body, contentType, expires: Date.now() + 7 * 24 * 60 * 60 * 1000 });
+      return new NextResponse(body.slice(0), {
         headers: {
           "Content-Type": contentType,
           "Cache-Control": "public, max-age=604800, stale-while-revalidate=86400",

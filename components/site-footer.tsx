@@ -1,6 +1,7 @@
 ﻿import Link from "next/link";
 import Image from "next/image";
 import { site, waUrl } from "@/lib/site-config";
+import { CookieSettingsButton } from "@/components/cookie-settings-button";
 
 export function SiteFooter() {
   const year = new Date().getFullYear();
@@ -87,6 +88,8 @@ export function SiteFooter() {
               {[
                 { label: "About Us",      href: "/about-us" },
                 { label: "Areas We Serve", href: "/areas" },
+                { label: "Reviews",       href: "/reviews" },
+                { label: "Blog",          href: "/blog" },
                 { label: "FAQs",          href: "/faqs" },
                 { label: "Contact",       href: "/contact" },
                 { label: "Request a Quote", href: "/quote" },
@@ -148,15 +151,17 @@ export function SiteFooter() {
             <p className="text-xs font-bold uppercase tracking-widest text-white">Areas We Serve</p>
             <ul className="mt-4 space-y-2.5">
               {[
-                "Southall",
-                "Uxbridge",
-                "West Drayton",
-                "Northolt",
-                "Greenford",
-                "Hounslow",
+                { label: "Southall", href: "/areas#southall" },
+                { label: "Uxbridge", href: "/areas#uxbridge" },
+                { label: "West Drayton", href: "/areas#west-drayton" },
+                { label: "Northolt", href: "/areas#northolt" },
+                { label: "Greenford", href: "/areas#greenford" },
+                { label: "Hounslow", href: "/areas#hounslow" },
               ].map((area) => (
-                <li key={area} className="text-sm text-slate-400">
-                  {area}
+                <li key={area.href}>
+                  <Link href={area.href} className="text-sm text-slate-400 transition hover:text-white">
+                    {area.label}
+                  </Link>
                 </li>
               ))}
               <li>
@@ -183,8 +188,8 @@ export function SiteFooter() {
                 <svg className="mt-0.5 h-4 w-4 shrink-0 text-[#0F63FF]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75" />
                 </svg>
-                <a href={`mailto:${site.email}`} className="text-sm text-slate-400 transition hover:text-white break-all">
-                  {site.email}
+                <a href={`mailto:${site.email}`} className="text-sm text-slate-400 transition hover:text-white">
+                  hello@<wbr />mariestonservicecentre.co.uk
                 </a>
               </li>
               <li className="flex items-start gap-2.5">
@@ -222,6 +227,7 @@ export function SiteFooter() {
           <ul className="flex flex-wrap items-center gap-4 text-xs text-slate-500">
             <li><Link href="/privacy" className="transition hover:text-slate-300">Privacy Policy</Link></li>
             <li><Link href="/terms-and-conditions" className="transition hover:text-slate-300">Terms &amp; Conditions</Link></li>
+            <li><CookieSettingsButton /></li>
           </ul>
           <p className="text-xs text-slate-500 text-center">
             &copy; {year} {site.name}. All rights reserved.

@@ -100,7 +100,7 @@ export function QuotePageClient() {
               <form onSubmit={handleSubmit} noValidate className="space-y-5">
 
                 <div className="flex flex-col gap-1.5">
-                  <label className="text-xs font-bold uppercase tracking-widest text-slate-500">
+                  <label htmlFor="quote-reg" className="text-xs font-bold uppercase tracking-widest text-slate-500">
                     Vehicle Registration
                   </label>
                   <div className={`flex overflow-hidden rounded-xl border-2 shadow-sm ${errors.reg ? "border-red-400" : "border-[#F5C518]"}`}>
@@ -109,6 +109,7 @@ export function QuotePageClient() {
                       <span className="mt-0.5 text-[9px] font-extrabold leading-none text-white">UK</span>
                     </div>
                     <input
+                      id="quote-reg"
                       type="text"
                       placeholder="YOUR REG"
                       maxLength={8}
@@ -120,10 +121,11 @@ export function QuotePageClient() {
                 </div>
 
                 <div className="flex flex-col gap-1.5">
-                  <label className="text-xs font-bold uppercase tracking-widest text-slate-500">
+                  <label htmlFor="quote-description" className="text-xs font-bold uppercase tracking-widest text-slate-500">
                     What is happening? <span className="text-red-500">*</span>
                   </label>
                   <textarea
+                    id="quote-description"
                     rows={5}
                     placeholder="Describe the problem, noise, warning light, or damage in as much detail as possible..."
                     value={form.description}
@@ -135,10 +137,11 @@ export function QuotePageClient() {
 
                 <div className="grid gap-5 sm:grid-cols-2">
                   <div className="flex flex-col gap-1.5">
-                    <label className="text-xs font-bold uppercase tracking-widest text-slate-500">
+                    <label htmlFor="quote-name" className="text-xs font-bold uppercase tracking-widest text-slate-500">
                       Full Name <span className="text-red-500">*</span>
                     </label>
                     <input
+                      id="quote-name"
                       type="text"
                       placeholder="John Smith"
                       value={form.name}
@@ -148,10 +151,11 @@ export function QuotePageClient() {
                     {errors.name && <p className="text-xs text-red-500">{errors.name}</p>}
                   </div>
                   <div className="flex flex-col gap-1.5">
-                    <label className="text-xs font-bold uppercase tracking-widest text-slate-500">
+                    <label htmlFor="quote-phone" className="text-xs font-bold uppercase tracking-widest text-slate-500">
                       Phone Number <span className="text-red-500">*</span>
                     </label>
                     <input
+                      id="quote-phone"
                       type="tel"
                       placeholder="07700 900000"
                       value={form.phone}
@@ -163,8 +167,9 @@ export function QuotePageClient() {
                 </div>
 
                 <div className="flex flex-col gap-1.5">
-                  <label className="text-xs font-bold uppercase tracking-widest text-slate-500">Email Address</label>
+                  <label htmlFor="quote-email" className="text-xs font-bold uppercase tracking-widest text-slate-500">Email Address</label>
                   <input
+                    id="quote-email"
                     type="email"
                     placeholder="john@example.com"
                     value={form.email}

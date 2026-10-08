@@ -44,7 +44,7 @@ const SECTIONS: Section[] = [
   },
   {
     title: "7. Cookies",
-    body: "Our website uses essential cookies to ensure basic functionality. We may also use analytics cookies to understand how visitors use our site. You can control cookie preferences through your browser settings.",
+    body: "Essential cookies keep the site working, including the dashboard login. Google Analytics runs only after you accept cookies in the banner. You can change that choice any time with Cookie settings in the footer, or through your browser.",
   },
   {
     title: "8. Your Rights",

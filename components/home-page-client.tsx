@@ -329,7 +329,6 @@ export function HomePageClient({ content, editable = false }: { content: Content
           {/* ── CTA buttons ── */}
           <BookingBar defaultService="mot" />
 
-
           {/* Car image with bottom fade */}
           <div className="relative mt-6">
             {/* eslint-disable-next-line @next/next/no-img-element */}

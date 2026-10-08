@@ -1,13 +1,5 @@
-import { PageIntro } from "@/components/page-intro";
+import { redirect } from "next/navigation";
 
 export default function AdminPage() {
-  return (
-    <PageIntro eyebrow="Admin" title="Garage Dashboard (placeholder)">
-      <p>
-        Next step: protect this route with authentication (e.g. NextAuth or Clerk), list <code className="rounded bg-slate-100 px-1">Booking</code>{" "}
-        records from Prisma, and add calendar status updates. Use Prisma Studio locally:{" "}
-        <code className="rounded bg-slate-100 px-1">npx prisma studio</code>.
-      </p>
-    </PageIntro>
-  );
+  redirect("/dashboard");
 }

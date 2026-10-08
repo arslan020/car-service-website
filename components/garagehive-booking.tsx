@@ -45,8 +45,8 @@ export function GarageHiveBooking({ dataSet }: { dataSet: GarageHiveDataSet }) {
         frameBorder={0}
         scrolling="no"
         width="100%"
-        className="min-h-[300px]"
-        style={{ border: 0 }}
+        className="block w-full bg-white"
+        style={{ border: 0, background: "#fff", minHeight: 220 }}
         onLoad={bindResizer}
       />
       <Script

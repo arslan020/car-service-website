@@ -1,12 +1,26 @@
 import { NextRequest, NextResponse } from "next/server";
 import { Resend } from "resend";
+import { escapeHtml } from "@/lib/escape-html";
+import { clientIp, rateLimit } from "@/lib/rate-limit";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
+function clip(value: unknown, max: number) {
+  return String(value ?? "").trim().slice(0, max);
+}
+
 export async function POST(req: NextRequest) {
   try {
+    if (!rateLimit(`contact:${clientIp(req.headers)}`)) {
+      return NextResponse.json({ error: "Too many messages. Please call or try again shortly." }, { status: 429 });
+    }
+
     const body = await req.json();
-    const { name, email, phone, service, message } = body;
+    const name = clip(body.name, 120);
+    const email = clip(body.email, 200);
+    const phone = clip(body.phone, 40);
+    const service = clip(body.service, 80);
+    const message = clip(body.message, 4000);
 
     if (!name || !email || !message) {
       return NextResponse.json({ error: "Required fields missing." }, { status: 400 });
@@ -21,7 +35,7 @@ export async function POST(req: NextRequest) {
       from: "New Contact <notifications@mariestonservicecentre.co.uk>",
       to: process.env.CONTACT_TO!,
       replyTo: email,
-      subject: `New Contact Enquiry from ${name}${service ? `, ${service}` : ""}`,
+      subject: `New Contact Enquiry from ${name}${service ? `, ${service}` : ""}`.slice(0, 180),
       html: `
         <div style="font-family:Arial,sans-serif;max-width:600px;margin:0 auto;background:#f4f8ff;padding:24px;border-radius:12px;">
           <div style="background:#101a56;padding:20px 24px;border-radius:8px 8px 0 0;">
@@ -35,7 +49,7 @@ export async function POST(req: NextRequest) {
                   <span style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.05em;color:#94a3b8;">Name</span>
                 </td>
                 <td style="padding:10px 0;border-bottom:1px solid #f0f4fa;">
-                  <span style="font-size:14px;color:#101a56;font-weight:600;">${name}</span>
+                  <span style="font-size:14px;color:#101a56;font-weight:600;">${escapeHtml(name)}</span>
                 </td>
               </tr>
               <tr>
@@ -43,7 +57,7 @@ export async function POST(req: NextRequest) {
                   <span style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.05em;color:#94a3b8;">Email</span>
                 </td>
                 <td style="padding:10px 0;border-bottom:1px solid #f0f4fa;">
-                  <a href="mailto:${email}" style="font-size:14px;color:#3f63ff;">${email}</a>
+                  <a href="mailto:${escapeHtml(email)}" style="font-size:14px;color:#3f63ff;">${escapeHtml(email)}</a>
                 </td>
               </tr>
               ${phone ? `
@@ -52,7 +66,7 @@ export async function POST(req: NextRequest) {
                   <span style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.05em;color:#94a3b8;">Phone</span>
                 </td>
                 <td style="padding:10px 0;border-bottom:1px solid #f0f4fa;">
-                  <a href="tel:${phone}" style="font-size:14px;color:#3f63ff;">${phone}</a>
+                  <a href="tel:${escapeHtml(phone)}" style="font-size:14px;color:#3f63ff;">${escapeHtml(phone)}</a>
                 </td>
               </tr>` : ""}
               ${service ? `
@@ -61,7 +75,7 @@ export async function POST(req: NextRequest) {
                   <span style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.05em;color:#94a3b8;">Service</span>
                 </td>
                 <td style="padding:10px 0;border-bottom:1px solid #f0f4fa;">
-                  <span style="font-size:14px;color:#101a56;">${service}</span>
+                  <span style="font-size:14px;color:#101a56;">${escapeHtml(service)}</span>
                 </td>
               </tr>` : ""}
               <tr>
@@ -69,12 +83,12 @@ export async function POST(req: NextRequest) {
                   <span style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.05em;color:#94a3b8;">Message</span>
                 </td>
                 <td style="padding:10px 0;">
-                  <p style="font-size:14px;color:#475569;line-height:1.6;margin:0;white-space:pre-wrap;">${message}</p>
+                  <p style="font-size:14px;color:#475569;line-height:1.6;margin:0;white-space:pre-wrap;">${escapeHtml(message)}</p>
                 </td>
               </tr>
             </table>
             <div style="margin-top:20px;padding:12px 16px;background:#f4f8ff;border-radius:8px;border-left:3px solid #3f63ff;">
-              <p style="margin:0;font-size:12px;color:#64748b;">Reply directly to this email to respond to <strong>${name}</strong>.</p>
+              <p style="margin:0;font-size:12px;color:#64748b;">Reply directly to this email to respond to <strong>${escapeHtml(name)}</strong>.</p>
             </div>
           </div>
         </div>

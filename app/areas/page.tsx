@@ -13,12 +13,13 @@ const AREAS = [
   { name: "Hayes Town",           postcode: "UB3 / UB4",        drive: "~5 min",  desc: "Right on our doorstep, local shops and Hayes railway station area. Drop in any time." },
   { name: "Yeading",              postcode: "UB4 / UB5",        drive: "~5 min",  desc: "Our local residential area, Yeading customers are always welcome for any service or repair." },
   { name: "Southall",             postcode: "UB1 / UB2",        drive: "~10 min", desc: "Just a short drive away, we regularly service and MOT cars from Southall." },
+  { name: "West Drayton",         postcode: "UB7",              drive: "~10 min", desc: "West Drayton drivers come to us for MOT tests, servicing and repairs, a short trip from Hayes." },
   { name: "Northolt",             postcode: "UB5",              drive: "~12 min", desc: "Brakes, clutch, diagnostics and full services, our most popular jobs for Northolt drivers." },
   { name: "Greenford",            postcode: "UB6",              drive: "~15 min", desc: "Greenford customers benefit from our same-day slots and easy online booking." },
   { name: "Uxbridge",             postcode: "UB8 / UB10",       drive: "~15 min", desc: "MOT tests, full servicing and repairs at transparent fixed prices for Uxbridge drivers." },
   { name: "Hillingdon",           postcode: "UB8 / UB10",       drive: "~12 min", desc: "Hillingdon residents choose Marieston for honest advice, quality parts and fair pricing." },
   { name: "Cowley",               postcode: "UB8",              drive: "~14 min", desc: "Cowley is a quiet drive from our Hayes workshop, book online for a same-day slot." },
-  { name: "Ickenham",             postcode: "UB10",             drive: "~15 min", desc: "Ickenham's upscale residents trust us for quality car care and transparent pricing." },
+  { name: "Ickenham",             postcode: "UB10",             drive: "~15 min", desc: "Ickenham drivers come to us for quality car care and transparent pricing." },
   { name: "Ruislip",              postcode: "HA4",              drive: "~18 min", desc: "Ruislip drivers head to us for MOT tests, full services and reliable repairs." },
   { name: "Harmondsworth",        postcode: "UB7",              drive: "~8 min",  desc: "Right next to Heathrow, Harmondsworth is one of our closest areas, just minutes away." },
   { name: "Colnbrook",            postcode: "SL3",              drive: "~10 min", desc: "Near the M25 and Heathrow, Colnbrook drivers are just a short trip from our Hayes garage." },
@@ -48,14 +49,14 @@ const AREAS = [
   // ── North-West London (20–40 min) ──
   { name: "Harrow",               postcode: "HA1 / HA2 / HA3",  drive: "~25 min", desc: "Harrow-on-the-Hill area, honest, reliable car care for MOT, servicing and repairs." },
   { name: "Wembley",              postcode: "HA9",              drive: "~30 min", desc: "Stadium and arena area, Wembley drivers book online for MOT, service or any repair." },
-  { name: "Pinner",               postcode: "HA5",              drive: "~28 min", desc: "Pinner's posh suburb, drivers choose Marieston for fair prices and trusted workmanship." },
+  { name: "Pinner",               postcode: "HA5",              drive: "~28 min", desc: "Pinner drivers choose Marieston for fair prices and trusted workmanship." },
   { name: "Stanmore",             postcode: "HA7",              drive: "~35 min", desc: "End of the Jubilee line, Stanmore customers drive to us for quality car care at honest prices." },
   { name: "Edgware",              postcode: "HA8",              drive: "~35 min", desc: "Edgware's busy residential zone, we handle MOT, servicing and all types of car repairs." },
   { name: "Hendon",               postcode: "NW4",              drive: "~35 min", desc: "Middlesex University and RAF Museum area, Hendon drivers trust us for reliable car care." },
   { name: "Colindale",            postcode: "NW9",              drive: "~32 min", desc: "Fast-growing Colindale, new and existing residents welcome for MOT, service and repairs." },
-  { name: "Kingsbury",            postcode: "NW9",              drive: "~30 min", desc: "Desi shops and restaurants hub, Kingsbury drivers choose us for honest, quality car care." },
+  { name: "Kingsbury",            postcode: "NW9",              drive: "~30 min", desc: "Kingsbury drivers choose us for honest, quality car care." },
   { name: "Ruislip Manor",        postcode: "HA4",              drive: "~20 min", desc: "Ruislip Manor's local shopping area, just a short drive from our Hayes garage." },
-  { name: "Northwood",            postcode: "HA6",              drive: "~25 min", desc: "Posh Hertfordshire border area, Northwood residents trust us for premium car servicing." },
+  { name: "Northwood",            postcode: "HA6",              drive: "~25 min", desc: "Northwood residents trust us for thorough servicing and clear pricing." },
   { name: "Eastcote",             postcode: "HA5",              drive: "~20 min", desc: "Between Ruislip and Pinner, Eastcote drivers are a quick drive from our Hayes workshop." },
   { name: "Denham",               postcode: "UB9",              drive: "~20 min", desc: "Quiet Buckinghamshire village near Uxbridge, Denham residents welcome for any car service." },
   { name: "Harefield",            postcode: "UB9",              drive: "~22 min", desc: "Village near Uxbridge with Harefield Hospital, we serve Harefield drivers for all car needs." },
@@ -68,19 +69,19 @@ const AREAS = [
   { name: "Eton",                 postcode: "SL4",              drive: "~28 min", desc: "Historic Eton College town, we welcome Eton drivers for MOT, servicing and all repairs." },
   { name: "Maidenhead",           postcode: "SL6",              drive: "~35 min", desc: "Riverside M4 town, Maidenhead customers come to us for trusted car care at fair prices." },
   { name: "High Wycombe",         postcode: "HP11 / HP12 / HP13", drive: "~40 min", desc: "Buckinghamshire hills town, High Wycombe drivers trust us for quality MOT and servicing." },
-  { name: "Beaconsfield",         postcode: "HP9",              drive: "~30 min", desc: "One of the UK's most affluent towns, Beaconsfield residents choose us for premium car care." },
+  { name: "Beaconsfield",         postcode: "HP9",              drive: "~30 min", desc: "Beaconsfield residents choose us for careful work and honest pricing." },
   { name: "Gerrards Cross",       postcode: "SL9",              drive: "~25 min", desc: "Posh commuter village, Gerrards Cross drivers book online for hassle-free MOT and servicing." },
   { name: "Amersham",             postcode: "HP6 / HP7",        drive: "~35 min", desc: "Historic market town, Amersham customers drive to us for honest, reliable car servicing." },
   { name: "Watford",              postcode: "WD17 / WD18",      drive: "~40 min", desc: "Harry Potter Studios area, Watford drivers welcome for MOT, service and all car repairs." },
   { name: "Rickmansworth",        postcode: "WD3",              drive: "~30 min", desc: "Lakes and nature parks area, Rickmansworth residents trust us for quality car care." },
   { name: "St Albans",            postcode: "AL1 / AL2 / AL3",  drive: "~50 min", desc: "Roman cathedral city, St Albans drivers come to us for trusted MOT and servicing." },
   { name: "Staines-upon-Thames",  postcode: "TW18",             drive: "~25 min", desc: "Near Heathrow and the M25, Staines customers come for reliable MOT, servicing and repairs." },
-  { name: "Weybridge",            postcode: "KT13",             drive: "~35 min", desc: "Mercedes-Benz World area, Weybridge's posh residents choose us for quality car servicing." },
+  { name: "Weybridge",            postcode: "KT13",             drive: "~35 min", desc: "Weybridge drivers choose us for quality servicing and straightforward pricing." },
   { name: "Datchet",              postcode: "SL3",              drive: "~22 min", desc: "Pretty village near Windsor and the M4, Datchet drivers are a short trip from our garage." },
   { name: "Old Windsor",          postcode: "SL4",              drive: "~28 min", desc: "Historic village near Windsor Castle, Old Windsor residents welcome for MOT and servicing." },
   { name: "Wraysbury",            postcode: "TW19",             drive: "~25 min", desc: "Village near the Thames and reservoirs, Wraysbury drivers trust us for reliable car care." },
   { name: "Stoke Poges",          postcode: "SL2",              drive: "~20 min", desc: "Near Slough and the M4, Stoke Poges residents can reach our Hayes garage in under 25 minutes." },
-  { name: "Virginia Water",       postcode: "GU25",             drive: "~35 min", desc: "Surrey village near the M25, Virginia Water drivers choose us for premium car servicing." },
+  { name: "Virginia Water",       postcode: "GU25",             drive: "~35 min", desc: "Virginia Water drivers choose us for thorough servicing and clear quotes." },
   { name: "Ascot",                postcode: "SL5",              drive: "~35 min", desc: "Famous for Royal Ascot racecourse, Ascot drivers trust Marieston for honest car servicing." },
   { name: "Sunningdale",          postcode: "SL5",              drive: "~35 min", desc: "Affluent Surrey golf village, Sunningdale residents welcome for MOT, service and repairs." },
   { name: "Bracknell",            postcode: "RG12",             drive: "~40 min", desc: "Berkshire new town, Bracknell drivers come to us for reliable MOT and car servicing." },
@@ -155,7 +156,8 @@ export default function AreasPage() {
             {AREAS.map((area) => (
               <div
                 key={area.name}
-                className="flex flex-col gap-2 rounded-2xl border border-[#e8effa] bg-white p-5 shadow-sm transition-all hover:-translate-y-0.5 hover:border-[#0F63FF]/30 hover:shadow-[0_6px_24px_rgba(15,99,255,0.1)]"
+                id={area.name.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "")}
+                className="flex scroll-mt-28 flex-col gap-2 rounded-2xl border border-[#e8effa] bg-white p-5 shadow-sm transition-all hover:-translate-y-0.5 hover:border-[#0F63FF]/30 hover:shadow-[0_6px_24px_rgba(15,99,255,0.1)]"
               >
                 <div className="flex items-center justify-between gap-3">
                   <div className="flex items-center gap-3">

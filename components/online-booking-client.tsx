@@ -8,7 +8,7 @@ const SERVICING_PARAMS = new Set(["full", "major", "interim", "oil"]);
 const MOT_PARAMS = new Set(["mot"]);
 
 function tabForService(service: string | null): GarageHiveDataSet {
-  if (!service) return "add";
+  if (!service) return "mot";
   if (service === "motserv") return "motserv";
   if (MOT_PARAMS.has(service)) return "mot";
   if (SERVICING_PARAMS.has(service)) return "serv";
@@ -29,12 +29,15 @@ export function OnlineBookingClient() {
 
   return (
     <div className="bg-white">
-      <div className="border-b border-[#e0ebff] bg-[#f8fbff] px-4 py-3 text-center">
-        <h1 className="text-sm font-semibold text-[#020F3D]">Book Your MOT or Car Service Online</h1>
-        <p className="mt-0.5 text-xs text-slate-500">
-          Choose a category below and pick your date and time, secure booking powered by our workshop system.
+      <section className="bg-gradient-to-b from-[#eefdff] via-[#f5feff] to-white px-4 pb-2 pt-10 text-center sm:pt-14">
+        <p className="text-xs font-bold uppercase tracking-widest text-[#0F63FF]">Online booking</p>
+        <h1 className="mt-1 text-3xl font-extrabold leading-tight tracking-tight text-[#020F3D] sm:text-5xl">
+          Book your MOT or service
+        </h1>
+        <p className="mx-auto mt-3 max-w-2xl text-base text-slate-500 sm:text-lg">
+          Choose a category, then enter your registration. The form is the workshop booking system.
         </p>
-      </div>
+      </section>
 
       <div className="mx-auto flex max-w-3xl flex-wrap justify-center gap-2 px-4 py-4">
         {TABS.map((tab) => (

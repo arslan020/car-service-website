@@ -1,5 +1,4 @@
 import type { Metadata, Viewport } from "next";
-import Script from "next/script";
 import { Geist, Geist_Mono } from "next/font/google";
 import { SiteChrome } from "@/components/site-chrome";
 import { ClickTracking } from "@/components/click-tracking";
@@ -87,7 +86,14 @@ const localBusinessSchema = {
   ],
   priceRange: "££",
   image: `${siteUrl}/updated-logo.png`,
-  sameAs: [`https://wa.me/${site.whatsappE164}`],
+  geo: {
+    "@type": "GeoCoordinates",
+    latitude: 51.5268571,
+    longitude: -0.399722,
+  },
+  hasMap: "https://www.google.com/maps/place/Marieston+Service+Centre/@51.5268571,-0.399722,17z",
+  openingHours: "Mo-Sa 09:00-18:00",
+  sameAs: [site.facebookUrl, site.instagramUrl, `https://wa.me/${site.whatsappE164}`],
 };
 
 export default function RootLayout({
@@ -98,16 +104,6 @@ export default function RootLayout({
   return (
     <html lang="en-GB" className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}>
       <body className="flex min-h-full flex-col bg-background text-foreground">
-        {/* Google Analytics (GA4) */}
-        <Script src="https://www.googletagmanager.com/gtag/js?id=G-PFFK3WFMGF" strategy="afterInteractive" />
-        <Script id="google-analytics" strategy="afterInteractive">
-          {`
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', 'G-PFFK3WFMGF');
-          `}
-        </Script>
         <JsonLd data={localBusinessSchema} />
         <ClickTracking />
         <SiteChrome>{children}</SiteChrome>
