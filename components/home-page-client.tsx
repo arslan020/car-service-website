@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useState, useEffect, useMemo } from "react";
-import { site } from "@/lib/site-config";
+import { site, waUrl } from "@/lib/site-config";
 import { BookingBar } from "@/components/booking-bar";
 import { EditableText } from "@/components/editable-text";
 import type { ContentMap } from "@/lib/page-content";
@@ -93,6 +93,17 @@ const FEATURED_SERVICES = [
     ),
   },
   {
+    href: "/car-servicing",
+    titleKey: "svc_5_title",
+    descKey: "svc_5_desc",
+    priceKey: "svc_5_price",
+    icon: (
+      <svg className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth={1.75} viewBox="0 0 24 24">
+        <path strokeLinecap="round" strokeLinejoin="round" d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z" />
+      </svg>
+    ),
+  },
+  {
     href: "/diagnostics",
     titleKey: "svc_2_title",
     descKey: "svc_2_desc",
@@ -130,6 +141,18 @@ const FEATURED_SERVICES = [
         <circle cx="12" cy="12" r="9" />
         <circle cx="12" cy="12" r="3" />
         <path strokeLinecap="round" d="M12 3v2M12 19v2M3 12h2M19 12h2" />
+      </svg>
+    ),
+  },
+  {
+    href: "/air-con",
+    titleKey: "svc_6_title",
+    descKey: "svc_6_desc",
+    priceKey: "svc_6_price",
+    icon: (
+      <svg className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth={1.75} viewBox="0 0 24 24">
+        <path strokeLinecap="round" strokeLinejoin="round" d="M12 3v18M4.5 7.5l15 9M4.5 16.5l15-9" />
+        <path strokeLinecap="round" d="M8 5.5 12 3l4 2.5M8 18.5 12 21l4-2.5M3 9.5l1.5-2 2.5 1M21 14.5l-1.5 2-2.5-1M3 14.5l1.5 2 2.5-1M21 9.5l-1.5-2-2.5 1" />
       </svg>
     ),
   },
@@ -348,13 +371,18 @@ export function HomePageClient({ content, editable = false }: { content: Content
       {/* ════════════════════════════════
           OUR SERVICES
       ════════════════════════════════ */}
-      <section className="px-4 py-12 sm:py-16">
+      <section className="bg-[#f7fbff] px-4 py-12 sm:py-16">
         <div className="mx-auto max-w-5xl">
           <div className="text-center">
             <p className="text-xs font-bold uppercase tracking-widest text-[#0F63FF]"><EditableText pageKey="home" fieldKey="why_kicker" value={content.why_kicker} editable={editable} /></p>
             <h2 className="mt-1 text-2xl font-extrabold text-[#020F3D] sm:text-3xl"><EditableText pageKey="home" fieldKey="why_title" value={content.why_title} editable={editable} /></h2>
             <p className="mx-auto mt-3 max-w-2xl text-sm leading-relaxed text-slate-500 sm:text-base"><EditableText pageKey="home" fieldKey="why_intro" value={content.why_intro} type="textarea" editable={editable} /></p>
-            <Link href="/areas" className="mt-2 inline-block text-xs text-slate-400 underline underline-offset-2 transition hover:text-[#0F63FF] sm:text-sm">Serving Hayes, Southall, Uxbridge, Slough, Hounslow, Ealing, Harrow &amp; 70+ areas across West London</Link>
+            <p className="mx-auto mt-3 max-w-2xl text-sm text-slate-600">
+              Based in Hayes, serving{" "}
+              <Link href="/areas" className="font-semibold text-[#020F3D] underline decoration-[#0F63FF]/40 underline-offset-4 transition hover:text-[#0F63FF]">
+                Southall, Uxbridge, Slough, Hounslow and 70+ West London areas
+              </Link>
+            </p>
           </div>
 
           <div className="mt-8 grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
@@ -389,7 +417,7 @@ export function HomePageClient({ content, editable = false }: { content: Content
             <h2 className="mt-1 text-2xl font-extrabold text-[#020F3D] sm:text-3xl"><EditableText pageKey="home" fieldKey="svc_block_title" value={content.svc_block_title} editable={editable} /></h2>
           </div>
 
-          <div className="mt-6 grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
+          <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {FEATURED_SERVICES.map((svc) => {
               const title = content[svc.titleKey];
               const desc = content[svc.descKey];
@@ -420,11 +448,11 @@ export function HomePageClient({ content, editable = false }: { content: Content
                     <EditableText pageKey="home" fieldKey={svc.descKey} value={desc} type="textarea" editable={editable} />
                   </span>
                 </span>
-                <span className={`mt-4 flex items-center border-t border-[#eef4ff] pt-4 ${"noPriceLabel" in svc && svc.noPriceLabel ? "justify-end" : "justify-between"}`}>
+                <span className={`mt-4 flex items-center border-t border-[#eef4ff] pt-4 ${"noPriceLabel" in svc && svc.noPriceLabel ? "justify-start" : "justify-between"}`}>
                   {!("noPriceLabel" in svc && svc.noPriceLabel) && (
                     <span className="text-xs font-medium text-slate-400">{"noFromLabel" in svc && svc.noFromLabel ? "Price" : content.svc_block_from_label}</span>
                   )}
-                  <span className="text-xl font-extrabold text-[#020F3D]">
+                  <span className={`${price && price.length > 8 ? "text-base" : "text-xl"} font-extrabold text-[#020F3D]`}>
                     {editable ? (
                       <EditableText pageKey="home" fieldKey={svc.priceKey} value={price} editable />
                     ) : !price || price === "£???" ? (
@@ -529,11 +557,10 @@ export function HomePageClient({ content, editable = false }: { content: Content
       {/* ════════════════════════════════
           CONTACT / HOURS
       ════════════════════════════════ */}
-      <section className="py-12 sm:py-16">
-        <div className="mx-auto max-w-full">
+      <section className="px-4 py-12 sm:py-16">
+        <div className="mx-auto max-w-5xl">
 
-          {/* Section heading + contact info, all centered */}
-          <div className="px-6 pb-8 text-center sm:px-12">
+          <div className="pb-8 text-center">
             <h2 className="text-3xl font-extrabold text-[#020F3D]"><EditableText pageKey="home" fieldKey="find_title" value={content.find_title} editable={editable} /></h2>
             <p className="mt-2 flex items-center justify-center gap-2 text-sm text-slate-500">
               <svg className="h-4 w-4 shrink-0 text-[#0F63FF]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
@@ -544,22 +571,32 @@ export function HomePageClient({ content, editable = false }: { content: Content
             </p>
           </div>
 
-          {/* Map with side padding */}
-          <div className="px-6 sm:px-12">
-            <div className="overflow-hidden rounded-2xl border border-[#e0ebff]">
-              <iframe
-                title="Marieston Service Centre location"
-                className="h-[420px] w-full border-0"
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d586!2d-0.399722!3d51.5268571!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x48766dd076f12283%3A0x9b182de007f87a84!2sMarieston%20Service%20Centre!5e0!3m2!1sen!2suk!4v1715769600000!5m2!1sen!2suk"
-              />
-            </div>
+          <div className="overflow-hidden rounded-2xl border border-[#e0ebff]">
+            <iframe
+              title="Marieston Service Centre location"
+              className="h-80 w-full border-0"
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d586!2d-0.399722!3d51.5268571!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x48766dd076f12283%3A0x9b182de007f87a84!2sMarieston%20Service%20Centre!5e0!3m2!1sen!2suk!4v1715769600000!5m2!1sen!2suk"
+            />
           </div>
 
-          {/* Opening Times */}
-          <div className="bg-white border-b border-[#e0ebff]">
-            <div className="px-6 py-5 sm:px-12">
+          <div className="mt-4 grid gap-4 sm:grid-cols-3">
+            <a href={`tel:${site.phoneTel}`} className="rounded-2xl border border-[#e0ebff] bg-white px-5 py-4 transition hover:border-[#0F63FF]">
+              <span className="block text-xs font-bold uppercase tracking-widest text-[#0F63FF]">Call</span>
+              <span className="mt-1 block text-lg font-extrabold text-[#020F3D]">{site.phoneDisplay}</span>
+            </a>
+            <a href={waUrl()} target="_blank" rel="noopener noreferrer" className="rounded-2xl border border-[#e0ebff] bg-white px-5 py-4 transition hover:border-[#25D366]">
+              <span className="block text-xs font-bold uppercase tracking-widest text-[#25D366]">WhatsApp</span>
+              <span className="mt-1 block text-lg font-extrabold text-[#020F3D]">Message us</span>
+            </a>
+            <Link href="/online-booking" className="rounded-2xl border border-[#e0ebff] bg-white px-5 py-4 transition hover:border-[#0F63FF]">
+              <span className="block text-xs font-bold uppercase tracking-widest text-[#0F63FF]">Book</span>
+              <span className="mt-1 block text-lg font-extrabold text-[#020F3D]">Book a service</span>
+            </Link>
+          </div>
+
+          <div className="pt-8">
               <div className="mb-3 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
                 <p className="text-xs font-bold uppercase tracking-widest text-[#0F63FF]"><EditableText pageKey="home" fieldKey="hours_kicker" value={content.hours_kicker} editable={editable} /></p>
                 {isOpen !== null && (
@@ -596,7 +633,6 @@ export function HomePageClient({ content, editable = false }: { content: Content
                 })}
               </div>
             </div>
-          </div>
         </div>
       </section>
 
