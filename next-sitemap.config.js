@@ -59,7 +59,6 @@ module.exports = {
       '/areas':                   { priority: 0.7, changefreq: 'monthly' },
       '/quote':                   { priority: 0.7, changefreq: 'monthly' },
       '/faqs':                    { priority: 0.6, changefreq: 'monthly' },
-      '/reviews':                 { priority: 0.6, changefreq: 'weekly' },
       '/services':                { priority: 0.6, changefreq: 'monthly' },
       '/prices':                  { priority: 0.8, changefreq: 'weekly' },
       '/privacy':                 { priority: 0.3, changefreq: 'yearly' },

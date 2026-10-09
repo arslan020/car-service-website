@@ -88,7 +88,6 @@ export function SiteFooter() {
               {[
                 { label: "About Us",      href: "/about-us" },
                 { label: "Areas We Serve", href: "/areas" },
-                { label: "Reviews",       href: "/reviews" },
                 { label: "Blog",          href: "/blog" },
                 { label: "FAQs",          href: "/faqs" },
                 { label: "Contact",       href: "/contact" },

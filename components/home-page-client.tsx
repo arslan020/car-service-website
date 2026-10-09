@@ -1,6 +1,7 @@
 ﻿"use client";
 
 import Link from "next/link";
+import Script from "next/script";
 import { useState, useEffect, useMemo } from "react";
 import { site, waUrl } from "@/lib/site-config";
 import { BookingBar } from "@/components/booking-bar";
@@ -552,6 +553,11 @@ export function HomePageClient({ content, editable = false }: { content: Content
             ))}
           </div>
         </div>
+      </section>
+
+      <section className="bg-white px-4 py-12 sm:py-16" aria-label="Google reviews">
+        <Script src="https://elfsightcdn.com/platform.js" strategy="lazyOnload" />
+        <div className="elfsight-app-28e1fb84-4390-4021-a1b3-58a225289cfe" data-elfsight-app-lazy="" />
       </section>
 
       {/* ════════════════════════════════
