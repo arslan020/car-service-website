@@ -1,10 +1,10 @@
 ﻿"use client";
 
 import Link from "next/link";
-import Script from "next/script";
 import { useState, useEffect, useMemo } from "react";
 import { site, waUrl } from "@/lib/site-config";
 import { BookingBar } from "@/components/booking-bar";
+import { GoogleReviewCard } from "@/components/google-review-card";
 import { EditableText } from "@/components/editable-text";
 import type { ContentMap } from "@/lib/page-content";
 
@@ -555,9 +555,14 @@ export function HomePageClient({ content, editable = false }: { content: Content
         </div>
       </section>
 
-      <section className="bg-white px-4 py-12 sm:py-16" aria-label="Google reviews">
-        <Script src="https://elfsightcdn.com/platform.js" strategy="lazyOnload" />
-        <div className="elfsight-app-28e1fb84-4390-4021-a1b3-58a225289cfe" data-elfsight-app-lazy="" />
+      <section className="bg-white px-4 py-12 sm:py-16">
+        <div className="mx-auto max-w-5xl text-center">
+          <p className="text-xs font-bold uppercase tracking-widest text-[#0F63FF]">Reviews</p>
+          <h2 className="mt-1 text-2xl font-extrabold text-[#020F3D] sm:text-3xl">What our customers say</h2>
+        </div>
+        <div className="mt-8">
+          <GoogleReviewCard />
+        </div>
       </section>
 
       {/* ════════════════════════════════
