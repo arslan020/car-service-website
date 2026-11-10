@@ -33,8 +33,8 @@ export const REPAIRS_BRAKES_FIELDS: FieldDef[] = [
   T("stat_1_label", "Stat 1, label", "We show you the evidence first", "Stats"),
   T("stat_2_value", "Stat 2, value", "Quality OE Standard", "Stats"),
   T("stat_2_label", "Stat 2, label", "Original equipment quality", "Stats"),
-  T("stat_3_value", "Stat 3, value", "Brake test drive", "Stats"),
-  T("stat_3_label", "Stat 3, label", "Road tested before you collect", "Stats"),
+  T("stat_3_value", "Stat 3, value", "Free", "Stats"),
+  T("stat_3_label", "Stat 3, label", "Brake Check", "Stats"),
   T("stat_4_value", "Stat 4, value", "ABS Safety Check", "Stats"),
   T("stat_4_label", "Stat 4, label", "Included with every brake job", "Stats"),
   // What we cover
