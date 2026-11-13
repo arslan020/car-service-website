@@ -28,7 +28,6 @@ export function FaqsPageClient({ content, editable = false }: { content: Content
     { q: content.faq_7_q, a: content.faq_7_a, qKey: "faq_7_q", aKey: "faq_7_a" },
     { q: content.faq_8_q, a: content.faq_8_a, qKey: "faq_8_q", aKey: "faq_8_a" },
     { q: content.faq_9_q, a: content.faq_9_a, qKey: "faq_9_q", aKey: "faq_9_a" },
-    { q: content.faq_10_q, a: content.faq_10_a, qKey: "faq_10_q", aKey: "faq_10_a" },
     { q: content.faq_11_q, a: content.faq_11_a, qKey: "faq_11_q", aKey: "faq_11_a" },
     { q: content.faq_12_q, a: content.faq_12_a, qKey: "faq_12_q", aKey: "faq_12_a" },
     { q: content.faq_13_q, a: content.faq_13_a, qKey: "faq_13_q", aKey: "faq_13_a" },

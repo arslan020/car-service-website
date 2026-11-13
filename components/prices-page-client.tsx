@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { useState } from "react";
 import { site, waUrl } from "@/lib/site-config";
 import { EditableText } from "@/components/editable-text";
 import type { ContentMap } from "@/lib/page-content";
@@ -21,6 +22,21 @@ function parseRows(value: string | undefined): PriceRow[] {
       const parts = line.split("|").map((s) => s.trim());
       return { service: parts[0] ?? "", prices: parts.slice(1) };
     });
+}
+
+const SERVICE_NOTES: Record<string, string> = {
+  "oil service": "Every 6 months or 6,000 miles",
+  "full service": "Every 12 months or 12,000 miles",
+  "major service": "As per manufacturer schedule",
+  "brake fluid service": "Flush and replacement",
+};
+
+function friendlyBand(label: string) {
+  const compact = label.replace(/\s+/g, "");
+  if (/^0cc[–-]1400cc$/i.test(compact)) return "Up to 1400cc";
+  const range = compact.match(/^(\d+)cc[–-](\d+)cc$/i);
+  if (range) return `${range[1]} to ${range[2]}cc`;
+  return label;
 }
 
 function parseCols(value: string | undefined): string[] {
@@ -235,8 +251,10 @@ export function PricesPageClient({ content, editable = false }: { content: Conte
   );
   const servicingColLabels = parseCols(c.servicing_cols);
   const additionalColLabels = parseCols(c.additional_cols);
-  const servicingCols = servicingColLabels.map((col, i) => <span key={i}>{HeadCell("servicing_cols", col)}</span>);
   const additionalCols = additionalColLabels.map((col, i) => <span key={i}>{HeadCell("additional_cols", col)}</span>);
+  const [servicingBand, setServicingBand] = useState(0);
+  const servicingRows = parseRows(c.servicing_table);
+  const selectedBand = Math.min(servicingBand, Math.max(servicingColLabels.length - 1, 0));
   // Repairs table: empty first column keeps the grid aligned; only the "Price" heading is editable.
   const repairsColLabels = ["", "Price"];
   const repairsCols: React.ReactNode[] = ["", E("repairs_col_price")];
@@ -264,8 +282,53 @@ export function PricesPageClient({ content, editable = false }: { content: Conte
       <section className="px-4 pb-16">
         <div className="mx-auto max-w-5xl space-y-8">
           <div>
-            <PriceTable titleKey="servicing_title" cols={servicingCols} colLabels={servicingColLabels} rowsKey="servicing_table" serviceColWidth={24} />
-            <p className="mt-2 px-1 text-xs font-semibold text-[#0F63FF]">{E("servicing_mot_note")}</p>
+            <h2 className="text-center text-2xl font-extrabold text-[#020F3D]">{E("servicing_title")}</h2>
+            <div
+              role="radiogroup"
+              aria-label="Engine size"
+              className="mx-auto mt-5 flex w-fit max-w-full flex-wrap justify-center gap-1 rounded-full bg-[#f3f6fb] p-1.5"
+            >
+              {servicingColLabels.map((label, index) => {
+                const selected = index === selectedBand;
+                return (
+                  <button
+                    key={label}
+                    type="button"
+                    role="radio"
+                    aria-checked={selected}
+                    onClick={() => setServicingBand(index)}
+                    className={`rounded-full px-4 py-2 text-sm font-semibold transition ${
+                      selected ? "bg-[#020F3D] text-white" : "text-slate-500 hover:text-[#020F3D]"
+                    }`}
+                  >
+                    {HeadCell("servicing_cols", friendlyBand(label))}
+                  </button>
+                );
+              })}
+            </div>
+            <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4" aria-live="polite">
+              {servicingRows.map((row) => {
+                const price = row.prices[selectedBand] ?? "";
+                const note = SERVICE_NOTES[row.service.toLowerCase()];
+                const isAction = price === QUOTE || price === DIAGNOSTIC;
+                return (
+                  <div key={row.service} className="rounded-2xl bg-[#f4f7fb] px-4 py-6 text-center">
+                    <p className="text-sm font-extrabold uppercase tracking-wide text-[#020F3D]">
+                      {Cell("servicing_table", row.service)}
+                    </p>
+                    {note ? <p className="mt-1 text-xs text-slate-500">{note}</p> : null}
+                    <div className="mt-4 flex min-h-12 items-center justify-center">
+                      {isAction ? (
+                        renderCell(price, row.service, "servicing_table")
+                      ) : (
+                        <p className="text-4xl font-extrabold text-[#0F63FF]">{Cell("servicing_table", price)}</p>
+                      )}
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+            <p className="mt-4 text-center text-xs font-semibold text-[#0F63FF]">{E("servicing_mot_note")}</p>
           </div>
           <PriceTable titleKey="additional_title" cols={additionalCols} colLabels={additionalColLabels} rowsKey="additional_table" />
           <PriceTable titleKey="repairs_title" cols={repairsCols} colLabels={repairsColLabels} rowsKey="repairs_table" serviceColWidth={30} />
