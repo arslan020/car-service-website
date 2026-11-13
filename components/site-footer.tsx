@@ -231,6 +231,18 @@ export function SiteFooter() {
           <p className="text-xs text-slate-500 text-center">
             &copy; {year} {site.name}. All rights reserved.
           </p>
+          <p className="text-center text-xs text-slate-500">
+            {site.legalName}
+            <span aria-hidden="true"> · </span>
+            <a
+              href={`https://find-and-update.company-information.service.gov.uk/company/${site.companyNumber}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="transition hover:text-slate-300"
+            >
+              Company number {site.companyNumber}
+            </a>
+          </p>
         </div>
       </div>
 

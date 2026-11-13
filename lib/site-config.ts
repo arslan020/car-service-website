@@ -1,5 +1,7 @@
 export const site = {
   name: "Marieston Service Centre",
+  legalName: "Marieston Service Centre Ltd",
+  companyNumber: "17159853",
   tagline: "Professional garage care for every car",
   description:
     "MOT, oil and full servicing, repairs, diagnostics, tyres, and brakes, DVSA approved garage in Hayes, UB4 with transparent pricing.",
