@@ -38,7 +38,7 @@ const BRANDS = [
   { key: "bentley", label: "Bentley" },
   { key: "bmw", label: "BMW" },
   { key: "byd", label: "BYD" },
-  { key: "changan", label: "Changan", src: "/brands/changan.svg" },
+  { key: "changan", label: "Changan", src: "/brands/changan.svg?v=2" },
   { key: "chevrolet", label: "Chevrolet" },
   { key: "citroen", label: "Citroën" },
   { key: "dacia", label: "Dacia" },
