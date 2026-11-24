@@ -38,6 +38,7 @@ const BRANDS = [
   { key: "bentley", label: "Bentley" },
   { key: "bmw", label: "BMW" },
   { key: "byd", label: "BYD" },
+  { key: "changan", label: "Changan", src: "/brands/changan.svg" },
   { key: "chevrolet", label: "Chevrolet" },
   { key: "citroen", label: "Citroën" },
   { key: "dacia", label: "Dacia" },
@@ -505,7 +506,7 @@ export function HomePageClient({ content, editable = false }: { content: Content
             {BRANDS.map((brand) => (
               <img
                 key={`a-${brand.key}`}
-                src={`/api/logo?brand=${encodeURIComponent(brand.key)}&label=${encodeURIComponent(brand.label)}`}
+                src={"src" in brand ? brand.src : `/api/logo?brand=${encodeURIComponent(brand.key)}&label=${encodeURIComponent(brand.label)}`}
                 alt={brand.label}
                 title={brand.label}
                 className="h-10 w-auto object-contain sm:h-12 lg:h-14 transition-transform hover:scale-110"
@@ -517,7 +518,7 @@ export function HomePageClient({ content, editable = false }: { content: Content
             {BRANDS.map((brand) => (
               <img
                 key={`b-${brand.key}`}
-                src={`/api/logo?brand=${encodeURIComponent(brand.key)}&label=${encodeURIComponent(brand.label)}`}
+                src={"src" in brand ? brand.src : `/api/logo?brand=${encodeURIComponent(brand.key)}&label=${encodeURIComponent(brand.label)}`}
                 alt={brand.label}
                 title={brand.label}
                 className="h-10 w-auto object-contain sm:h-12 lg:h-14 transition-transform hover:scale-110"
