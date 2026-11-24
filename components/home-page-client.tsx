@@ -422,7 +422,8 @@ export function HomePageClient({ content, editable = false }: { content: Content
             {FEATURED_SERVICES.map((svc) => {
               const title = content[svc.titleKey];
               const desc = content[svc.descKey];
-              const price = content[svc.priceKey];
+              const isMot = svc.href === "/mot";
+              const price = isMot ? "£39" : content[svc.priceKey];
               return (
               <Link
                 key={svc.href}
@@ -453,14 +454,17 @@ export function HomePageClient({ content, editable = false }: { content: Content
                   {!("noPriceLabel" in svc && svc.noPriceLabel) && (
                     <span className="text-xs font-medium text-slate-400">{"noFromLabel" in svc && svc.noFromLabel ? "Price" : content.svc_block_from_label}</span>
                   )}
-                  <span className={`${price && price.length > 8 ? "text-base" : "text-xl"} font-extrabold text-[#020F3D]`}>
-                    {editable ? (
-                      <EditableText pageKey="home" fieldKey={svc.priceKey} value={price} editable />
-                    ) : !price || price === "£???" ? (
-                      "£???"
-                    ) : (
-                      price
-                    )}
+                  <span className="flex items-center gap-2">
+                    {isMot && <span className="text-[11px] font-bold uppercase tracking-wide text-black">Black Friday</span>}
+                    <span className={`${price && price.length > 8 ? "text-base" : "text-xl"} font-extrabold text-[#020F3D]`}>
+                      {editable && !isMot ? (
+                        <EditableText pageKey="home" fieldKey={svc.priceKey} value={content[svc.priceKey]} editable />
+                      ) : !price || price === "£???" ? (
+                        "£???"
+                      ) : (
+                        price
+                      )}
+                    </span>
                   </span>
                 </span>
               </Link>

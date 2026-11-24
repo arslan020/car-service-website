@@ -69,3 +69,46 @@ canvas {
 .animate-review-swipe {
   animation: review-swipe 0.5s ease-out both;
 }
+
+@keyframes bf-now-open-flash {
+  0%,
+  100% {
+    color: #faaa3c;
+  }
+  50% {
+    color: #ffffff;
+  }
+}
+
+.bf-now-open {
+  color: #faaa3c;
+  animation: bf-now-open-flash 0.9s ease-in-out infinite;
+}
+
+@keyframes bf-ticker-ltr {
+  from {
+    transform: translate3d(-50%, 0, 0);
+  }
+  to {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.bf-ticker-track {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  height: 100%;
+  width: max-content;
+  align-items: center;
+  white-space: nowrap;
+  animation: bf-ticker-ltr 52s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bf-now-open,
+  .bf-ticker-track {
+    animation: none;
+  }
+}

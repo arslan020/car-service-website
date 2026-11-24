@@ -2,12 +2,14 @@
 import Image from "next/image";
 import { site, waUrl } from "@/lib/site-config";
 import { CookieSettingsButton } from "@/components/cookie-settings-button";
+import { BlackFridayTicker } from "@/components/black-friday-ticker";
 
 export function SiteFooter() {
   const year = new Date().getFullYear();
 
   return (
     <footer className="mt-auto bg-[#020F3D]">
+      <BlackFridayTicker size="footer" />
 
       {/* ── Main columns ── */}
       <div className="mx-auto max-w-7xl px-4 pt-14 pb-10 sm:px-6 lg:px-8">

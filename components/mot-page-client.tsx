@@ -84,8 +84,9 @@ export function MotPageClient({ content: c, editable = false }: { content: Conte
                 <h1 className="text-3xl font-extrabold leading-tight text-[#020F3D] sm:text-5xl"><EditableText pageKey="mot" fieldKey="hero_title" value={c.hero_title} editable={editable} /></h1>
               </div>
               <p className="mt-4 text-base leading-relaxed text-slate-500 sm:text-lg"><EditableText pageKey="mot" fieldKey="hero_subtitle" value={c.hero_subtitle} type="textarea" editable={editable} /></p>
-              <div className="mt-3 inline-flex items-center gap-2 rounded-full border border-[#e0ebff] bg-white px-4 py-2 shadow-sm">
+              <div className="mt-3 inline-flex flex-wrap items-center gap-2 rounded-full border border-[#e0ebff] bg-white px-4 py-2 shadow-sm">
                 <span className="text-2xl font-extrabold text-[#020F3D]"><EditableText pageKey="mot" fieldKey="hero_price" value={c.hero_price} editable={editable} /></span>
+                <span className="text-xs font-bold uppercase tracking-widest text-black">Black Friday offer</span>
                 <span className="text-sm text-slate-500"><EditableText pageKey="mot" fieldKey="hero_price_suffix" value={c.hero_price_suffix} editable={editable} /></span>
               </div>
               <div className="mt-2 inline-flex items-center gap-2 rounded-full bg-[#eef4ff] px-4 py-2">
@@ -115,6 +116,9 @@ export function MotPageClient({ content: c, editable = false }: { content: Conte
               {stats.map((item) => (
                 <div key={item.label} className="rounded-2xl border border-[#e8effa] bg-white p-5 text-center shadow-sm">
                   <p className="text-2xl font-extrabold text-[#0F63FF]"><EditableText pageKey="mot" fieldKey={item.statKey} value={item.stat} editable={editable} /></p>
+                  {item.statKey === "hero_price" && (
+                    <p className="mt-1 text-[11px] font-bold uppercase tracking-wide text-black">Black Friday offer</p>
+                  )}
                   <p className="mt-1 text-xs text-slate-500"><EditableText pageKey="mot" fieldKey={item.labelKey} value={item.label} editable={editable} /></p>
                 </div>
               ))}

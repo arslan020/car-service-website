@@ -5,6 +5,7 @@ import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { site, waUrl } from "@/lib/site-config";
+import { BlackFridayTicker } from "@/components/black-friday-ticker";
 
 // Responsive rules in plain CSS, the dev Tailwind pipeline misses newly added
 // variant classes, so these are shipped with the component instead.
@@ -279,6 +280,7 @@ export function SiteHeader() {
   return (
     <>
     <header className="sticky top-0 z-50 bg-white/98 shadow-[0_6px_18px_rgba(2,15,61,0.05)] backdrop-blur">
+      <BlackFridayTicker />
       <style>{HDR_CSS}</style>
       <div className="hdr-bar mx-auto w-full max-w-[1800px] gap-2 px-3 py-3 sm:gap-4 sm:px-6 lg:px-8 xl:px-10">
         <Link

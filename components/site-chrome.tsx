@@ -4,6 +4,7 @@ import { usePathname } from "next/navigation";
 import { SiteHeader } from "./site-header";
 import { SiteFooter } from "./site-footer";
 import { CookieConsent } from "./cookie-consent";
+import { BlackFridayBanner } from "./black-friday-banner";
 
 export function SiteChrome({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
@@ -15,6 +16,7 @@ export function SiteChrome({ children }: { children: React.ReactNode }) {
       <main className={show ? "flex-1" : undefined}>{children}</main>
       {show && <SiteFooter />}
       {show && <CookieConsent />}
+      <BlackFridayBanner disabled={!show} />
     </>
   );
 }
