@@ -244,6 +244,8 @@ export function SiteFooter() {
             >
               Company number {site.companyNumber}
             </a>
+            <span aria-hidden="true"> · </span>
+            VAT number {site.vatNumber}
           </p>
         </div>
       </div>
